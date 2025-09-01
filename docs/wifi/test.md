@@ -2,6 +2,22 @@
 
 # Learning archbee syntax
 
+# Image (scaled)
+
+::Image[]{src="https://archbee-image-uploads.s3.amazonaws.com/3GUDYkC5JgUWgo6RW8piO-sYvhQxXfYFI3KO3-mLXnX-20250901-160530.png" signedSrc="https://archbee-image-uploads.s3.amazonaws.com/3GUDYkC5JgUWgo6RW8piO-sYvhQxXfYFI3KO3-mLXnX-20250901-160530.png" size="60" width="1144" height="592" position="center" caption}
+
+
+
+:::ExpandableHeading
+### Expandible heading
+
+Random text to test expandible headings with images inside.
+
+![](https://archbee-image-uploads.s3.amazonaws.com/3GUDYkC5JgUWgo6RW8piO-sYvhQxXfYFI3KO3-mLXnX-20250901-160530.png)
+:::
+
+
+
 ## Flow with steps
 
 ::::WorkflowBlock
