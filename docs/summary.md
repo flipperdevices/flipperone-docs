@@ -4,7 +4,7 @@
 # Section 0
 - [General Page](general/test.md)
 
-# Section 1  
+# [WiFi Info](wifi/test.md)
 - [WiFi Info](wifi/test.md)
   - [subwifipage](wifi/test.md)
   - [Screen Info](general2/testing.md)
