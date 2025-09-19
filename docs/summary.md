@@ -6,14 +6,7 @@
 
 # [WiFi Info](wifi/test.md)
 - [WiFi Info](wifi/test.md)
-  - [subwifipage](wifi/test.md)
-  - [Screen Info](general2/testing.md)
-  - [Screen Info](general2/testing.md)
-    - [Screen Info](general2/testing.md)
-    - [Screen Info](general2/testing.md)
-      - [Screen Info](general2/testing.md)
-      - [Screen Info](general2/testing.md)
-
+  - [Screen Info](general2/testing.md)  
 
 # Section 2
 - [Screen Info](general2/testing.md)
