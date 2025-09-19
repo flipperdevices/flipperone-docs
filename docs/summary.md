@@ -1,4 +1,7 @@
 # Table of contents
+- [Welcome](Welcome.md)
+
+# Section 0
 - [General page](general/test.md)
 
 # Section 1  
