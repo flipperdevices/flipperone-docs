@@ -1,4 +1,4 @@
-# This is wifi/test.md
+## This is wifi/test.md
 
 Cool, now when a key is pressed in the editor, its corresponding keycode is logged in the console.
 
