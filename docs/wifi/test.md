@@ -2,11 +2,11 @@
 
 Cool, now when a key is pressed in the editor, its corresponding keycode is logged in the console.
 
-![](https://app.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/nKtrLnZsBufZtZxG0VcOT-20250924-080703.png)
+![](files/pics/scam_cars.jpg)
 
-::Image[]{src="https://app.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/nKtrLnZsBufZtZxG0VcOT-20250924-080703.png" size="70" width="698" height="294" position="center" caption}
+::Image[]{src="files/pics/scam_cars.jpg" size="70" width="698" height="294" position="center" caption}
 
-::Image[]{src="https://app.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/nKtrLnZsBufZtZxG0VcOT-20250924-080703.png" size="50" position="center" caption width="698" height="294" darkWidth="698" darkHeight="294"}
+::Image[]{src="files/pics/scam_cars.jpg" size="50" position="center" caption width="698" height="294" darkWidth="698" darkHeight="294"}
 
 ::Image[]{src="files/pics/scam_cars.jpg" size="50" position="left" caption="This is caption"}
 
