@@ -8,7 +8,7 @@ Cool, now when a key is pressed in the editor, its corresponding keycode is logg
 
 ::Image[]{src="https://app.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/nKtrLnZsBufZtZxG0VcOT-20250924-080703.png" size="50" position="center" caption width="698" height="294" darkWidth="698" darkHeight="294"}
 
-::Image[]{src="https://app.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/rIOrZkA6NjSMBY_iX0oin_scamcars.jpg" size="50" width="2565" height="1469" position="left" caption="This is caption" alt}
+::Image[]{src="files/pics/scam_cars.jpg" size="50" position="left" caption="This is caption"}
 
 Now we want to make it actually change the content. For the purposes of our example, let's implement turning all ampersand, `&`, keystrokes into the word `and` upon being typed.
 
