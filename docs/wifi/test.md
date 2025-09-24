@@ -4,13 +4,15 @@ Cool, now when a key is pressed in the editor, its corresponding keycode is logg
 
 ![](files/pics/scam_cars.jpg)
 
-::Image[]{src="files/pics/scam_cars.jpg" size="70" width="698" height="294" position="center" caption sha="9dc1cb5b0e7d8bd61775a7ba011712b8d81d86a9" initialPath="files/pics/scam_cars.jpg" githubPath="docs/files/pics/scam_cars.jpg"}
+::Image[]{src="files/pics/scam_cars.jpg" size="70" position="center" caption="This is caption"}
 
-::Image[]{src="files/pics/scam_cars.jpg" size="50" position="center" caption width="698" height="294" darkWidth="698" darkHeight="294" sha="9dc1cb5b0e7d8bd61775a7ba011712b8d81d86a9" initialPath="files/pics/scam_cars.jpg" githubPath="docs/files/pics/scam_cars.jpg"}
+::Image[]{src="files/pics/scam_cars.jpg" size="50" position="center" caption="This is caption"}
 
-::Image[]{src="files/pics/scam_cars.jpg" size="50" position="left" caption="This is caption" sha="9dc1cb5b0e7d8bd61775a7ba011712b8d81d86a9" initialPath="files/pics/scam_cars.jpg" githubPath="docs/files/pics/scam_cars.jpg" width="2565" height="1469" darkWidth="2565" darkHeight="1469"}
+::Image[]{src="files/pics/scam_cars.jpg" size="30" position="left" caption="This is caption"}
 
-Testing if this text will ruin all image links above.
+::Image[]{src="files/pics/scam_cars.jpg" size="30" position="center" caption="This is caption"}
+
+::Image[]{src="files/pics/scam_cars.jpg" size="30" position="right" caption="This is caption"}
 
 Now we want to make it actually change the content. For the purposes of our example, let's implement turning all ampersand, `&`, keystrokes into the word `and` upon being typed.
 
