@@ -2,6 +2,10 @@
 
 Cool, now when a key is pressed in the editor, its corresponding keycode is logged in the console.
 
+![](https://app.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/nKtrLnZsBufZtZxG0VcOT-20250924-080703.png)
+
+::Image[]{src="https://app.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/nKtrLnZsBufZtZxG0VcOT-20250924-080703.png" size="70" width="698" height="294" position="center" caption}
+
 Now we want to make it actually change the content. For the purposes of our example, let's implement turning all ampersand, `&`, keystrokes into the word `and` upon being typed.
 
 Our `onKeyDown` handler might look like this:
