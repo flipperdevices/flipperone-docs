@@ -12,7 +12,7 @@ Cool, now when a key is pressed in the editor, its corresponding keycode is logg
 
 ::Image[]{src="files/pics/scam_cars.jpg" size="30" position="center" caption="This is caption"}
 
-::Image[]{src="files/pics/scam_cars.jpg" size="30" position="right" caption="This is caption"}
+::Image[]{src="files/pics/scam_cars.jpg" size="30" position="right"}
 
 Now we want to make it actually change the content. For the purposes of our example, let's implement turning all ampersand, `&`, keystrokes into the word `and` upon being typed.
 
