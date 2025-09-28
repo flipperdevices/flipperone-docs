@@ -1,5 +1,5 @@
-# Table of contents
-- [Welcome](Welcome.md)
+# [Welcome](Welcome.md)
+- [General Page](general/test.md)
 
 # Section 0
 - [General Page](general/test.md)
