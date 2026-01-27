@@ -1,5 +1,5 @@
 - [Welcome](Welcome.md)
-- [How to join](How-to-join.md)
+- [Join Us](Join-us.md)
 - [🚧 Open tasks](Open-tasks.md)
 
 ## ⚙️ Hardware
