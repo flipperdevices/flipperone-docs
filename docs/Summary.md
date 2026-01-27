@@ -33,4 +33,3 @@
 - [Rockchip RK3576](resources/rockchip/Rockchip-RK3576.md)
   - [RK3576 Boot flow](resources/rockchip/RK3576-Boot-flow.md)
 - [Markup example](resources/Markup-example.md) 
-- [🚧 Open tasks](Open-tasks.md)

@@ -9,7 +9,7 @@ Flipper One is a community-driven project that aims to develop a portable Linux 
 :::hint{type="info"}
 **Anyone can join the development of Flipper One!**
 
-Whether you are an engineer, developer, designer, programmer, or even just an enthusiastic user, you're welcome to take part in the process. To learn how to get involved, see [How to Join](How-to-join.md).
+Whether you are an engineer, developer, designer, programmer, or even just an enthusiastic user, you're welcome to take part in the process. To learn how to get involved, see [How to Join](join_us.md).
 :::
 
 ---
