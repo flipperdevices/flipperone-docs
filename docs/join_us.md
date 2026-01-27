@@ -1,4 +1,4 @@
-# J
+# 🤝 Join Us
 
 ::Image[]{src="files/pics/community-bw-icon.png" size="30" sha="b016c7aa32a003b1040dd4eee972dcbb8cefef0f" initialPath="files/pics/community-bw-icon.png" githubPath="docs/files/pics/community-bw-icon.png" caption width="500" height="500" darkWidth="500" darkHeight="500"}
 
