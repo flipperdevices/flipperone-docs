@@ -4,6 +4,16 @@
 
 Flipper One development includes hardware, software, mechanics, ergonomics, design, interfaces, and more. To contribute, choose your area of expertise, check open tasks, and see how you can help. If you’re not sure where to start, subscribe to updates and follow along as a spectator — you may find a topic later where you’d like to join in.
 
+# Join Discord
+
+Chat with the community in real time on Discord server.
+
+::Image[]{src="https://dcbadge.limes.pink/api/server/https://discord.com/invite/flipper" size="90" width="291" height="28" position="center" caption alt}
+
+### Join link → [**https://discord.gg/flipper**](https://discord.gg/flipper)
+
+
+
 # Subscribe to email list
 
 Each week we’ll send a brief update on development progress and areas where help is needed.
@@ -21,18 +31,3 @@ The easiest way to contribute is by editing this wiki on GitHub:
 1. Fork the Github repo: [**https://github.com/flipperdevices/flipper-one-docs**](https://github.com/flipperdevices/flipper-one-docs)
 2. Edit or add pages
 3. Open a pull request
-
-# Join Discord
-
-[**https://discord.gg/flipper**](https://discord.gg/flipper) &#x20;
-
-::Image[]{src="https://cdn.flipper.net/discord-docs-icon.png" size="18" width="512" height="512" position="center" caption alt}
-
-[**https://discord.gg/flipper**](https://discord.gg/flipper) &#x20;
-
-::Image[]{src="https://dcbadge.limes.pink/api/server/https://discord.com/invite/flipper" size="90" width="291" height="28" position="center" caption alt}
-
-Chat with the community in real time on Discord server.
-
-### Join link → [**https://discord.gg/flipper**](https://discord.gg/flipper)
-
