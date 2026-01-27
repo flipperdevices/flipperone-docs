@@ -1,4 +1,4 @@
-# Welcome
+# 👋 Welcome
 
 ![Flipper One developers portal banner](https://cdn.flipper.net/Flipper_One_main_page_banner.jpg)
 
