@@ -8,11 +8,13 @@ Flipper One development includes hardware, software, mechanics, ergonomics, desi
 
 Chat with the community in real time on Discord server.
 
-::Image[]{src="https://dcbadge.limes.pink/api/server/https://discord.com/invite/flipper" size="90" width="291" height="28" position="center" caption alt}
+![](https://dcbadge.limes.pink/api/server/https://discord.com/invite/flipper)
+
+:::CtaButton{label="Click To Edit Button Label" docId docAnchorId externalHref="https://discord.gg/flipper" openInNewTab="true" noFollow="false"}
+
+:::
 
 ### Join link → [**https://discord.gg/flipper**](https://discord.gg/flipper)
-
-
 
 # Subscribe to email list
 
