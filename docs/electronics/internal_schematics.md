@@ -1,4 +1,4 @@
-# Schematics
+# Internal schematic
 
 This section contains the electrical schematics of Flipper One. They are published in the format ???
 

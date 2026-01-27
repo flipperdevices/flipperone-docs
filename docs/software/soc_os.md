@@ -1,3 +1,3 @@
-# Flipper OS
+# SoC Operating system
 
 This section covers the Flipper OS operating system and its development for Flipper One.

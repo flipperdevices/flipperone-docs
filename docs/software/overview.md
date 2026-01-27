@@ -1,4 +1,4 @@
-# About Software
+# Overview
 
 This section covers the software stack of Flipper One.
 

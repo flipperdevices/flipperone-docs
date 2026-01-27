@@ -1,4 +1,4 @@
-# About Hardware
+# Overview
 
 This section covers the hardware development of Flipper One. It includes the electronics (PCB, schematics) and mechanical (case, assembly, buttons) design.&#x20;
 
