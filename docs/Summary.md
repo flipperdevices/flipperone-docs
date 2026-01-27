@@ -1,48 +1,33 @@
-- [👋 Welcome](Welcome.md)
-- [🤝 Join Us](Join-us.md)
-- [📋 Overview](Join-us.md)
+- [👋 Welcome](welcome.md)
+- [🤝 Join Us](join_us.md)
+- [📋 Overview](owerview.md)
   
 ## ⚙️ Electronics
-- Overview
-- Internal schematic
-- Connectors and interfaces
+- [Overview](electronics/overview.md)
+- [Internal schematic](electronics/internal_schematics.md)
+- [Connectors and interfaces](electronics/connectors_interfaces.md)
+
 ## 🧩 Software
-- Overview
-- MCU firmware 
-- SoC Operating system
-- FlipCTL
+- [Overview](software/overview.md)
+- [MCU firmware](software/mcu_firmware.md)
+- [SoC Operating system](software/soc_os.md)
+  - [U-Boot](software/uboot.md)
+  - [FlipCTL](software/flipctl.md)
+
 ## 🛠️ Mechanical Design
-- 3D models
-- Expansion boards drawings
-- Internal mechanics
+- [3D models]
+- [Expansion boards drawings]
+- [Internal mechanics]
+
 ## 🚀 Getting Involved
-- First Steps
-- Contributing
-- Open tasks
-- Building Custom Modules
+- [First Steps](getting_involved/first_steps.md)
+- [Contributing](getting_involved/contributing.md)
+- [Open tasks](getting_involved/open_tasks.md)
+- [Building Custom Modules]
+  - [GPIO Modules](getting_involved/modules_gpio.md)
+  - [M.2 Modules](getting_involved/modules_m2.md)
 
-## ⚙️ Hardware
-- [About Hardware](hardware/About-Hardware.md)
-- [Schematics](hardware/Schematics.md)
-- [Modules](hardware/modules/Modules.md)
-  - [GPIO Modules](hardware/modules/GPIO-Modules.md)
-  - [M.2 Modules](hardware/modules/M2-Modules.md)
-- [Mechanics](hardware/Mechanics.md)
 
-##  Software
-- [About Software](software/About-Software.md)
-- [Flipper OS](software/Flipper-OS.md)
-- [U-Boot](software/U-Boot.md)
-- [FlipCTL](software/FlipCTL.md)
-
-## 🧪 Testing
-- [About Testing](testing/About-Testing.md)
-- [General](testing/General.md)
-- [Power](testing/Power.md)
-- [Graphics](testing/Graphics.md)
-    - [Video decoding](testing/Video-decoding.md)
-- [Network](testing/Network.md)
-- [M.2 Modules](testing/M_2.md)
 
 ## 📚 Resources
 - [Rockchip RK3576](resources/rockchip/Rockchip-RK3576.md)
