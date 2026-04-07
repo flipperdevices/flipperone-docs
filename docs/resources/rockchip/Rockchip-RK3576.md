@@ -1,8 +1,14 @@
-# Rockchip RK3576
+---
+title: Rockchip RK3576
+slug: resources/rockchip
+docTags: 
+createdAt: Tue Apr 07 2026 11:08:12 GMT+0000 (Coordinated Universal Time)
+updatedAt: Tue Apr 07 2026 13:46:11 GMT+0000 (Coordinated Universal Time)
+---
 
 This section contains technical resources and documentation for the Rockchip RK3576 processor used in Flipper One.
 
-## Maskrom 
+## Maskrom
 
 In maskrom mode, when miniloader in not loaded in RAM, device does not printing anything in UART.
 
@@ -10,12 +16,12 @@ How to find maskrom device via `lsusb`:
 
 `ID 2207:350e Fuzhou Rockchip Electronics Company  ## <--- Maskrom device`
 
+## Test maskrom device
 
-## Test maskrom device 
+1. Build latest rkdeveloptool [**https://github.com/rockchip-linux/rkdeveloptool**](https://github.com/rockchip-linux/rkdeveloptool)
+   Possible options:
 
-1. Build latest rkdeveloptool https://github.com/rockchip-linux/rkdeveloptool
-Possible options:
-```
+```javascript
 ./rkdeveloptool
 
 ---------------------Tool Usage ---------------------
@@ -44,21 +50,19 @@ TagSPL:                 tagspl <tag> <U-Boot SPL>
 -------------------------------------------------------
 ```
 
-
 2. Check if maskrom device visible:
-```
+
+```javascript
 ./rkdeveloptool ld
 DevNo=1 Vid=0x2207,Pid=0x350e,LocationID=102    Maskrom
 ```
 
 3. Upload loader into device RAM
-You can get `rk3576_spl_loader.bin` file here https://dl.radxa.com/rock4/4d/images/rk3576_spl_loader.bin
-At this moment devices will print into UART
+   You can get `rk3576_spl_loader.bin` file here [**https://dl.radxa.com/rock4/4d/images/rk3576\_spl\_loader.bin**](https://dl.radxa.com/rock4/4d/images/rk3576_spl_loader.bin)
+   At this moment devices will print into UART
 
-```
+```javascript
 # ./rkdeveloptool db ./rk3576_spl_loader.bin
  Downloading bootloader succeeded.
 ```
-
-
 

@@ -1,6 +1,0 @@
-root: ./docs
-structure:
-  readme: Welcome.md
-  summary: Summary.md
-  assets: files
-publishSpace: true

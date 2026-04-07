@@ -1,0 +1,201 @@
+{
+  "root": "./docs",
+  "structure": {
+    "readme": "Welcome.md",
+    "summary": "Summary.md",
+    "assets": "files",
+    "docsTree": [
+      {
+        "categoryName": "Welcome",
+        "isCategory": false,
+        "path": "Welcome.md",
+        "children": []
+      },
+      {
+        "categoryName": "How to join",
+        "isCategory": false,
+        "path": "How-to-join.md",
+        "children": []
+      },
+      {
+        "categoryName": "🚧 Open tasks",
+        "isCategory": false,
+        "path": "Open-tasks.md",
+        "children": []
+      },
+      {
+        "categoryName": "General",
+        "isCategory": true,
+        "children": [
+          {
+            "categoryName": "Tech Specs",
+            "isCategory": false,
+            "path": "general/Tech-Specs.md",
+            "children": []
+          },
+          {
+            "categoryName": "Features",
+            "isCategory": false,
+            "path": "general/Features.md",
+            "children": []
+          }
+        ]
+      },
+      {
+        "categoryName": "⚙️ Hardware",
+        "isCategory": true,
+        "children": [
+          {
+            "categoryName": "About Hardware",
+            "isCategory": false,
+            "path": "hardware/About-Hardware.md",
+            "children": []
+          },
+          {
+            "categoryName": "Schematics",
+            "isCategory": false,
+            "path": "hardware/Schematics.md",
+            "children": []
+          },
+          {
+            "categoryName": "Wi-Fi",
+            "isCategory": false,
+            "path": "hardware/WiFi.md",
+            "children": []
+          },
+          {
+            "categoryName": "Modules",
+            "isCategory": false,
+            "path": "hardware/modules/Modules.md",
+            "children": [
+              {
+                "categoryName": "GPIO Modules",
+                "isCategory": false,
+                "path": "hardware/modules/GPIO-Modules.md",
+                "children": []
+              },
+              {
+                "categoryName": "M.2 Modules",
+                "isCategory": false,
+                "path": "hardware/modules/M2-Modules.md",
+                "children": []
+              }
+            ]
+          },
+          {
+            "categoryName": "Mechanics",
+            "isCategory": false,
+            "path": "hardware/Mechanics.md",
+            "children": []
+          }
+        ]
+      },
+      {
+        "categoryName": "🧩 Software",
+        "isCategory": true,
+        "children": [
+          {
+            "categoryName": "About Software",
+            "isCategory": false,
+            "path": "software/About-Software.md",
+            "children": []
+          },
+          {
+            "categoryName": "Flipper OS",
+            "isCategory": false,
+            "path": "software/Flipper-OS.md",
+            "children": []
+          },
+          {
+            "categoryName": "U-Boot",
+            "isCategory": false,
+            "path": "software/U-Boot.md",
+            "children": []
+          },
+          {
+            "categoryName": "FlipCTL",
+            "isCategory": false,
+            "path": "software/FlipCTL.md",
+            "children": []
+          }
+        ]
+      },
+      {
+        "categoryName": "🧪 Testing",
+        "isCategory": true,
+        "children": [
+          {
+            "categoryName": "About Testing",
+            "isCategory": false,
+            "path": "testing/About-Testing.md",
+            "children": []
+          },
+          {
+            "categoryName": "General",
+            "isCategory": false,
+            "path": "testing/General.md",
+            "children": []
+          },
+          {
+            "categoryName": "Power",
+            "isCategory": false,
+            "path": "testing/Power.md",
+            "children": []
+          },
+          {
+            "categoryName": "Graphics",
+            "isCategory": false,
+            "path": "testing/Graphics.md",
+            "children": [
+              {
+                "categoryName": "Video decoding",
+                "isCategory": false,
+                "path": "testing/Video-decoding.md",
+                "children": []
+              }
+            ]
+          },
+          {
+            "categoryName": "Network",
+            "isCategory": false,
+            "path": "testing/Network.md",
+            "children": []
+          },
+          {
+            "categoryName": "M.2 Modules",
+            "isCategory": false,
+            "path": "testing/M_2.md",
+            "children": []
+          }
+        ]
+      },
+      {
+        "categoryName": "📚 Resources",
+        "isCategory": true,
+        "children": [
+          {
+            "categoryName": "Rockchip RK3576",
+            "isCategory": false,
+            "path": "resources/rockchip/Rockchip-RK3576.md",
+            "children": [
+              {
+                "categoryName": "RK3576 Boot flow",
+                "isCategory": false,
+                "path": "resources/rockchip/RK3576-Boot-flow.md",
+                "children": []
+              }
+            ]
+          },
+          {
+            "categoryName": "Markup example",
+            "isCategory": false,
+            "path": "resources/Markup-example.md",
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "publishSpace": true,
+  "docsPath": "docs/"
+}
