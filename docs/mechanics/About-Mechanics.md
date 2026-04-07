@@ -1,9 +1,4 @@
----
-title: Mechanics
-docTags: 
-createdAt: Mon Feb 09 2026 20:59:11 GMT+0000 (Coordinated Universal Time)
-updatedAt: Wed Mar 25 2026 10:11:21 GMT+0000 (Coordinated Universal Time)
----
+# About Mechanics
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/PiuX0-xvP3jRWBk-tW5yn-20260324-105215.png" size="80" width="2060" height="1580" position="center"}
 
