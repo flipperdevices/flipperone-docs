@@ -1,5 +1,5 @@
 ---
-title: Markup Example
+title: Markup example
 docTags: 
 createdAt: Mon Feb 09 2026 20:59:11 GMT+0000 (Coordinated Universal Time)
 updatedAt: Thu Mar 26 2026 16:54:08 GMT+0000 (Coordinated Universal Time)

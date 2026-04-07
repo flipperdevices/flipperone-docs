@@ -1,4 +1,4 @@
-# M.2 Modules
+# M.2 modules
 
 List of M.2 modules for Flipper One that are currently in development or testing.
 
