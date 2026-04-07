@@ -184,7 +184,8 @@
                 "path": "resources/rockchip/RK3576-Boot-flow.md",
                 "children": []
               }
-            ]
+            ],
+            "isFoldedByDefault": true
           },
           {
             "categoryName": "Markup example",
