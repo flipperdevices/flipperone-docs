@@ -6,7 +6,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 
 ## Main CPU — RK3576
 
-<table isTableHeaderOn="false" columnWidths="220,441">
+<table isTableHeaderOn="false" columnWidths="220,660">
   <tr>
     <td>
       <p><strong>CPU</strong></p>
@@ -43,7 +43,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 
 ## Low-Power MCU — RP2350
 
-<table isTableHeaderOn="false" columnWidths="220,441">
+<table isTableHeaderOn="false" columnWidths="220,660">
   <tr>
     <td>
       <p><strong>MCU</strong></p>
@@ -80,7 +80,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 
 ## Memory and Storage
 
-<table isTableHeaderOn="false" columnWidths="220,441">
+<table isTableHeaderOn="false" columnWidths="220,660">
   <tr>
     <td>
       <p><strong>RAM</strong></p>
@@ -109,7 +109,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 
 ## Battery and Power
 
-<table isTableHeaderOn="false" columnWidths="220,441">
+<table isTableHeaderOn="false" columnWidths="220,660">
   <tr>
     <td>
       <p><strong>Battery</strong></p>
@@ -146,7 +146,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 
 ## Monochrome LCD Display
 
-<table isTableHeaderOn="false" columnWidths="220,441">
+<table isTableHeaderOn="false" columnWidths="220,660">
   <tr>
     <td>
       <p><strong>Resolution</strong></p>
@@ -175,7 +175,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 
 ## Wi-Fi & Bluetooth
 
-<table isTableHeaderOn="false" columnWidths="220,441">
+<table isTableHeaderOn="false" columnWidths="220,660">
   <tr>
     <td>
       <p><strong>Module</strong></p>
@@ -212,7 +212,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 
 ## Gigabit Ethernet
 
-<table isTableHeaderOn="false" columnWidths="220,441">
+<table isTableHeaderOn="false" columnWidths="220,660">
   <tr>
     <td>
       <p><strong>Ports</strong></p>
@@ -233,7 +233,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 
 ## Video Output
 
-<table isTableHeaderOn="false" columnWidths="220,441">
+<table isTableHeaderOn="false" columnWidths="220,660">
   <tr>
     <td>
       <p><strong>HDMI</strong></p>
@@ -254,7 +254,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 
 ## Audio
 
-<table isTableHeaderOn="false" columnWidths="220,441">
+<table isTableHeaderOn="false" columnWidths="220,660">
   <tr>
     <td>
       <p><strong>Codec</strong></p>
@@ -287,7 +287,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 
 ![Flipper One ports — bottom](files/pics/flipper_one_ports_bottom.png "Flipper One ports — bottom")
 
-<table isTableHeaderOn="false" columnWidths="220,441">
+<table isTableHeaderOn="false" columnWidths="220,660">
   <tr>
     <td>
       <p><strong>USB-C1</strong></p>
@@ -357,7 +357,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 ## M.2 Expansion Port
 
 
-<table isTableHeaderOn="false" columnWidths="220,441">
+<table isTableHeaderOn="false" columnWidths="220,660">
   <tr>
     <td>
       <p><strong>M.2 Type</strong></p>
