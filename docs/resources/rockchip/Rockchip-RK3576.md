@@ -2,8 +2,8 @@
 title: Rockchip RK3576
 slug: resources/rockchip
 docTags: 
-createdAt: Tue Apr 07 2026 11:08:12 GMT+0000 (Coordinated Universal Time)
-updatedAt: Tue Apr 07 2026 13:46:11 GMT+0000 (Coordinated Universal Time)
+createdAt: Tue Apr 07 2026 18:42:40 GMT+0000 (Coordinated Universal Time)
+updatedAt: Wed Apr 08 2026 12:25:44 GMT+0000 (Coordinated Universal Time)
 ---
 
 This section contains technical resources and documentation for the Rockchip RK3576 processor used in Flipper One.
