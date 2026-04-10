@@ -3,7 +3,7 @@ title: Tech Specs
 slug: general/tech-specs
 docTags: 
 createdAt: Wed Apr 08 2026 17:29:37 GMT+0000 (Coordinated Universal Time)
-updatedAt: Thu Apr 09 2026 13:11:23 GMT+0000 (Coordinated Universal Time)
+updatedAt: Fri Apr 10 2026 18:07:20 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page describes the full technical specifications of the Flipper One. Since the device is under active development, specifications may change.
@@ -384,7 +384,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 
 ## M.2 expansion port
 
-\<add image>
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/kBEYmNJI2QKW3dVel7tuQ-20260410-180703.png "The M.2 expansion port is at the back of the device, under the Back Plate")
 
 <table isTableHeaderOn="false" columnWidths="178,483">
   <tr>
@@ -1039,11 +1039,13 @@ TODO: replace to better picture
   </tr>
   <tr>
     <td align="center">
-      <p><strong>CPU GPIO4_B0_D</strong> SAI1_SDO1_M0 </p>
+      <p><strong>CPU GPIO4_B0_D</strong></p>
+      <p>SAI1_SDO1_M0 </p>
       <p>SAI1_SDI3_M0 </p>
       <p>PDM1_CLK1_M1 </p>
       <p>SPI4_CLK_M2 </p>
-      <p>UART5_TX_M1 UART6_RTSN_M0 </p>
+      <p>UART5_TX_M1</p>
+      <p>UART6_RTSN_M0 </p>
       <p>UART2_RTSN_M1 </p>
     </td>
     <td align="center">
@@ -1053,7 +1055,9 @@ TODO: replace to better picture
       <p><strong>B1</strong></p>
     </td>
     <td align="center">
-      <p><strong>CPU GPIO4_B1_D </strong>UART2_CTSN_M1 UART6_CTSN_M0 </p>
+      <p><strong>CPU GPIO4_B1_D</strong></p>
+      <p>UART2_CTSN_M1</p>
+      <p>UART6_CTSN_M0 </p>
       <p>UART5_RX_M1 </p>
       <p>SPI4_MOSI_M2 </p>
       <p>PDM1_SDI2_M1 </p>
@@ -1063,7 +1067,10 @@ TODO: replace to better picture
   </tr>
   <tr>
     <td align="center" lightBackgroundColor="#f0f7ff">
-      <p><strong>CPU GPIO4_A6_D</strong> SAI4_LRCK_M0 PDM1_CLK0_M1 SPI3_MISO_M2</p>
+      <p><strong>CPU GPIO4_A6_D</strong></p>
+      <p>SAI4_LRCK_M0</p>
+      <p>PDM1_CLK0_M1</p>
+      <p>SPI3_MISO_M2</p>
       <p> I2C4_SDA_M1 </p>
       <p>UART6_RX_M0 </p>
       <p>CAN0_RX_M2</p>
@@ -1084,7 +1091,10 @@ TODO: replace to better picture
   </tr>
   <tr>
     <td align="center">
-      <p><strong>CPU GPIO4_A4_D</strong> SAI4_SCLK_M0 PDM1_SDI3_M1 SPI3_MOSI_M2</p>
+      <p><strong>CPU GPIO4_A4_D</strong></p>
+      <p>SAI4_SCLK_M0</p>
+      <p>PDM1_SDI3_M1</p>
+      <p>SPI3_MOSI_M2</p>
       <p> I2C4_SCL_M1</p>
       <p> UART6_TX_M0</p>
       <p> CAN0_TX_M2</p>
@@ -1105,7 +1115,8 @@ TODO: replace to better picture
   </tr>
   <tr>
     <td align="center" lightBackgroundColor="#f0f7ff" colSpan="1" rowSpan="1">
-      <p><strong>CPU GPIO4_A2_D </strong> SAI1_MCLK_M0 </p>
+      <p><strong>CPU GPIO4_A2_D </strong></p>
+      <p>SAI1_MCLK_M0 </p>
       <p>SAI4_MCLK_M0 </p>
       <p>PWM2_CH5_M0 </p>
     </td>
