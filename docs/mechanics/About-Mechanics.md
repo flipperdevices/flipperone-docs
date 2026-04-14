@@ -2,7 +2,7 @@
 title: About Mechanics
 docTags: 
 createdAt: Wed Apr 08 2026 17:29:37 GMT+0000 (Coordinated Universal Time)
-updatedAt: Mon Apr 13 2026 13:40:03 GMT+0000 (Coordinated Universal Time)
+updatedAt: Mon Apr 13 2026 15:11:21 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page explains the structure of the Mechanics sub-project, provides links to design files, and outlines how to contribute to Flipper One's mechanical development.
@@ -13,11 +13,11 @@ Our goal is to build a portable Linux computer, using feedback from our communit
 
 On this page you’ll find:
 
-- :Link[Mechanics sub-project structure]{href="https://docs.flipper.net/one/about-mechanics#mechanics-sub-project-structure" newTab="true" hasDisabledNofollow="false"}
-- :Link[Task tracker]{href="https://docs.flipper.net/one/about-mechanics#task-tracker" newTab="true" hasDisabledNofollow="false"}
-- :Link[3D model web viewer]{href="https://docs.flipper.net/one/about-mechanics#3d-model-web-viewer" newTab="true" hasDisabledNofollow="false"}
-- :Link[GitHub repo with design files]{href="https://docs.flipper.net/one/about-mechanics#github-repo-with-design-files" newTab="true" hasDisabledNofollow="false"}
-- :Link[How to contribute]{href="https://docs.flipper.net/one/about-mechanics#how-to-contribute" newTab="true" hasDisabledNofollow="false"}
+- [**Mechanics sub-project structure**](About-Mechanics.md)
+- [**Task tracker**](About-Mechanics.md)
+- [**3D model web viewer**](About-Mechanics.md)
+- [**Repository with design files**](About-Mechanics.md)
+- [**How to contribute**](About-Mechanics.md)
 
 ***
 
@@ -30,7 +30,7 @@ The sub-project consists of several entities:
 - ⚙️ **3D model web viewer&#x20;**— allows viewing the 3D model directly in a browser and downloading it in different formats.
 - 📁 **Repo with design files** — hosts current and legacy design files and allows submitting pull requests with proposed changes.
 
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/xA0rvDdhznqljjrEw9INI-20260413-130026.jpg)
+::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/xA0rvDdhznqljjrEw9INI-20260413-130026.jpg" size="88" width="1900" height="751" position="center"}
 
 ***
 
@@ -40,7 +40,7 @@ All mechanical team tasks are tracked in the GitHub project :Link[Flipper One �
 
 ![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/BeWS1oVK3tyEiQh9mPzpn-20260413-115237.jpg "Mechaincs sub-project task tracker on GitHub")
 
-**Some tasks are open** to the community and marked with a **help wanted** label. You’re welcome to join the discussion on these tasks or submit your design proposals — just make sure to read the [**Contribution guide**]() first.
+**Some tasks are open** to the community and marked with a **help wanted** label. You’re welcome to join the discussion on these tasks or submit your design proposals — just make sure to read the [**Contribution guide**](About-Mechanics.md) first.
 
 ***
 
@@ -184,8 +184,8 @@ To contribute to the Mechanics sub-project, you need to have a GitHub account. Y
 
 Anyone can contribute to the Mechanics sub-project via the GitHub repository by commenting on the open tasks or making pull requests with suggested changes:
 
-- [**Contribute to an open task**]()
-- [**General suggestions regarding design**]()
+- [**Contribute to an open task**](About-Mechanics.md)&#x20;
+- [**General suggestion regarding design**](About-Mechanics.md)
 
 
 
