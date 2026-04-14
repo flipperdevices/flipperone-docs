@@ -2,11 +2,9 @@
 title: Markup example
 slug: resources/docs/markup-example
 docTags: 
-createdAt: Wed Apr 08 2026 17:29:37 GMT+0000 (Coordinated Universal Time)
-updatedAt: Tue Apr 14 2026 15:00:29 GMT+0000 (Coordinated Universal Time)
+createdAt: Tue Apr 14 2026 15:08:15 GMT+0000 (Coordinated Universal Time)
+updatedAt: Tue Apr 14 2026 15:56:00 GMT+0000 (Coordinated Universal Time)
 ---
-
-# Markup Reference
 
 This page is a reference for contributors writing Flipper One documentation.
 It covers both standard **Markdown** and **Archbee-specific syntax** supported by this wiki.
@@ -34,40 +32,11 @@ The source files live on GitHub at [**github.com/flipperdevices/flipper-one-docs
 
 Flipper One documentation supports headings H1–H3.
 
-<table isTableHeaderOn="true" columnWidths="331,332">
-  <tr>
-    <td>
-      <p><strong>Flipper One docs</strong></p>
-    </td>
-    <td>
-      <p><strong>Markdown</strong></p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <h1>Heading 1</h1>
-    </td>
-    <td>
-      <p><code># Heading H1</code></p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <h2>Heading 2</h2>
-    </td>
-    <td>
-      <p><code>## Heading H2</code></p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <h3>Heading 3</h3>
-    </td>
-    <td>
-      <p><code>### Heading H3</code></p>
-    </td>
-  </tr>
-</table>
+# # Heading 1
+
+## ## Heading 2
+
+### ### Heading 3
 
 ***
 
@@ -175,45 +144,13 @@ Flipper One documentation supports headings H1–H3.
 
 ## Images
 
-Standard Markdown image syntax:
+**Remote URL:** `![Alt text](https://example.com/image.png "Caption")`
 
-<table isTableHeaderOn="true" columnWidths="119,360,184">
-  <tr>
-    <td>
-    </td>
-    <td>
-      <p><strong>Flipper One docs</strong></p>
-    </td>
-    <td>
-      <p><strong>Markdown</strong></p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <p><strong>Remote URL</strong></p>
-    </td>
-    <td>
-      <p><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&#x26;h=120&#x26;fit=crop" alt="Remote image"></p>
-    </td>
-    <td>
-      <p><code>![Alt text](https://example.com/image.png "Title")</code></p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <p><strong>Local path</strong></p>
-    </td>
-    <td>
-      <hr>
-      <p><img src="files/pics/test-image.jpg" alt="Local image"></p>
-    </td>
-    <td>
-      <p><code>![Alt text](files/pics/test-image.jpg "Title")</code></p>
-    </td>
-  </tr>
-</table>
+![Remote image](https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300\&h=120\&fit=crop "Caption")
 
+**Local path:**  `![Alt text](files/pics/test-image.jpg "Caption")`
 
+![Local image](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/pNHUZHZzPZd7qdM08jKuq_test-image.jpg "Caption")
 
 :::hint{type="info"}
 **Caption alignment** depends on the image source, not the syntax:
@@ -242,7 +179,7 @@ To **resize or align** an image, standard Markdown is not enough — use Archbee
       <p><code>src</code></p>
     </td>
     <td>
-      <p>Path to the image (relative or absolute URL)</p>
+      <p>Path to the image (relative or absolute URL).</p>
     </td>
   </tr>
   <tr>
@@ -250,7 +187,7 @@ To **resize or align** an image, standard Markdown is not enough — use Archbee
       <p><code>size</code></p>
     </td>
     <td>
-      <p>Width value (exact unit unclear — likely a percentage of the content area)</p>
+      <p>Width value in percent.</p>
     </td>
   </tr>
   <tr>
@@ -275,9 +212,9 @@ To **resize or align** an image, standard Markdown is not enough — use Archbee
 
 ## Videos
 
-Two ways to embed video are supported.
+Two methods to embed video are supported.
 
-**YouTube** — use Archbee's embed syntax:
+**Method 1: YouTube** — use Archbee's embed syntax:
 
 `::embed[]{url="https://www.youtube.com/watch?v=VIDEO_ID"}`
 
@@ -285,7 +222,7 @@ Two ways to embed video are supported.
 
 ​
 
-**Self-hosted / CDN video** — use the Archbee `:::Iframe` component:
+**Method 2: Self-hosted / CDN video** — use the Archbee `:::Iframe` component:
 
 ```html
 :::Iframe{iframeHeight="500" code="
@@ -293,11 +230,14 @@ Two ways to embed video are supported.
     autoplay muted loop playsinline style="width: 100%; margin: 0 !important;"
     src="https://cdn.example.com/your-video.mp4"
 ></video>"}
+<div class="text-center mt-2.5 text-gray-400 pb-5">
+Caption
+</div>
 
 :::
 ```
 
-:::Iframe{iframeHeight="500" code="<video&#xA;    autoplay muted loop playsinline style=&#x22;width: 100%; margin: 0 !important;&#x22;&#xA;    src=&#x22;https://cdn.flipperzero.one/Pan_rotate_and_move_parts_compressed.mp4&#x22;&#xA;></video>"}
+:::Iframe{iframeHeight="500" code="<video&#xA;    autoplay muted loop playsinline style=&#x22;width: 100%; margin: 0 !important;&#x22;&#xA;    src=&#x22;https://cdn.flipperzero.one/Pan_rotate_and_move_parts_compressed.mp4&#x22;&#xA;></video>&#xA;<div class=&#x22;text-center mt-2.5 text-gray-400 pb-5&#x22;>&#xA;Caption&#xA;</div>"}
 
 :::
 
@@ -326,9 +266,9 @@ Two ways to embed video are supported.
       </ul>
     </td>
     <td>
-      <p><code>- Item A</code>
-      <code>  - Nested A.1</code>
-      <code>- Item B</code></p>
+      <p><code>- Item A</code> </p>
+      <p><code>  - Nested A.1</code> </p>
+      <p><code>- Item B</code></p>
     </td>
   </tr>
   <tr>
@@ -340,21 +280,9 @@ Two ways to embed video are supported.
       </ol>
     </td>
     <td>
-      <p><code>1. First</code>
-      <code>2. Second</code>
-      <code>3. Third</code></p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <ul class="contains-task-list">
-      <li class="task-list-item"><input type="checkbox" disabled> Item B</li>
-      <li class="task-list-item"><input type="checkbox" disabled> Item A</li>
-      </ul>
-    </td>
-    <td>
-      <p><code>[] Item A</code>
-      <code>[] Item B</code></p>
+      <p><code>1. First</code> </p>
+      <p><code>2. Second</code> </p>
+      <p><code>3. Third</code></p>
     </td>
   </tr>
 </table>
@@ -454,7 +382,7 @@ Archbee supports two table formats.
       <p>Comma-separated pixel widths per column. Total must not exceed 660 px</p>
     </td>
     <td>
-      <p><code>"110,440,110"</code></p>
+      <p><code>"165,330,165"</code></p>
     </td>
   </tr>
   <tr>
