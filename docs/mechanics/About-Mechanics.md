@@ -1,23 +1,45 @@
 ---
 title: About Mechanics
 docTags: 
-createdAt: Wed Apr 08 2026 17:29:37 GMT+0000 (Coordinated Universal Time)
-updatedAt: Mon Apr 13 2026 15:11:21 GMT+0000 (Coordinated Universal Time)
+createdAt: Tue Apr 14 2026 15:08:14 GMT+0000 (Coordinated Universal Time)
+updatedAt: Wed Apr 15 2026 17:16:22 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page explains the structure of the Mechanics sub-project, provides links to design files, and outlines how to contribute to Flipper One's mechanical development.
 
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/-rWWu6nWYzn0z9sCSiZK2-20260325-155001.jpg)
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/CQrg6SrR8-ulsW8dmNAug-20260414-183905.png)
 
-Our goal is to build a portable Linux computer, using feedback from our community and bringing those ideas into the final design of the device. Engineering the mechanical components for Flipper One is a challenging task — the enclosure must integrate multiple materials (plastic, aluminum, and rubber) while housing a complex array of internal components, including heat-generating chips, a heat sink, a lithium-ion battery, buttons, port and slot cutouts, and external module support.
+The Mechanics sub-project is where we engineer the enclosure, buttons, plastic and metal parts, and mounting components of Flipper One. We share 3D models of the **Body**, **Back Plate**, and **Antenna Rail** with the community, and keep the development process open for feedback and discussion.
+
+::::LinkArray{contentSource="CUSTOM"}
+:::LinkArrayItem{headerType="IMAGE" headerImage="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/k0o3kaq-MAoeq6cOQlV7H-20260414-190820.png"}
+:Link[**Tasks in GitHub project**]{href="https://github.com/orgs/flipperdevices/projects/15" newTab="true" hasDisabledNofollow="false"}
+
+Browse the Mechanics team's tasks and leave comments or suggestions on open tasks.
+:::
+
+:::LinkArrayItem{headerType="IMAGE" headerImage="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/8zAFEn9Wrk0wZwgnHhkLR-20260414-191217.png"}
+:Link[**3D models on Onshape**]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"}
+
+View the latest 3D models online, and export them in your preferred format.
+:::
+
+:::LinkArrayItem{headerType="IMAGE" headerImage="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/-0VgrSnc-AToYwBekkK4j-20260414-190311.png"}
+:Link[**Design files on GitHub**]{href="https://github.com/flipperdevices/flipperone-mechanics" newTab="true" hasDisabledNofollow="false"}
+
+Access current and legacy designs in the repo, and contribute your own via pull requests.
+:::
+::::
+
+We'd love your feedback — look for tasks tagged **help wanted** in the GitHub project, or contribute directly to the repository via pull requests.
 
 On this page you’ll find:
 
-- [**Mechanics sub-project structure**](About-Mechanics.md)
-- [**Task tracker**](About-Mechanics.md)
-- [**3D model web viewer**](About-Mechanics.md)
-- [**Repository with design files**](About-Mechanics.md)
-- [**How to contribute**](About-Mechanics.md)
+- [**Mechanics sub-project structure**](./#mechanics-sub-project-structure)
+  - [**Tasks in the GitHub project**](About-Mechanics.md)
+  - [**3D models on Onshape**](./#-3d-models-on-onshape)
+  - [**Design files in the GitHub repository**](./#-design-files-in-the-github-repository)
+- [**How to contribute**](./#how-to-contribute)
 
 ***
 
@@ -25,18 +47,18 @@ On this page you’ll find:
 
 The sub-project consists of several entities:
 
-- &#x20;📚 **Documentation** — explains the sub-project structure, provides an overview of assets and platforms, and contribution guidelines.
-- ✅ **Task tracker** — shows current tasks of the mechanical engineering team and discussions.
-- ⚙️ **3D model web viewer&#x20;**— allows viewing the 3D model directly in a browser and downloading it in different formats.
-- 📁 **Repo with design files** — hosts current and legacy design files and allows submitting pull requests with proposed changes.
+- 📚 **Documentation** — this section of the Developer Portal explains the Mechanics sub-project structure, provides an overview of assets and platforms, and contribution guidelines.
+- ✅ **Task in the GitHub project&#x20;**— shows current tasks of the mechanical engineering team and discussions.
+- ⚙️ **3D models on Onshape&#x20;**— allows viewing the 3D models directly in your browser and downloading them in different formats.
+- 📁 **Design files in the GitHub repository** — hosts current and legacy design files and allows submitting pull requests with proposed changes.
 
-::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/xA0rvDdhznqljjrEw9INI-20260413-130026.jpg" size="88" width="1900" height="751" position="center"}
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/kizHp5U44tARAtBHYy-ml-20260415-170010.jpg)
 
 ***
 
-## ✅  Task tracker
+## ✅  Tasks in the GitHub project
 
-All mechanical team tasks are tracked in the GitHub project :Link[Flipper One — Mechanics]{href="https://github.com/orgs/flipperdevices/projects/15" newTab="true" hasDisabledNofollow="false"}. There, you can see what the engineering team is working on and follow progress.
+All mechanical team tasks are tracked in the GitHub project :Link[Flipper One — Mechanics]{href="https://github.com/orgs/flipperdevices/projects/15" newTab="true" hasDisabledNofollow="false"}. There, you can see what the engineering team is working on and follow progress and discussions.
 
 ![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/BeWS1oVK3tyEiQh9mPzpn-20260413-115237.jpg "Mechaincs sub-project task tracker on GitHub")
 
@@ -44,17 +66,17 @@ All mechanical team tasks are tracked in the GitHub project :Link[Flipper One �
 
 ***
 
-## ⚙️ 3D model web viewer
+## ⚙️ 3D models on Onshape
 
-You can view, edit, or export the 3D model via :Link[Onshape]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"} – a cloud-based CAD tool (similar to SolidWorks) that runs directly in your web browser. We’ll always upload the latest version of the Flipper One 3D model to Onshape.
+You can view, edit, or export the 3D models via :Link[Onshape]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"} – a cloud-based CAD tool (similar to SolidWorks) that runs directly in your web browser. We’ll always upload the latest version of the Flipper One 3D models to Onshape.
 
-:::Iframe{iframeHeight="500" code="<video&#xA;    autoplay muted loop playsinline style=&#x22;width: 100%; margin: 0 !important;&#x22;&#xA;    src=&#x22;https://cdn.flipperzero.one/Pan_rotate_and_move_parts_compressed.mp4&#x22;&#xA;></video>"}
+:::Iframe{code="<video&#xA;    autoplay muted loop playsinline style=&#x22;width: 100%; margin: 0 !important;&#x22;&#xA;    src=&#x22;https://cdn.flipperzero.one/Pan_rotate_and_move_parts_compressed.mp4&#x22;&#xA;></video>" iframeHeight="500"}
 
 :::
 
 ***
 
-### Available 3D model parts
+### Available 3D models
 
 We made some mechanical parts of Flipper One available for the community to explore. Feel free to review them, download them for 3D printing, or make your own external hardware modules for Flipper One.
 
@@ -62,8 +84,8 @@ We made some mechanical parts of Flipper One available for the community to expl
 
 The 3D model consists of three parts:
 
-- **Body** — the main enclosure of the device. It contains all electronics, the display, and the user controls. The public release provides this part as a solid shell with an empty interior to prevent copying of the internal design.
-- **Back Plate** — the rear cover that provides access to the M.2 expansion port.
+- **Body** — the main enclosure of the device. It contains all electronics, the display, and the user controls. The public release provides this part as a solid shell with an empty interior.
+- **Back Plate** — the back cover that provides access to the M.2 expansion port.
   This screw-on cover is interchangeable, with different designs for each module.
 - **Antenna Rail** — a separate part for mounting SMA antennas. It is intentionally separate from the back plate so you can install antennas and route cables before attaching the plate, preventing cable damage during assembly.
 
@@ -90,7 +112,7 @@ For all methods of navigating models in Onshape, view :Link[the official documen
 
 ### How to export 3D models
 
-You can export the 3D model for printing to test ergonomics, or develop your own modules for Flipper One. Onshape supports exporting models or their parts in various formats.
+You can export the models for printing to test ergonomics, or develop your own modules for Flipper One. Onshape supports exporting models in various formats.
 
 :::hint{type="info"}
 **Supported export formats:** STEP, STL, OBJ, SOLIDWORKS, IGES, Parasolid, GLTF, RHINO, COLLADA, JT, PVZ, ACIS, and 3MF.
@@ -118,7 +140,7 @@ Choose the file format and export options, then click **Export**.
 
 ### How to edit 3D models
 
-To edit the model or design new parts for it, you’ll need to copy the model to your own account. Here’s how:
+To edit the model or design a new one, you’ll need to copy the model to your own account. Here’s how:
 
 ::::WorkflowBlock
 :::WorkflowBlockItem
@@ -136,7 +158,7 @@ Click **Make a copy to edit** at the top of the screen and choose a location in 
 :::
 ::::
 
-Now your copy of the model is opened in edit mode, so you can edit it or design new parts for it, such as your own custom back cover.
+Now your copy of the model is opened in edit mode, so you can edit it.
 
 :::hint{type="info"}
 Check out the free :Link[Onshape learning courses]{href="https://learn.onshape.com/" newTab="true" hasDisabledNofollow="false"} if you plan to work with it.
@@ -144,7 +166,7 @@ Check out the free :Link[Onshape learning courses]{href="https://learn.onshape.c
 
 ***
 
-## 📁 GitHub repo with design files
+## 📁 Design files in the GitHub repository
 
 The :Link[flipperone-mechanics]{href="https://github.com/flipperdevices/flipperone-mechanics" newTab="true" hasDisabledNofollow="false"} GitHub repository contains both current and legacy versions of Flipper One’s enclosure 3D models. It also includes other design files, such as enclosure text and labels, as well as designs for official hardware modules and add-ons. You can download the design files to explore and modify them.
 
@@ -184,10 +206,8 @@ To contribute to the Mechanics sub-project, you need to have a GitHub account. Y
 
 Anyone can contribute to the Mechanics sub-project via the GitHub repository by commenting on the open tasks or making pull requests with suggested changes:
 
-- [**Contribute to an open task**](About-Mechanics.md)&#x20;
-- [**General suggestion regarding design**](About-Mechanics.md)
-
-
+- [**Contribute to an open task**](./#if-you-want-to-contribute-to-an-open-task)&#x20;
+- [**General suggestion regarding design**](./#if-you-have-a-general-suggestion-regarding-design)
 
 ::::hint{type="info"}
 ### ⚠️ Contributions only — no flooding
@@ -309,14 +329,3 @@ Click **Create pull request**.
 
 We review all ideas carefully! We may ask additional questions about your idea in the pull request thread, so please follow notifications from GitHub in your email.
 
-***
-
-## Rules
-
-We welcome everyone to contribute, but we moderate user discussions in the repository to maintain a productive workflow. To avoid deletion of messages or bans, please follow these rules:
-
-- **Be respectful and professional.** Offensive language or personal attacks will not be tolerated.
-- **No spam or off-topic.** Keep comments relevant to the topic. This helps other contributors find relevant information more quickly.
-- **Critique constructively.** We welcome criticism and value community involvement, but it must be constructive. If you disagree with a design decision, please propose an alternative solution.
-- **Explain your ideas clearly.** Use text, screenshots, photos, or videos to make your suggestions understandable.
-- **Respect versioning and naming conventions.** Follow existing folder structure and file naming rules when adding or changing files.
