@@ -1,8 +1,8 @@
 ---
 title: About Mechanics
 docTags: 
-createdAt: Mon Apr 20 2026 10:15:55 GMT+0000 (Coordinated Universal Time)
-updatedAt: Mon Apr 20 2026 10:24:55 GMT+0000 (Coordinated Universal Time)
+createdAt: Mon Apr 20 2026 11:30:48 GMT+0000 (Coordinated Universal Time)
+updatedAt: Mon Apr 20 2026 16:17:35 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page explains the structure of the Mechanics sub-project, provides links to design files, and outlines how to contribute to Flipper One's mechanical development.
@@ -29,7 +29,7 @@ All mechanical team tasks are tracked in the GitHub project :Link[Flipper One �
 
 ![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/BeWS1oVK3tyEiQh9mPzpn-20260413-115237.jpg "Mechaincs sub-project task tracker on GitHub")
 
-**Some tasks are open** to the community and marked with a **help wanted** label. You’re welcome to join the discussion on these tasks or submit your design proposals — just make sure to read the [**Contribution guide**](About-Mechanics.md) first.
+**Some tasks are open** to the community and marked with a **help wanted** label. You’re welcome to join the discussion on these tasks or submit your design proposals — just make sure to read the :Link[Contribution guide]{href="https://docs.flipper.net/one/about-mechanics#how-to-contribute" newTab="false" hasDisabledNofollow="true"} first.
 
 ***
 
@@ -169,10 +169,12 @@ To contribute to the Mechanics sub-project, you need to have a GitHub account. Y
 
 Anyone can contribute to the Mechanics sub-project via the GitHub repository by commenting on the open tasks or making pull requests with suggested changes:
 
-- [**Comment on an open task**](./#comment-on-an-open-task)
-- [**Share a new design as a pull request**](./#share-a-new-design-as-a-pull-request)
+- [**Comment on an open task**](About-Mechanics.md)
+- [**Share a new design as a pull request**](About-Mechanics.md)
 
+***
 
+## :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/ET-EwqJgXrvr4m9wb9u-_-20260420-161453.png" alt caption} Comment on an open task
 
 ::::hint{type="info"}
 **⚠️ Contributions only — no flooding**
@@ -188,10 +190,6 @@ To keep collaboration productive, please keep comments on-topic. Open tasks are 
 👍 — I think the green button works better. Here's an example I made: `mypicture.jpg`&#x20;
 :::
 ::::
-
-***
-
-## Comment on an open task
 
 Open tasks that need the community's help are labeled **help wanted**. If you have ideas on how to improve the design, you can contribute by commenting on the task and attaching screenshots, videos, or links:
 
@@ -224,7 +222,7 @@ We review all ideas carefully! We may ask additional questions about your idea i
 
 ***
 
-## Share a new design as a pull request
+## :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/M9g_cp4I8FLU75DejRE9o-20260420-161412.png" alt caption} Share a new design as a pull request
 
 If you have an idea for improving the design of Flipper One that isn't covered by an existing open task, you're still welcome to contribute it. Fork the GitHub repository (this creates your own linked copy), make your changes to the design files, and submit a pull request to our repository:
 

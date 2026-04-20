@@ -1,8 +1,8 @@
 ---
 title: How to join
 docTags: 
-createdAt: Mon Apr 20 2026 10:15:55 GMT+0000 (Coordinated Universal Time)
-updatedAt: Mon Apr 20 2026 10:21:00 GMT+0000 (Coordinated Universal Time)
+createdAt: Mon Apr 20 2026 11:30:48 GMT+0000 (Coordinated Universal Time)
+updatedAt: Mon Apr 20 2026 16:07:31 GMT+0000 (Coordinated Universal Time)
 ---
 
 ### Guide for the community on how to join Flipper One development
@@ -131,6 +131,8 @@ A sub-project within the Flipper One project is a collection of entities used by
 
 ![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/R-x3IVDbaRqBT2povHK4i-20260410-164947.jpg)
 
+***
+
 ## 📚 Documentation
 
 Each sub-project is different, so it has its own documentation explaining how it is organized and how it works. You can access this documentation through the Flipper One Developer Portal (this wiki) or in the README file of the sub-project’s GitHub repository.
@@ -146,8 +148,10 @@ For those who want to explore further, some sub-projects provide more in-depth m
 :::hint{type="info"}
 **You can contribute to the documentation**
 
-This wiki is a sub-project of its own, and anyone can contribute by editing :Link[its source files on GitHub]{href="https://github.com/flipperdevices/flipperone-docs" newTab="true" hasDisabledNofollow="false"}. Learn more in the **Docs sub-project**.
+This wiki is a sub-project of its own, and anyone can contribute by editing :Link[its source files on GitHub]{href="https://github.com/flipperdevices/flipperone-docs" newTab="true" hasDisabledNofollow="false"}. Learn more in the :Link[Docs sub-project]{href="https://docs.flipper.net/one/about-docs" newTab="true" hasDisabledNofollow="true"}.
 :::
+
+***
 
 ## ✅ Task tracker
 

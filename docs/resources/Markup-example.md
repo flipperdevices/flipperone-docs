@@ -2,8 +2,8 @@
 title: Markup example
 slug: resources/docs/markup-example
 docTags: 
-createdAt: Tue Apr 14 2026 15:08:15 GMT+0000 (Coordinated Universal Time)
-updatedAt: Mon Apr 20 2026 09:24:07 GMT+0000 (Coordinated Universal Time)
+createdAt: Mon Apr 20 2026 11:30:48 GMT+0000 (Coordinated Universal Time)
+updatedAt: Mon Apr 20 2026 16:38:40 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page is a reference for contributors writing Flipper One documentation.
@@ -148,6 +148,8 @@ Flipper One documentation supports headings H1–H3.
 
 ![Remote image](https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300\&h=120\&fit=crop "Caption")
 
+‎&#x20;
+
 **Local path:**  `![Alt text](files/pics/test-image.jpg "Caption")`
 
 ![Local image](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/pNHUZHZzPZd7qdM08jKuq_test-image.jpg "Caption")
@@ -165,7 +167,7 @@ To **resize or align** an image, standard Markdown is not enough — use Archbee
 
 `::Image[]{src="files/pics/test-image.jpg" size="40" position="flex-start" caption="Caption text"}`
 
-::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/sDIW27SOFL0HZKEvDEU_T-20260420-092354.png" size="40" width="1950" height="1200" position="flex-start" caption="Text"}
+::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/sDIW27SOFL0HZKEvDEU_T-20260420-092354.png" size="40" width="1950" height="1200" position="flex-start" caption="Caption text"}
 
 <table isTableHeaderOn="true" columnWidths="141,522">
   <tr>
@@ -210,6 +212,16 @@ To **resize or align** an image, standard Markdown is not enough — use Archbee
   </tr>
 </table>
 
+‎&#x20;
+
+### Inline images
+
+You can add inline images to the text using Archbee syntax:
+
+`:inlineImage[]{src="files/pics/icon_usb_c.png" alt caption="usb-c icon"}`
+
+This is how an inline image :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/WAXNm79eG0f7AQuFyuqy6-20260420-163829.png" alt caption} looks in text.
+
 ***
 
 ## Videos
@@ -239,7 +251,7 @@ Caption
 :::
 ```
 
-:::Iframe{iframeHeight="500" code="<video&#xA;    autoplay muted loop playsinline style=&#x22;width: 100%; margin: 0 !important;&#x22;&#xA;    src=&#x22;https://cdn.flipperzero.one/Pan_rotate_and_move_parts_compressed.mp4&#x22;&#xA;></video>&#xA;<div class=&#x22;text-center mt-2.5 text-gray-400 pb-5&#x22;>&#xA;Caption&#xA;</div>"}
+:::Iframe{code="<video&#xA;    autoplay muted loop playsinline style=&#x22;width: 100%; margin: 0 !important;&#x22;&#xA;    src=&#x22;https://cdn.flipperzero.one/Pan_rotate_and_move_parts_compressed.mp4&#x22;&#xA;></video>&#xA;<div class=&#x22;text-center mt-2.5 text-gray-400 pb-5&#x22;>&#xA;Caption&#xA;</div>" iframeHeight="500"}
 
 :::
 
@@ -268,8 +280,8 @@ Caption
       </ul>
     </td>
     <td>
-      <p><code>- Item A</code> </p>
-      <p><code>  - Nested A.1</code> </p>
+      <p><code>- Item A</code></p>
+      <p><code>  - Nested A.1</code></p>
       <p><code>- Item B</code></p>
     </td>
   </tr>
@@ -282,8 +294,8 @@ Caption
       </ol>
     </td>
     <td>
-      <p><code>1. First</code> </p>
-      <p><code>2. Second</code> </p>
+      <p><code>1. First</code></p>
+      <p><code>2. Second</code></p>
       <p><code>3. Third</code></p>
     </td>
   </tr>
@@ -436,7 +448,7 @@ function greet(name) {
 - Removed line
 ```
 
-Supported language tags: `javascript`, `typescript`, `python`, `bash`, `c`, `cpp`, `json`, `yaml`, `diff`, `tex`, `mermaid`.
+Supported language tags: `markdown`, `html`, `javascript`, `typescript`, `python`, `bash`, `c`, `cpp`, `json`, `yaml`, `diff`, `tex`, `mermaid`, and more.
 
 ***
 
@@ -444,28 +456,50 @@ Supported language tags: `javascript`, `typescript`, `python`, `bash`, `c`, `cpp
 
 Archbee supports four callout styles using `:::hint{style="..."}`:
 
-:::hint{type="info"}
-**info** — General information or context.
-
-`:::hint{style="info"} Your text here :::`
+```markdown
+:::hint{style="info"}
+Your text for the **info callout** here
 :::
+```
+
+:::hint{type="info"}
+Your text for the **info callout** here
+:::
+
+‎&#x20;
+
+```markdown
+:::hint{style="success"}
+Your text for the **success callout** here
+:::
+```
 
 :::hint{type="success"}
-**success** — Positive outcome or confirmation.
-
-`:::hint{style="success"} Your text here :::`
+Your text for the **success callout** here
 :::
+
+‎&#x20;
+
+```markdown
+:::hint{style="warning"}
+Your text for the **warning callout** here
+:::
+```
 
 :::hint{type="warning"}
-**warning** — Something to be careful about.
-
-`:::hint{style="warning"} Your text here :::`
+Your text for the **warning callout** here
 :::
 
-:::hint{type="danger"}
-**danger** — Risk of data loss or breaking change.
+‎&#x20;
 
-`:::hint{style="danger"} Your text here :::`
+```markdown
+:::hint{style="danger"}
+Your text for the **danger callout** here
+:::
+```
+
+:::hint{type="danger"}
+Your text for the **danger callout** here
 :::
 
 ***
