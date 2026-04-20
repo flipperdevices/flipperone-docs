@@ -1,8 +1,8 @@
 ---
 title: How to join
 docTags: 
-createdAt: Wed Apr 08 2026 17:29:37 GMT+0000 (Coordinated Universal Time)
-updatedAt: Fri Apr 10 2026 17:18:53 GMT+0000 (Coordinated Universal Time)
+createdAt: Tue Apr 14 2026 15:08:14 GMT+0000 (Coordinated Universal Time)
+updatedAt: Mon Apr 20 2026 09:27:36 GMT+0000 (Coordinated Universal Time)
 ---
 
 ### Guide for the community on how to join Flipper One development
@@ -25,13 +25,13 @@ Flipper One is a large and complex project, divided into several sub-projects. E
 
 ::::VerticalSplit{layout="left"}
 :::VerticalSplitItem
-### [**Hardware**](https://docs.flipper.net/one/hardware-overview)
+### :Link[Hardware]{href="https://docs.flipper.net/one/about-hardware" newTab="true" hasDisabledNofollow="false"}
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/9plDPlgbxscoFIacbj8Q9-20260331-093234.png" size="38" width="333" height="243" position="flex-start"}
 :::
 
 :::VerticalSplitItem
-Electrical hardware development. This is where the printed circuit boards (PCBs), antennas, and everything related to the electrical connections of chips, connectors, and processors are designed. The Hardware team works closely with the Mechanics team to ensure the electronics are compatible with the enclosure. [**Learn more**](https://docs.flipper.net/one/about-hardware)**&#x20;→**
+Electrical hardware development. This is where the printed circuit boards (PCBs), antennas, and everything related to the electrical connections of chips, connectors, and processors are designed. The Hardware team works closely with the Mechanics team to ensure the electronics are compatible with the enclosure. :Link[**Learn more**]{href="https://docs.flipper.net/one/about-hardware" newTab="true" hasDisabledNofollow="false"}**&#x20;→**
 :::
 ::::
 
@@ -39,13 +39,13 @@ Electrical hardware development. This is where the printed circuit boards (PCBs)
 
 ::::VerticalSplit{layout="left"}
 :::VerticalSplitItem
-### [**Mechanics**](https://docs.flipper.net/one/mechanics-overview)
+### :Link[Mechanics]{href="https://docs.flipper.net/one/about-mechanics" newTab="true" hasDisabledNofollow="false"}
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/C5VLSGhfaLWBS5E3VIMF8-20260331-093258.png" size="50" width="357" height="333" position="flex-start"}
 :::
 
 :::VerticalSplitItem
-Mechanical and industrial design. This is where the enclosure, buttons, plastic and metal parts, and mounting components are designed. Everything the user physically interacts with. Many mechanical tasks are tightly coupled with the Hardware team. [**Learn more**](https://docs.flipper.net/one/about-mechanics)**&#x20;→**
+Mechanical and industrial design. This is where the enclosure, buttons, plastic and metal parts, and mounting components are designed. Everything the user physically interacts with. Many mechanical tasks are tightly coupled with the Hardware team. :Link[**Learn more**]{href="https://docs.flipper.net/one/about-mechanics" newTab="true" hasDisabledNofollow="false"}**&#x20;→**
 :::
 ::::
 
@@ -53,7 +53,7 @@ Mechanical and industrial design. This is where the enclosure, buttons, plastic 
 
 ::::VerticalSplit{layout="left"}
 :::VerticalSplitItem
-### [**Linux (CPU Software)**](https://docs.flipper.net/one/linux-overview)
+### :Link[Linux (CPU Software)]{href="https://docs.flipper.net/one/about-linux-cpu-software" newTab="true" hasDisabledNofollow="false"}
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/ELzD0IezeYIDXuYC1yP2a-20260331-093341.png" size="34" width="267" height="318" position="flex-start"}
 :::
@@ -67,7 +67,7 @@ Linux kernel, modules, drivers, userspace, bootloader, Rockchip tools, etc. This
 
 ::::VerticalSplit{layout="left"}
 :::VerticalSplitItem
-### [**MCU Firmware**](https://docs.flipper.net/one/mcu-firmware-overview)
+### :Link[MCU Firmware]{href="https://docs.flipper.net/one/about-mcu-firmware" newTab="true" hasDisabledNofollow="false"}
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/On5sGCZ3-QWo2sYbRVTam-20260331-093415.png" size="38" width="309" height="306" position="flex-start"}
 :::
@@ -81,7 +81,7 @@ Firmware for the RP2350 microcontroller. The MCU controls buttons, display, touc
 
 ::::VerticalSplit{layout="left"}
 :::VerticalSplitItem
-### [**User Interface**](https://docs.flipper.net/one/user-interface-overview)
+### :Link[User Interface]{href="https://docs.flipper.net/one/about-user-interface" newTab="true" hasDisabledNofollow="false"}
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/CzLfRFqDmQf-g_0Mu_WA--20260331-093442.png" size="36" width="282" height="273" position="flex-start"}
 :::
@@ -95,7 +95,7 @@ UI/UX development. This is where the user interface, visual communication of the
 
 ::::VerticalSplit{layout="left"}
 :::VerticalSplitItem
-### [**Docs**](https://docs.flipper.net/one/docs-overview)
+### :Link[Docs]{href="https://docs.flipper.net/one/about-docs" newTab="true" hasDisabledNofollow="false"}
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/RfUa81BVRdDm1qKCoXnrd-20260331-093508.png" size="36" width="273" height="273" position="flex-start"}
 :::
@@ -149,15 +149,11 @@ For those who want to explore further, some sub-projects provide more in-depth m
 This wiki is a sub-project of its own, and anyone can contribute by editing :Link[its source files on GitHub]{href="https://github.com/flipperdevices/flipperone-docs" newTab="true" hasDisabledNofollow="false"}. Learn more in the **Docs sub-project**.
 :::
 
-
-
 ## ✅ Task tracker
 
 Tasks for each sub-project are managed in a task tracker — a Kanban board on GitHub. Each task on the board is a GitHub issue from the sub-project repository. You can view :Link[all task trackers on GitHub]{href="https://github.com/orgs/flipperdevices/projects" newTab="true" hasDisabledNofollow="false"}.
 
 ![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/mcpZH-vu_oT0W5RG7ft-X-20260410-160905.png "Each Sub-project has its own Kanban board on GitHub")
-
-
 
 ### What’s the difference between GitHub issues and task tracker issues?
 
@@ -217,13 +213,11 @@ Find a sub-project that interests you. Explore its documentation in this Develop
 
 Go to the task tracker of the sub-project you’re interested in to explore current tasks. Open Tasks where your help is welcome are labeled **help wanted**. Read through a task and follow the contribution guidelines when submitting your input.
 
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/ZWucCsRvdOhYn-Og3KwFF-20260410-165617.png "Task where community contribution is welcome are marked \"help wanted\"")
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/ZWucCsRvdOhYn-Og3KwFF-20260410-165617.png "Task where community contribution is welcome are marked \"help wanted")
 
 :::hint{type="info"}
 You can also visit the :Link[🚧 Open tasks]{href="https://docs.flipper.net/one/open-tasks" newTab="true" hasDisabledNofollow="false"} to find tasks that need community help or feedback.
 :::
-
-
 
 ## Step 3. Join discussions in our socials
 
@@ -251,7 +245,7 @@ Each week, we'll share a quick update on how things are coming along and flag an
 ⚠️ **Nerds Warning**: this is a developer-focused, highly technical newsletter.
 :::
 
-:::Iframe{iframeHeight="750" code="<iframe width=&#x22;540&#x22; height=&#x22;750&#x22; src=&#x22;https://183c2432.sibforms.com/serve/MUIFAAgzua23MvPHbQJyGmSkqAwomY_d-OtcEmQJaZ90xXKQQ_70E5jmVi97OFh-kF6NR69IL74D7n6ieCsJTlnda6j8F0RncbcEgx2_tiYW6qISyQvH3voXD4pnmD2QG2zc0xuKFyp23AnaKWSmyfLm2npNnpagS7W1qW4edPKI60csfWz9k6YhaKyavmH0rZOVz6_ZJxmCtrji&#x22; frameborder=&#x22;0&#x22; scrolling=&#x22;auto&#x22; allowfullscreen style=&#x22;display: block;margin-left: auto;margin-right: auto;max-width: 100%;&#x22;></iframe>"}
+:::Iframe{code="<iframe width=&#x22;540&#x22; height=&#x22;750&#x22; src=&#x22;https://183c2432.sibforms.com/serve/MUIFAAgzua23MvPHbQJyGmSkqAwomY_d-OtcEmQJaZ90xXKQQ_70E5jmVi97OFh-kF6NR69IL74D7n6ieCsJTlnda6j8F0RncbcEgx2_tiYW6qISyQvH3voXD4pnmD2QG2zc0xuKFyp23AnaKWSmyfLm2npNnpagS7W1qW4edPKI60csfWz9k6YhaKyavmH0rZOVz6_ZJxmCtrji&#x22; frameborder=&#x22;0&#x22; scrolling=&#x22;auto&#x22; allowfullscreen style=&#x22;display: block;margin-left: auto;margin-right: auto;max-width: 100%;&#x22;></iframe>" iframeHeight="750"}
 
 :::
 

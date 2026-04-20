@@ -2,7 +2,7 @@
 title: About Mechanics
 docTags: 
 createdAt: Tue Apr 14 2026 15:08:14 GMT+0000 (Coordinated Universal Time)
-updatedAt: Wed Apr 15 2026 17:16:22 GMT+0000 (Coordinated Universal Time)
+updatedAt: Mon Apr 20 2026 09:22:50 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page explains the structure of the Mechanics sub-project, provides links to design files, and outlines how to contribute to Flipper One's mechanical development.
@@ -11,52 +11,19 @@ This page explains the structure of the Mechanics sub-project, provides links to
 
 The Mechanics sub-project is where we engineer the enclosure, buttons, plastic and metal parts, and mounting components of Flipper One. We share 3D models of the **Body**, **Back Plate**, and **Antenna Rail** with the community, and keep the development process open for feedback and discussion.
 
-::::LinkArray{contentSource="CUSTOM"}
-:::LinkArrayItem{headerType="IMAGE" headerImage="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/k0o3kaq-MAoeq6cOQlV7H-20260414-190820.png"}
-:Link[**Tasks in GitHub project**]{href="https://github.com/orgs/flipperdevices/projects/15" newTab="true" hasDisabledNofollow="false"}
+The Mechanics sub-project consists of:
 
-Browse the Mechanics team's tasks and leave comments or suggestions on open tasks.
-:::
+- ✅ :Link[Task tracker]{href="https://github.com/orgs/flipperdevices/projects/15" newTab="true" hasDisabledNofollow="false"}
+- ⚙️ :Link[3D models on Onshape]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"}
+- 📁 :Link[Design files on GitHub]{href="https://github.com/flipperdevices/flipperone-mechanics" newTab="true" hasDisabledNofollow="false"}
 
-:::LinkArrayItem{headerType="IMAGE" headerImage="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/8zAFEn9Wrk0wZwgnHhkLR-20260414-191217.png"}
-:Link[**3D models on Onshape**]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"}
+We'd love your feedback — look for tasks tagged **help wanted** in the task tracker, or contribute directly to the GitHub repository via pull requests.
 
-View the latest 3D models online, and export them in your preferred format.
-:::
-
-:::LinkArrayItem{headerType="IMAGE" headerImage="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/-0VgrSnc-AToYwBekkK4j-20260414-190311.png"}
-:Link[**Design files on GitHub**]{href="https://github.com/flipperdevices/flipperone-mechanics" newTab="true" hasDisabledNofollow="false"}
-
-Access current and legacy designs in the repo, and contribute your own via pull requests.
-:::
-::::
-
-We'd love your feedback — look for tasks tagged **help wanted** in the GitHub project, or contribute directly to the repository via pull requests.
-
-On this page you’ll find:
-
-- [**Mechanics sub-project structure**](./#mechanics-sub-project-structure)
-  - [**Tasks in the GitHub project**](About-Mechanics.md)
-  - [**3D models on Onshape**](./#-3d-models-on-onshape)
-  - [**Design files in the GitHub repository**](./#-design-files-in-the-github-repository)
-- [**How to contribute**](./#how-to-contribute)
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/AECUDKqdLJkYxyuiMDdn_-20260416-170227.jpg)
 
 ***
 
-# Mechanics sub-project structure
-
-The sub-project consists of several entities:
-
-- 📚 **Documentation** — this section of the Developer Portal explains the Mechanics sub-project structure, provides an overview of assets and platforms, and contribution guidelines.
-- ✅ **Task in the GitHub project&#x20;**— shows current tasks of the mechanical engineering team and discussions.
-- ⚙️ **3D models on Onshape&#x20;**— allows viewing the 3D models directly in your browser and downloading them in different formats.
-- 📁 **Design files in the GitHub repository** — hosts current and legacy design files and allows submitting pull requests with proposed changes.
-
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/kizHp5U44tARAtBHYy-ml-20260415-170010.jpg)
-
-***
-
-## ✅  Tasks in the GitHub project
+## ✅  Tasks tracker
 
 All mechanical team tasks are tracked in the GitHub project :Link[Flipper One — Mechanics]{href="https://github.com/orgs/flipperdevices/projects/15" newTab="true" hasDisabledNofollow="false"}. There, you can see what the engineering team is working on and follow progress and discussions.
 
@@ -73,10 +40,6 @@ You can view, edit, or export the 3D models via :Link[Onshape]{href="https://cad
 :::Iframe{code="<video&#xA;    autoplay muted loop playsinline style=&#x22;width: 100%; margin: 0 !important;&#x22;&#xA;    src=&#x22;https://cdn.flipperzero.one/Pan_rotate_and_move_parts_compressed.mp4&#x22;&#xA;></video>" iframeHeight="500"}
 
 :::
-
-***
-
-### Available 3D models
 
 We made some mechanical parts of Flipper One available for the community to explore. Feel free to review them, download them for 3D printing, or make your own external hardware modules for Flipper One.
 
@@ -95,7 +58,7 @@ All surfaces and dimensions match the real product, allowing development of acce
 
 ***
 
-### How to view the 3D model
+### How to view 3D models
 
 To open the 3D model, simply click the :Link[Flipper One - Onshape]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"} link — the model will open in your browser in view mode. Here you can navigate the model:
 
@@ -166,7 +129,7 @@ Check out the free :Link[Onshape learning courses]{href="https://learn.onshape.c
 
 ***
 
-## 📁 Design files in the GitHub repository
+## 📁 Design files on GitHub
 
 The :Link[flipperone-mechanics]{href="https://github.com/flipperdevices/flipperone-mechanics" newTab="true" hasDisabledNofollow="false"} GitHub repository contains both current and legacy versions of Flipper One’s enclosure 3D models. It also includes other design files, such as enclosure text and labels, as well as designs for official hardware modules and add-ons. You can download the design files to explore and modify them.
 
@@ -202,15 +165,15 @@ Design versioning scheme includes two parts: `<LETTER>.<NUMBER>` (for example, A
 To contribute to the Mechanics sub-project, you need to have a GitHub account. You can create one on the :Link[GitHub website]{href="https://github.com/signup" newTab="true" hasDisabledNofollow="false"}.
 :::
 
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/44Of2RVBCVPU9f2M5a6_1-20260326-141154.png)
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/EcotI__FOd58IUCUyNzqC-20260420-091800.jpg)
 
 Anyone can contribute to the Mechanics sub-project via the GitHub repository by commenting on the open tasks or making pull requests with suggested changes:
 
-- [**Contribute to an open task**](./#if-you-want-to-contribute-to-an-open-task)&#x20;
-- [**General suggestion regarding design**](./#if-you-have-a-general-suggestion-regarding-design)
+- :Link[Comment on an open task]{href="https://docs.flipper.net/one/about-mechanics#comment-on-an-open-task" newTab="true" hasDisabledNofollow="false"}
+- :Link[Share a new design as a pull request]{href="https://docs.flipper.net/one/about-mechanics#share-a-new-design-as-a-pull-request" newTab="true" hasDisabledNofollow="false"}
 
 ::::hint{type="info"}
-### ⚠️ Contributions only — no flooding
+**⚠️ Contributions only — no flooding**
 
 To keep collaboration productive, please keep comments on-topic. Open tasks are for contribution-related discussion only. If you have an idea or concern, first turn it into a concrete contribution and share it as a comment on a task. For general questions or discussions, you’re always welcome to join the conversation on :Link[social media]{href="https://x.com/Flipper_RND" newTab="true" hasDisabledNofollow="false"} or :Link[Discord]{href="https://discord.com/invite/flipper" newTab="true" hasDisabledNofollow="false"}!
 
@@ -226,17 +189,17 @@ To keep collaboration productive, please keep comments on-topic. Open tasks are 
 
 ***
 
-## If you want to contribute to an open task
+## Comment on an open task
 
-Tasks that need the community's help are labeled **help wanted**. If you have ideas on how to improve the design, you can contribute by commenting on the task and attaching screenshots or videos:
+Open tasks that need the community's help are labeled **help wanted**. If you have ideas on how to improve the design, you can contribute by commenting on the task and attaching screenshots, videos, or links:
 
 :::::WorkflowBlock
 :::WorkflowBlockItem
-In the Mechanics task tracker, find the open task you want to contribute to.
+In the :Link[Mechanics GitHub project]{href="https://github.com/orgs/flipperdevices/projects/15" newTab="true" hasDisabledNofollow="false"}, click the open task you want to contribute to.
 :::
 
 ::::WorkflowBlockItem
-In the comments section, clearly write your comment and attach a screenshot, video, or provide a link to your 3D model on :Link[Onshape]{href="https://www.onshape.com/en/" newTab="true" hasDisabledNofollow="false"}.
+In the comments section, clearly write your comment and attach a screenshot, video, or provide a link to your 3D model on :Link[Onshape]{href="https://www.onshape.com/en/" newTab="true" hasDisabledNofollow="false"}. Unfortunately, `.stp` files can't be attached to the comment.
 
 :::hint{type="info"}
 **Important:** If you share a link to your design on Onshape, ensure the model is accessible for others to view.
@@ -247,7 +210,7 @@ In the comments section, clearly write your comment and attach a screenshot, vid
 **Attachment size limit:**
 
 - Images: 10 MB
-- Videos: 100 MB *(test it)*
+- Videos: 100 MB
 ::::
 
 :::WorkflowBlockItem
@@ -259,11 +222,9 @@ We review all ideas carefully! We may ask additional questions about your idea i
 
 ***
 
-## If you have a general suggestion regarding design
+## Share a new design as a pull request
 
-Suppose you have an idea to improve the current design of Flipper One, but there's no task for this in the task tracker. You still can modify the latest version of the design files and submit them to us. You’ll need to fork (copy) the GitHub repository, make your changes, and submit them as a pull request to our repository.
-
-To submit your modifications to our GitHub repository:
+If you have an idea for improving the design of Flipper One that isn't covered by an existing open task, you're still welcome to contribute it. Fork the GitHub repository (this creates your own linked copy), make your changes to the design files, and submit a pull request to our repository:
 
 ::::WorkflowBlock
 :::WorkflowBlockItem

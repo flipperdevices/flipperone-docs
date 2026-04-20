@@ -3,7 +3,7 @@ title: Markup example
 slug: resources/docs/markup-example
 docTags: 
 createdAt: Tue Apr 14 2026 15:08:15 GMT+0000 (Coordinated Universal Time)
-updatedAt: Tue Apr 14 2026 15:56:00 GMT+0000 (Coordinated Universal Time)
+updatedAt: Mon Apr 20 2026 09:24:07 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page is a reference for contributors writing Flipper One documentation.
@@ -165,6 +165,8 @@ To **resize or align** an image, standard Markdown is not enough — use Archbee
 
 `::Image[]{src="files/pics/test-image.jpg" size="40" position="flex-start" caption="Caption text"}`
 
+::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/sDIW27SOFL0HZKEvDEU_T-20260420-092354.png" size="40" width="1950" height="1200" position="flex-start" caption="Text"}
+
 <table isTableHeaderOn="true" columnWidths="141,522">
   <tr>
     <td>
@@ -291,7 +293,7 @@ Caption
 
 ## Divider
 
-Use `***` or `---` to insert a horizontal divider:
+Use `***` or `---` to insert a horizontal divider.
 
 ***
 
