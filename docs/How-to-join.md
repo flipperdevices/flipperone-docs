@@ -1,8 +1,8 @@
 ---
 title: How to join
 docTags: 
-createdAt: Tue Apr 14 2026 15:08:14 GMT+0000 (Coordinated Universal Time)
-updatedAt: Mon Apr 20 2026 09:27:36 GMT+0000 (Coordinated Universal Time)
+createdAt: Mon Apr 20 2026 10:15:55 GMT+0000 (Coordinated Universal Time)
+updatedAt: Mon Apr 20 2026 10:21:00 GMT+0000 (Coordinated Universal Time)
 ---
 
 ### Guide for the community on how to join Flipper One development
@@ -109,7 +109,7 @@ Developer portal wiki, technical docs, guides, and datasheets. All documentation
 
 ::::VerticalSplit{layout="left"}
 :::VerticalSplitItem
-### [**Testing**](https://docs.flipper.net/one/testing-overview)
+### :Link[Testing]{href="https://docs.flipper.net/one/about-testing" newTab="true" hasDisabledNofollow="false"}
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/M8o8dC4criD5llKbqSJB6-20260331-093535.png" size="36" width="282" height="273" position="flex-start"}
 :::

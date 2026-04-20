@@ -1,8 +1,8 @@
 ---
 title: About Mechanics
 docTags: 
-createdAt: Tue Apr 14 2026 15:08:14 GMT+0000 (Coordinated Universal Time)
-updatedAt: Mon Apr 20 2026 09:22:50 GMT+0000 (Coordinated Universal Time)
+createdAt: Mon Apr 20 2026 10:15:55 GMT+0000 (Coordinated Universal Time)
+updatedAt: Mon Apr 20 2026 10:24:55 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page explains the structure of the Mechanics sub-project, provides links to design files, and outlines how to contribute to Flipper One's mechanical development.
@@ -169,8 +169,10 @@ To contribute to the Mechanics sub-project, you need to have a GitHub account. Y
 
 Anyone can contribute to the Mechanics sub-project via the GitHub repository by commenting on the open tasks or making pull requests with suggested changes:
 
-- :Link[Comment on an open task]{href="https://docs.flipper.net/one/about-mechanics#comment-on-an-open-task" newTab="true" hasDisabledNofollow="false"}
-- :Link[Share a new design as a pull request]{href="https://docs.flipper.net/one/about-mechanics#share-a-new-design-as-a-pull-request" newTab="true" hasDisabledNofollow="false"}
+- [**Comment on an open task**](./#comment-on-an-open-task)
+- [**Share a new design as a pull request**](./#share-a-new-design-as-a-pull-request)
+
+
 
 ::::hint{type="info"}
 **⚠️ Contributions only — no flooding**
@@ -289,4 +291,3 @@ Click **Create pull request**.
 ::::
 
 We review all ideas carefully! We may ask additional questions about your idea in the pull request thread, so please follow notifications from GitHub in your email.
-
