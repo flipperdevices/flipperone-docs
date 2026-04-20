@@ -4,6 +4,312 @@
     "readme": "Welcome.md",
     "summary": "Summary.md",
     "assets": "files",
+    "docsTree": [
+      {
+        "categoryName": "Welcome",
+        "isCategory": false,
+        "path": "Welcome.md",
+        "children": []
+      },
+      {
+        "categoryName": "How to join",
+        "isCategory": false,
+        "path": "How-to-join.md",
+        "children": []
+      },
+      {
+        "categoryName": "🚧 Open tasks",
+        "isCategory": false,
+        "path": "Open-tasks.md",
+        "children": []
+      },
+      {
+        "categoryName": "General",
+        "isCategory": true,
+        "children": [
+          {
+            "categoryName": "Tech Specs",
+            "isCategory": false,
+            "path": "general/Tech-Specs.md",
+            "children": []
+          },
+          {
+            "categoryName": "Features",
+            "isCategory": false,
+            "path": "general/Features.md",
+            "children": []
+          }
+        ]
+      },
+      {
+        "categoryName": "🔌 Hardware",
+        "isCategory": true,
+        "children": [
+          {
+            "categoryName": "About Hardware",
+            "isCategory": false,
+            "path": "hardware/About-Hardware.md",
+            "children": []
+          },
+          {
+            "categoryName": "Power subsystem",
+            "isCategory": false,
+            "path": "hardware/Power-subsystem.md",
+            "children": []
+          },
+          {
+            "categoryName": "Schematics",
+            "isCategory": false,
+            "path": "hardware/Schematics.md",
+            "children": []
+          },
+          {
+            "categoryName": "Wi-Fi & Bluetooth",
+            "isCategory": false,
+            "path": "hardware/WiFi-Bluetooth.md",
+            "children": []
+          },
+          {
+            "categoryName": "M.2 port",
+            "isCategory": false,
+            "path": "hardware/M2-port.md",
+            "children": []
+          },
+          {
+            "categoryName": "GPIO port",
+            "isCategory": false,
+            "path": "hardware/GPIO-port.md",
+            "children": []
+          },
+          {
+            "categoryName": "Expansion modules",
+            "isCategory": false,
+            "path": "hardware/modules/Expansion-modules.md",
+            "children": [
+              {
+                "categoryName": "GPIO modules",
+                "isCategory": false,
+                "path": "hardware/modules/GPIO-Modules.md",
+                "children": []
+              },
+              {
+                "categoryName": "M.2 modules",
+                "isCategory": false,
+                "path": "hardware/modules/M2-Modules.md",
+                "children": []
+              }
+            ]
+          },
+          {
+            "categoryName": "Datasheets",
+            "isCategory": false,
+            "path": "hardware/Datasheets.md",
+            "children": []
+          }
+        ]
+      },
+      {
+        "categoryName": "⚙️ Mechanics",
+        "isCategory": true,
+        "children": [
+          {
+            "categoryName": "About Mechanics",
+            "isCategory": false,
+            "path": "mechanics/About-Mechanics.md",
+            "children": []
+          },
+          {
+            "categoryName": "Mechanical design",
+            "isCategory": false,
+            "path": "mechanics/Mechanical-design.md",
+            "children": []
+          },
+          {
+            "categoryName": "Module enclosures",
+            "isCategory": false,
+            "path": "mechanics/Module-enclosures.md",
+            "children": []
+          },
+          {
+            "categoryName": "Heat sink",
+            "isCategory": false,
+            "path": "mechanics/Heat-sink.md",
+            "children": []
+          }
+        ]
+      },
+      {
+        "categoryName": "🕹️ MCU Firmware",
+        "isCategory": true,
+        "children": [
+          {
+            "categoryName": "About MCU Firmware",
+            "isCategory": false,
+            "path": "mcu-firmware/About-MCU-Firmware.md",
+            "children": []
+          },
+          {
+            "categoryName": "Architecture of MCU Firmware",
+            "isCategory": false,
+            "path": "mcu-firmware/Architecture.md",
+            "children": []
+          },
+          {
+            "categoryName": "Interconnect protocol",
+            "isCategory": false,
+            "path": "mcu-firmware/Interconnect-protocol.md",
+            "children": []
+          },
+          {
+            "categoryName": "Firmware update",
+            "isCategory": false,
+            "path": "mcu-firmware/Firmware-update.md",
+            "children": []
+          }
+        ]
+      },
+      {
+        "categoryName": "🐧 Linux (CPU Software)",
+        "isCategory": true,
+        "children": [
+          {
+            "categoryName": "About Linux (CPU Software)",
+            "isCategory": false,
+            "path": "cpu-software/About-CPU-Software.md",
+            "children": []
+          },
+          {
+            "categoryName": "Flipper OS",
+            "isCategory": false,
+            "path": "cpu-software/Flipper-OS.md",
+            "children": []
+          },
+          {
+            "categoryName": "FlipCTL",
+            "isCategory": false,
+            "path": "cpu-software/FlipCTL.md",
+            "children": []
+          },
+          {
+            "categoryName": "Build system",
+            "isCategory": false,
+            "path": "cpu-software/Build-system.md",
+            "children": []
+          },
+          {
+            "categoryName": "How to install an image",
+            "isCategory": false,
+            "path": "cpu-software/How-to-install-an-image.md",
+            "children": []
+          },
+          {
+            "categoryName": "Supported boards",
+            "isCategory": false,
+            "path": "cpu-software/Supported-boards.md",
+            "children": []
+          }
+        ]
+      },
+      {
+        "categoryName": "🎨 User Interface",
+        "isCategory": true,
+        "children": [
+          {
+            "categoryName": "About User Interface",
+            "isCategory": false,
+            "path": "user-interface/About-User-Interface.md",
+            "children": []
+          },
+          {
+            "categoryName": "Design guide",
+            "isCategory": false,
+            "path": "user-interface/Design-guide.md",
+            "children": []
+          }
+        ]
+      },
+      {
+        "categoryName": "🧪 Testing",
+        "isCategory": true,
+        "children": [
+          {
+            "categoryName": "About Testing",
+            "isCategory": false,
+            "path": "testing/About-Testing.md",
+            "children": []
+          },
+          {
+            "categoryName": "General",
+            "isCategory": false,
+            "path": "testing/General.md",
+            "children": []
+          },
+          {
+            "categoryName": "Power",
+            "isCategory": false,
+            "path": "testing/Power.md",
+            "children": []
+          },
+          {
+            "categoryName": "Graphics",
+            "isCategory": false,
+            "path": "testing/Graphics.md",
+            "children": [
+              {
+                "categoryName": "Video decoding",
+                "isCategory": false,
+                "path": "testing/Video-decoding.md",
+                "children": []
+              }
+            ]
+          },
+          {
+            "categoryName": "Network",
+            "isCategory": false,
+            "path": "testing/Network.md",
+            "children": []
+          },
+          {
+            "categoryName": "M.2 Modules",
+            "isCategory": false,
+            "path": "testing/M_2.md",
+            "children": []
+          }
+        ]
+      },
+      {
+        "categoryName": "📚 Resources",
+        "isCategory": true,
+        "children": [
+          {
+            "categoryName": "About Docs",
+            "isCategory": false,
+            "path": "resources/About-Docs.md",
+            "children": [
+              {
+                "categoryName": "Markup example",
+                "isCategory": false,
+                "path": "resources/Markup-example.md",
+                "children": []
+              }
+            ]
+          },
+          {
+            "categoryName": "Rockchip RK3576",
+            "isCategory": false,
+            "path": "resources/rockchip/Rockchip-RK3576.md",
+            "children": [
+              {
+                "categoryName": "RK3576 Boot flow",
+                "isCategory": false,
+                "path": "resources/rockchip/RK3576-Boot-flow.md",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   "publishSpace": true,
   "docsPath": "docs/"
