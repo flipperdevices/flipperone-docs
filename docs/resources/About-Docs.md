@@ -1,10 +1,12 @@
 ---
 title: About Docs
-slug: resources/docs
+slug: resources/about-docs
 docTags: 
-createdAt: Mon Apr 20 2026 11:30:48 GMT+0000 (Coordinated Universal Time)
-updatedAt: Tue Apr 21 2026 16:15:49 GMT+0000 (Coordinated Universal Time)
+createdAt: Wed Apr 22 2026 13:04:53 GMT+0000 (Coordinated Universal Time)
+updatedAt: Wed Apr 22 2026 13:32:21 GMT+0000 (Coordinated Universal Time)
 ---
+
+Will this break the URL?
 
 This page explains how the Docs sub-project works — how the Developer Portal is structured, how source files are stored and published, and how you can contribute.
 
