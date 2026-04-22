@@ -1,8 +1,9 @@
 ---
 title: How to join
+slug: how-to-join
 docTags: 
-createdAt: Mon Apr 20 2026 11:30:48 GMT+0000 (Coordinated Universal Time)
-updatedAt: Mon Apr 20 2026 16:07:31 GMT+0000 (Coordinated Universal Time)
+createdAt: Wed Apr 22 2026 13:04:53 GMT+0000 (Coordinated Universal Time)
+updatedAt: Wed Apr 22 2026 15:23:54 GMT+0000 (Coordinated Universal Time)
 ---
 
 ### Guide for the community on how to join Flipper One development
@@ -17,7 +18,7 @@ Flipper One is currently in active development. As a community-driven project, w
 
 # Sub-projects structure of Flipper One
 
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/Ni-ecnmssC6fq6QyQzSkg-20260410-162751.jpg)
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/kBApFvrmGBeMdNqOiyoIm-20260422-152345.jpg)
 
 Flipper One is a large and complex project, divided into several sub-projects. Each sub-project is managed by a dedicated Flipper team, with its own structure, rules, and workflows. This Developer Portal acts as a wiki and the main entry point into all sub-projects, hosting their documentation and contribution guides.
 
@@ -217,7 +218,7 @@ Find a sub-project that interests you. Explore its documentation in this Develop
 
 Go to the task tracker of the sub-project you’re interested in to explore current tasks. Open Tasks where your help is welcome are labeled **help wanted**. Read through a task and follow the contribution guidelines when submitting your input.
 
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/ZWucCsRvdOhYn-Og3KwFF-20260410-165617.png "Task where community contribution is welcome are marked \"help wanted")
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/ZWucCsRvdOhYn-Og3KwFF-20260410-165617.png "Task where community contribution is welcome are marked \"help wanted\"")
 
 :::hint{type="info"}
 You can also visit the :Link[🚧 Open tasks]{href="https://docs.flipper.net/one/open-tasks" newTab="true" hasDisabledNofollow="false"} to find tasks that need community help or feedback.
