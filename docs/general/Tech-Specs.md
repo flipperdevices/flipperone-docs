@@ -2,8 +2,8 @@
 title: Tech Specs
 slug: general/tech-specs
 docTags: 
-createdAt: Wed Apr 08 2026 17:29:37 GMT+0000 (Coordinated Universal Time)
-updatedAt: Fri Apr 10 2026 18:07:20 GMT+0000 (Coordinated Universal Time)
+createdAt: Wed Apr 22 2026 13:04:54 GMT+0000 (Coordinated Universal Time)
+updatedAt: Wed Apr 22 2026 13:16:25 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page describes the full technical specifications of the Flipper One. Since the device is under active development, specifications may change.
@@ -26,8 +26,7 @@ This page describes the full technical specifications of the Flipper One. Since 
       <p><strong>Cores</strong></p>
     </td>
     <td>
-      <p>8 Cores up to 2.2 GHz
-      (4x High-performance ARM Cortex-A72 + 4x Efficiency ARM Cortex-A53)</p>
+      <p>8 Cores up to 2.2 GHz (4x High-performance ARM Cortex-A72 + 4x Efficiency ARM Cortex-A53)</p>
     </td>
   </tr>
   <tr>
@@ -43,17 +42,14 @@ This page describes the full technical specifications of the Flipper One. Since 
       <p><strong>NPU</strong></p>
     </td>
     <td>
-      <p>6 TOPS @INT8
-      Supports int4/int8/int16/FP16/BF16/TF32</p>
+      <p>6 TOPS @INT8 Supports int4/int8/int16/FP16/BF16/TF32</p>
     </td>
   </tr>
 </table>
 
-
-
 ## Low-Power MCU — RP2350
 
-<table isTableHeaderOn="false" columnWidths="101,560" selectedColumns="" selectedRows="" selectedTable="false">
+<table isTableHeaderOn="false" columnWidths="101,560">
   <tr>
     <td align="left">
       <p><strong>MCU</strong></p>
@@ -88,11 +84,9 @@ This page describes the full technical specifications of the Flipper One. Since 
   </tr>
 </table>
 
-
-
 ## Memory and Storage
 
-<table isTableHeaderOn="false" columnWidths="101,560" selectedColumns="" selectedRows="" selectedTable="false">
+<table isTableHeaderOn="false" columnWidths="101,560">
   <tr>
     <td align="left">
       <p><strong>RAM</strong></p>
@@ -119,11 +113,9 @@ This page describes the full technical specifications of the Flipper One. Since 
   </tr>
 </table>
 
-
-
 ## Battery and Power
 
-<table isTableHeaderOn="false" columnWidths="101,560" selectedColumns="" selectedRows="" selectedTable="false">
+<table isTableHeaderOn="false" columnWidths="101,560">
   <tr>
     <td align="left">
       <p><strong>Battery</strong></p>
@@ -158,11 +150,9 @@ This page describes the full technical specifications of the Flipper One. Since 
   </tr>
 </table>
 
-
-
 ## Monochrome LCD Display
 
-<table isTableHeaderOn="false" columnWidths="101,560" selectedColumns="" selectedRows="" selectedTable="false">
+<table isTableHeaderOn="false" columnWidths="101,560">
   <tr>
     <td align="left">
       <p><strong>Resolution</strong></p>
@@ -189,11 +179,9 @@ This page describes the full technical specifications of the Flipper One. Since 
   </tr>
 </table>
 
-
-
 ## Wi-Fi & Bluetooth
 
-<table isTableHeaderOn="false" columnWidths="101,560" selectedColumns="" selectedRows="" selectedTable="false">
+<table isTableHeaderOn="false" columnWidths="101,560">
   <tr>
     <td align="left">
       <p><strong>Module</strong></p>
@@ -228,11 +216,9 @@ This page describes the full technical specifications of the Flipper One. Since 
   </tr>
 </table>
 
-
-
 ## Gigabit Ethernet
 
-<table isTableHeaderOn="false" columnWidths="101,560" selectedColumns="" selectedRows="" selectedTable="false">
+<table isTableHeaderOn="false" columnWidths="101,560">
   <tr>
     <td align="left">
       <p><strong>Ports</strong></p>
@@ -251,11 +237,9 @@ This page describes the full technical specifications of the Flipper One. Since 
   </tr>
 </table>
 
-
-
 ## Video Output
 
-<table isTableHeaderOn="false" columnWidths="114,547" selectedColumns="" selectedRows="" selectedTable="false">
+<table isTableHeaderOn="false" columnWidths="114,547">
   <tr>
     <td align="left">
       <p><strong>HDMI</strong></p>
@@ -274,11 +258,9 @@ This page describes the full technical specifications of the Flipper One. Since 
   </tr>
 </table>
 
-
-
 ## Audio
 
-<table isTableHeaderOn="false" columnWidths="101,560" selectedColumns="" selectedRows="" selectedTable="false">
+<table isTableHeaderOn="false" columnWidths="101,560">
   <tr>
     <td align="left">
       <p><strong>Codec</strong></p>
@@ -304,8 +286,6 @@ This page describes the full technical specifications of the Flipper One. Since 
     </td>
   </tr>
 </table>
-
-
 
 ## Ports
 
@@ -380,8 +360,6 @@ This page describes the full technical specifications of the Flipper One. Since 
   </tr>
 </table>
 
-
-
 ## M.2 expansion port
 
 ![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/kBEYmNJI2QKW3dVel7tuQ-20260410-180703.png "The M.2 expansion port is at the back of the device, under the Back Plate")
@@ -421,15 +399,13 @@ This page describes the full technical specifications of the Flipper One. Since 
   </tr>
 </table>
 
-
-
 ### M.2 pinout
 
 TODO: replace to better picture
 
 ![Flipper One M.2 port pinout](files/pics/flipper_one_m2_port_pinout.png "Flipper One M.2 port pinout")
 
-<table isTableHeaderOn="true" columnWidths="271,57.85231000546746,61.52111037241076,270.62657962212177">
+<table isTableHeaderOn="true" columnWidths="271,57,61,270">
   <tr>
     <td align="center">
       <p><strong>Description</strong></p>
@@ -459,16 +435,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>VIO_CFG (I) or GND</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>73</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>72</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>3.3 V/VBAT</p>
     </td>
   </tr>
@@ -487,16 +463,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>CONFIG_1</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>69</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>68</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>SUSCLK (O)(0/1.8V/3.3V)</p>
     </td>
   </tr>
@@ -515,16 +491,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>ANTCTL3 (I)(0/1.8V)</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>65</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>64</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>COEX_RXD (I)(0/1.8V)</p>
     </td>
   </tr>
@@ -543,16 +519,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>ANTCTL1 (I)(0/1.8V)</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>61</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>60</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>COEX3 (I/O)(0/1.8V)</p>
     </td>
   </tr>
@@ -571,16 +547,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>GND</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>57</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>56</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>NC</p>
     </td>
   </tr>
@@ -599,16 +575,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>REFCLKn</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>53</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>52</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>CLKREQ# (I/O)(0/1.8V/3.3V)</p>
     </td>
   </tr>
@@ -627,16 +603,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>PETp0/SATA-A+</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>49</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>48</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>GPIO_4 (I/O)(0/1.8V)</p>
     </td>
   </tr>
@@ -655,16 +631,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>GND</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>45</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>44</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>GPIO_2 (I/O)/ALERT# (I)(0/1.8V)</p>
     </td>
   </tr>
@@ -683,16 +659,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>PERn0/SATA-B+</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>41</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>40</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>GPIO_0 (I/O)/SMB_CLK (I/O)/(0/1.8V)</p>
     </td>
   </tr>
@@ -711,16 +687,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>PETp1/USB3.1-Tx+/SSIC-TxP</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>37</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>36</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>UIM_PWR (I)</p>
     </td>
   </tr>
@@ -739,16 +715,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>GND</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>33</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>32</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>UIM_CLK (I)</p>
     </td>
   </tr>
@@ -767,16 +743,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>PERn1/USB3.1-Rx-/SSIC-RxN</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>29</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>28</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>PLA_S2# (I)/GPIO_8 (I/O)(0/1.8V)</p>
     </td>
   </tr>
@@ -795,16 +771,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>DPR (O)(0/1.8V)</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>25</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>24</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>GPIO_7 (I/O)(0/1.8V)</p>
     </td>
   </tr>
@@ -823,16 +799,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>CONFIG_0</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>21</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>20</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>GPIO_5 (I/O)(0/1.8V)</p>
     </td>
   </tr>
@@ -851,16 +827,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>GND</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>11</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>10</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>GPIO_9/DAS/DSS (I/O)/LED_1# (I)(0/3.3V)</p>
     </td>
   </tr>
@@ -879,16 +855,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>USB_D+</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>7</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>6</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>FULL_CARD_POWER_OFF# (O)(0/1.8V or 3.3V)</p>
     </td>
   </tr>
@@ -907,16 +883,16 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>GND</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>3</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>2</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p>3.3V</p>
     </td>
   </tr>
@@ -936,13 +912,11 @@ TODO: replace to better picture
   </tr>
 </table>
 
-
-
 ## GPIO pinout
 
-![Flipper One GPIO port pinout](files/pics/flipper_one_gpio_port_pinout.jpg "Flipper One GPIO pinout")
+![Flipper One GPIO port pinout](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/IcHiPLMeaz2eQlQW1JkUw_flipperonegpioportpinout.jpg "Flipper One GPIO pinout")
 
-<table isTableHeaderOn="true" columnWidths="246,69.06742249685797,66.7895362847853,279.14304121835676" selectedColumns="" selectedRows="" selectedTable="false">
+<table isTableHeaderOn="true" columnWidths="246,69,66,279">
   <tr>
     <td align="center">
       <p><strong>Description</strong></p>
@@ -959,7 +933,7 @@ TODO: replace to better picture
   </tr>
   <tr>
     <td align="center">
-      <p>3.3 V Power, up to 2A EFUSE </p>
+      <p>3.3 V Power, up to 2A EFUSE</p>
     </td>
     <td align="center">
       <p><strong>3V3</strong></p>
@@ -968,36 +942,36 @@ TODO: replace to better picture
       <p><strong>GND</strong></p>
     </td>
     <td align="center">
-      <p>Ground </p>
+      <p>Ground</p>
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
-      <p><strong>MCU GPIO 40 </strong></p>
-      <p>PIO </p>
-      <p>ADC0 </p>
-      <p>PWM8_A </p>
+    <td lightBackgroundColor="#f0f7ff" align="center">
+      <p><strong>MCU GPIO 40</strong></p>
+      <p>PIO</p>
+      <p>ADC0</p>
+      <p>PWM8_A</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff" colSpan="1" rowSpan="1">
+    <td lightBackgroundColor="#f0f7ff" align="center" colSpan="1" rowSpan="1">
       <p><strong>M40</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff" colSpan="1" rowSpan="1">
+    <td lightBackgroundColor="#f0f7ff" align="center" colSpan="1" rowSpan="1">
       <p><strong>M41</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
-      <p><strong>MCU GPIO 41 </strong></p>
-      <p>PWM8_B </p>
-      <p>ADC0 </p>
-      <p>PIO </p>
+    <td lightBackgroundColor="#f0f7ff" align="center">
+      <p><strong>MCU GPIO 41</strong></p>
+      <p>PWM8_B</p>
+      <p>ADC0</p>
+      <p>PIO</p>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <p><strong>CPU GPIO4_B4_D </strong></p>
-      <p>SPDIF_RX0_M0 </p>
-      <p>I2C3_SDA_M0 </p>
-      <p>UART2_RX_M1 </p>
-      <p>CAN1_RX_M2 </p>
+      <p><strong>CPU GPIO4_B4_D</strong></p>
+      <p>SPDIF_RX0_M0</p>
+      <p>I2C3_SDA_M0</p>
+      <p>UART2_RX_M1</p>
+      <p>CAN1_RX_M2</p>
     </td>
     <td align="center" colSpan="1" rowSpan="1">
       <p><strong>B4</strong></p>
@@ -1006,47 +980,47 @@ TODO: replace to better picture
       <p><strong>B5</strong></p>
     </td>
     <td align="center">
-      <p><strong>CPU GPIO4_B5_D </strong></p>
-      <p>CAN1_TX_M2 </p>
-      <p>UART2_TX_M1 </p>
-      <p>I2C3_SCL_M0 </p>
-      <p>SPDIF_TX0_M0 </p>
+      <p><strong>CPU GPIO4_B5_D</strong></p>
+      <p>CAN1_TX_M2</p>
+      <p>UART2_TX_M1</p>
+      <p>I2C3_SCL_M0</p>
+      <p>SPDIF_TX0_M0</p>
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
-      <p><strong>CPU GPIO4_B2_D </strong></p>
-      <p>SAI1_SDO3_M0 </p>
-      <p>SAI1_SDI1_M0 </p>
-      <p>PDM1_SDI1_M1 </p>
-      <p>SPI4_MISO_M2 </p>
+    <td lightBackgroundColor="#f0f7ff" align="center">
+      <p><strong>CPU GPIO4_B2_D</strong></p>
+      <p>SAI1_SDO3_M0</p>
+      <p>SAI1_SDI1_M0</p>
+      <p>PDM1_SDI1_M1</p>
+      <p>SPI4_MISO_M2</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff" colSpan="1" rowSpan="1">
+    <td lightBackgroundColor="#f0f7ff" align="center" colSpan="1" rowSpan="1">
       <p><strong>B2</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff" colSpan="1" rowSpan="1">
+    <td lightBackgroundColor="#f0f7ff" align="center" colSpan="1" rowSpan="1">
       <p><strong>B3</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
-      <p><strong>CPU GPIO4_B3_D </strong></p>
-      <p>PWM2_CH7_M0 </p>
-      <p>SPI3_CSN1_M2 </p>
-      <p>SPI4_CSN0_M2 </p>
-      <p>PDM1_SDI0_M1 </p>
-      <p>SAI4_SD0_M0 </p>
-      <p>SAI1_SDI0_M0 </p>
+    <td lightBackgroundColor="#f0f7ff" align="center">
+      <p><strong>CPU GPIO4_B3_D</strong></p>
+      <p>PWM2_CH7_M0</p>
+      <p>SPI3_CSN1_M2</p>
+      <p>SPI4_CSN0_M2</p>
+      <p>PDM1_SDI0_M1</p>
+      <p>SAI4_SD0_M0</p>
+      <p>SAI1_SDI0_M0</p>
     </td>
   </tr>
   <tr>
     <td align="center">
       <p><strong>CPU GPIO4_B0_D</strong></p>
-      <p>SAI1_SDO1_M0 </p>
-      <p>SAI1_SDI3_M0 </p>
-      <p>PDM1_CLK1_M1 </p>
-      <p>SPI4_CLK_M2 </p>
+      <p>SAI1_SDO1_M0</p>
+      <p>SAI1_SDI3_M0</p>
+      <p>PDM1_CLK1_M1</p>
+      <p>SPI4_CLK_M2</p>
       <p>UART5_TX_M1</p>
-      <p>UART6_RTSN_M0 </p>
-      <p>UART2_RTSN_M1 </p>
+      <p>UART6_RTSN_M0</p>
+      <p>UART2_RTSN_M1</p>
     </td>
     <td align="center">
       <p><strong>B0</strong></p>
@@ -1057,35 +1031,35 @@ TODO: replace to better picture
     <td align="center">
       <p><strong>CPU GPIO4_B1_D</strong></p>
       <p>UART2_CTSN_M1</p>
-      <p>UART6_CTSN_M0 </p>
-      <p>UART5_RX_M1 </p>
-      <p>SPI4_MOSI_M2 </p>
-      <p>PDM1_SDI2_M1 </p>
-      <p>SAI1_SDI2_M0 </p>
-      <p>SAI1_SDO2_M0 </p>
+      <p>UART6_CTSN_M0</p>
+      <p>UART5_RX_M1</p>
+      <p>SPI4_MOSI_M2</p>
+      <p>PDM1_SDI2_M1</p>
+      <p>SAI1_SDI2_M0</p>
+      <p>SAI1_SDO2_M0</p>
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>CPU GPIO4_A6_D</strong></p>
       <p>SAI4_LRCK_M0</p>
       <p>PDM1_CLK0_M1</p>
       <p>SPI3_MISO_M2</p>
-      <p> I2C4_SDA_M1 </p>
-      <p>UART6_RX_M0 </p>
+      <p>I2C4_SDA_M1</p>
+      <p>UART6_RX_M0</p>
       <p>CAN0_RX_M2</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>A6</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>A7</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff">
+    <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>CPU GPIO4_A7_D</strong></p>
-      <p>PWM2_CH6_M0 </p>
-      <p>SPI3_CLK_M2 </p>
-      <p>SAI4_SDI1_M0 </p>
+      <p>PWM2_CH6_M0</p>
+      <p>SPI3_CLK_M2</p>
+      <p>SAI4_SDI1_M0</p>
       <p>SAI1_SDO0_M0</p>
     </td>
   </tr>
@@ -1095,9 +1069,9 @@ TODO: replace to better picture
       <p>SAI4_SCLK_M0</p>
       <p>PDM1_SDI3_M1</p>
       <p>SPI3_MOSI_M2</p>
-      <p> I2C4_SCL_M1</p>
-      <p> UART6_TX_M0</p>
-      <p> CAN0_TX_M2</p>
+      <p>I2C4_SCL_M1</p>
+      <p>UART6_TX_M0</p>
+      <p>CAN0_TX_M2</p>
     </td>
     <td align="center">
       <p><strong>A4</strong></p>
@@ -1107,32 +1081,32 @@ TODO: replace to better picture
     </td>
     <td align="center">
       <p><strong>CPU GPIO4_A5_D</strong></p>
-      <p> I2C2_SDA_M2</p>
-      <p> UART5_CTSN_M1</p>
-      <p> SPI4_CSN1_M2</p>
-      <p> SAI1_LRCK_M0</p>
+      <p>I2C2_SDA_M2</p>
+      <p>UART5_CTSN_M1</p>
+      <p>SPI4_CSN1_M2</p>
+      <p>SAI1_LRCK_M0</p>
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff" colSpan="1" rowSpan="1">
-      <p><strong>CPU GPIO4_A2_D </strong></p>
-      <p>SAI1_MCLK_M0 </p>
-      <p>SAI4_MCLK_M0 </p>
-      <p>PWM2_CH5_M0 </p>
+    <td lightBackgroundColor="#f0f7ff" align="center" colSpan="1" rowSpan="1">
+      <p><strong>CPU GPIO4_A2_D</strong></p>
+      <p>SAI1_MCLK_M0</p>
+      <p>SAI4_MCLK_M0</p>
+      <p>PWM2_CH5_M0</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff" colSpan="1" rowSpan="1">
+    <td lightBackgroundColor="#f0f7ff" align="center" colSpan="1" rowSpan="1">
       <p><strong>A2</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff" colSpan="1" rowSpan="1">
+    <td lightBackgroundColor="#f0f7ff" align="center" colSpan="1" rowSpan="1">
       <p><strong>A3</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff" colSpan="1" rowSpan="1">
-      <p><strong>CPU GPIO4_A3_D</strong> </p>
-      <p>PWM2_CH4_M1 </p>
-      <p>I2C2_SCL_M2 </p>
-      <p>UART5_RTSN_M1 </p>
-      <p>SPI3_CSN0_M2 </p>
-      <p>SAI1_SCLK_M0 </p>
+    <td lightBackgroundColor="#f0f7ff" align="center" colSpan="1" rowSpan="1">
+      <p><strong>CPU GPIO4_A3_D</strong></p>
+      <p>PWM2_CH4_M1</p>
+      <p>I2C2_SCL_M2</p>
+      <p>UART5_RTSN_M1</p>
+      <p>SPI3_CSN0_M2</p>
+      <p>SAI1_SCLK_M0</p>
     </td>
   </tr>
   <tr>
@@ -1150,28 +1124,26 @@ TODO: replace to better picture
     </td>
   </tr>
   <tr>
-    <td align="center" lightBackgroundColor="#f0f7ff" colSpan="1" rowSpan="1">
+    <td lightBackgroundColor="#f0f7ff" align="center" colSpan="1" rowSpan="1">
       <p>CPU USB 2.0 Data+</p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff" colSpan="1" rowSpan="1">
+    <td lightBackgroundColor="#f0f7ff" align="center" colSpan="1" rowSpan="1">
       <p><strong>D+</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff" colSpan="1" rowSpan="1">
+    <td lightBackgroundColor="#f0f7ff" align="center" colSpan="1" rowSpan="1">
       <p><strong>D-</strong></p>
     </td>
-    <td align="center" lightBackgroundColor="#f0f7ff" colSpan="1" rowSpan="1">
+    <td lightBackgroundColor="#f0f7ff" align="center" colSpan="1" rowSpan="1">
       <p>CPU USB 2.0 Data-</p>
     </td>
   </tr>
 </table>
 
-
-
 ## Debug port
 
-![Flipper One Debug Port Pinout](files/pics/flipper_one_debug_port_pinout.png "Flipper One Debug Port Pinout")
+![Flipper One Debug Port Pinout](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/z2c8tayOgivlIyou_2bod_flipperonedebugportpinout.png "Flipper One Debug Port Pinout")
 
-<table isTableHeaderOn="true" columnWidths="246,69.06742249685797,66.7895362847853,279.14304121835676">
+<table isTableHeaderOn="true" columnWidths="246,69,66,279">
   <tr>
     <td align="center">
       <p><strong>Description</strong></p>
@@ -1286,3 +1258,4 @@ TODO: replace to better picture
   </tr>
 </table>
 
+Will this affect the URL?
