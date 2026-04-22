@@ -1,12 +1,10 @@
 ---
 title: Markup example
-slug: resources/docs/markup-example
+slug: resources/about-docs/markup-example
 docTags: 
-createdAt: Mon Apr 20 2026 11:30:48 GMT+0000 (Coordinated Universal Time)
-updatedAt: Mon Apr 20 2026 16:38:40 GMT+0000 (Coordinated Universal Time)
+createdAt: Wed Apr 22 2026 13:04:53 GMT+0000 (Coordinated Universal Time)
+updatedAt: Wed Apr 22 2026 14:16:53 GMT+0000 (Coordinated Universal Time)
 ---
-
-Will this rewrite the URL?
 
 This page is a reference for contributors writing Flipper One documentation.
 It covers both standard **Markdown** and **Archbee-specific syntax** supported by this wiki.
