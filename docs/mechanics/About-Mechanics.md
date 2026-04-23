@@ -1,8 +1,8 @@
 ---
 title: About Mechanics
 docTags: 
-createdAt: Mon Apr 20 2026 11:30:48 GMT+0000 (Coordinated Universal Time)
-updatedAt: Tue Apr 21 2026 16:18:09 GMT+0000 (Coordinated Universal Time)
+createdAt: Wed Apr 22 2026 13:04:54 GMT+0000 (Coordinated Universal Time)
+updatedAt: Thu Apr 23 2026 21:39:31 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page explains the structure of the Mechanics sub-project, provides links to design files, and outlines how to contribute to Flipper One's mechanical development.
@@ -14,12 +14,12 @@ The Mechanics sub-project is where we engineer the enclosure, buttons, plastic a
 The Mechanics sub-project consists of:
 
 - ✅ :Link[Task tracker]{href="https://github.com/orgs/flipperdevices/projects/15" newTab="true" hasDisabledNofollow="false"}
-- ⚙️ :Link[3D models on Onshape]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"}
+- ⚙️ :Link[3D models hosted on Onshape]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"}
 - 📁 :Link[Design files on GitHub]{href="https://github.com/flipperdevices/flipperone-mechanics" newTab="true" hasDisabledNofollow="false"}
 
 We'd love your feedback — look for tasks tagged **help wanted** in the task tracker, or contribute directly to the GitHub repository via pull requests.
 
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/AECUDKqdLJkYxyuiMDdn_-20260416-170227.jpg)
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/k9V0SKmJ5Nuk7BKxpo4zc-20260422-161729.jpg)
 
 ***
 
@@ -33,9 +33,9 @@ All mechanical team tasks are tracked in the GitHub project :Link[Flipper One �
 
 ***
 
-## ⚙️ 3D models on Onshape
+## ⚙️ 3D models hosted on Onshape
 
-You can view, edit, or export the 3D models via :Link[Onshape]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"} – a cloud-based CAD tool (similar to SolidWorks) that runs directly in your web browser. We’ll always upload the latest version of the Flipper One 3D models to Onshape.
+You can view and export the 3D models via :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/BWs6BlQTIuaA34qFFvyY0-20260422-193237.png" alt caption} :Link[Onshape]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"} – a cloud-based CAD tool (similar to SolidWorks) that runs directly in your web browser. Onshape hosts the latest version of the 3D models. The same 3D models are also available in the :Link[CURRENT folder on GitHub]{href="https://github.com/flipperdevices/flipperone-mechanics/tree/dev/CURRENT" newTab="true" hasDisabledNofollow="false"}.
 
 :::Iframe{code="<video&#xA;    autoplay muted loop playsinline style=&#x22;width: 100%; margin: 0 !important;&#x22;&#xA;    src=&#x22;https://cdn.flipperzero.one/Pan_rotate_and_move_parts_compressed.mp4&#x22;&#xA;></video>" iframeHeight="500"}
 
@@ -60,7 +60,7 @@ All surfaces and dimensions match the real product, allowing development of acce
 
 ### How to view 3D models
 
-To open the 3D model, simply click the :Link[Flipper One - Onshape]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"} link — the model will open in your browser in view mode. Here you can navigate the model:
+Simply click the :Link[Flipper One - Onshape]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"} link — the model will open in your browser in view mode. Here you can navigate the model:
 
 - **Pan model** — click :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/n3aUz4Jq-P7dqI647w6Kb-20260325-114158.png" alt caption} Pan or click and hold the :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/290PzLQDUGQo8RuaFZv_j-20260325-133300.png" alt caption} middle wheel on your mouse.
 - **Rotate model** — click :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/NjfVebUq_P1cC0Sc3lFjR-20260325-115455.png" alt caption} Rotate or :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/UXZ-1Id6BT7BeIBA6UJrO-20260325-133317.png" alt caption} right-click and hold your mouse.
@@ -85,53 +85,36 @@ To export:
 
 ::::WorkflowBlock
 :::WorkflowBlockItem
-Select one or more parts in the sidebar on the left.&#x20;
+Click the :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/hPFRUcyf8EaWor_92zYgu-20260422-172307.png" alt caption} **Export** button at the bottom of your screen.
+
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/LKkUxtKZ-fj97-N4DnDfl-20260422-160457.png)
 :::
 
 :::WorkflowBlockItem
-Right-click one of the selected parts and click **Export…**
+Select your preferred export format.
 
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/TfxJchXHNxpDs7UdSTu63-20260325-160855.png)
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/jfu7mEI6p6LEGLHcwr3SU-20260422-155404.png)
 :::
 
 :::WorkflowBlockItem
-Choose the file format and export options, then click **Export**.
+Click **Export**.
 :::
 ::::
-
-***
-
-### How to edit 3D models
-
-To edit the model or design a new one, you’ll need to copy the model to your own account. Here’s how:
-
-::::WorkflowBlock
-:::WorkflowBlockItem
-Log in to your :Link[Onshape account]{href="https://www.onshape.com/en/" newTab="true" hasDisabledNofollow="false"}.
-:::
-
-:::WorkflowBlockItem
-Open the Flipper One model in Onshape by clicking :Link[this link]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"}.
-:::
-
-:::WorkflowBlockItem
-Click **Make a copy to edit** at the top of the screen and choose a location in your Onshape workspace where the model will be saved.
-
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/5JkGeKKltayBByf4Ikq4b-20260325-132625.png)
-:::
-::::
-
-Now your copy of the model is opened in edit mode, so you can edit it.
-
-:::hint{type="info"}
-Check out the free :Link[Onshape learning courses]{href="https://learn.onshape.com/" newTab="true" hasDisabledNofollow="false"} if you plan to work with it.
-:::
 
 ***
 
 ## 📁 Design files on GitHub
 
-The :Link[flipperone-mechanics]{href="https://github.com/flipperdevices/flipperone-mechanics" newTab="true" hasDisabledNofollow="false"} GitHub repository contains both current and legacy versions of Flipper One’s enclosure 3D models. It also includes other design files, such as enclosure text and labels, as well as designs for official hardware modules and add-ons. You can download the design files to explore and modify them.
+The :Link[flipperone-mechanics]{href="https://github.com/flipperdevices/flipperone-mechanics" newTab="true" hasDisabledNofollow="false"} GitHub repository hosts both current and legacy versions of Flipper One’s enclosure 3D models in `.stp` format. It also includes other design files, such as enclosure text and labels, as well as designs for official hardware modules and add-ons. You can download the design files to explore and modify them.
+
+:::hint{type="info"}
+Both the :Link[CURRENT folder on GitHub]{href="https://github.com/flipperdevices/flipperone-mechanics/tree/dev/CURRENT" newTab="true" hasDisabledNofollow="false"} and :Link[Onshape]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"} host the latest Flipper One 3D models, but there is a difference:
+
+- :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/35CMh7cPaEJY42c0x205l-20260422-192635.svg" alt caption}**&#x20;GitHub** — only download models in `.stp` format.
+- :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/17t3meaKNqmY8q-e1hSp_-20260422-194815.png" alt caption}**&#x20;Onshape** — view the current models and export in multiple formats.
+:::
+
+***
 
 ### Repository structure
 
@@ -165,16 +148,109 @@ Design versioning scheme includes two parts: `<LETTER>.<NUMBER>` (for example, A
 To contribute to the Mechanics sub-project, you need to have a GitHub account. You can create one on the :Link[GitHub website]{href="https://github.com/signup" newTab="true" hasDisabledNofollow="false"}.
 :::
 
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/EcotI__FOd58IUCUyNzqC-20260420-091800.jpg)
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/Mo4LPAlsvBYBJ0LdlcZWd-20260423-202546.jpg)
 
-Anyone can contribute to the Mechanics sub-project via the GitHub repository by commenting on the open tasks or making pull requests with suggested changes:
+Anyone can contribute to the Mechanics sub-project:
 
-- :Link[Comment on an open task]{href="https://docs.flipper.net/one/about-mechanics#comment-on-an-open-task" newTab="false" hasDisabledNofollow="true"}
-- :Link[Share a new design as a pull request]{href="https://docs.flipper.net/one/about-mechanics#share-a-new-design-as-a-pull-request" newTab="false" hasDisabledNofollow="true"}
+::::WorkflowBlock
+:::WorkflowBlockItem
+Check open tasks in the :Link[task tracker]{href="https://github.com/orgs/flipperdevices/projects/15" newTab="true" hasDisabledNofollow="false"}.
+:::
+
+:::WorkflowBlockItem
+Download 3D models from :Link[GitHub]{href="https://github.com/flipperdevices/flipperone-mechanics" newTab="true" hasDisabledNofollow="false"} or :Link[Onshape]{href="https://cad.onshape.com/documents/32ee3b79861e4ff5fe28ee3b/w/8eca0dcb9e92b0271d434028/e/adb36e3c67cc1a734691cf20" newTab="true" hasDisabledNofollow="false"}.
+:::
+
+:::WorkflowBlockItem
+Edit the 3D models using any CAD tool.
+:::
+
+:::WorkflowBlockItem
+Submit your work as a **pull request** to our GitHub repo.
+
+If there is an open task, you can submit your work in the comment section.
+:::
+::::
 
 ***
 
-## :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/ET-EwqJgXrvr4m9wb9u-_-20260420-161453.png" alt caption} Comment on an open task
+## Submit your design as a pull request
+
+If you have an idea for improving the design of Flipper One, you're welcome to contribute it. Copy the GitHub repository, make your changes to the design files, and submit a pull request to the original repository:
+
+::::WorkflowBlock
+:::WorkflowBlockItem
+Go to the :Link[flipperone-mechanics]{href="https://github.com/flipperdevices/flipperone-mechanics" newTab="true" hasDisabledNofollow="false"} repository.
+:::
+
+:::WorkflowBlockItem
+Copy the repository to your GitHub account by clicking the **Fork** button in the upper-right corner, then confirm your action.
+
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/O40uj7MONYA7c8t19e5UZ_image.png)
+:::
+
+:::WorkflowBlockItem
+In your copied repository, go to the **CURRENT** folder.
+:::
+
+:::WorkflowBlockItem
+Click the **Add file&#x20;**&#x64;ropdown button.
+
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/aaYiTPWW4JULDCfa2fZHY-20260326-140414.png)
+:::
+
+:::WorkflowBlockItem
+Select :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/hHcooERJ1R9C3tGrRKQOq_image.png" alt caption}**Upload files**.
+:::
+
+:::WorkflowBlockItem
+Drag and drop a file, or click **choose your files** to select it from your computer.
+:::
+
+:::WorkflowBlockItem
+After uploading, scroll down to **Commit changes**.
+:::
+
+:::WorkflowBlockItem
+Add a clear, concise commit **description** (for example: *Add bumps to aluminum bracket*).
+
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/CD1l1iwmTqEsFVzy-jviS-20260423-213432.png)
+:::
+
+:::WorkflowBlockItem
+Click **Commit changes** — this will save the changes in your repository.
+:::
+
+:::WorkflowBlockItem
+In your repository, click **Contribute -> Open pull request**.
+
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/3pwOfvjp1CuhqgaExWMSq-20260423-170641.png)
+:::
+
+:::WorkflowBlockItem
+Check that your changes will be pushed to the repository: **flipperdevices/flipperone-mechanics**, base: **dev**.
+
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/8UGBYvow_GxVDc9tlyOlj-20260423-170852.png)
+:::
+
+:::WorkflowBlockItem
+Add a pull request **title** and a **description** in Markdown — you can preview your description by clicking **Preview**.
+
+We highly recommend attaching screenshots that show what changed.
+
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/Xl5jAIhCvd4cEPDmW89At-20260423-173217.png "Pull request example")
+:::
+
+:::WorkflowBlockItem
+Click **Create pull request**.
+:::
+::::
+
+We review all ideas carefully! We may ask additional questions about your idea in the pull request thread, so please follow notifications from GitHub in your email.
+
+***
+
+## Suggest your change as a comment on an open task
 
 ::::hint{type="info"}
 **⚠️ Contributions only — no flooding**
@@ -205,7 +281,7 @@ In the comments section, clearly write your comment and attach a screenshot, vid
 **Important:** If you share a link to your design on Onshape, ensure the model is accessible for others to view.
 :::
 
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/jnEqEalHspW_JJ2Suz3SU-20260325-175922.png)
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/dN8w-hfQ0UWyTSwCEEfGc-20260423-212834.png)
 
 **Attachment size limit:**
 
@@ -218,74 +294,4 @@ Click **Comment**.
 :::
 :::::
 
-We review all ideas carefully! We may ask additional questions about your idea in the task thread, so please follow notifications from GitHub in your email.
-
-***
-
-## :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/M9g_cp4I8FLU75DejRE9o-20260420-161412.png" alt caption} Share a new design as a pull request
-
-If you have an idea for improving the design of Flipper One that isn't covered by an existing open task, you're still welcome to contribute it. Fork the GitHub repository (this creates your own linked copy), make your changes to the design files, and submit a pull request to our repository:
-
-::::WorkflowBlock
-:::WorkflowBlockItem
-Go to the :Link[flipperone-mechanics]{href="https://github.com/flipperdevices/flipperone-mechanics" newTab="true" hasDisabledNofollow="false"} repository.
-:::
-
-:::WorkflowBlockItem
-Fork the repository to your GitHub account by clicking the **Fork** button in the upper-right corner, then confirm your action.
-
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/O40uj7MONYA7c8t19e5UZ_image.png)
-:::
-
-:::WorkflowBlockItem
-In your forked repository, go to the **CURRENT** folder (where the `Flipper One (X.X).stp` file is located).
-:::
-
-:::WorkflowBlockItem
-Click the **Add file&#x20;**&#x64;ropdown button (near the top right of the file list).
-
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/aaYiTPWW4JULDCfa2fZHY-20260326-140414.png)
-:::
-
-:::WorkflowBlockItem
-Select **Upload files**.
-:::
-
-:::WorkflowBlockItem
-Drag and drop a design file with your idea into the browser window, or click **choose your files** to select it from your computer.
-:::
-
-:::WorkflowBlockItem
-Once the file finishes uploading, scroll down to the **Commit changes&#x20;**&#x62;ox at the bottom.
-:::
-
-:::WorkflowBlockItem
-Add a clear, concise commit **description** (for example: *USB-C 1 label fixed*).
-:::
-
-:::WorkflowBlockItem
-Below, select **Create a new branch for this commit and start a pull request**.
-
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/X4nGTF1mayohLgBciMm1q-20260325-200702.png)
-:::
-
-:::WorkflowBlockItem
-Name the branch to reflect your GitHub nickname and the area of changes. For example: `john/back-plate-improvement`
-:::
-
-:::WorkflowBlockItem
-Click **Propose changes**.
-:::
-
-:::WorkflowBlockItem
-In the **Open a pull request** page, add a **title** and a **description** explaining what changed in the design file.
-
-We highly recommend attaching screenshots that show what changed.
-:::
-
-:::WorkflowBlockItem
-Click **Create pull request**.
-:::
-::::
-
-We review all ideas carefully! We may ask additional questions about your idea in the pull request thread, so please follow notifications from GitHub in your email.
+We review all comments carefully! We may ask additional questions about your idea in the task thread, so please follow notifications from GitHub in your email.
