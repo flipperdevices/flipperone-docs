@@ -1,4 +1,10 @@
-# Network
+---
+title: Network
+slug: testing/network
+docTags: 
+createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
+updatedAt: Tue Apr 28 2026 13:26:18 GMT+0000 (Coordinated Universal Time)
+---
 
 This section covers network connectivity testing and validation for Flipper One.
 
@@ -7,8 +13,6 @@ This section covers network connectivity testing and validation for Flipper One.
 ![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/Z4x-_n5NOQw2pOo6ClKGd_image.png "Wi-Fi + Bluetooth module WXT2AM2101. Based Mediatek MT7921AUN")
 
 Built-in WiFi based on Mediatek MT7921AUN chip, Wi-Fi 6E (802.11ax) and Bluetooth 5.2 chipset primarily used in high-performance USB wireless adapters like the ALFA AWUS036AXML. It supports 2.4 GHz, 5 GHz, and 6 GHz bands.
-
-
 
 ![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/kCU7UPykJBA9NbkYWlK_L_image.png "Built-in WiFi module should work as AP and STA simultaneously")
 
@@ -63,4 +67,3 @@ Flipper One as Bluetooth speaker.&#x20;
 1. Start advertising as Bluetooth speak from Flipper One (using bluez?)
 2. Connect Flipper One as Bluetooth speak to smartphone
 3. Play music on smartphone, listen on Flipper One via internal speaker, 3,5 Audio, HDMI Out
-

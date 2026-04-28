@@ -2,8 +2,8 @@
 title: How to join
 slug: how-to-join
 docTags: 
-createdAt: Wed Apr 22 2026 13:04:53 GMT+0000 (Coordinated Universal Time)
-updatedAt: Wed Apr 22 2026 15:23:54 GMT+0000 (Coordinated Universal Time)
+createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
+updatedAt: Tue Apr 28 2026 13:40:34 GMT+0000 (Coordinated Universal Time)
 ---
 
 ### Guide for the community on how to join Flipper One development
@@ -26,13 +26,13 @@ Flipper One is a large and complex project, divided into several sub-projects. E
 
 ::::VerticalSplit{layout="left"}
 :::VerticalSplitItem
-### :Link[Hardware]{href="https://docs.flipper.net/one/about-hardware" newTab="true" hasDisabledNofollow="false"}
+### :Link[Hardware]{href="https://docs.flipper.net/one/hardware/about" newTab="true" hasDisabledNofollow="false"}
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/9plDPlgbxscoFIacbj8Q9-20260331-093234.png" size="38" width="333" height="243" position="flex-start"}
 :::
 
 :::VerticalSplitItem
-Electrical hardware development. This is where the printed circuit boards (PCBs), antennas, and everything related to the electrical connections of chips, connectors, and processors are designed. The Hardware team works closely with the Mechanics team to ensure the electronics are compatible with the enclosure. :Link[**Learn more**]{href="https://docs.flipper.net/one/about-hardware" newTab="true" hasDisabledNofollow="false"}**&#x20;→**
+Electrical hardware development. This is where the printed circuit boards (PCBs), antennas, and everything related to the electrical connections of chips, connectors, and processors are designed. The Hardware team works closely with the Mechanics team to ensure the electronics are compatible with the enclosure. :Link[**Learn more**]{href="https://docs.flipper.net/one/hardware/about" newTab="true" hasDisabledNofollow="false"}**&#x20;→**
 :::
 ::::
 
@@ -40,13 +40,13 @@ Electrical hardware development. This is where the printed circuit boards (PCBs)
 
 ::::VerticalSplit{layout="left"}
 :::VerticalSplitItem
-### :Link[Mechanics]{href="https://docs.flipper.net/one/about-mechanics" newTab="true" hasDisabledNofollow="false"}
+### :Link[Mechanics]{href="https://docs.flipper.net/one/mechanics/about" newTab="true" hasDisabledNofollow="false"}
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/C5VLSGhfaLWBS5E3VIMF8-20260331-093258.png" size="50" width="357" height="333" position="flex-start"}
 :::
 
 :::VerticalSplitItem
-Mechanical and industrial design. This is where the enclosure, buttons, plastic and metal parts, and mounting components are designed. Everything the user physically interacts with. Many mechanical tasks are tightly coupled with the Hardware team. :Link[**Learn more**]{href="https://docs.flipper.net/one/about-mechanics" newTab="true" hasDisabledNofollow="false"}**&#x20;→**
+Mechanical and industrial design. This is where the enclosure, buttons, plastic and metal parts, and mounting components are designed. Everything the user physically interacts with. Many mechanical tasks are tightly coupled with the Hardware team. :Link[**Learn more**]{href="https://docs.flipper.net/one/mechanics/about" newTab="true" hasDisabledNofollow="false"}**&#x20;→**
 :::
 ::::
 
@@ -54,13 +54,13 @@ Mechanical and industrial design. This is where the enclosure, buttons, plastic 
 
 ::::VerticalSplit{layout="left"}
 :::VerticalSplitItem
-### :Link[Linux (CPU Software)]{href="https://docs.flipper.net/one/about-linux-cpu-software" newTab="true" hasDisabledNofollow="false"}
+### :Link[Linux (CPU Software)]{href="https://docs.flipper.net/one/cpu-software/about" newTab="true" hasDisabledNofollow="false"}
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/ELzD0IezeYIDXuYC1yP2a-20260331-093341.png" size="34" width="267" height="318" position="flex-start"}
 :::
 
 :::VerticalSplitItem
-Linux kernel, modules, drivers, userspace, bootloader, Rockchip tools, etc. This is the largest and most complex sub-project, spanning many repositories. It contains the core software that users will interact with directly. [**Learn more**](https://docs.flipper.net/one/about-linux-cpu-software) **→**
+Linux kernel, modules, drivers, userspace, bootloader, Rockchip tools, etc. This is the largest and most complex sub-project, spanning many repositories. It contains the core software that users will interact with directly. [Learn more](https://docs.flipper.net/one/cpu-software/about) **→**
 :::
 ::::
 
@@ -68,13 +68,13 @@ Linux kernel, modules, drivers, userspace, bootloader, Rockchip tools, etc. This
 
 ::::VerticalSplit{layout="left"}
 :::VerticalSplitItem
-### :Link[MCU Firmware]{href="https://docs.flipper.net/one/about-mcu-firmware" newTab="true" hasDisabledNofollow="false"}
+### :Link[MCU Firmware]{href="https://docs.flipper.net/one/mcu-firmware/about" newTab="true" hasDisabledNofollow="false"}
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/On5sGCZ3-QWo2sYbRVTam-20260331-093415.png" size="38" width="309" height="306" position="flex-start"}
 :::
 
 :::VerticalSplitItem
-Firmware for the RP2350 microcontroller. The MCU controls buttons, display, touchpad, and power subsystem, as well as co-processor communication between the MCU and CPU. [**Learn more**](https://docs.flipper.net/one/about-mcu-firmware)**&#x20;→**
+Firmware for the RP2350 microcontroller. The MCU controls buttons, display, touchpad, and power subsystem, as well as co-processor communication between the MCU and CPU. [Learn more](https://docs.flipper.net/one/mcu-firmware/about)**&#x20;→**
 :::
 ::::
 
@@ -82,13 +82,13 @@ Firmware for the RP2350 microcontroller. The MCU controls buttons, display, touc
 
 ::::VerticalSplit{layout="left"}
 :::VerticalSplitItem
-### :Link[User Interface]{href="https://docs.flipper.net/one/about-user-interface" newTab="true" hasDisabledNofollow="false"}
+### :Link[User Interface]{href="https://docs.flipper.net/one/user-interface/about" newTab="true" hasDisabledNofollow="false"}
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/CzLfRFqDmQf-g_0Mu_WA--20260331-093442.png" size="36" width="282" height="273" position="flex-start"}
 :::
 
 :::VerticalSplitItem
-UI/UX development. This is where the user interface, visual communication of the device, all graphics, and visual design are developed. [**Learn more**](https://docs.flipper.net/one/about-user-interface) **→**
+UI/UX development. This is where the user interface, visual communication of the device, all graphics, and visual design are developed. [Learn more](https://docs.flipper.net/one/user-interface/about) **→**
 :::
 ::::
 
@@ -96,13 +96,13 @@ UI/UX development. This is where the user interface, visual communication of the
 
 ::::VerticalSplit{layout="left"}
 :::VerticalSplitItem
-### :Link[Docs]{href="https://docs.flipper.net/one/about-docs" newTab="true" hasDisabledNofollow="false"}
+### :Link[Docs]{href="https://docs.flipper.net/one/resources/about-docs" newTab="true" hasDisabledNofollow="false"}
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/RfUa81BVRdDm1qKCoXnrd-20260331-093508.png" size="36" width="273" height="273" position="flex-start"}
 :::
 
 :::VerticalSplitItem
-Developer portal wiki, technical docs, guides, and datasheets. All documentation — including this wiki — is developed here. It covers both the Flipper One product documentation and descriptions of development processes and contribution guides. [**Learn more**](https://docs.flipper.net/one/about-docs)**&#x20;→**
+Developer portal wiki, technical docs, guides, and datasheets. All documentation — including this wiki — is developed here. It covers both the Flipper One product documentation and descriptions of development processes and contribution guides. [Learn more](https://docs.flipper.net/one/resources/about-docs)**&#x20;→**
 :::
 ::::
 
@@ -110,13 +110,13 @@ Developer portal wiki, technical docs, guides, and datasheets. All documentation
 
 ::::VerticalSplit{layout="left"}
 :::VerticalSplitItem
-### :Link[Testing]{href="https://docs.flipper.net/one/about-testing" newTab="true" hasDisabledNofollow="false"}
+### :Link[Testing]{href="https://docs.flipper.net/one/testing/about" newTab="true" hasDisabledNofollow="false"}
 
 ::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/M8o8dC4criD5llKbqSJB6-20260331-093535.png" size="36" width="282" height="273" position="flex-start"}
 :::
 
 :::VerticalSplitItem
-Tools for testing device subsystems and hardware validation. Includes various scripts and programs for testing power, networking, CPU, audio, graphics, etc. Also includes interface prototypes demos and sample audio and video files. [**Learn more**](https://docs.flipper.net/one/about-testing) **→**
+Tools for testing device subsystems and hardware validation. Includes various scripts and programs for testing power, networking, CPU, audio, graphics, etc. Also includes interface prototypes, demos, and sample audio and video files. [Learn more](https://docs.flipper.net/one/testing/about) **→**
 :::
 ::::
 
@@ -149,7 +149,7 @@ For those who want to explore further, some sub-projects provide more in-depth m
 :::hint{type="info"}
 **You can contribute to the documentation**
 
-This wiki is a sub-project of its own, and anyone can contribute by editing :Link[its source files on GitHub]{href="https://github.com/flipperdevices/flipperone-docs" newTab="true" hasDisabledNofollow="false"}. Learn more in the :Link[Docs sub-project]{href="https://docs.flipper.net/one/about-docs" newTab="true" hasDisabledNofollow="true"}.
+This wiki is a sub-project of its own, and anyone can contribute by editing :Link[its source files on GitHub]{href="https://github.com/flipperdevices/flipperone-docs" newTab="true" hasDisabledNofollow="false"}. Learn more in the :Link[Docs sub-project]{href="https://docs.flipper.net/one/resources/about-docs" newTab="true" hasDisabledNofollow="true"}.
 :::
 
 ***
@@ -176,7 +176,7 @@ Some of our tasks are open. This means the community can interact with them just
 
 Tasks can be marked with different **labels**:
 
-- **help wanted** — tasks where we actively invite the community to participate and contribute to the solution. Example: [**Operating modes discussion**](https://github.com/flipperdevices/flipperone-ui/issues/1)
+- **help wanted** — tasks where we actively invite the community to participate and contribute to the solution. Example: [Operating modes discussion](https://github.com/flipperdevices/flipperone-ui/issues/1)
 - **locked** — tasks that are closed to the community. This means we are not ready to discuss the task or accept feedback. You can still see Flipper team’s internal discussions.
 
 ::::hint{type="info"}
@@ -218,7 +218,7 @@ Find a sub-project that interests you. Explore its documentation in this Develop
 
 Go to the task tracker of the sub-project you’re interested in to explore current tasks. Open Tasks where your help is welcome are labeled **help wanted**. Read through a task and follow the contribution guidelines when submitting your input.
 
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/ZWucCsRvdOhYn-Og3KwFF-20260410-165617.png "Task where community contribution is welcome are marked \"help wanted\"")
+![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/ZWucCsRvdOhYn-Og3KwFF-20260410-165617.png "Task where community contribution is welcome are marked \"help wanted")
 
 :::hint{type="info"}
 You can also visit the :Link[🚧 Open tasks]{href="https://docs.flipper.net/one/open-tasks" newTab="true" hasDisabledNofollow="false"} to find tasks that need community help or feedback.

@@ -1,8 +1,9 @@
 ---
 title: FlipCTL
+slug: cpu-software/flipctl
 docTags: 
-createdAt: Mon Apr 20 2026 11:30:48 GMT+0000 (Coordinated Universal Time)
-updatedAt: Mon Apr 20 2026 16:39:42 GMT+0000 (Coordinated Universal Time)
+createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
+updatedAt: Tue Apr 28 2026 13:18:11 GMT+0000 (Coordinated Universal Time)
 ---
 
 ## Flipper's Universal Control Interface
@@ -68,7 +69,7 @@ flowchart LR
       <p><strong>Flipper One</strong></p>
     </td>
     <td>
-      <p>The primary target device — an ARM Linux computer with a built-in 256×144 px LCD and physical controls. <strong>Includes boot menu functionality</strong> as part of the FlipCTL package</p>
+      <p>The primary target device is an ARM Linux computer with a built-in 256×144 px LCD and physical controls. <strong>Includes boot menu functionality</strong> as part of the FlipCTL package</p>
     </td>
   </tr>
   <tr>

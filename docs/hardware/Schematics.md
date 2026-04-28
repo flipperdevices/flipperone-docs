@@ -1,4 +1,9 @@
-# Schematics
+---
+title: Schematics
+docTags: 
+createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
+updatedAt: Tue Apr 28 2026 11:00:48 GMT+0000 (Coordinated Universal Time)
+---
 
 This section contains the electrical schematics of Flipper One. They are published in the format ???
 
@@ -64,7 +69,7 @@ Flipper One has several USB ports available to the user: one on the side and two
 
 The port on the side is the main one. It is the most functional: it has PD input and output with different voltages, it can work as both a host and a device (you can connect devices to it and connect it to other devices, such as laptops), and it can switch to Display Port mode to show the image on a connected monitor.
 
-<table isTableHeaderOn="true" columnWidths="[object Object]">
+<table isTableHeaderOn="true" columnWidths="165,165,165,168">
   <tr>
     <td lightBackgroundColor="rgb(242, 243, 245)" darkBackgroundColor="rgb(242, 243, 245)" align="left">
     </td>

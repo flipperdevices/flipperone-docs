@@ -1,8 +1,16 @@
-# Graphics
+---
+title: Graphics
+slug: testing/graphics
+docTags: 
+createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
+updatedAt: Tue Apr 28 2026 13:24:41 GMT+0000 (Coordinated Universal Time)
+---
 
 ## Graphics Integrity Tests
 
 This section covers graphics and video output testing procedures for Flipper One.
+
+***
 
 # GPU driver performance
 
@@ -44,6 +52,8 @@ GL_EXTENSIONS = GL_....
 ```
 :::
 
+***
+
 # HDMI — Default target
 
 In `Default` boot target HDMI is routed to main video out `(vo0)` and USB-DisplayPort routed to second video out `(vo2)` . So HDMI should support 4K\@120 output and USB-C DisplayPort only 1080p.
@@ -57,6 +67,8 @@ In `Default` boot target HDMI is routed to main video out `(vo0)` and USB-Displa
 - ❌ TODO: Run `HDMI CEC` tests
 - ❌ TODO Run `HDMI Audio` tests
 
+***
+
 # HDMI — 4K-USB-DisplayPort target
 
 In `4K-USB-DisplayPort` boot target HDMI is routed to second `(vo2)` and USB-C DisplayPort routed to main video out `(vo0)` . So HDMI should only support 1080p and USB-C DisplayPort should support 4K\@120
@@ -67,6 +79,8 @@ In `4K-USB-DisplayPort` boot target HDMI is routed to second `(vo2)` and USB-C D
 - Run `GPU driver performance` tests
 - ❌ TODO: Run `HDMI CEC` tests
 - ❌ TODO Run `HDMI Audio` tests
+
+***
 
 # USB-DisplayPort — Default target
 
@@ -79,6 +93,8 @@ In `Default` boot target HDMI is routed to main video out `(vo0)` and USB-C Disp
 - Run `GPU driver performance` tests
 - ❌ TODO: Test USB device (mouse+keyboard) connected to monitor USB hub
 
+***
+
 # USB-C Display Port —  4K-USB-DisplayPort target
 
 In `4K-USB-DisplayPort` boot target HDMI is routed to second video out `(vo2)` and USB-C DisplayPort routed to second video out `(vo0)` . So HDMI should support 4K\@120 output and USB-C DisplayPort only 1080p.
@@ -90,12 +106,11 @@ In `4K-USB-DisplayPort` boot target HDMI is routed to second video out `(vo2)` a
 - Run `GPU driver performance` tests
 - ❌ TODO: Test USB device (mouse+keyboard) connected to monitor USB hub
 
+***
+
 # NO Graphics target
 
 In `NO Graphics` boot target HDMI and USB-DisplayPort are null-routed and not connected to any video core. So no video output should work
 
 - Boot device in `NO Graphics` boot target with monitor connected to USB-C and HDMI ports
   **Expected: No video ouput**
-
-
-

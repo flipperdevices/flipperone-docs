@@ -2,29 +2,29 @@
 title: Markup example
 slug: resources/about-docs/markup-example
 docTags: 
-createdAt: Wed Apr 22 2026 13:04:53 GMT+0000 (Coordinated Universal Time)
-updatedAt: Wed Apr 22 2026 14:16:53 GMT+0000 (Coordinated Universal Time)
+createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
+updatedAt: Tue Apr 28 2026 13:28:23 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page is a reference for contributors writing Flipper One documentation.
 It covers both standard **Markdown** and **Archbee-specific syntax** supported by this wiki.
 
-The source files live on GitHub at [**github.com/flipperdevices/flipper-one-docs**](https://github.com/flipperdevices/flipper-one-docs). Every merged pull request automatically rebuilds the live site. To contribute, fork the repo and open a pull request.
+The source files live on GitHub at [github.com/flipperdevices/flipper-one-docs](https://github.com/flipperdevices/flipper-one-docs). Every merged pull request automatically rebuilds the live site. To contribute, fork the repo and open a pull request.
 
 **Quick jump:**
 
-- [**Headings**](./#headings)
-- [**Text styles**](./#text-styles)
-- [**Links**](./#links)
-- [**Images**](./#images)
-- [**Videos**](./#videos)
-- [**Lists**](./#lists)
-- [**Tables**](./#tables)
-- [**Code**](./#code--syntax-highlighting)
-- [**Callouts**](./#callouts)
-- [**Math**](./#math)
-- [**Mermaid diagrams**](./#mermaid-diagrams)
-- [**Archbee components**](./#archbee-components)
+- :Link[Headings]{label="Headings" overridedLabel="Headings" spaceId docId="43g4bBZ9VHcuZq4Hl9m1e" version="v2" docAnchorId="#headings" loadingMethod="dynamic" newTab="false" href="Markup-example.md"}
+- :Link[Text styles]{label="Text styles" overridedLabel="Text styles" spaceId docId="43g4bBZ9VHcuZq4Hl9m1e" version="v2" docAnchorId="#text-styles" loadingMethod="dynamic" newTab="false" href="Markup-example.md"}
+- :Link[Links]{label="Links" overridedLabel="Links" spaceId docId="43g4bBZ9VHcuZq4Hl9m1e" version="v2" docAnchorId="#links" loadingMethod="dynamic" newTab="false" href="Markup-example.md"}
+- :Link[Images]{label="Images" overridedLabel="Images" spaceId docId="43g4bBZ9VHcuZq4Hl9m1e" version="v2" docAnchorId="#images" loadingMethod="dynamic" newTab="false" href="Markup-example.md"}
+- :Link[Videos]{label="Videos" overridedLabel="Videos" spaceId docId="43g4bBZ9VHcuZq4Hl9m1e" version="v2" docAnchorId="#videos" loadingMethod="dynamic" newTab="false" href="Markup-example.md"}
+- :Link[Lists]{label="Lists" overridedLabel="Lists" spaceId docId="43g4bBZ9VHcuZq4Hl9m1e" version="v2" docAnchorId="#lists" loadingMethod="dynamic" newTab="false" href="Markup-example.md"}
+- :Link[Tables]{label="Tables" overridedLabel="Tables" spaceId docId="43g4bBZ9VHcuZq4Hl9m1e" version="v2" docAnchorId="#tables" loadingMethod="dynamic" newTab="false" href="Markup-example.md"}
+- :Link[Code]{label="Code" overridedLabel="Code" spaceId docId="43g4bBZ9VHcuZq4Hl9m1e" version="v2" docAnchorId="#code-syntax-highlighting" loadingMethod="dynamic" newTab="false" href="Markup-example.md"}
+- :Link[Callouts]{label="Callouts" overridedLabel="Callouts" spaceId docId="43g4bBZ9VHcuZq4Hl9m1e" version="v2" docAnchorId="#callouts" loadingMethod="dynamic" newTab="false" href="Markup-example.md"}
+- :Link[Math]{label="Math" overridedLabel="Math" spaceId docId="43g4bBZ9VHcuZq4Hl9m1e" version="v2" docAnchorId="#math" loadingMethod="dynamic" newTab="false" href="Markup-example.md"}
+- :Link[Mermaid diagrams]{label="Mermaid diagrams" overridedLabel="Mermaid diagrams" spaceId docId="43g4bBZ9VHcuZq4Hl9m1e" version="v2" docAnchorId="#mermaid-diagrams" loadingMethod="dynamic" newTab="false" href="Markup-example.md"}
+- :Link[Archbee components]{label="Archbee components" overridedLabel="Archbee components" spaceId docId="43g4bBZ9VHcuZq4Hl9m1e" version="v2" docAnchorId="#archbee-components" loadingMethod="dynamic" newTab="false" href="Markup-example.md"}
 
 ***
 
@@ -116,7 +116,7 @@ Flipper One documentation supports headings H1–H3.
   </tr>
   <tr>
     <td>
-      <p><a href="https://archbee.com"><strong>Archbee</strong></a></p>
+      <p><a href="https://archbee.com">Archbee</a></p>
     </td>
     <td>
       <p><code>[Archbee](https://archbee.com)</code></p>
@@ -124,7 +124,7 @@ Flipper One documentation supports headings H1–H3.
   </tr>
   <tr>
     <td>
-      <p><a href="https://example.com"><strong>https://example.com</strong></a></p>
+      <p><a href="https://example.com">https://example.com</a></p>
     </td>
     <td>
       <p><code>[https://example.com](https://example.com)</code></p>
@@ -132,7 +132,7 @@ Flipper One documentation supports headings H1–H3.
   </tr>
   <tr>
     <td>
-      <p><a href="Markup-example.md"><strong>Jump to Tables</strong></a></p>
+      <p><a href="Markup-example.md">Jump to Tables</a></p>
     </td>
     <td>
       <p><code>[Jump to Tables](./#tables)</code></p>
@@ -199,7 +199,7 @@ To **resize or align** an image, standard Markdown is not enough — use Archbee
       <p><code>position</code></p>
     </td>
     <td>
-      <p>Page alignment when image is smaller than content area: <code>flex-start</code> (left), <code>center</code>, <code>flex-end</code> (right). Has no effect on caption alignment.</p>
+      <p>Page alignment when the image is smaller than the content area: <code>flex-start</code> (left), <code>center</code>, <code>flex-end</code> (right). Has no effect on caption alignment.</p>
     </td>
   </tr>
   <tr>
@@ -207,7 +207,7 @@ To **resize or align** an image, standard Markdown is not enough — use Archbee
       <p><code>caption</code></p>
     </td>
     <td>
-      <p>Optional caption shown below the image. Always left-aligned for local images.</p>
+      <p>An optional caption is shown below the image. Always left-aligned for local images.</p>
     </td>
   </tr>
 </table>

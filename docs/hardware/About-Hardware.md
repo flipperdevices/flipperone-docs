@@ -1,16 +1,22 @@
-# About Hardware
+---
+title: About Hardware
+slug: hardware/about
+docTags: 
+createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
+updatedAt: Tue Apr 28 2026 13:32:40 GMT+0000 (Coordinated Universal Time)
+---
 
 This section covers the hardware development of Flipper One. It includes the electronics (PCB, schematics) and mechanical (case, assembly, buttons) design.&#x20;
 
 # Tech specs
 
-TODO: Finalize naming, description and tech specs of controls, ports and interfaces&#x20;
+TODO: Finalize naming, description, and tech specs of controls, ports, and interfaces.
 
 ![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/L9hw7RZXHbTHmSLBySl3x_flipperone-controls-and-indicators-v003.png)
 
 ### Controls description
 
-<table isTableHeaderOn="true" columnWidths="[object Object]">
+<table isTableHeaderOn="true" columnWidths="331,332">
   <tr>
     <td align="center">
       <p><strong>Control</strong></p>
@@ -27,14 +33,6 @@ TODO: Finalize naming, description and tech specs of controls, ports and interfa
     <td align="left">
       <p>Push-to-talk button to activate microphone in walkie-talkie mode, for voice control and more.</p>
       <p>This button may be used as an adaptive App-Defined Button. In this case, the current action is context-dependent and displayed on the screen.</p>
-    </td>
-    <td>
-    </td>
-    <td>
-    </td>
-    <td>
-    </td>
-    <td>
     </td>
   </tr>
   <tr>
@@ -77,18 +75,6 @@ TODO: Finalize naming, description and tech specs of controls, ports and interfa
     <td align="left" colSpan="1" rowSpan="1">
       <p><code>Long press for 1 second:</code> Device power mode control: turn ON/OFF, reboot.</p>
       <p><code>Short press on Linux level:</code> Action is context dependent and displayed on screen above the button.</p>
-    </td>
-    <td>
-    </td>
-    <td>
-    </td>
-    <td>
-    </td>
-    <td>
-    </td>
-    <td>
-    </td>
-    <td>
     </td>
   </tr>
   <tr>
@@ -145,7 +131,7 @@ TODO: Finalize naming, description and tech specs of controls, ports and interfa
 
 Some buttons and their combinations have hardware-defined behavior that does not depend on software. These combinations can hardware-reset, power off, or put the device into full recovery mode.
 
-<table isTableHeaderOn="true" columnWidths="[object Object]">
+<table isTableHeaderOn="true" columnWidths="331,332">
   <tr>
     <td align="center">
       <p><strong>Action</strong></p>

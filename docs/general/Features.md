@@ -1,4 +1,10 @@
-# Features
+---
+title: Features
+slug: general/features
+docTags: 
+createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
+updatedAt: Tue Apr 28 2026 10:58:51 GMT+0000 (Coordinated Universal Time)
+---
 
 This section covers high-level product features expressed as user stories. Each feature describes a practical benefit for the user and a real use case.
 
@@ -8,7 +14,7 @@ Instead of raw specs like “7000 mAh,” we describe outcomes like “three hou
 
 # Network
 
-Features related to IP network and internet access, sharing and filtering
+Features related to IP network and internet access, sharing and filtering.
 
 ## Classic WiFi Router
 
