@@ -4,7 +4,6 @@ docTags:
 createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
 updatedAt: Sun Apr 26 2026 19:21:47 GMT+0000 (Coordinated Universal Time)
 ---
-# About Mechanics
 
 This page explains the structure of the Mechanics sub-project, provides links to design files, and outlines how to contribute to Flipper One's mechanical development.
 
