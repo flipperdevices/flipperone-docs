@@ -5,6 +5,7 @@ docTags:
 createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
 updatedAt: Tue Apr 28 2026 13:32:40 GMT+0000 (Coordinated Universal Time)
 ---
+# Test
 
 This page explains the structure of the Hardware sub-project, provides links to its resources, and outlines how to contribute to Flipper One's electrical hardware development.
 
@@ -15,9 +16,11 @@ The Hardware sub-project covers electrical hardware development: printed circuit
 The Hardware sub-project consists of:
 
 - ✅ :Link[Task tracker]{href="https://github.com/orgs/flipperdevices/projects/9" newTab="true" hasDisabledNofollow="false"}
-- ⚡ :Link[Schematics and PCB design on Altium 365]{href="https://flipper.365.altium.com/designs/folder-A78C8D02-EA07-49E1-AC7A-E84FAA2AF410" newTab="true" hasDisabledNofollow="false"}
-- 📁 :Link[GitHub repository]{href="https://github.com/flipperdevices/flipperone-hardware" newTab="true" hasDisabledNofollow="false"} — currently README only
-- 📚 Docs: 🔌 **Hardware section** (you're here) and :Link[🧪 Testing section]{href="../testing/About-Testing.md" newTab="true" hasDisabledNofollow="true"}
+- ⚡ :Link[Design files on Altium 365]{href="https://flipper.365.altium.com/designs/folder-A78C8D02-EA07-49E1-AC7A-E84FAA2AF410" newTab="true" hasDisabledNofollow="false"}
+- 📁 :Link[GitHub repository]{href="https://github.com/flipperdevices/flipperone-hardware" newTab="true" hasDisabledNofollow="false"}
+- 📚 Docs:
+  - 🔌 **Hardware section** (you're here)
+  - :Link[🧪 Testing section]{href="../testing/About-Testing.md" newTab="true" hasDisabledNofollow="true"}
 
 We'd love your feedback — look for tasks tagged **help wanted** in the task tracker, share your ideas in the comments, or contribute directly to the docs.
 
@@ -35,7 +38,7 @@ All Hardware team tasks are tracked in the GitHub project :Link[Flipper One — 
 
 ***
 
-## ⚡ Schematics and PCB design on Altium 365
+## ⚡ Design files on Altium 365
 
 Selected parts of Flipper One's electrical design — schematics, PCB layouts, and BOM — are hosted on :Link[Altium 365]{href="https://flipper.365.altium.com/designs/folder-A78C8D02-EA07-49E1-AC7A-E84FAA2AF410" newTab="true" hasDisabledNofollow="false"}, the cloud collaboration platform for circuit design. Altium 365 hosts the latest version of the shared design files; you can view them in your browser without installing any software.
 
@@ -98,10 +101,10 @@ The Web Viewer can export the entire project or individual derived files for off
 
 :::WorkflowBlockItem
 **Download the whole project.** In Project Source Files, click the project entry to download all source files as a single archive.
-:::
 
-:::WorkflowBlockItem
-**Or download individual files.** In Derived Files, pick what you need — Gerber, Assembly Docs, PDF Schematic, STEP, or BOM.
+or
+
+**Download individual files.** In Derived Files, pick what you need — Gerber, Assembly Docs, PDF Schematic, STEP, or BOM.
 :::
 ::::
 
@@ -115,8 +118,6 @@ Hardware documentation is split across two sections:
 
 - 🔌 **Hardware section** (you're here) — port pinouts, modules, and subsystem references (Wi-Fi & Bluetooth, power, M.2, GPIO).
 - :Link[🧪 Testing section]{href="../testing/About-Testing.md" newTab="true" hasDisabledNofollow="true"} — hardware verification procedures for each subsystem.
-
-See also the :Link[Tech specs]{href="../general/Tech-Specs.md" newTab="true" hasDisabledNofollow="false"} page for full hardware specifications in one place.
 
 ***
 

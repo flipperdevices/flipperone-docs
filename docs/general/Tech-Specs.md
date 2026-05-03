@@ -62,7 +62,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 - **USB-A:** USB 3.1 (5 Gbps), host only, power out
 - **HDMI out:** full-size, v2.1, CEC support, 4K @ 120 Hz
 - **Ethernet:** 2× RJ45, Gigabit
-- **3.5 mm audio jack:** stereo out + microphone input (TRRS)
+- **3.5 mm audio jack:** stereo out and microphone input (TRRS)
 - **MicroSD card slot**
 - **SIM card slot:** Nano SIM (4FF), passively connected to M.2 port
 
