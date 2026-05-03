@@ -218,7 +218,7 @@ Find a sub-project that interests you. Explore its documentation in this Develop
 
 Go to the task tracker of the sub-project you’re interested in to explore current tasks. Open Tasks where your help is welcome are labeled **help wanted**. Read through a task and follow the contribution guidelines when submitting your input.
 
-![Open taks](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/ZWucCsRvdOhYn-Og3KwFF-20260410-165617.png "Task where community contribution is welcome are marked with the /"help wanted/" label")
+![Open taks](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/ZWucCsRvdOhYn-Og3KwFF-20260410-165617.png "Task where community contribution is welcome are marked help wanted")
 
 :::hint{type="info"}
 You can also visit the :Link[🚧 Open tasks]{href="./Open-tasks.md" newTab="true" hasDisabledNofollow="false"} to find tasks that need community help or feedback.
