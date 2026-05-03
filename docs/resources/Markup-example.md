@@ -222,15 +222,8 @@ The `#section-name` anchor is optional. Anchor IDs are derived from the heading 
 **Local path:**  `![Alt text](/files/pics/test-image.jpg "Caption")`
 
 ![Local image](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/pNHUZHZzPZd7qdM08jKuq_test-image.jpg "Caption")
-
-:::hint{type="info"}
-**Caption alignment** depends on the image source, not the syntax:
-
-- **Remote URL** — caption is rendered **centered**
-- **Local path** — caption is rendered **left-aligned**
-:::
-
 ​
+‎&#x20;
 
 To **resize or align** an image, standard Markdown is not enough — use Archbee syntax:
 

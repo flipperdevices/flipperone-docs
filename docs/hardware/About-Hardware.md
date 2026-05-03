@@ -5,7 +5,6 @@ docTags:
 createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
 updatedAt: Tue Apr 28 2026 13:32:40 GMT+0000 (Coordinated Universal Time)
 ---
-# Test
 
 This page explains the structure of the Hardware sub-project, provides links to its resources, and outlines how to contribute to Flipper One's electrical hardware development.
 

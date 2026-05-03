@@ -32,7 +32,7 @@ Flipper One is a large and complex project, divided into several sub-projects. E
 :::
 
 :::VerticalSplitItem
-Electrical hardware development. This is where the printed circuit boards (PCBs), antennas, and everything related to the electrical connections of chips, connectors, and processors are designed. The Hardware team works closely with the Mechanics team to ensure the electronics are compatible with the enclosure. :Link[**Learn more**]{href="./hardware/About-Hardware.md" newTab="true" hasDisabledNofollow="false"}**&#x20;→**
+Electrical hardware development. This is where the printed circuit boards (PCBs), antennas, and everything related to the electrical connections of chips, connectors, and processors are designed. The Hardware team works closely with the Mechanics team to ensure the electronics are compatible with the enclosure. :Link[**Learn more →**]{href="./hardware/About-Hardware.md" newTab="true" hasDisabledNofollow="false"}
 :::
 ::::
 
@@ -46,7 +46,7 @@ Electrical hardware development. This is where the printed circuit boards (PCBs)
 :::
 
 :::VerticalSplitItem
-Mechanical and industrial design. This is where the enclosure, buttons, plastic and metal parts, and mounting components are designed. Everything the user physically interacts with. Many mechanical tasks are tightly coupled with the Hardware team. :Link[**Learn more**]{href="./mechanics/About-Mechanics.md" newTab="true" hasDisabledNofollow="false"}**&#x20;→**
+Mechanical and industrial design. This is where the enclosure, buttons, plastic and metal parts, and mounting components are designed. Everything the user physically interacts with. Many mechanical tasks are tightly coupled with the Hardware team. :Link[**Learn more →**]{href="./mechanics/About-Mechanics.md" newTab="true" hasDisabledNofollow="false"}
 :::
 ::::
 
@@ -60,7 +60,7 @@ Mechanical and industrial design. This is where the enclosure, buttons, plastic 
 :::
 
 :::VerticalSplitItem
-Linux kernel, modules, drivers, userspace, bootloader, Rockchip tools, etc. This is the largest and most complex sub-project, spanning many repositories. It contains the core software that users will interact with directly. :Link[**Learn more**]{href="./cpu-software/About-CPU-Software.md" newTab="true" hasDisabledNofollow="false"}**&#x20;→**
+Linux kernel, modules, drivers, userspace, bootloader, Rockchip tools, etc. This is the largest and most complex sub-project, spanning many repositories. It contains the core software that users will interact with directly. :Link[**Learn more →**]{href="./cpu-software/About-CPU-Software.md" newTab="true" hasDisabledNofollow="false"}
 :::
 ::::
 
@@ -74,7 +74,7 @@ Linux kernel, modules, drivers, userspace, bootloader, Rockchip tools, etc. This
 :::
 
 :::VerticalSplitItem
-Firmware for the RP2350 microcontroller. The MCU controls buttons, display, touchpad, and power subsystem, as well as co-processor communication between the MCU and CPU. :Link[**Learn more**]{href="./mcu-firmware/About-MCU-Firmware.md" newTab="true" hasDisabledNofollow="false"}**&#x20;→**
+Firmware for the RP2350 microcontroller. The MCU controls buttons, display, touchpad, and power subsystem, as well as co-processor communication between the MCU and CPU. :Link[**Learn more →**]{href="./mcu-firmware/About-MCU-Firmware.md" newTab="true" hasDisabledNofollow="false"}
 :::
 ::::
 
@@ -88,7 +88,7 @@ Firmware for the RP2350 microcontroller. The MCU controls buttons, display, touc
 :::
 
 :::VerticalSplitItem
-UI/UX development. This is where the user interface, visual communication of the device, all graphics, and visual design are developed. :Link[**Learn more**]{href="./user-interface/About-User-Interface.md" newTab="true" hasDisabledNofollow="false"}**&#x20;→**
+UI/UX development. This is where the user interface, visual communication of the device, all graphics, and visual design are developed. :Link[**Learn more →**]{href="./user-interface/About-User-Interface.md" newTab="true" hasDisabledNofollow="false"}
 :::
 ::::
 
@@ -102,7 +102,7 @@ UI/UX development. This is where the user interface, visual communication of the
 :::
 
 :::VerticalSplitItem
-Developer portal wiki, technical docs, guides, and datasheets. All documentation — including this wiki — is developed here. It covers both the Flipper One product documentation and descriptions of development processes and contribution guides. :Link[**Learn more**]{href="./resources/About-Docs.md" newTab="true" hasDisabledNofollow="false"}**&#x20;→**
+Developer portal wiki, technical docs, guides, and datasheets. All documentation — including this wiki — is developed here. It covers both the Flipper One product documentation and descriptions of development processes and contribution guides. :Link[**Learn more →**]{href="./resources/About-Docs.md" newTab="true" hasDisabledNofollow="false"}
 :::
 ::::
 
@@ -218,7 +218,7 @@ Find a sub-project that interests you. Explore its documentation in this Develop
 
 Go to the task tracker of the sub-project you’re interested in to explore current tasks. Open Tasks where your help is welcome are labeled **help wanted**. Read through a task and follow the contribution guidelines when submitting your input.
 
-![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/ZWucCsRvdOhYn-Og3KwFF-20260410-165617.png 'Task where community contribution is welcome are marked "help wanted"')
+![Open taks](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/ZWucCsRvdOhYn-Og3KwFF-20260410-165617.png "Task where community contribution is welcome are marked with the /"help wanted/" label")
 
 :::hint{type="info"}
 You can also visit the :Link[🚧 Open tasks]{href="./Open-tasks.md" newTab="true" hasDisabledNofollow="false"} to find tasks that need community help or feedback.
