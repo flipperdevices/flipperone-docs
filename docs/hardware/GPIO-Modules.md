@@ -22,6 +22,6 @@ The module connects to Flipper One via the GPIO header's USB 2.0 pins (D+, D-, 5
 
 ## Camera module
 
-The camera module is based on a typical USB webcam, connecting via the USB 2.0 pins (D+, D-) and powered through the 5V output pins on the GPIO header. Flipper One's Linux OS recognizes the module as a standard USB webcam, making it available for taking pictures and recording videos.
+Flipper One's Linux OS recognizes the module as a standard USB webcam, making it available for taking pictures and recording videos. The camera module is based on a typical USB webcam, connecting via the USB 2.0 pins (D+, D-) and powered through the 5V output pins on the GPIO header.
 
 ![Camera module structural diagram](/files/pics/camera-module.png)
