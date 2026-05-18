@@ -158,7 +158,7 @@ The M.2 expansion port is at the back of the device, under the Back Plate.
 ![Flipper One M.2 expansion port](/files/pics/m2-expansion-port.png)
 
 - **M.2 type:** Key B
-- **Supported sizes:** 2242, 3042, 3052 mm
+- **Supported sizes:** 2242, 3042, 3052
 - **Supported thickness:** up to D3 (double-sided modules)
 - **Interfaces:** PCIe 2.1 ×1 / USB 2.0 / USB 3.1 / SATA3 / Serial Audio / UART / I2C / SIM card
 

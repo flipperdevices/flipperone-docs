@@ -13,7 +13,7 @@ The M.2 port is an internal expansion slot for cellular modems, Wi-Fi, SDR, NVMe
 **Tech specs:**
 
 - **M.2 type:** Key B
-- **Supported sizes:** 2242, 3042, 3052 mm
+- **Supported sizes:** 2242, 3042, 3052
 - **Supported thickness:** up to D3 (double-sided modules)
 - **Interfaces:** PCIe 2.1 ×1 / USB 2.0 / USB 3.1 / SATA3 / Serial Audio / UART / I²C / SIM card + eSIM
 
