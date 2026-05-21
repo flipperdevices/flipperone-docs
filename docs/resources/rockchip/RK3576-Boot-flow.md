@@ -3,7 +3,7 @@ title: RK3576 Boot flow
 slug: resources/rockchip/boot-flow
 docTags: 
 createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
-updatedAt: Wed May 21 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
+updatedAt: Thu May 21 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page describes the cold-boot sequence of the Rockchip RK3576 SoC used in Flipper One: from the on-chip Boot ROM through DDR initialization, SPL, the FIT-packaged main bootloader (U-Boot + ARM Trusted Firmware), and finally the operating system. It also documents the on-flash layout that the Boot ROM and SPL rely on.
@@ -44,9 +44,9 @@ For details on entering and using Maskrom mode, see :Link[Rockchip RK3576 — Ma
 
 ***
 
-## Stage 2 — RKNS image (TPL + SPL)
+## Stage 2 — RKNS image (early bootloaders)
 
-The RKNS image is a Rockchip-specific container that the Boot ROM loads into on-chip SRAM and executes. For RK3576 it normally bundles three binaries, executed in order:
+The RKNS (Rockchip Boot Image) container is loaded by the Boot ROM into on-chip SRAM and executed in place. On older Rockchip SoCs this stage was split between a TPL (DDR init) and an SPL (bootloader hand-off); on RK3576 the equivalent functionality is delivered as a small set of binaries bundled into one RKNS image, executed in order:
 
 <table isTableHeaderOn="true" columnWidths="180,480">
   <tr>
@@ -68,7 +68,7 @@ The RKNS image is a Rockchip-specific container that the Boot ROM loads into on-
 </table>
 
 :::hint{type="warning"}
-On RK3576 the `ddr.bin` produced by Rockchip is a closed-source binary blob — there is currently no open-source replacement. This is tracked in :Link[flipperone-linux-build-scripts#56]{href="https://github.com/flipperdevices/flipperone-linux-build-scripts/issues/56" newTab="true" hasDisabledNofollow="true"}.
+On RK3576 the `ddr.bin` produced by Rockchip is a closed-source binary blob — there is currently no open-source replacement. This is tracked in :Link[flipperone-linux-build-scripts#56]{href="https://github.com/flipperdevices/flipperone-linux-build-scripts/issues/56" newTab="true" hasDisabledNofollow="false"}.
 :::
 
 ***
@@ -77,7 +77,7 @@ On RK3576 the `ddr.bin` produced by Rockchip is a closed-source binary blob — 
 
 Once SPL is running in DRAM it loads the **main bootloader FIT image** from a fixed offset on the boot device — by default **byte offset `0x800000`**. The exact offset is hard-coded in the SPL build configuration and can be changed at compile time.
 
-The FIT image is a flat-tree container (`u-boot.itb`) that may include any combination of:
+The FIT image is a Flattened Image Tree container (`u-boot.itb`) that may include any combination of:
 
 <table isTableHeaderOn="true" columnWidths="180,480">
   <tr>
@@ -98,7 +98,7 @@ The FIT image is a flat-tree container (`u-boot.itb`) that may include any combi
   </tr>
   <tr>
     <td><p><strong>BL32</strong></p></td>
-    <td><p>Optional TEE OS (OP-TEE). Tracked for RK3576 in :Link[flipperone-linux-build-scripts#57]{href="https://github.com/flipperdevices/flipperone-linux-build-scripts/issues/57" newTab="true" hasDisabledNofollow="true"}.</p></td>
+    <td><p>Optional TEE OS (OP-TEE). Tracked for RK3576 in :Link[flipperone-linux-build-scripts#57]{href="https://github.com/flipperdevices/flipperone-linux-build-scripts/issues/57" newTab="true" hasDisabledNofollow="false"}.</p></td>
   </tr>
 </table>
 
@@ -162,7 +162,11 @@ Only two on-flash offsets are fixed by the boot chain — everything else is det
 </table>
 
 :::hint{type="info"}
-**Modern packaging.** Upstream U-Boot now produces a single combined image, `u-boot-rockchip.bin`, in which the RKNS part and the FIT part are already placed at the correct offsets with the required padding between them. Writing this one file to the start of the boot device (`dd if=u-boot-rockchip.bin of=/dev/sdX bs=32k seek=1`) takes care of both pieces, so the on-disk layout of the individual sub-images rarely needs to be touched by hand.
+**Modern packaging.** Upstream U-Boot now produces a single combined image, `u-boot-rockchip.bin`, in which the RKNS part and the FIT part are already placed at the correct offsets with the required padding between them. Writing this one file to the start of the boot device takes care of both pieces, so the on-disk layout of the individual sub-images rarely needs to be touched by hand.
+:::
+
+:::hint{type="danger"}
+The combined image is normally written with `dd`, e.g. `dd if=u-boot-rockchip.bin of=/dev/<target> bs=512 seek=64 conv=fsync`. **Verify the target device with `lsblk` before running** — `dd` overwrites the target unconditionally, and pointing it at the wrong disk will destroy data on the host system.
 :::
 
 ***
