@@ -169,7 +169,7 @@ Some buttons and their combinations have hardware-defined behavior that does not
       (Hardware Reboot)</strong></p>
     </td>
     <td align="left">
-      <p>Hold <code>Power</code> button for 10 seconds to complety power cycle device. It will quicly turn off and on battery.</p>
+      <p>Hold <code>Power</code> button for 10 seconds to completely power cycle device. It will quickly turn off and on battery.</p>
       <p>What will happen when USB charger connected?</p>
       <p>‎</p>
     </td>
