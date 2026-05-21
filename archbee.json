@@ -1,5 +1,8 @@
 {
+  "name": "Flipper One Documentation",
   "root": "./docs",
+  "publishSpace": true,
+  "docsPath": "docs/",
   "structure": {
     "readme": "Welcome.md",
     "summary": "Summary.md",
@@ -138,7 +141,7 @@
             "isCategory": false,
             "path": "mechanics/Hardware-expansion-system.md",
             "children": []
-          },
+          }
         ]
       },
       {
@@ -351,7 +354,5 @@
         ]
       }
     ]
-  },
-  "publishSpace": true,
-  "docsPath": "docs/"
+  }
 }
