@@ -26,12 +26,12 @@ Classic Wi-Fi access point mode used in Wi-Fi routers. *Can we use different ban
 
 ### Client (station) mode
 
-Client (STA) mode, where device connects to Wi-Fi access point. Usally laptops and smartphones are Wi-Fi clients. We need to test simultanious work AP and STA modes on different and same bands
+Client (STA) mode, where device connects to Wi-Fi access point. Usually laptops and smartphones are Wi-Fi clients. We need to test simultaneous work AP and STA modes on different and same bands
 
 1. Connect to Wi-Fi access point as client&#x20;
 2. Mease speed with `iperf3`&#x20;
 3. Repeat test on all bands (2,4 GHz, 5 GHz, 6 GHz)
-4. Test simultanious work with AP mode
+4. Test simultaneous work with AP mode
 
 ### Monitor mode
 
@@ -47,7 +47,7 @@ Perform RSN PMKID sniff from real access point.
 
 # Bluetooth
 
-Our Bleutooth and Bluetooth Low Energy are integrated in Wi-Fi chip.&#x20;
+Our Bluetooth and Bluetooth Low Energy are integrated in Wi-Fi chip.&#x20;
 
 ### Bluetooth Speaker (master)&#x20;
 
