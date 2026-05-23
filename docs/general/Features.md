@@ -3,7 +3,7 @@ title: Features
 slug: general/features
 docTags: 
 createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
-updatedAt: Tue Apr 28 2026 10:58:51 GMT+0000 (Coordinated Universal Time)
+updatedAt: Sat May 23 2026 17:45:00 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page covers high-level product features expressed as user stories. Each feature describes a practical benefit for the user and a real use case.
@@ -111,4 +111,110 @@ In Passive mode, Flipper One only listens and observes existing traffic. In Acti
 I have access to an unknown LAN and want to understand what’s happening inside it. I want to learn the network configuration (IPv4 DHCP / IPv6), see which hosts are online by observing ARP traffic, and discover what services are present. I also want to know whether the Ethernet port uses VLANs and what IP settings I should configure to connect correctly.
 
 First, I want a fully passive mode that does not generate traffic (for example, no DHCP requests) and only observes broadcasts like ARP and IPv6 neighbor discovery. Then I want to manually step forward, layer by layer, enabling active discovery when I decide it’s safe — such as requesting an IP address, checking VLAN tagging, and probing common services.
+:::
+
+***
+
+### 5G cellular uplink
+
+Flipper One can use an M.2 cellular modem to add mobile internet access. This gives the device an independent WAN uplink for router, VPN gateway, and bridge workflows when wired Ethernet or Wi-Fi uplink is unavailable.
+
+Related docs: [M.2 modules](../hardware/M2-Modules.md), [Quectel RM530N-GL testing](../testing/RM530N-GL.md), [Fibocom FM350-GL testing](../testing/FM350-GL.md).
+
+:::hint{type="info"}
+**User story**
+
+I am working from a field site, hotel, vehicle, or temporary network and need a trusted internet uplink that is not tied to local Wi-Fi. I install a supported cellular M.2 modem in Flipper One, connect my laptop or other devices through Flipper One, and use it as a portable 5G/LTE gateway with the same routing, VPN, and monitoring tools I use on wired networks.
+:::
+
+***
+
+### Satellite NTN modem
+
+Flipper One is planned to support M.2 NTN (Non-Terrestrial Network) modems for low-speed IP connectivity over satellite networks. NTN uses the regular cellular stack, including SIM/eSIM authentication and roaming, and is standardized by 3GPP as part of 5G and LTE specifications.
+
+Related docs: [Satellite modem](../hardware/M2-satellite-modem.md) and [M.2 modules](../hardware/M2-Modules.md).
+
+:::hint{type="info"}
+**User story**
+
+I am outside terrestrial cellular coverage and need a low-bandwidth data link for telemetry, status messages, or basic IP connectivity. I install a supported NTN M.2 module and use Flipper One to send small amounts of data through satellite infrastructure without relying on a phone network.
+:::
+
+***
+
+### SDR radio platform
+
+Flipper One can be extended with M.2 SDR radio modules, turning it into a portable platform for radio signal analysis, capture, and experimentation. SDR modules connect through the hardware expansion system and can use Flipper One's local compute and storage for signal-processing workflows.
+
+Related docs: [M.2 modules](../hardware/M2-Modules.md).
+
+:::hint{type="info"}
+**User story**
+
+I want a portable radio analysis setup that does not require carrying a laptop for every task. I install an SDR module, capture RF data to internal storage, and use Flipper One's Linux tools to inspect, process, or forward the signal data for deeper analysis.
+:::
+
+***
+
+## Hardware expansion
+
+Features related to external modules, GPIO, and custom hardware.
+
+### GPIO modules
+
+The GPIO expansion port exposes power rails, USB 2.0, and configurable MCU/CPU pins for protocols such as I²C, UART, SPI, CAN, PWM, I²S, SPDIF, ADC, and PIO. GPIO modules mount on top of the back plate and can be built around the documented connector and mechanical system.
+
+Related docs: [GPIO port](../hardware/GPIO-port.md) and [GPIO modules](../hardware/GPIO-Modules.md).
+
+:::hint{type="info"}
+**User story**
+
+I want to build a custom hardware add-on for Flipper One without designing a full internal M.2 module. I use the GPIO port and module mounting system to attach a small board, such as a walkie-talkie radio module or a camera module, and control it from the device's Linux or MCU-side software.
+:::
+
+***
+
+## Compute and desktop
+
+Features related to local compute, display output, and on-device assistance.
+
+### Offline Flipper LLM
+
+Flipper One is planned to support a small on-device assistant model for offline help. The goal is to help users operate the device, generate configuration snippets, and get useful tips even when there is no internet connection. The NPU is not yet supported in the mainline kernel, so this feature depends on future mainline NPU work.
+
+:::hint{type="info"}
+**User story**
+
+I am configuring networking or device services in the field without internet access. I ask the local Flipper assistant for a short explanation or a configuration starting point, then review and apply the result myself.
+:::
+
+***
+
+### Survival desktop
+
+Flipper One can act as a portable Linux desktop or thin client. With USB-C DisplayPort Alt Mode, one cable can provide monitor output, charging, and USB peripherals when the connected monitor or dock supports it.
+
+Desktop mode still has open engineering work, including DisplayPort Alt Mode stability, mainline kernel support, hardware video decoding, and choosing a desktop environment that fits the device.
+
+Related docs: [Graphics testing](../testing/Graphics.md).
+
+:::hint{type="info"}
+**User story**
+
+I need a small computer I can carry every day. I plug Flipper One into a USB-C monitor or dock, connect a keyboard and mouse, and use it for web browsing, light development, diagnostics, or emergency access to a Linux desktop.
+:::
+
+***
+
+### Hacker's TV media box
+
+Flipper One includes a full-size HDMI 2.1 port with CEC support. This makes it possible to use the device as a portable media box that connects directly to a TV and can be controlled from the TV's own remote through HDMI CEC.
+
+Related docs: [Tech specs](Tech-Specs.md).
+
+:::hint{type="info"}
+**User story**
+
+I am traveling and want a media setup I control instead of relying on a hotel or rental TV interface. I plug Flipper One into the TV with a normal full-size HDMI cable and use the TV remote to control the media interface through CEC.
 :::
