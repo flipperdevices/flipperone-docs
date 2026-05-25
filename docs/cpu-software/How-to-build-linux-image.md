@@ -143,5 +143,5 @@ The full-disk OS images are stored in:
 * **Linux and macOS:** `flipperone-linux-build-scripts/out/images`. 
 * **Windows 10/11:** `Linux/Debian/home/[wsl user]/flipperone-linux-build-scripts/out/images`.
 
-You can now [install the image to your board](How-to-install-an-image.md).
+You can now [install the image to your board](./How-to-install-linux-image.md).
 :::

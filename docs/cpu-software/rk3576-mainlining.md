@@ -10,7 +10,7 @@ We use the Rockchip RK3576 system-on-chip for our main application processor, wh
 
 ## Why we chose RK3576:
 * Performance: comparable to Raspberry Pi 5
-* Energy efficiency: <1W idle, around 4W under heavy load, stated TDP of 10W
+* Energy efficiency: \<1W idle, around 4W under heavy load, stated TDP of 10W
 * Up-to-date architecture and peripheral standards: UFS storage, Vulkan support, built-in neural engine, modern HDMI/DP display compatibility, etc.
 * Existing support in upstream Linux, U-boot, and TF-A at least at some usable level
 

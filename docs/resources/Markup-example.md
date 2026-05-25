@@ -147,22 +147,21 @@ Flipper One documentation supports headings H1–H3.
 To control whether a link opens in a new tab — and to write short relative hrefs for in-docs links — use Archbee's `:Link[]` directive instead of plain Markdown.
 
 **External link (new tab):**
-
-`:Link[label]{href="https://example.com" newTab="true" hasDisabledNofollow="false"}`
-
-‎ 
+```markdown
+:Link[label]{href="https://example.com" newTab="true" hasDisabledNofollow="false"}
+```
 
 **Same-page anchor (same tab):**
 
-`:Link[label]{href="./#section-name" newTab="false" hasDisabledNofollow="true"}`
-
-‎ 
+```markdown
+:Link[label]{href="./#section-name" newTab="false" hasDisabledNofollow="true"}
+```
 
 **Another page in the docs (optional anchor):**
 
-`:Link[label]{href="<relative-path>.md#section-name" newTab="true" hasDisabledNofollow="true"}`
-
-‎ 
+```markdown
+:Link[label]{href="<relative-path>.md#section-name" newTab="true" hasDisabledNofollow="true"}
+```
 
 Use a path relative to the current file:
 
@@ -171,8 +170,6 @@ Use a path relative to the current file:
 - `../folder/Other-Page.md` — file in a sibling folder
 
 The `#section-name` anchor is optional. Anchor IDs are derived from the heading text (lowercased, spaces replaced with hyphens).
-
-‎ 
 
 <table isTableHeaderOn="true" columnWidths="141,522">
   <tr>
@@ -338,17 +335,12 @@ Caption
   <tr>
     <td>
       <ul>
-      <li>Item A
-      <ul>
-      <li>Nested A.1</li>
-      </ul>
-      </li>
-      <li>Item B</li>
+        <li>Item A</li>
+        <li>Item B</li>
       </ul>
     </td>
     <td>
       <p><code>- Item A</code></p>
-      <p><code>  - Nested A.1</code></p>
       <p><code>- Item B</code></p>
     </td>
   </tr>
