@@ -16,6 +16,178 @@ Flipper One is currently in active development. As a community-driven project, w
 
 ***
 
+# Choose your contribution path
+
+You do not need to understand the whole project before helping. Pick the kind of contribution you want to make, then open the matching sub-project page.
+
+<table isTableHeaderOn="true" columnWidths="190,250,220">
+  <tr>
+    <td align="left">
+      <p><strong>I want to...</strong></p>
+    </td>
+    <td align="left">
+      <p><strong>Start here</strong></p>
+    </td>
+    <td align="left">
+      <p><strong>Useful first action</strong></p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      <p>Fix or improve docs</p>
+    </td>
+    <td align="left">
+      <p><a href="./resources/docs/About-Docs.md">Docs sub-project</a></p>
+    </td>
+    <td align="left">
+      <p>Open a pull request with a clear page fix, screenshot update, or missing explanation.</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      <p>Test Linux builds or drivers</p>
+    </td>
+    <td align="left">
+      <p><a href="./cpu-software/About-CPU-Software.md">Linux (CPU Software)</a> and <a href="./testing/About-Testing.md">Testing</a></p>
+    </td>
+    <td align="left">
+      <p>Pick an open task, run the documented test, and share logs, board, image version, and result.</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      <p>Suggest a hardware or module improvement</p>
+    </td>
+    <td align="left">
+      <p><a href="./hardware/About-Hardware.md">Hardware</a> and <a href="./mechanics/About-Mechanics.md">Mechanics</a></p>
+    </td>
+    <td align="left">
+      <p>Attach a schematic snippet, model link, measurement, or clear module use case.</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      <p>Help with UI or visual design</p>
+    </td>
+    <td align="left">
+      <p><a href="./user-interface/About-User-Interface.md">User Interface</a></p>
+    </td>
+    <td align="left">
+      <p>Share a screenshot and a viewable Figma link that follows the display constraints.</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      <p>Contribute firmware changes</p>
+    </td>
+    <td align="left">
+      <p><a href="./mcu-firmware/About-MCU-Firmware.md">MCU Firmware</a></p>
+    </td>
+    <td align="left">
+      <p>Read the firmware contribution guide, build locally, and open a focused pull request.</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      <p>Browse tasks that need help</p>
+    </td>
+    <td align="left">
+      <p><a href="./Open-tasks.md">Open tasks</a></p>
+    </td>
+    <td align="left">
+      <p>Choose a task labeled <code>help wanted</code>, read existing comments, claim it with a brief reply, then add specific evidence or a concrete proposal.</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      <p>Ask a general question</p>
+    </td>
+    <td align="left">
+      <p><a href="https://discord.com/invite/flipper">Discord</a> or <a href="https://x.com/Flipper_RND">X.com/Flipper_RND</a></p>
+    </td>
+    <td align="left">
+      <p>Keep open task threads for contribution-related discussion, not general chat.</p>
+    </td>
+  </tr>
+</table>
+
+***
+
+# Where should I ask this?
+
+Use the right place for your question or contribution. This keeps open task threads focused for the teams working on Flipper One.
+
+<table isTableHeaderOn="true" columnWidths="220,220,220">
+  <tr>
+    <td align="left">
+      <p><strong>What you have</strong></p>
+    </td>
+    <td align="left">
+      <p><strong>Where it belongs</strong></p>
+    </td>
+    <td align="left">
+      <p><strong>Include this</strong></p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      <p>A reproducible bug or test result</p>
+    </td>
+    <td align="left">
+      <p>The relevant GitHub issue or task tracker</p>
+    </td>
+    <td align="left">
+      <p>Steps, expected result, actual result, logs, screenshots, hardware or image version.</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      <p>A docs fix or missing explanation</p>
+    </td>
+    <td align="left">
+      <p>The Docs repository or a Docs task</p>
+    </td>
+    <td align="left">
+      <p>Page link, confusing section, and proposed replacement text.</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      <p>A UI or visual design proposal</p>
+    </td>
+    <td align="left">
+      <p>User Interface task comments</p>
+    </td>
+    <td align="left">
+      <p>Screenshot, viewable Figma link, and short explanation of the interaction.</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      <p>A hardware, module, or accessory idea</p>
+    </td>
+    <td align="left">
+      <p>Hardware or Mechanics task comments</p>
+    </td>
+    <td align="left">
+      <p>Use case, connector or interface, dimensions, power or signal requirements, and any draft files.</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      <p>A broad feature wish or general product question</p>
+    </td>
+    <td align="left">
+      <p>Discord, social channels, or a relevant docs page question</p>
+    </td>
+    <td align="left">
+      <p>What you want to do and why existing docs did not answer it.</p>
+    </td>
+  </tr>
+</table>
+
+***
+
 # Sub-projects structure of Flipper One
 
 ![](https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/kBApFvrmGBeMdNqOiyoIm-20260422-152345.jpg)
@@ -216,21 +388,16 @@ You can view, download, and edit the assets, as well as share your feedback with
 
 Feel free to jump in — you can contribute by joining task discussions, sharing ideas, asking questions, or suggesting improvements. If you have feedback or notice something that could be better, your input is always welcome.
 
-## Step 1. Read the sub-project docs
-
-Find a sub-project that interests you. Explore its documentation in this Developer Portal to understand how it works, how it’s structured, and how you can contribute.
-
-## Step 2. Check the task tracker
-
-Go to the task tracker of the sub-project you’re interested in to explore current tasks. Open Tasks where your help is welcome are labeled **help wanted**. Read through a task and follow the contribution guidelines when submitting your input.
+1. Pick a path from the table above and read that sub-project’s overview and contribution guide.
+2. Find a matching **help wanted** task on the [🚧 Open tasks](./Open-tasks.md) page or in the sub-project task tracker.
+3. Read the task description and existing comments before posting.
+4. Share something concrete: a test result, log, screenshot, code change, design file, or docs fix.
 
 ![Open tasks](/files/pics/step-2-check-task-tracker.png)
 
-:::hint{type="info"}
-You can also visit the [🚧 Open tasks](./Open-tasks.md) to find tasks that need community help or feedback.
-:::
+For docs pull requests, also read the [Docs sub-project](./resources/docs/About-Docs.md), [Markup reference](./resources/docs/Markup-reference.md), and [Style guide](./resources/docs/Style-guide.md).
 
-## Step 3. Join discussions in our socials
+## Join discussions in our socials
 
 Follow us on X and join our Discord server to hang out, ask questions, and connect with other contributors.
 
@@ -248,7 +415,7 @@ Chat with the community and Flipper team on our Discord server
 :::
 ::::
 
-## Step 4. Subscribe to our weekly digest
+## Subscribe to our weekly digest
 
 Each week, we'll share a quick update on how things are coming along and flag any areas where extra help would be welcome. No pressure to jump in right away — you might just spot something in a future update that catches your eye!
 
