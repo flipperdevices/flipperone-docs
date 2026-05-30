@@ -122,10 +122,21 @@ def load_issues_from_file(path: Path) -> list[dict]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _clean_summary_line(line: str) -> str:
+    """Remove Markdown/HTML fragments that make issue summaries hard to scan."""
+    line = re.sub(r"`([^`]+)`", r"\1", line)
+    line = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", line)
+    line = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", line)
+    line = re.sub(r"</?[^>]+>", "", line)
+    line = re.sub(r"[*_~]+", "", line)
+    line = re.sub(r"\s+", " ", line)
+    return line.strip(" -–—:;")
+
+
 def make_summary(body: str, max_len: int = 120) -> str:
     """Pull the first meaningful line of an issue body and shorten it."""
     if not body:
-        return ""
+        return "No description provided."
     body = re.sub(r"<!--.*?-->", "", body, flags=re.DOTALL)  # strip HTML comments
     for line in body.splitlines():
         line = line.strip()
@@ -134,10 +145,11 @@ def make_summary(body: str, max_len: int = 120) -> str:
         if line.startswith(("![", "<", "http://", "https://", "#")):
             continue
         line = line.lstrip("*_-•> ")
+        line = _clean_summary_line(line)
         if len(line) < 5:
             continue
         return shorten(line, width=max_len, placeholder="...")
-    return ""
+    return "No description provided."
 
 
 def html_escape(text: str) -> str:
@@ -185,8 +197,20 @@ def render_section(section: dict, issues: list[dict]) -> str:
     lines.append("      <p><strong>Task</strong></p>")
     lines.append("    </td>")
     lines.append('    <td align="center">')
+    lines.append("      <p><strong>Comments</strong></p>")
     lines.append("    </td>")
     lines.append("  </tr>")
+
+    if not issues:
+        lines.append("  <tr>")
+        lines.append('    <td align="left" colSpan="1" rowSpan="1">')
+        lines.append("      <p><em>No open <code>help wanted</code> tasks right now.</em></p>")
+        lines.append("      <p>Browse the task tracker or contribution guide to learn what this sub-project is working on.</p>")
+        lines.append("    </td>")
+        lines.append('    <td align="center" colSpan="1" rowSpan="1">')
+        lines.append("      <p>—</p>")
+        lines.append("    </td>")
+        lines.append("  </tr>")
 
     for issue in sorted(issues, key=lambda i: i["number"], reverse=True):
         title = html_escape(issue["title"])
@@ -197,8 +221,7 @@ def render_section(section: dict, issues: list[dict]) -> str:
         lines.append("  <tr>")
         lines.append('    <td align="left" colSpan="1" rowSpan="1">')
         lines.append(f'      <p>🟢 <a href="{url}">{title}</a></p>')
-        if summary:
-            lines.append(f"      <p>{html_escape(summary)}</p>")
+        lines.append(f"      <p>{html_escape(summary)}</p>")
         lines.append("    </td>")
         lines.append('    <td align="center" colSpan="1" rowSpan="1">')
         lines.append(f"      <p>💬 {comments}</p>")
@@ -251,23 +274,24 @@ def generate_page(issues: list[dict], existing_created_at: str | None = None) ->
         "guidelines before contributing."
     )
     out.append("")
+    out.append(':::hint{type="info"}')
+    out.append("Before joining an open task:")
+    out.append("")
+    out.append("- Read the linked contribution guide for that sub-project.")
+    out.append("- Read the task description and existing comments before posting.")
+    out.append("- Add concrete evidence: screenshots, logs, measurements, code, design files, or links.")
+    out.append("- Not sure where to start? Read [How to join](./How-to-join.md).")
+    out.append(":::")
+    out.append("")
     out.append("***")
     out.append("")
 
-    rendered_any = False
     for section in SECTIONS:
         repo_issues = by_repo.get(section["slug"], [])
-        if not repo_issues:
-            continue
-        if rendered_any:
+        if section != SECTIONS[0]:
             out.append("***")
             out.append("")
         out.append(render_section(section, repo_issues))
-        out.append("")
-        rendered_any = True
-
-    if not rendered_any:
-        out.append("_No open `help wanted` tasks at the moment — check back soon._")
         out.append("")
 
     return "\n".join(out).rstrip() + "\n"
