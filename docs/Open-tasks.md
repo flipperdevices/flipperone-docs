@@ -192,7 +192,7 @@ User interface design: operating modes, on-screen graphics, device prints, and F
   <tr>
     <td align="left" colSpan="1" rowSpan="1">
       <p>🟢 <a href="https://github.com/flipperdevices/flipperone-ui/issues/1">Describe operating modes + draw scheme</a></p>
-      <p>We need to describe and and name all operating modes</p>
+      <p>We need to describe and name all operating modes</p>
     </td>
     <td align="center" colSpan="1" rowSpan="1">
       <p>💬 28</p>
