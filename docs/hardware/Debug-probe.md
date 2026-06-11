@@ -86,7 +86,7 @@ In a terminal, go to the folder where you want to store the Debug Probe firmware
 Clone the firmware repository:
 
 ```shell
-git clone --recursive https://github.com/flipperdevices/flipperone-debug-probe`
+git clone --recursive https://github.com/flipperdevices/flipperone-debug-probe
 ```
 :::
 
