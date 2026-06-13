@@ -8,7 +8,7 @@
 | **Sub-project** | 🐧 Linux (CPU Software) — Flipper OS |
 | **Author** | xbizzybone |
 | **Created** | 2026-06-13 |
-| **Tracking issue** | (link to the Flipper OS discussion/issue) |
+| **Tracking issue** | https://github.com/flipperdevices/flipperone-docs/pull/361 |
 | **Related** | MCU↔CPU Interconnect; RK3576 mainlining; FlipCTL |
 
 > The key words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, and **MAY** in this document are to be interpreted as described in RFC 2119.
