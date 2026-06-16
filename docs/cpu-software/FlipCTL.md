@@ -8,7 +8,7 @@ updatedAt: Tue Apr 28 2026 13:18:11 GMT+0000 (Coordinated Universal Time)
 
 ## Flipper's Universal Control Interface
 
-::Image[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/Z6pDHK17eiaaU9i2P0HQ9_flipctldraftlogo.png" size="30" width="900" height="900" position="center" alt="FlipCTL draft logo"}
+::Image[]{src="/files/pics/flipctl_draft_logo.png" size="30" position="center" alt="FlipCTL draft logo"}
 
 :::BlockQuote
 **TODO:** Make a proper FlipCTL logo
@@ -20,28 +20,211 @@ The core idea: instead of running a desktop GUI (GNOME, KDE) on a tiny screen, F
 
 ***
 
-## The Problem It Solves
+## The problem it solves
 
 Existing HMI solutions have several pain points:
 
-- **Require a running graphical environment** (Xorg, Wayland) — unusable on headless servers, routers, or embedded devices
-- **Desktop UIs are awkward** to navigate with a d-pad or joystick
-- **CLI tools have no unified wrapper** — running something like `ping` or `nmap` interactively requires a keyboard and terminal
-- **Existing control panels are complex** to install and configure
+- **Need a graphical desktop (Xorg or Wayland) to run** — doesn't work on headless servers, routers, or embedded devices.
+
+- **Desktop UIs are hard to use** with a d-pad or joystick.
+
+- **CLI tools have no unified wrapper** — running something like `ping` or `nmap` interactively requires a keyboard and terminal.
+
+- **Existing control panels are complex** to install and configure.
 
 ***
 
 ## The Vision
 
-:::BlockQuote
-`apt install flipctl` — and everything works.
-:::
+On any Linux system, with or without a display, FlipCTL should be immediately useful. Plug in the FlipCTL Control Board via USB, install and run the service, and you instantly have a working HMI — no Xorg, no desktop, no configuration.
 
-On any Linux system, with or without a display, FlipCTL should be immediately useful. Plug in the FlipCTL Control Board via USB, run the service, and you instantly have a working HMI — no Xorg, no desktop, no configuration.
+Easy FlipCTL installation with a single command. For Debian-based systems:
+
+`apt install flipctl` — and everything works.
+
+Once installed, FlipCTL provides a default dashboard with system data and actions, without requiring any plugins:
+
+- CPU load & uptime
+- Disk usage
+- Network configuration
+- System reboot / shutdown
+
+‎ 
+
+### Supported frontends
+
+FlipCTL can work with different frontends for input and output:
+
+<table isTableHeaderOn="true" columnWidths="250,410">
+  <tr align="center">
+    <td align="center">
+      <p><strong> Frontend</strong></p>
+    </td>
+    <td align="center">
+      <p><strong>Description</strong></p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="/files/pics/flipctl-on-flipper-one.png"/>
+      <p><strong>Flipper One</strong></p>
+    </td>
+    <td>
+      <p>The primary target device is an ARM Linux computer with a built-in 256×144 px LCD and physical controls. Includes boot menu functionality as part of the FlipCTL package</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="/files/pics/flipctl-control-panel.png"/>
+      <p><strong>FlipCTL Control Panel</strong></p>
+    </td>
+    <td>
+      <p>A compact standalone module with a screen and buttons, connecting via USB, SPI, or UART — designed to add a physical HMI to any embedded system, server, single-board computer, or router</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="/files/pics/flipctl-in-terminal.png"/>
+      <p><strong>TUI (Terminal UI)</strong></p>
+    </td>
+    <td>
+      <p>A pseudo-graphical interface rendered in any Linux terminal — usable locally or over SSH, similar to <code>nmtui</code> or Midnight Commander.</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="/files/pics/flipctl-in-browser.png"/>
+      <p><strong>Web UI</strong></p>
+    </td>
+    <td>
+      <p>A browser-based interface — renders the same layout and navigation accessible from any device on the network.</p>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="/files/pics/flipctl-in-app.png"/>
+      <p><strong>Desktop App</strong></p>
+    </td>
+    <td>
+      <p>A native desktop application for Linux, useful for development, testing, or general use on  workstation.</p>
+    </td>
+  </tr>
+</table>
 
 ***
 
-## Supported Frontends
+## Physical interface
+
+![Flipper One controls](/files/pics/controls-explainer.png)
+
+### Screen
+
+- **Diagonal:** 2.39 inch
+- **Resolution:** 256 × 144 px
+- **Depth:** 6-bit grayscale (64 shades)
+
+‎ 
+
+### Soft keys
+
+<table isTableHeaderOn="true" columnWidths="100,560">
+  <tr align="center">
+    <td>
+      <p>Button</p>
+    </td>
+    <td>
+      <p>Default Role</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><strong>Escape</strong></p>
+    </td>
+    <td>
+      <p>Exit app / cancel / go back</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><strong>View</strong></p>
+    </td>
+    <td>
+      <p>Help, tooltips, toggle view mode</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><strong>Power</strong></p>
+    </td>
+    <td>
+      <p>Opens Power menu overlay (sleep, backlight, reboot); hold = hardware shutdown regardless of system state</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><strong>Edit</strong></p>
+    </td>
+    <td>
+      <p>Edit fields, switch view types</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><strong>Run</strong></p>
+    </td>
+    <td>
+      <p>Confirm / OK / next step / start</p>
+    </td>
+  </tr>
+</table>
+
+The Power button is intercepted at the MCU level — it works even if the OS is frozen, similar to a hardware power button on a standard PC.
+
+‎
+
+### D-Pad + back button
+
+D-Pad uses for standard directional navigation: up / down / left / right / center (OK).
+Back button returns to the previous screen; functionally mirrors Escape in most contexts.
+
+‎ 
+
+### App switcher button 
+
+It shows all running applications and allows switching between them — similar to a double-tap home button on older phones.
+
+‎
+
+### Touchpad (optional)
+A small touchpad for: 
+* Scrolling through lists
+* Navigating the on-screen keyboard
+* Quick directional input (left / right / up / down).
+
+‎ 
+
+### PTT button (optional)
+
+A PTT (Push-to-Talk) button is a programmable button originally designed for walkie-talkie use (press and hold to transmit audio). On Flipper One it may serve secondary UI functions like screen lock.
+
+***
+
+## FlipCTL Control Panel
+
+![](/files/pics/flipctl-control-panel-mount-types.jpg)
+
+FlipCTL Control Panel - a compact device featuring the same display as the Flipper One and the same set of controls, except for the touchpad and the PTT (Push-to-Talk) button. 
+
+FlipCTL Control Panel can be:
+* Placed on a desk
+* Mounted directly to a single-board computer, such as a Raspberry Pi
+* Mounted on a server or server rack
+
+FlipCTL Control Panel connects to any Linux-based system via USB or SPI, providing a physical human–machine interface (HMI) for headless servers, routers, and embedded devices — without requiring a desktop environment.
+
+***
+
+## Software architecture
 
 FlipCTL is designed around a renderer-agnostic core, allowing the same interface and plugins to be displayed across multiple input/output frontends:
 
@@ -49,14 +232,14 @@ FlipCTL is designed around a renderer-agnostic core, allowing the same interface
 flowchart LR
     CORE["FlipCTL Core Daemon<br/>(input · routing · plugin API)"]
     CORE --> F1["Flipper One<br/>256×144 LCD"]
-    CORE --> CB["FlipCTL Control Board<br/>USB / SPI / UART"]
+    CORE --> CB["FlipCTL Control Panel<br/>USB / SPI / UART"]
     CORE --> TUI["TUI<br/>React + Ink"]
     CORE --> WEB["Web UI<br/>React (browser)"]
     CORE --> APP["Desktop App<br/>React (native)"]
 ```
 
-<table isTableHeaderOn="true" columnWidths="198,462">
-  <tr>
+<table isTableHeaderOn="true" columnWidths="200,460">
+  <tr align="center">
     <td>
       <p>Frontend</p>
     </td>
@@ -74,7 +257,7 @@ flowchart LR
   </tr>
   <tr>
     <td>
-      <p><strong>FlipCTL Control Board</strong></p>
+      <p><strong>FlipCTL Control Panel</strong></p>
     </td>
     <td>
       <p>A compact standalone module with a screen and buttons, connecting via USB, SPI, or UART — designed to add a physical HMI to any embedded system, server, single-board computer, or router</p>
@@ -106,118 +289,9 @@ flowchart LR
   </tr>
 </table>
 
-***
+‎
 
-## Hardware: FlipCTL Control Board
-
-TODO: add picture of FlipCTL Control Board
-
-A compact rectangular device built around a central **256×144 px LCD screen** with 64 shades of gray (6 bits per pixel). It connects to any Linux machine via **USB or SPI**, turning headless servers, routers, or embedded systems into machines with a physical HMI — no desktop environment required.
-
-### Screen
-
-- Resolution: **256 × 144 px**
-- Depth: **6-bit grayscale** (64 shades)
-
-### Input Controls
-
-### Below the screen — 5 App-Defined Buttons (left to right)
-
-![Flipper One controls](/files/pics/controls-explainer.png)
-
-<table isTableHeaderOn="true" columnWidths="331,332">
-  <tr>
-    <td>
-      <p>Button</p>
-    </td>
-    <td>
-      <p>Default Role</p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <p><strong>Escape</strong></p>
-    </td>
-    <td>
-      <p>Exit app / cancel / go back</p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <p><strong>View</strong></p>
-    </td>
-    <td>
-      <p>Help, tooltips, toggle view mode</p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <p><strong>Power</strong></p>
-    </td>
-    <td>
-      <p>Opens power overlay (sleep, backlight, reboot); hold = hardware shutdown regardless of system state</p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <p><strong>Edit</strong></p>
-    </td>
-    <td>
-      <p>Edit fields, switch view types</p>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <p><strong>Run</strong></p>
-    </td>
-    <td>
-      <p>Confirm / OK / next step / start</p>
-    </td>
-  </tr>
-</table>
-
-The **Power button** is intercepted at the microcontroller level — it works even if the OS is frozen, similar to a hardware power button on a standard PC.
-
-### Left of the screen — Touchpad
-
-A small touchpad for:
-
-- Scrolling through long lists
-- Navigating the on-screen keyboard
-- Quick directional input (left / right / up / down)
-
-### Right of the screen — 5-way D-Pad
-
-Standard directional navigation: **up / down / left / right / center (OK)**
-
-### Below the D-Pad — App Switcher
-
-Shows all running applications and allows switching between them — similar to a double-tap home button on older phones.
-
-### Right of the D-Pad — Back Button
-
-Returns to the previous screen; functionally mirrors Escape in most contexts.
-
-### Top of the device — PTT (Push-to-Talk)
-
-A programmable button originally designed for walkie-talkie use (press and hold to transmit audio). On Flipper One it may serve secondary UI functions like screen lock. This button is **Flipper One-specific** and will likely not be present on the standalone FlipCTL Control Board.
-
-***
-
-## Out-of-the-Box Dashboard
-
-Once installed, FlipCTL provides immediately useful information without any plugins:
-
-- CPU load & uptime
-- Disk usage
-- Network configuration
-- System reboot / shutdown
-
-***
-
-## Software Architecture
-
-### Rendering Approach
+### Rendering approach
 
 The 256×144 px screen requires **pixel-level rendering**, which standard TUI libraries (ncurses, etc.) cannot provide. The proposed solution is an **HTML/CSS rendering engine** running as a background daemon — a lightweight browser-based renderer that draws menus, popups, and UI components.
 
@@ -227,14 +301,18 @@ The key principle: **data and UI logic are separated from the renderer**. The sa
 - Character-rendered in a terminal (React + Ink)
 - HTML in a browser (React)
 
-### Core Daemon + Plugin System
+‎ 
+
+### Core daemon + plugin system
 
 FlipCTL runs as a **system daemon** with a plugin architecture:
 
 - The **core daemon** handles input, routing, rendering communication, and the plugin API
 - **Plugins** are wrappers around CLI tools or services, written in any language
 
-### Plugin / Wrapper Bindings
+‎ 
+
+### Plugin / wrapper bindings
 
 Developers can write wrappers in whatever language they prefer:
 
@@ -248,6 +326,16 @@ Example: a `ping` plugin presents a menu to enter a host/IP, runs the underlying
 
 ***
 
-## Summary
+## How to contribute
 
-FlipCTL is equal parts **software framework** and **hardware platform** — a universal, headless-friendly HMI layer for Linux, designed for the Flipper One but useful for any embedded or server system. Its install-and-run simplicity and language-agnostic plugin system make it a practical tool for anyone who needs a physical or remote interface without the overhead of a full desktop environment.
+This page outlines the FlipCTL vision and its software architecture at a high level. We believe there are many good ways to bring this architecture to life, and we invite the community to share ideas and propose implementation approaches. Our goal is to collaboratively discover the best solutions for FlipCTL.
+
+We have created a dedicated [flipctl repository]() where contributors can submit Pull Requests, discuss design proposals, and collaborate on implementation ideas.
+
+A Pull Request should include:
+
+- A description of your proposed FlipCTL architecture implementation, including the components you would use and how they would interact with each other.
+
+- A description of your vision for the plugin system and the wrappers for standard command-line utilities like `ping` or `nmap`.
+
+- A minimal working FlipCTL prototype capable of driving multiple frontends. One frontend should be a Web UI, while another should be a TUI.
