@@ -79,13 +79,13 @@ FlipCTL can work with different frontends for input and output:
       <p><strong>FlipCTL Control Panel</strong></p>
     </td>
     <td>
-      <p>A compact standalone module with a screen and buttons, connecting via USB, SPI, or UART — designed to add a physical HMI to any embedded system, server, single-board computer, or router</p>
+      <p>A compact standalone module with a screen and buttons, connecting via USB or SPI — designed to add a physical HMI to any embedded system, server, single-board computer, or router</p>
     </td>
   </tr>
   <tr>
     <td align="center">
       <img src="/files/pics/flipctl-in-terminal.png"/>
-      <p><strong>TUI (Terminal UI)</strong></p>
+      <p><strong>TUI (Text UI)</strong></p>
     </td>
     <td>
       <p>A pseudo-graphical interface rendered in any Linux terminal — usable locally or over SSH, similar to <code>nmtui</code> or Midnight Commander.</p>
@@ -220,23 +220,21 @@ FlipCTL Control Panel can be:
 * Mounted directly to a single-board computer, such as a Raspberry Pi
 * Mounted on a server or server rack
 
-FlipCTL Control Panel connects to any Linux-based system via USB or SPI, providing a physical human–machine interface (HMI) for headless servers, routers, and embedded devices — without requiring a desktop environment.
+FlipCTL Control Panel connects to any Linux-based system via USB or SPI, providing a physical human–machine interface (HMI) for headless servers, routers, and embedded devices, without requiring a desktop environment.
 
 ***
 
-## Software architecture
+## Architecture
 
-FlipCTL is designed around a renderer-agnostic core, allowing the same interface and plugins to be displayed across multiple input/output frontends:
+![](/files/pics/flipctl-architecture.jpg)
 
-```mermaid
-flowchart LR
-    CORE["FlipCTL Core Daemon<br/>(input · routing · plugin API)"]
-    CORE --> F1["Flipper One<br/>256×144 LCD"]
-    CORE --> CB["FlipCTL Control Panel<br/>USB / SPI / UART"]
-    CORE --> TUI["TUI<br/>React + Ink"]
-    CORE --> WEB["Web UI<br/>React (browser)"]
-    CORE --> APP["Desktop App<br/>React (native)"]
-```
+Основные компоненты FlipCTL:
+
+* **Backend** is responsible for managing the operating system itself. It can interact with systemd, control OS services, configure networking through NetworkManager or systemd-networkd, and wrap existing command-line utilities such as nmap, ping, and traceroute. The backend exposes these capabilities through APIs that are consumed by the frontend.
+
+* **Frontend UI** is currently built using HTML and JavaScript. Despite the associated overhead, this approach enables rapid UI development and compact implementation, while avoiding the need for specialized expertise required by many embedded UI frameworks.
+
+* **Renderer** is a web browser. On Flipper One, we currently use a headless WebKit instance running directly on top of DRM (Direct Rendering Manager), without Xorg or Wayland. We also want to support multiple renderer options, for example, for a TUI (Text User Interface) for using  directly from the console.
 
 <table isTableHeaderOn="true" columnWidths="200,460">
   <tr align="center">
@@ -303,16 +301,12 @@ The key principle: **data and UI logic are separated from the renderer**. The sa
 
 ‎ 
 
-### Core daemon + plugin system
+### Backend + plugin system
 
 FlipCTL runs as a **system daemon** with a plugin architecture:
 
 - The **core daemon** handles input, routing, rendering communication, and the plugin API
 - **Plugins** are wrappers around CLI tools or services, written in any language
-
-‎ 
-
-### Plugin / wrapper bindings
 
 Developers can write wrappers in whatever language they prefer:
 
@@ -328,7 +322,7 @@ Example: a `ping` plugin presents a menu to enter a host/IP, runs the underlying
 
 ## How to contribute
 
-This page outlines the FlipCTL vision and its software architecture at a high level. We believe there are many good ways to bring this architecture to life, and we invite the community to share ideas and propose implementation approaches. Our goal is to collaboratively discover the best solutions for FlipCTL.
+This page outlines the FlipCTL vision and its architecture at a high level. We believe there are many good ways to bring this architecture to life, and we invite the community to share ideas and propose implementation approaches. Our goal is to collaboratively discover the best solutions for FlipCTL.
 
 We have created a dedicated [flipctl repository]() where contributors can submit Pull Requests, discuss design proposals, and collaborate on implementation ideas.
 
