@@ -191,51 +191,51 @@ def render_section(section: dict, issues: list[dict]) -> str:
     lines.append("")
     lines.append(section["description"])
     lines.append("")
-    lines.append('<table isTableHeaderOn="true" columnWidths="575,86">')
-    lines.append("  <tr>")
-    lines.append('    <td align="left">')
-    lines.append("      <p><strong>Task</strong></p>")
-    lines.append("    </td>")
-    lines.append('    <td align="center">')
-    lines.append("      <p><strong>Comments</strong></p>")
-    lines.append("    </td>")
-    lines.append("  </tr>")
 
-    if not issues:
+    if issues:
+        # Render an issue table if there is at least one "help wanted" issue
+
+        lines.append('<table isTableHeaderOn="true" columnWidths="536,125">')
         lines.append("  <tr>")
-        lines.append('    <td align="left" colSpan="1" rowSpan="1">')
-        lines.append("      <p><em>No open <code>help wanted</code> tasks right now.</em></p>")
-        lines.append("      <p>Browse the task tracker or contribution guide to learn what this sub-project is working on.</p>")
+        lines.append('    <td align="left">')
+        lines.append("      <p><strong>Task</strong></p>")
         lines.append("    </td>")
-        lines.append('    <td align="center" colSpan="1" rowSpan="1">')
-        lines.append("      <p>—</p>")
+        lines.append('    <td align="center">')
+        lines.append("      <p><strong>Comments</strong></p>")
         lines.append("    </td>")
         lines.append("  </tr>")
 
-    for issue in sorted(issues, key=lambda i: i["number"], reverse=True):
-        title = html_escape(issue["title"])
-        url = html_escape(issue["url"])
-        comments = issue["commentsCount"]
-        summary = make_summary(issue.get("body", ""))
+        for issue in sorted(issues, key=lambda i: i["number"], reverse=True):
+            title = html_escape(issue["title"])
+            url = html_escape(issue["url"])
+            comments = issue["commentsCount"]
+            summary = make_summary(issue.get("body", ""))
 
-        lines.append("  <tr>")
-        lines.append('    <td align="left" colSpan="1" rowSpan="1">')
-        lines.append(f'      <p>🟢 <a href="{url}">{title}</a></p>')
-        lines.append(f"      <p>{html_escape(summary)}</p>")
-        lines.append("    </td>")
-        lines.append('    <td align="center" colSpan="1" rowSpan="1">')
-        lines.append(f"      <p>💬 {comments}</p>")
-        lines.append("    </td>")
-        lines.append("  </tr>")
+            lines.append("  <tr>")
+            lines.append('    <td align="left" colSpan="1" rowSpan="1">')
+            lines.append(f'      <p>🟢 <a href="{url}">{title}</a></p>')
+            lines.append(f"      <p>{html_escape(summary)}</p>")
+            lines.append("    </td>")
+            lines.append('    <td align="center" colSpan="1" rowSpan="1">')
+            lines.append(f"      <p>💬 {comments}</p>")
+            lines.append("    </td>")
+            lines.append("  </tr>")
 
-    lines.append("</table>")
+        lines.append("</table>")
+
+    else:
+        # If there are no open "help wanted" issues, give the reader general guidance
+        lines.append(f"The {section['title']} sub-project currently has no open `help wanted` tasks. ")
+
+
     lines.append("")
     lines.append(':::hint{type="info"}')
-    lines.append(f"🌐 Links of the {section['title']} sub-project:")
+    lines.append(f"Learn what's going on in the {section['title']} sub-project:")
     lines.append("")
-    lines.append(f"- [Task tracker]({section['task_tracker']})")
+    lines.append(f"- [Project board]({section['task_tracker']})")
     lines.append(f"- [Contribution guide]({section['contribution_guide']})")
     lines.append(f"- [GitHub repository]({section['github_repo']})")
+    lines.append(f"- [All open tasks]({section['github_repo']}/issues/)")
     lines.append(":::")
     return "\n".join(lines)
 
@@ -275,12 +275,11 @@ def generate_page(issues: list[dict], existing_created_at: str | None = None) ->
     )
     out.append("")
     out.append(':::hint{type="info"}')
-    out.append("Before joining an open task:")
+    out.append("Before you join an open task:")
     out.append("")
-    out.append("- Read the linked contribution guide for that sub-project.")
-    out.append("- Read the task description and existing comments before posting.")
-    out.append("- Add concrete evidence: screenshots, logs, measurements, code, design files, or links.")
-    out.append("- Not sure where to start? Read [How to join](./How-to-join.md).")
+    out.append("- Read [How to start](./How-to-join.md#how-to-start).")
+    out.append("- Study the task description and existing comments.")
+    out.append("- When you comment on the task, add concrete evidence: screenshots, logs, measurements, code, design files, or links.")
     out.append(":::")
     out.append("")
     out.append("***")
