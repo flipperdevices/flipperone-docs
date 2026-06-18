@@ -8,19 +8,21 @@ updatedAt: Tue Apr 28 2026 13:18:11 GMT+0000 (Coordinated Universal Time)
 
 ## Flipper's Universal Control Interface
 
-::Image[]{src="/files/pics/flipctl_draft_logo.png" size="30" position="center" alt="FlipCTL draft logo"}
+::Image[]{src="/files/pics/flipctl_scheme.png" alt="FlipCTL logic scheme"}
 
-:::BlockQuote
-**TODO:** Make a proper FlipCTL logo
-:::
-
-FlipCTL is a **lightweight GUI framework for embedded and headless Linux systems**, designed as a modern replacement for traditional HMI (Human-Machine Interface) solutions. Originally built for Flipper One, it runs on any Linux system — from servers and routers to single-board computers — with no desktop environment required.
+FlipCTL is a **lightweight GUI framework for embedded and headless Linux systems**, designed as a modern replacement for traditional HMI (Human-Machine Interface) solutions. Originally built for Flipper One, it runs on any Linux system, from servers and routers to single-board computers, with no desktop environment required.
 
 The core idea: instead of running a desktop GUI (GNOME, KDE) on a tiny screen, FlipCTL provides a **pixel-rendered, navigation-friendly interface** — similar in spirit to `nmtui` or Midnight Commander, but graphically richer and hardware-aware.
 
 ***
 
 ## The problem FlipCTL solves
+
+```text
+:::Iframe{code="<video&#xA;    autoplay muted loop playsinline style=&#x22;width: 100%; margin: 0 !important;&#x22;&#xA;    src=&#x22;https://cdn.flipper.net/desktopUI_VS_FlipCTL.mp4&#x22;&#xA;></video>&#xA;<div class=&#x22;text-center mt-2.5 text-gray-400 pb-5&#x22;>&#xA;Caption&#xA;</div>" iframeHeight="500"}
+
+:::
+```
 
 Existing GUI solutions for embedded computers, also known as HMI (Human-Machine Interface), have several pain points:
 
@@ -36,7 +38,7 @@ Existing GUI solutions for embedded computers, also known as HMI (Human-Machine 
 
 ## The FlipCTL concept vision
 
-On any Linux system, with or without a display, FlipCTL should be immediately useful. Plug in the FlipCTL Control Board via USB, install and run the service, and you instantly have a working interface — no Xorg, no desktop, no configuration.
+On any Linux system, with or without a display, FlipCTL should be immediately useful. Plug in the FlipCTL Control Panel via USB, install and run the service, and you instantly have a working interface — no Xorg, no desktop, no configuration.
 
 FlipCTL is installed with a single command. For Debian-based systems:
 
@@ -198,7 +200,7 @@ The app switcher button shows all running applications and allows switching betw
 ‎
 
 ### Touchpad (optional)
-A small touchpad for: 
+Only exist on Flipper One, completely optional and can be used to speed up scrolling and navigation. It duplicates the functions of the D-pad:
 * Scrolling through lists
 * Navigating the on-screen keyboard
 * Quick directional input (left / right / up / down).
@@ -213,7 +215,8 @@ A PTT (Push-to-Talk) button is a programmable button originally designed for wal
 
 ## FlipCTL Control Panel
 
-![](/files/pics/flipctl-control-panel-mount-types.jpg)
+![](/files/pics/flipctl-control-panel-raspberry-pi.jpg)
+![](/files/pics/flipctl-control-panel-in-rack.jpg)
 
 FlipCTL Control Panel - a compact device featuring the same display as the Flipper One and the same set of controls, except for the touchpad and the PTT (Push-to-Talk) button. 
 
@@ -222,13 +225,13 @@ FlipCTL Control Panel can be:
 * Mounted directly to a single-board computer, such as a Raspberry Pi
 * Mounted on a server or server rack
 
-FlipCTL Control Panel connects to any Linux-based system via USB or SPI, providing a physical human–machine interface (HMI) for headless servers, routers, and embedded devices, without requiring a desktop environment.
+FlipCTL Control Panel connects to any Linux-based system via USB or SPI (or I2C?), providing a physical human–machine interface (HMI) for headless servers, routers, and embedded devices, without requiring a desktop environment. The hardware design for this project hasn't been finalized yet — you can join the open discussion: [FlipCTL Control Panel hardware design](https://github.com/flipperdevices/flipperone-hardware/issues/133)
 
 ***
 
-## Architecture
+## FlipCTL Architecture
 
-![](/files/pics/flipctl-architecture.jpg)
+![](/files/pics/FlipCTL-architecture-vertical.png)
 
 FlipCTL core components:
 
