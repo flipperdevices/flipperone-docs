@@ -14,35 +14,35 @@ updatedAt: Tue Apr 28 2026 13:18:11 GMT+0000 (Coordinated Universal Time)
 **TODO:** Make a proper FlipCTL logo
 :::
 
-FlipCTL is a **lightweight GUI framework for embedded and headless Linux systems**, designed as a modern replacement for traditional HMI solutions. Originally built for Flipper One, it runs on any Linux system — from servers and routers to single-board computers — with no desktop environment required.
+FlipCTL is a **lightweight GUI framework for embedded and headless Linux systems**, designed as a modern replacement for traditional HMI (Human-Machine Interface) solutions. Originally built for Flipper One, it runs on any Linux system — from servers and routers to single-board computers — with no desktop environment required.
 
 The core idea: instead of running a desktop GUI (GNOME, KDE) on a tiny screen, FlipCTL provides a **pixel-rendered, navigation-friendly interface** — similar in spirit to `nmtui` or Midnight Commander, but graphically richer and hardware-aware.
 
 ***
 
-## The problem it solves
+## The problem FlipCTL solves
 
-Existing HMI solutions have several pain points:
+Existing GUI solutions for embedded computers, also known as HMI (Human-Machine Interface), have several pain points:
 
-- **Need a graphical desktop (Xorg or Wayland) to run** — doesn't work on headless servers, routers, or embedded devices.
+- **Need a graphical desktop (Xorg or Wayland) to run** — don't work on headless servers, routers, or embedded devices.
 
 - **Desktop UIs are hard to use** with a d-pad or joystick.
 
-- **CLI tools have no unified wrapper** — running something like `ping` or `nmap` interactively requires a keyboard and terminal.
+- **CLI tools have no unified wrapper** — you need a keyboard and a terminal to run interactive commands like `ping` or `nmap`.
 
 - **Existing control panels are complex** to install and configure.
 
 ***
 
-## The Vision
+## The FlipCTL concept vision
 
-On any Linux system, with or without a display, FlipCTL should be immediately useful. Plug in the FlipCTL Control Board via USB, install and run the service, and you instantly have a working HMI — no Xorg, no desktop, no configuration.
+On any Linux system, with or without a display, FlipCTL should be immediately useful. Plug in the FlipCTL Control Board via USB, install and run the service, and you instantly have a working interface — no Xorg, no desktop, no configuration.
 
-Easy FlipCTL installation with a single command. For Debian-based systems:
+FlipCTL is installed with a single command. For Debian-based systems:
 
 `apt install flipctl` — and everything works.
 
-Once installed, FlipCTL provides a default dashboard with system data and actions, without requiring any plugins:
+Once installed, FlipCTL provides a default dashboard with system data and actions:
 
 - CPU load & uptime
 - Disk usage
@@ -106,7 +106,7 @@ FlipCTL can work with different frontends for input and output:
       <p><strong>Desktop App</strong></p>
     </td>
     <td>
-      <p>A native desktop application for Linux, useful for development, testing, or general use on  workstation.</p>
+      <p>A native desktop application for Linux, useful for development, testing, or general use on a workstation.</p>
     </td>
   </tr>
 </table>
@@ -126,6 +126,8 @@ FlipCTL can work with different frontends for input and output:
 ‎ 
 
 ### Soft keys
+
+Flipper One has five app-defined buttons.
 
 <table isTableHeaderOn="true" columnWidths="100,560">
   <tr align="center">
@@ -184,14 +186,14 @@ The Power button is intercepted at the MCU level — it works even if the OS is 
 
 ### D-Pad + back button
 
-D-Pad uses for standard directional navigation: up / down / left / right / center (OK).
+The D-Pad is used for standard directional navigation: up / down / left / right / center (OK).
 Back button returns to the previous screen; functionally mirrors Escape in most contexts.
 
 ‎ 
 
 ### App switcher button 
 
-It shows all running applications and allows switching between them — similar to a double-tap home button on older phones.
+The app switcher button shows all running applications and allows switching between them — similar to a double-tap home button on older phones.
 
 ‎
 
@@ -228,13 +230,13 @@ FlipCTL Control Panel connects to any Linux-based system via USB or SPI, providi
 
 ![](/files/pics/flipctl-architecture.jpg)
 
-Основные компоненты FlipCTL:
+FlipCTL core components:
 
 * **Backend** is responsible for managing the operating system itself. It can interact with systemd, control OS services, configure networking through NetworkManager or systemd-networkd, and wrap existing command-line utilities such as nmap, ping, and traceroute. The backend exposes these capabilities through APIs that are consumed by the frontend.
 
 * **Frontend UI** is currently built using HTML and JavaScript. Despite the associated overhead, this approach enables rapid UI development and compact implementation, while avoiding the need for specialized expertise required by many embedded UI frameworks.
 
-* **Renderer** is a web browser. On Flipper One, we currently use a headless WebKit instance running directly on top of DRM (Direct Rendering Manager), without Xorg or Wayland. We also want to support multiple renderer options, for example, for a TUI (Text User Interface) for using  directly from the console.
+* **Renderer** is a web browser. On Flipper One, we currently use a headless WebKit instance running directly on top of DRM (Direct Rendering Manager), without Xorg or Wayland. We also want to support multiple renderer options — for example, a TUI (Text User Interface) for use directly from the console.
 
 <table isTableHeaderOn="true" columnWidths="200,460">
   <tr align="center">
@@ -324,7 +326,7 @@ Example: a `ping` plugin presents a menu to enter a host/IP, runs the underlying
 
 This page outlines the FlipCTL vision and its architecture at a high level. We believe there are many good ways to bring this architecture to life, and we invite the community to share ideas and propose implementation approaches. Our goal is to collaboratively discover the best solutions for FlipCTL.
 
-We have created a dedicated [flipctl repository]() where contributors can submit Pull Requests, discuss design proposals, and collaborate on implementation ideas.
+We have created a dedicated [FlipCTL repository](http://github.com/flipperdevices/flipctl) where contributors can submit pull requests, discuss design proposals, and collaborate on implementation ideas.
 
 A Pull Request should include:
 
