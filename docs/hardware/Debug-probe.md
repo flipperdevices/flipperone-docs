@@ -128,7 +128,7 @@ Get the `.UF2` firmware file:
 :::
 
 :::WorkflowBlockItem
-Hold the **MCU RESET & PROBE BOOT** button while connecting the Debug Probe to a PC via USB to switch the Debug Probe MCU to **BOOTSEL** mode.
+Hold the **MCU RESET & PROBE BOOT** button and connect the Debug Probe to a PC via USB. The Debug Probe MCU switches to **BOOTSEL** mode.
 
 ![Switching debug probe MCU to BOOTSEL mode](/files/pics/debug-probe-switching-to-bootsel.png "Switching debug probe MCU to BOOTSEL mode")
 
