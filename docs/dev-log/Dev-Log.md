@@ -15,6 +15,8 @@ This is our regular Dev Log, where we share how Flipper One development is going
 
 All logs:
 
+- [#3: New Wi-Fi router target](./3.md), heat sink redesign, a new battery pack safety mechanism, switching input between the Flipper One UI and a Linux desktop.
+
 - [#2: New TV Media Box target](./2.md), Falcon Mode for faster Linux boot, PD charging from Flipper One, an MCU firmware RAM/Flash usage dashboard.
 
 - [#1: RK3576 hardware video decoding is now in mainline kernel](./1.md), official Debug Probe, and first contributions from the community.

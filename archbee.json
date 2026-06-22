@@ -33,6 +33,12 @@
         "isFoldedByDefault": true,
         "children": [
           {
+            "categoryName": "#3",
+            "isCategory": false,
+            "path": "dev-log/3.md",
+            "children": []
+          },
+          {
             "categoryName": "#2",
             "isCategory": false,
             "path": "dev-log/2.md",
