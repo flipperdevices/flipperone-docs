@@ -14,12 +14,12 @@ This section covers network connectivity testing and validation for Flipper One.
 
 Built-in WiFi based on Mediatek MT7921AUN chip, Wi-Fi 6E (802.11ax) and Bluetooth 5.2 chipset primarily used in high-performance USB wireless adapters like the ALFA AWUS036AXML. It supports 2.4 GHz, 5 GHz, and 6 GHz bands.
 
-### MT7921AUN chipset info
 
-<details>
-  <summary>ethtool -i wlxb06b11673ade</summary>
-  
-  ```
+## MT7921AUN chipset info
+
+:::::ExpandableHeading
+### `ethtool -i wlxb06b11673ade`
+```bash
 $ ethtool -i wlxb06b11673ade
 driver: mt7921u
 version: 7.1.0-g7fd25013c28b
@@ -31,13 +31,13 @@ supports-test: no
 supports-eeprom-access: no
 supports-register-dump: no
 supports-priv-flags: no
-  ```
-</details>
+```
+:::::
 
-<details>
-  <summary>iw phy phy0 info</summary> 
+:::::ExpandableHeading
+### `iw phy phy0 info`
 
-  ```
+```bash
 $ sudo iw phy phy0 info
 Wiphy phy0
 	wiphy index: 0
@@ -680,13 +680,13 @@ Wiphy phy0
 		* [ CONTROL_PORT_OVER_NL80211_TX_STATUS ]: tx status for nl80211 control port support
 		* [ BEACON_RATE_HE ]: HE beacon rate support (AP/mesh)
 		* [ POWERED_ADDR_CHANGE ]: can change MAC address while up
-  ```
-</details>
+```
+:::::
 
-<details>
-  <summary>lsusb -v -d 0e8d:7961</summary>
-  
-  ```
+
+:::::ExpandableHeading
+### `lsusb -v -d 0e8d:7961`
+```bash
 $ sudo lsusb -v -d 0e8d:7961
 
 Bus 002 Device 003: ID 0e8d:7961 MediaTek Inc. Wireless_Device
@@ -1216,13 +1216,13 @@ Binary Object Store Descriptor:
     bU2DevExitLat         180 micro seconds
 Device Status:     0x0000
   (Bus Powered)
-  ```
-</details>
+```
+:::::
 
-<details>
-  <summary>dmesg</summary>
-    
-  ```
+:::::ExpandableHeading
+### `dmesg`
+
+```bash
 $ dmesg | grep mt7
 [   12.972161] usbcore: registered new interface driver mt7921u
 [   12.975915] mt7921u 2-1.1:1.3: HW/SW Version: 0x8a108a10, Build Time: 20260224110909a
@@ -1230,8 +1230,8 @@ $ dmesg | grep mt7
 [   14.869033] mt7921u 2-1.1:1.3 wlxb06b11673ade: renamed from wlan0
 [   43.432790] mt7921u 2-1.1:1.3 wlxb06b11673ade: entered allmulticast mode
 [   43.433616] mt7921u 2-1.1:1.3 wlxb06b11673ade: entered promiscuous mode
-  ```
-</details>
+```
+:::::
 
 ##  Access point (AP) + Client (STA) mode
 
