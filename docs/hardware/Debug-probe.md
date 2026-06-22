@@ -41,7 +41,7 @@ The Debug Probe has the following LEDs:
 
 ## Connectors
 
-The Flipper One Debug Probe provides the following connectors:
+The Flipper One Debug Probe has the following connectors:
 * **USB port**: connection to a PC.
 * **Debug port**: connection to the Flipper One debug port.
 * **5-pin header**: interface for a logic analyzer or oscilloscope to monitor CPU and MCU pins.
