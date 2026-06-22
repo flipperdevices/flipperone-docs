@@ -15,6 +15,8 @@ This is our regular Dev Log, where we share how Flipper One development is going
 
 All logs:
 
+- [#4: U-Boot on Flipper One screen](./4.md), Wi-Fi test results, and the first community project that allows anyone to run FlipCTL UI in a browser.
+
 - [#3: New Wi-Fi router target](./3.md), heat sink redesign, a new battery pack safety mechanism, switching input between the Flipper One UI and a Linux desktop.
 
 - [#2: New TV Media Box target](./2.md), Falcon Mode for faster Linux boot, PD charging from Flipper One, an MCU firmware RAM/Flash usage dashboard.
