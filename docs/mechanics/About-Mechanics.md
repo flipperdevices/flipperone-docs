@@ -245,6 +245,32 @@ We review all ideas carefully! We may ask additional questions about your idea i
 
 ***
 
+### Contributing a third-party module
+
+If you've designed your own accessory or module for Flipper One — a fan shield, a mounting bracket, anything that attaches to the enclosure but isn't an official part — you're welcome to share it. Third-party modules follow a slightly different process from base model improvements, so they're easy for the team to find and review.
+
+::::hint{type="info"}
+**Keep base model changes and module proposals in separate pull requests**
+
+A pull request that mixes an improvement to the base enclosure with a new module proposal is hard to review and merge — the team can't take one without the other. If you have both, open two pull requests.
+::::
+
+::::WorkflowBlock
+:::WorkflowBlockItem
+**Place your files under `Modules/Third party/`.** In the `CURRENT/<version>/Modules/` folder, create a new directory named after your module, for example `Modules/Third party/fan-shield/`, and put your design files there.
+:::
+
+:::WorkflowBlockItem
+**Add a minimal description.** A short note in your pull request description — what the module does and how it attaches — is enough. You don't need extensive documentation to propose a module.
+:::
+
+:::WorkflowBlockItem
+**Open a pull request**, following the same steps as [submitting your design](#submit-your-design-as-a-pull-request) above.
+:::
+::::
+
+***
+
 ### Suggest your change as a comment on an open task
 
 ::::hint{type="info"}
