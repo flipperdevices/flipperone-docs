@@ -83,7 +83,7 @@ In a terminal, go to the folder where you want to store the Debug Probe firmware
 :::
 
 :::WorkflowBlockItem
-Clone the firmware repository:
+Clone the MCU firmware repository:
 
 ```shell
 git clone --recursive https://github.com/flipperdevices/flipperone-debug-probe
