@@ -419,6 +419,12 @@
         "isCategory": true,
         "children": [
           {
+            "categoryName": "Community",
+            "isCategory": false,
+            "path": "community/community.md",
+            "children": []
+          },
+          {
             "categoryName": "About Docs",
             "isCategory": false,
             "path": "resources/docs/About-Docs.md",
