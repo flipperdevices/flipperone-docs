@@ -394,6 +394,12 @@
                 "isCategory": false,
                 "path": "resources/rockchip/RK3576-Boot-flow.md",
                 "children": []
+              },
+              {
+                "categoryName": "RK3576 video output (VOP)",
+                "isCategory": false,
+                "path": "resources/rockchip/RK3576-Video-output.md",
+                "children": []
               }
             ]
           }
