@@ -14,13 +14,11 @@ Repeat on each band (2.4 GHz, 5 GHz, 6 GHz):
 3.  Measure throughput on each interface with `iperf3`.
 
 
-## Detailed test sequence
+## Test log: AP+STA (build `1350`, 2026-06-23)
 
->  Tested and recorded using build `1350` at 23 Jun 2026.
+Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` are present in the system.
 
-Requirements: Debian Trixie; make sure that `NetworkManager`, `iw` and `dnsmasq` are present in the system.
-
-1. Set Regulatory Domain if not set
+1. Set Regulatory Domain if not set:
 
    ```bash
    sudo iw reg set HK

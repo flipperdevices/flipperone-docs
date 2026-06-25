@@ -16,11 +16,9 @@ Tests for monitor (promiscuous) mode, where the Wi-Fi card captures all traffic 
 Perform an RSN PMKID sniff against a real access point.
 
 
-## Detailed test sequence
+## Test log: Monitor mode (build `1350`, 2026-06-23)
 
->  Tested and recorded using build `1350` at 23 Jun 2026.
-
-Requirements: Debian Trixie; make sure that `NetworkManager`, `iw` and `dnsmasq` are present in the system.
+Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` are present in the system.
 
 1. Switch to superuser console:
 

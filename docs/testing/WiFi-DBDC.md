@@ -12,9 +12,9 @@ Tests for **DBDC** — Dual-Band Dual-Concurrent operation: running two interfac
 3. Measure throughput on each band with `iperf3`.
 4. Test combinations: AP + STA, AP + AP, STA + STA across band pairs.
 
->  Tested and recorded using build `1322` at 25 Jun 2026.
+## Test log: DBDC mode (build `1322`, 2026-06-25)
 
-Requirements: Debian Trixie; make sure that `NetworkManager`, `iw` and `dnsmasq` are present in the system.
+Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` are present in the system.
 
 1. Set Regulatory Domain if not set
 
@@ -247,7 +247,7 @@ Jun 25 18:33:28 flipperone-a9438e-build-1322-router-target NetworkManager[542]: 
 Jun 25 18:33:28 flipperone-a9438e-build-1322-router-target NetworkManager[542]: <info>  [1782412408.0507] device (ap0): state change: config -> failed (reason 'supplicant-timeout', managed-type: 'full')
   ```
 
-### Register readout test
+### Test log: Register readout (2026-06-25)
 
 As of 25 June 2026 and Kernel 7.1.1, `mt7921` driver does not support DBDC.
 
