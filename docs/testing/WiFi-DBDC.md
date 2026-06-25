@@ -245,7 +245,7 @@ Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` 
    Jun 25 18:33:28 flipperone-a9438e-build-1322-router-target NetworkManager[542]: <info>  [1782412408.0507] device (ap0): state change: config -> failed (reason 'supplicant-timeout', managed-type: 'full')
    ```
 
-### Test log: Register readout (2026-06-25)
+## Test log: Register readout (2026-06-25)
 
 As of 25 June 2026 and Kernel 7.1.1, `mt7921` driver does not support DBDC.
 
