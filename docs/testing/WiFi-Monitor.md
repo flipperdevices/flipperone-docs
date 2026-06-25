@@ -22,9 +22,9 @@ Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` 
 
 1. Switch to superuser console:
 
-   ```bash
-   sudo su
-   ```
+  ```bash
+  sudo su
+  ```
 
 2. Run this to see your Wi-Fi card name:
 
@@ -48,37 +48,37 @@ Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` 
 
 4. Release the radio from NetworkManager and tear down:
 
-   ```bash
-   nmcli dev set "$DEV" managed no
-   ip link set "$DEV" down
-   iw dev "$DEV" del
-   ```
+  ```bash
+  nmcli dev set "$DEV" managed no
+  ip link set "$DEV" down
+  iw dev "$DEV" del
+  ```
 
 5. Stop anything that retunes the radio:
 
-   ```bash
-   pkill -x wpa_supplicant 2>/dev/null
-   rfkill unblock wifi
-   ```
+  ```bash
+  pkill -x wpa_supplicant 2>/dev/null
+  rfkill unblock wifi
+  ```
 
 6. Set regdomain BEFORE creating the vif, while the phy is idle:
 
-   ```bash
-   iw reg set HK
-   ```
+  ```bash
+  iw reg set HK
+  ```
 
 7. Create monitor as the ONLY vif on `phy0`:
 
-   ```bash
-   iw phy phy0 interface add mon0 type monitor
-   ip link set mon0 up
-   ```
+  ```bash
+  iw phy phy0 interface add mon0 type monitor
+  ip link set mon0 up
+  ```
 
 8. Tune to any channel:
 
-   ```bash
-   iw dev mon0 set channel 36
-   ```
+  ```bash
+  iw dev mon0 set channel 36
+  ```
 
 9. Verify:
 

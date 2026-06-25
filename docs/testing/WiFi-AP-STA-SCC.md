@@ -14,15 +14,15 @@ Repeat on each band (2.4 GHz, 5 GHz, 6 GHz):
 3.  Measure throughput on each interface with `iperf3`.
 
 
-## Test log: AP+STA (build `1350`, 2026-06-23)
+## Test log: AP+STA (build 1350, 2026-06-23)
 
 Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` are present in the system.
 
 1. Set Regulatory Domain if not set:
 
-   ```bash
-   sudo iw reg set HK
-   ```
+  ```bash
+  sudo iw reg set HK
+  ```
 
 2. Run to **see your Wi-Fi card name**
 
@@ -38,11 +38,8 @@ Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` 
    wlxb06b11673af2          wifi      disconnected            --     
    ```
 
-3. The AP will live on a second virtual interface named `ap0` on the same phy, because
-   one netdev can't be STA and AP simultaneously.
-
-   udev will try to rename a freshly created `ap0` to a wlx* predictable name, which breaks
-   the NM profile binding. Pin the name with a `.link` file:
+3. The AP will live on a second virtual interface named `ap0` on the same phy, because one netdev can't be STA and AP simultaneously. `udev` will try to rename a freshly created `ap0` to a wlx* predictable name, which breaks the NM profile binding.
+   Pin the name with a `.link` file:
 
    ```bash
    sudo tee /etc/systemd/network/10-ap0.link >/dev/null <<'EOF'
@@ -141,15 +138,15 @@ Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` 
 
 7. Create an AP profile
 
-   ```bash
-   sudo nmcli connection add type wifi con-name ap-downlink ifname ap0 \
-     ssid FlipperOne \
-     wifi-sec.key-mgmt wpa-psk wifi-sec.psk 'flipperone' \
-     802-11-wireless.mode ap \
-     802-11-wireless.powersave 2 \
-     master br-lan slave-type bridge \
-     connection.autoconnect no
-   ```
+  ```bash
+  sudo nmcli connection add type wifi con-name ap-downlink ifname ap0 \
+    ssid FlipperOne \
+    wifi-sec.key-mgmt wpa-psk wifi-sec.psk 'flipperone' \
+    802-11-wireless.mode ap \
+    802-11-wireless.powersave 2 \
+    master br-lan slave-type bridge \
+    connection.autoconnect no
+  ```
 
 8. Bring-up helper.
 
@@ -236,8 +233,8 @@ Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` 
 
 9. Check network connectivity:
 
-   ```bash
-   ping flipper.net
-   ```
+  ```bash
+  ping flipper.net
+  ```
 
 10. Connect to your freshly created SSID `FlipperOne` with your phone/laptop and check the network connectivity.

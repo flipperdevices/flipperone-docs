@@ -18,9 +18,9 @@ Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` 
 
 1. Set Regulatory Domain if not set
 
-   ```bash
-   sudo iw reg set HK
-   ```
+  ```bash
+  sudo iw reg set HK
+  ```
 
 2. Run to **see your Wi-Fi card name**
 
@@ -36,11 +36,9 @@ Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` 
    wlxb06b11673af2          wifi      disconnected            --     
    ```
 
-3. The AP will live on a second virtual interface named `ap0` on the same phy, because
-   one netdev can't be STA and AP simultaneously.
-
-   udev will try to rename a freshly created `ap0` to a wlx* predictable name, which breaks
-   the NM profile binding. Pin the name with a `.link` file:
+3. The AP will live on a second virtual interface named `ap0` on the same phy, because one netdev can't be STA and AP simultaneously. `udev` will try to rename a freshly created `ap0` to a wlx* predictable name, which breaks
+   the NM profile binding.
+   Pin the name with a `.link` file:
 
    ```bash
    sudo tee /etc/systemd/network/10-ap0.link >/dev/null <<'EOF'
@@ -139,15 +137,15 @@ Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` 
 
 7. Create an AP profile
 
-   ```bash
-   sudo nmcli connection add type wifi con-name ap-downlink ifname ap0 \
-     ssid FlipperOne \
-     wifi-sec.key-mgmt wpa-psk wifi-sec.psk 'flipperone' \
-     802-11-wireless.mode ap \
-     802-11-wireless.powersave 2 \
-     master br-lan slave-type bridge \
-     connection.autoconnect no
-   ```
+  ```bash
+  sudo nmcli connection add type wifi con-name ap-downlink ifname ap0 \
+    ssid FlipperOne \
+    wifi-sec.key-mgmt wpa-psk wifi-sec.psk 'flipperone' \
+    802-11-wireless.mode ap \
+    802-11-wireless.powersave 2 \
+    master br-lan slave-type bridge \
+    connection.autoconnect no
+  ```
 
 8. Bring-up helper.
 
@@ -158,7 +156,6 @@ Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` 
    - creates `ap0` with a stable MAC set atomically at creation,
    - pins the AP chandef to the other band,
    - and activates the AP.
-
 
    First, write an `~/apsta-up` script:
    
@@ -230,22 +227,23 @@ Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` 
    ```console
    $ sudo ./apsta-up 
    <SKIPPED>
-[  705.971837] wlxb06b11673af2: deauthenticating from xx:xx:xx:xx:xx:xx by local choice (Reason: 3=DEAUTH_LEAVING)
-[  706.325902] wlxb06b11673af2: authenticate with xx:xx:xx:xx:xx:xx (local address=xx:xx:xx:xx:xx:xx)
-[  706.335759] wlxb06b11673af2: send auth to xx:xx:xx:xx:xx:xx (try 1/3)
-[  706.338224] wlxb06b11673af2: authenticated
-[  706.341785] wlxb06b11673af2: associate with xx:xx:xx:xx:xx:xx (try 1/3)
-[  706.346504] wlxb06b11673af2: RX AssocResp from xx:xx:xx:xx:xx:xx (capab=0x431 status=0 aid=3)
-[  706.359261] wlxb06b11673af2: associated
-Error: Connection activation failed: 802.1X supplicant took too long to authenticate
-Hint: use 'journalctl -xe NM_CONNECTION=d63b4dd9-ea30-4b55-8931-55d12c8267f5 + NM_DEVICE=ap0' to get more details.
+   [  705.971837] wlxb06b11673af2: deauthenticating from xx:xx:xx:xx:xx:xx by local choice (Reason: 3=DEAUTH_LEAVING)
+   [  706.325902] wlxb06b11673af2: authenticate with xx:xx:xx:xx:xx:xx (local address=xx:xx:xx:xx:xx:xx)
+   [  706.335759] wlxb06b11673af2: send auth to xx:xx:xx:xx:xx:xx (try 1/3)
+   [  706.338224] wlxb06b11673af2: authenticated
+   [  706.341785] wlxb06b11673af2: associate with xx:xx:xx:xx:xx:xx (try 1/3)
+   [  706.346504] wlxb06b11673af2: RX AssocResp from xx:xx:xx:xx:xx:xx (capab=0x431 status=0 aid=3)
+   [  706.359261] wlxb06b11673af2: associated
+   Error: Connection activation failed: 802.1X supplicant took too long to authenticate
+   Hint: use 'journalctl -xe NM_CONNECTION=d63b4dd9-ea30-4b55-8931-55d12c8267f5 + NM_DEVICE=ap0' to get more details.
    ```
-  Let's see the journal:
 
-  ```console
-Jun 25 18:33:28 flipperone-a9438e-build-1322-router-target NetworkManager[542]: <warn>  [1782412408.0506] device (ap0): Activation: (wifi) Hotspot network creation took too long, failing activation
-Jun 25 18:33:28 flipperone-a9438e-build-1322-router-target NetworkManager[542]: <info>  [1782412408.0507] device (ap0): state change: config -> failed (reason 'supplicant-timeout', managed-type: 'full')
-  ```
+   Let's see the journal:
+
+   ```console
+   Jun 25 18:33:28 flipperone-a9438e-build-1322-router-target NetworkManager[542]: <warn>  [1782412408.0506] device (ap0): Activation: (wifi) Hotspot network creation took too long, failing activation
+   Jun 25 18:33:28 flipperone-a9438e-build-1322-router-target NetworkManager[542]: <info>  [1782412408.0507] device (ap0): state change: config -> failed (reason 'supplicant-timeout', managed-type: 'full')
+   ```
 
 ### Test log: Register readout (2026-06-25)
 
