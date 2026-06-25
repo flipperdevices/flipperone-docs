@@ -17,7 +17,7 @@
 
 ## Summary
 
-This RFC proposes a concrete storage architecture for Flipper OS that satisfies all three of its stated goals simultaneously: **atomic A/B updates with rollback**, **cloneable/resettable OS profiles**, and a familiar **Debian (apt-based) userland**. System state is split into three classes — an immutable A/B base (read-only + dm-verity), a per-profile writable overlay (Btrfs subvolume), and a persistent user-data partition that survives both profile resets and base updates. A booted profile is an OverlayFS composition of these layers. The base is kept minimal and stateless so that profile configuration lives exclusively in drop-in directories, and a build-time lint mechanically forbids profiles from shadowing base files — eliminating configuration drift as a class. Atomic updates use RAUC with a Linux health-check and an MCU-watchdog backstop. Profile selection happens at early boot, driven by the MCU, and is handed to U-Boot over the existing Interconnect with a small CRC-checked message.
+This RFC proposes a concrete storage architecture for Flipper OS that satisfies all three of its stated goals simultaneously: **atomic A/B updates with rollback**, **cloneable/resettable OS profiles**, and a familiar **Debian (apt-based) userland**. System state is split into three classes — an immutable A/B base (read-only, integrity-protected — dm-verity by default), a per-profile writable overlay (Btrfs subvolume), and a persistent user-data partition that survives both profile resets and base updates. A booted profile is an OverlayFS composition of these layers. The base is kept minimal and stateless so that profile configuration lives exclusively in drop-in directories, and a build-time lint mechanically forbids profiles from shadowing base files — eliminating configuration drift as a class. Atomic updates use RAUC with a Linux health-check and an MCU-watchdog backstop. Profile selection happens at early boot, driven by the MCU, and is handed to U-Boot over the existing Interconnect with a small CRC-checked message.
 
 ---
 
@@ -86,14 +86,27 @@ profiles   Btrfs pool: one subvol (upperdir) per profile  flexible
 data       persistent user data (LUKS optional)         remainder
 ```
 
-- The dm-verity hash tree SHOULD be appended to the base image (standard RAUC + verity pattern); no separate hash partitions are required.
+- When dm-verity is the chosen integrity mechanism (the default — see *Filesystem choices*), its hash tree SHOULD be appended to the base image (standard RAUC + verity pattern); no separate hash partitions are required.
 - Slot status and boot counters SHOULD live in the redundant U-Boot environment.
 - `boot_a/boot_b` are A/B so bootloader + kernel update atomically alongside the rootfs.
 
 ### Filesystem choices
 
 - The profiles pool and `/data` SHOULD be **Btrfs**: reflink yields instant, cheap profile `clone`; subvolumes give a clean per-profile boundary; snapshots make `reset` trivial. `clone` = reflink-copy the subvol; `reset` = drop and recreate from the pristine snapshot. Both are O(metadata).
-- The base A/B slots SHOULD remain **outside Btrfs** (plain squashfs + dm-verity) to keep early boot simple and verity-friendly.
+- The base A/B slots SHOULD remain **outside Btrfs** (plain squashfs + dm-verity) *when whole-device dm-verity is required*: classic dm-verity needs a static, read-only, hash-tree-covered block image, which a writable Btrfs base cannot provide. This couples the base filesystem to the integrity model — see *Base integrity (a pluggable axis)* below and **Alternative D** (all-Btrfs base).
+
+#### Base integrity (a pluggable axis)
+
+The base filesystem and its integrity mechanism are **one coupled decision**, and the right answer depends on the threat model for Flipper OS's target audience — a tool whose owner *deliberately* runs untrusted code with physical access. This RFC therefore treats base integrity as a **pluggable axis** rather than a fixed mandate:
+
+| Integrity mechanism | Base filesystem | Guarantee | Cost / tradeoff |
+|---|---|---|---|
+| **dm-verity** (default proposal) | squashfs (static block image) | Whole-device, continuous *at-rest* tamper-evidence; hash-pinned rollback target | One base image per slot; no cross-base block dedup |
+| **fs-verity** | Btrfs (read-only/sealed snapshot) | Per-file authenticity on read-only files | Does not cover the whole tree; less battle-tested in this role |
+| **Btrfs checksums only** | Btrfs | Corruption detection (bit-rot), **not** authenticity/tamper-evidence | Cheapest; no anti-persistence guarantee |
+| **None + signed update** | Btrfs | Authenticity verified *at update time* only (RAUC bundle signature); no continuous at-rest guarantee | Maximum flexibility; trusts the running image |
+
+The proposal defaults to **dm-verity on a squashfs base** because it gives the strongest at-rest anti-persistence story at low cost. But that is the property the base filesystem must *serve*, not an end in itself: choosing fs-verity or signed-update-only is what unlocks **Alternative D** (an all-Btrfs base with native multi-base dedup).
 
 ### Atomic updates and rollback
 
@@ -173,7 +186,7 @@ IDLE → MENU → SELECTED (latched, exposed to U-Boot) → BOOTING
 
 ### Security boundary
 
-- **Base** — signed (RAUC bundle signature) + dm-verity ⇒ integrity guaranteed and tamper-evident.
+- **Base** — the RAUC bundle signature verifies authenticity *at update time*; the default dm-verity layer adds *continuous at-rest* tamper-evidence on the running image. These are independent: signing alone does not guarantee the booted image is unmodified at rest — that continuous guarantee is what the *Base integrity* axis provides (dm-verity by default; see *Filesystem choices*).
 - **Overlay** — writable, **not** verity-protected, explicitly user-trusted. Modifying a profile breaks that profile's userspace integrity guarantee **by design**.
 - **Data** — optional LUKS at rest on `/data`; key handling MAY later move into OP-TEE, or use a passphrase entered via FlipCTL.
 - **Boot menu** — the MCU is on-device and trusted; the I²C message carries a CRC for integrity only.
@@ -191,11 +204,12 @@ IDLE → MENU → SELECTED (latched, exposed to U-Boot) → BOOTING
 
 ## Rationale and alternatives
 
-Three base-layer models were considered:
+Four base-layer models were considered:
 
 - **A — Overlay-only with a minimal, stateless base (proposed).** Profile-specific packages and config live in the overlay; the base stays small and rarely changes. Minimal conflict surface; cheap clone/reset; keeps apt familiarity. *Chosen.*
 - **B — One full image per profile.** No overlay/base coupling, but storage scales as N × image × 2 (for A/B) and the cheap clone/reset semantics are lost. Not viable on embedded eMMC. *Rejected.*
 - **C — Content-addressed base (ostree).** Solves atomicity and dedup elegantly and is production-proven, but Debian's deb-ostree tooling is far less mature than the RPM side, and it diverges from the apt-based direction. Highest robustness, highest cost. *Deferred — see Future possibilities.*
+- **D — All-Btrfs base (multiple reflink-sharing base subvolumes).** Raised in review of this RFC (PR #361). The base lives on Btrfs alongside the profiles, as one or more base subvolumes that share extents via native CoW. This lets several bases coexist space-efficiently with instantaneous cloning/branching, and answers Option B's storage-scaling objection *without* abandoning apt or waiting on deb-ostree (Option C). Its cost is integrity: a writable Btrfs base is incompatible with whole-device dm-verity, so it requires moving along the *Base integrity* axis (fs-verity, Btrfs checksums, or signed-update-only). Note that the proposed profile layer already uses exactly this mechanism (Btrfs subvolumes + CoW snapshots); Alternative D extends it to the base. *Open — pending a side-by-side of the verity guarantee vs. the dedup/coexistence gains; see Unresolved questions.*
 
 The proposal deliberately borrows ostree's *mental model* (immutable base, deployments, atomic switch) while implementing it with A/B image slots, so a later migration to Option C remains open if Debian-ostree tooling matures.
 
@@ -218,6 +232,7 @@ A "do nothing special" alternative — plain mutable Debian plus `etckeeper`/sna
 1. **Monolithic-config drift.** The drop-in discipline + lint covers the common case; the residual is applications that only read a single config file. Is a 3-way merge acceptable for those, or should they be hard-required to use drop-in-capable configuration?
 2. **Runtime layering vs. atomicity.** How visible should the non-atomic "runtime scratch" boundary be, and should runtime-installed packages be promotable into a blessed (reproducible) profile?
 3. **OverlayFS workload validation.** Which profile workloads stress OverlayFS edge cases (e.g. databases, heavy rename activity) enough to warrant a per-profile escape to a plain subvolume root instead of an overlay?
+4. **Base filesystem & integrity (squashfs+dm-verity vs. all-Btrfs).** Is whole-device dm-verity vital for the target audience, or is per-file fs-verity / signed-update-only sufficient? The answer selects between the squashfs base (Option A, strongest at-rest integrity) and an all-Btrfs base (Alternative D, native multi-base dedup + coexistence). The two are mutually exclusive; quantifying Alternative D's storage/UX gain against the integrity loss — ideally on real numbers from the Btrfs-base experiments — is the open question.
 
 ---
 
