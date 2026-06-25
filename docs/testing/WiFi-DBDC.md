@@ -12,7 +12,7 @@ Tests for **DBDC** — Dual-Band Dual-Concurrent operation: running two interfac
 3. Measure throughput on each band with `iperf3`.
 4. Test combinations: AP + STA, AP + AP, STA + STA across band pairs.
 
-## Test log: DBDC mode (build `1322`, 2026-06-25)
+## Test log: DBDC mode (build 1322, 2026-06-25)
 
 Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` are present in the system.
 
