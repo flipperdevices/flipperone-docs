@@ -246,3 +246,36 @@ Hint: use 'journalctl -xe NM_CONNECTION=d63b4dd9-ea30-4b55-8931-55d12c8267f5 + N
 Jun 25 18:33:28 flipperone-a9438e-build-1322-router-target NetworkManager[542]: <warn>  [1782412408.0506] device (ap0): Activation: (wifi) Hotspot network creation took too long, failing activation
 Jun 25 18:33:28 flipperone-a9438e-build-1322-router-target NetworkManager[542]: <info>  [1782412408.0507] device (ap0): state change: config -> failed (reason 'supplicant-timeout', managed-type: 'full')
   ```
+
+### Register readout test
+
+As of 25 June 2026 and Kernel 7.1.1, `mt7921` driver does not support DBDC.
+
+Support for DBDC [has been added to mt7915](https://github.com/openwrt/mt76/commit/b436da4d9d925f6ff80310841d1fbeb25c93b667) and mt7925 (router SoCs) driver [by OpenWrt project](https://github.com/openwrt/mt76/issues/315), but not to other models.
+
+The check for DBDC support from mt7915 is performed as follows:
+
+```c
+dev->dbdc_support = !!(mt7915_l1_rr(dev, MT_HW_BOUND) & BIT(5));
+```
+
+where `MT_HW_BOUND = 0x70010020`.
+
+Attempt to read this value on FENVI AX1800 and EDUP AX3000 7921u modules results in follows:
+
+```sh
+/sys/kernel/debug/ieee80211/phy4/mt76# echo 0x70010020 > regidx 
+/sys/kernel/debug/ieee80211/phy4/mt76# cat regval
+
+0x00000020
+```
+
+Which means that BIT(5) == 1 and DBDC is **supported in hardware** on 7921u.
+
+### Windows drivers
+
+There's an evidence from [MT7921 QA-Tool User Guideline PDF](https://www.mouser.com/datasheet/2/1074/User_Manual_5321522-3304019.pdf) that Windows drivers support DBDC, and the hardware supports it in the following configuration:
+
+>MT7921 support only below dual-band dual-concurrent (DBDC) mode operation:  
+>* (Tab TX/RX) TX0/RX0 transceiver is operating in 5GHz (A-band)  
+>* (Tab TX/RX Band 1) TX1/RX1 transceiver is operation in 2.4GHz (G-band)
