@@ -283,6 +283,35 @@ This is how an inline image :inlineImage[]{src="https://api.archbee.com/api/opti
 
 ***
 
+For Flipper One controls use the following icons:
+
+* Icon :inlineImage[]{src="/files/icons/ptt-button-light.png"} for PTT light button (`ptt-button-light.png`)
+* Icon :inlineImage[]{src="/files/icons/ptt-button-orange.png"} for PTT orange button (`ptt-button-orange.png`)
+* Icon :inlineImage[]{src="/files/icons/touchpad.png"} for touchpad (`touchpad.png`)
+* Icon :inlineImage[]{src="/files/icons/touchpad-left-right.png"} for touchpad left-right movement (`touchpad-left-right.png`)
+* Icon :inlineImage[]{src="/files/icons/touchpad-up-down.png"} for touchpad up-down movement (`touchpad-up-down.png`)
+* Icon :inlineImage[]{src="/files/icons/touchpad-four-way-movement.png"} for touchpad four-way movement (`touchpad-four-way-movement.png`)
+* Icon :inlineImage[]{src="/files/icons/esc-button.png"} for Esc button (`esc-button.png`)
+* Icon :inlineImage[]{src="/files/icons/view-button.png"} for View button (`rview-button.png`)
+* Icon :inlineImage[]{src="/files/icons/power-button-led-off.png"} for Power button with LED off (`power-button-led-off.png`)
+* Icon :inlineImage[]{src="/files/icons/power-button-led-green.png"} for Power button with green LED (`power-button-led-green.png`)
+* Icon :inlineImage[]{src="/files/icons/power-button-led-yellow.png"} for Power button with yellow LED (`power-button-led-yellow.png`)
+* Icon :inlineImage[]{src="/files/icons/edit-button.png"} for Edit button (`edit-button.png`)
+* Icon :inlineImage[]{src="/files/icons/run-button.png"} for Run button (`run-button.png`)
+* Icon :inlineImage[]{src="/files/icons/app-switcher-button.png"} for App switcher button (`app-switcher-button.png`)
+* Icon :inlineImage[]{src="/files/icons/back-button-light.png"} for Back light button (`back-button-light.png`)
+* Icon :inlineImage[]{src="/files/icons/back-button-orange.png"} for Back orange button (`back-button-orange.png`)
+* Icon :inlineImage[]{src="/files/icons/dpad-ok-button.png"} for Ok button on the D-pad (`dpad-ok-button.png`)
+* Icon :inlineImage[]{src="/files/icons/dpad-down-button.png"} for Down button on the D-pad (`dpad-down-button.png`)
+* Icon :inlineImage[]{src="/files/icons/dpad-left-button.png"} for Left button on the D-pad (`dpad-left-button.png`)
+* Icon :inlineImage[]{src="/files/icons/dpad-up-button.png"} for Up button on the D-pad (`dpad-up-button.png`)
+* Icon :inlineImage[]{src="/files/icons/dpad-right-button.png"} for Right button on the D-pad (`dpad-right-button.png`)
+
+* Icon :inlineImage[]{src="/files/icons/dpad-left-right-button.png"} for Right or Left buttons on the D-pad (`dpad-left-right-button.png`)
+* Icon :inlineImage[]{src="/files/icons/dpad-up-down-button.png"} for Up or Down buttons on the D-pad (`dpad-up-down-button.png`)
+
+***
+
 ## Videos
 
 Two methods to embed video are supported.
