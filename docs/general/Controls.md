@@ -23,7 +23,7 @@ This page describes the controls of Flipper One — the buttons, touchpad, and D
   <tr>
     <td align="center">
       <p><strong>PTT Button</strong></p>
-      <p><img src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/xsFRd7Ahws8dSdVisqNsB-20260122-124532.svg" alt=""></p>
+      <p><img src="/files/icons/controls/ptt-button.svg" alt=""></p>
     </td>
     <td align="left">
       <p>Push-to-talk button to activate microphone in walkie-talkie mode, for voice control and more.</p>
@@ -34,7 +34,7 @@ This page describes the controls of Flipper One — the buttons, touchpad, and D
   <tr>
     <td align="center">
       <p><strong>Touchpad</strong></p>
-      <p><img src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/JP__awtzIDsLFT4Nb-nco-20260122-124532.svg" alt=""></p>
+      <p><img src="/files/icons/controls/touchpad.svg" alt=""></p>
     </td>
     <td align="left">
       <p>Touchpad for on-screen keyboard and menu navigation, content scrolling. Support horizontal and vertical scroll.</p>
@@ -45,7 +45,7 @@ This page describes the controls of Flipper One — the buttons, touchpad, and D
   <tr>
     <td align="center">
       <p><strong>ESC button</strong></p>
-      <p><img src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/6Xjs07cOI-ba4BxRR7EO0-20260122-124532.svg" alt=""></p>
+      <p><img src="/files/icons/controls/esc-button.svg" alt=""></p>
     </td>
     <td align="left">
       <p>Adaptive App-Defined Button. Current action is context dependent and displayed on screen above the button.</p>
@@ -56,7 +56,7 @@ This page describes the controls of Flipper One — the buttons, touchpad, and D
   <tr>
     <td align="center" colSpan="1" rowSpan="1">
       <p><strong>Edit button</strong></p>
-      <p><img src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/rDgkRg_dF9IFOgihFVzjh-20260122-124532.svg" alt=""></p>
+      <p><img src="/files/icons/controls/edit-button.svg" alt=""></p>
     </td>
     <td align="left" colSpan="1" rowSpan="1">
       <p>Adaptive App-Defined Button. Current action is context dependent and displayed on screen above the button.</p>
@@ -67,7 +67,7 @@ This page describes the controls of Flipper One — the buttons, touchpad, and D
   <tr>
     <td align="center" colSpan="1" rowSpan="1">
       <p><strong>Power button</strong></p>
-      <p><img src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/Wajayyyz7n7hH5qMcgFR3-20260122-124532.svg" alt=""></p>
+      <p><img src="/files/icons/controls/power-button.svg" alt=""></p>
     </td>
     <td align="left" colSpan="1" rowSpan="1">
       <p><code>Long press for 1 second:</code> Device power mode control: turn ON/OFF, reboot.</p>
@@ -78,7 +78,7 @@ This page describes the controls of Flipper One — the buttons, touchpad, and D
   <tr>
     <td align="center" colSpan="1" rowSpan="1">
       <p><strong>View button</strong></p>
-      <p><img src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/Z8AnX2Jf40l1Zop7HwdWE-20260122-124532.svg" alt=""></p>
+      <p><img src="/files/icons/controls/view-button.svg" alt=""></p>
     </td>
     <td align="left" colSpan="1" rowSpan="1">
       <p>Adaptive App-Defined Button. Current action is context dependent and displayed on screen above the button.</p>
@@ -89,7 +89,7 @@ This page describes the controls of Flipper One — the buttons, touchpad, and D
   <tr>
     <td align="center" colSpan="1" rowSpan="1">
       <p><strong>Run button</strong></p>
-      <p><img src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/7V284sTkyMo-Kh8iEm5FU-20260122-124532.svg" alt=""></p>
+      <p><img src="/files/icons/controls/run-button.svg" alt=""></p>
     </td>
     <td align="left" colSpan="1" rowSpan="1">
       <p>Adaptive App-Defined Button. Current action is context dependent and displayed on screen above the button.</p>
@@ -100,7 +100,7 @@ This page describes the controls of Flipper One — the buttons, touchpad, and D
   <tr>
     <td align="center" colSpan="1" rowSpan="1">
       <p><strong>App Switcher</strong></p>
-      <p><img src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/QSbhOJEmg3J-QEZEoJ9Hf-20260122-124532.svg" alt=""></p>
+      <p><img src="/files/icons/controls/app-switcher.svg" alt=""></p>
     </td>
     <td align="left" colSpan="1" rowSpan="1">
       <p><strong>Works only on Linux level:</strong></p>
@@ -111,7 +111,7 @@ This page describes the controls of Flipper One — the buttons, touchpad, and D
   <tr>
     <td align="center" colSpan="1" rowSpan="1">
       <p><strong>Back button</strong></p>
-      <p><img src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/isUzdRsHTCEmLK39viMeA-20260122-124532.svg" alt=""></p>
+      <p><img src="/files/icons/controls/back-button.svg" alt=""></p>
     </td>
     <td align="left" colSpan="1" rowSpan="1">
       <p>Back, exit in menus and apps.</p>
@@ -120,7 +120,7 @@ This page describes the controls of Flipper One — the buttons, touchpad, and D
   <tr>
     <td align="center" colSpan="1" rowSpan="1">
       <p><strong>D-pad</strong></p>
-      <p><img src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/8ws4ll4i12rS5doBU3TeK-20260122-124532.svg" alt=""></p>
+      <p><img src="/files/icons/controls/dpad.svg" alt=""></p>
     </td>
     <td align="left" colSpan="1" rowSpan="1">
       <p>Main navigation D-pad with 5-buttons: UP, DOWN, LEFT, RIGHT and OK in center.</p>
