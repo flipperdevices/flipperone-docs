@@ -15,6 +15,20 @@ Built-in Wi-Fi based on the MediaTek MT7921AUN chip — a Wi-Fi 6E (802.11ax) an
 - **[DBDC](./WiFi-DBDC.md)** — dual-band dual-concurrent operation.
 - **[Monitor mode](./WiFi-Monitor.md)** — promiscuous capture and PMKID sniffing.
 
+## Concurrency support (summary)
+
+The MT7921AUN is a single-radio part, so simultaneous modes share one radio. What runs at the same time:
+
+| Configuration | Status | Notes |
+|---|:---:|---|
+| Single AP **or** STA (2.4 / 5 / 6 GHz) | ✅ | mainline `mt7921u` driver |
+| AP + STA, **same** channel (SCC) | ✅ | mainline driver — see [AP+STA SCC](./WiFi-AP-STA-SCC.md) |
+| AP + STA, **different** bands (DBDC) | ✅ | needs a one-line `mt76` interface-combination patch — see [DBDC](./WiFi-DBDC.md) |
+| AP + AP (two hotspots, different bands) | ❌ | only the first-started AP beacons — no client to drive the channel-switch arbiter |
+| STA + 2 APs (3rd BSS context) | ❌ | the third BSS gets no channel/airtime — hardware ceiling of 2 concurrent BSS contexts |
+
+The hardware reports DBDC-capable (`MT_HW_BOUND` BIT(5) = 1) and the firmware accepts a concurrent AP; the practical STA-uplink + AP-hotspot on two bands is unlocked by the driver patch documented on the [DBDC](./WiFi-DBDC.md) page. 6 GHz is available (Wi-Fi 6E; under ETSI only the low sub-band 5945–6425 MHz, indoor).
+
 ## MT7921AUN chipset info
 
 :::::ExpandableHeading

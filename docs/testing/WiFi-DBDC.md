@@ -306,3 +306,75 @@ There's an evidence from [MT7921 QA-Tool User Guideline PDF](https://www.mouser.
 >MT7921 support only below dual-band dual-concurrent (DBDC) mode operation:  
 >* (Tab TX/RX) TX0/RX0 transceiver is operating in 5GHz (A-band)  
 >* (Tab TX/RX Band 1) TX1/RX1 transceiver is operation in 2.4GHz (G-band)
+
+## STA + AP on two bands with a one-line driver patch
+
+The "driver does not support DBDC" result above refers to the mt7915-style dual-chain `dev->dbdc_support` flag, which mainline mt76 never wires up for `mt7921`. The practical goal (a station uplink on one band and an access point on another) is reachable through a different path: cfg80211's multi-channel concurrency (MCC) / channel-context mechanism. What blocked it was the driver's advertised interface-combination table, not the hardware (BIT(5) above) and not the firmware.
+
+### Root cause
+
+Mainline mt76 lists only `P2P_GO`, not a full AP, on the second channel of its multi-channel interface combination (`if_limits_chanctx_mcc` in `mt792x_core.c`). cfg80211 therefore rejects `STA + AP` on two channels before the firmware is ever asked. This is why the NetworkManager attempt above fails with "Hotspot network creation took too long" / `supplicant-timeout`: the `ap0` vif can never be granted a second channel context, so the hotspot never starts.
+
+### The fix
+
+Add `BIT(NL80211_IFTYPE_AP)` next to `P2P_GO` in the MCC combo:
+
+```diff
+ static const struct ieee80211_iface_limit if_limits_chanctx_mcc[] = {
+ 	{ .max = 2, .types = BIT(NL80211_IFTYPE_STATION) | BIT(NL80211_IFTYPE_P2P_CLIENT) },
+ 	{
+ 		.max = 1,
+-		.types = BIT(NL80211_IFTYPE_P2P_GO)
++		.types = BIT(NL80211_IFTYPE_P2P_GO) |
++			 BIT(NL80211_IFTYPE_AP)
+ 	},
+ 	{ .max = 1, .types = BIT(NL80211_IFTYPE_P2P_DEVICE) },
+ };
+```
+
+After patching, `iw phy` advertises the AP in the two-channel combo:
+
+```console
+* #{ managed, P2P-client } <= 2, #{ AP, P2P-GO } <= 1, #{ P2P-device } <= 1,
+  total <= 3, #channels <= 2
+```
+
+The firmware then accepts the concurrent AP with no `MCU ... timeout`, confirming that the closed firmware already allows it and only the driver's advertised combo was the gate.
+
+### Verified end-to-end
+
+Tested on an ALFA AWUS036AXML (MT7921AU, USB `0e8d:7961`) running the same firmware (`____010000-20260224110949`) as the Flipper One's WXT2AM2101 module, so the firmware-determined result transfers directly.
+
+- STA associated to an upstream AP on one band while `ap0` ran a hotspot on the other band, verified in both cross-band orders (STA-2.4 / AP-5 GHz and STA-5 / AP-2.4 GHz).
+- Real clients (Android, iPhone, MacBook) associated to the AP, completed DHCP, and passed traffic while the STA simultaneously carried an uplink on the other band. Both interfaces' byte counters advanced in the same time intervals.
+
+Throughput (`iperf3`):
+
+| Mode | Link | Throughput |
+|------|------|-----------|
+| STA 2.4 GHz | HT20 | ~74 ↑ / 60 ↓ Mbit/s |
+| STA 5 GHz | VHT80 | ~250 Mbit/s |
+| AP 2.4 GHz | ch1 | ~67 / 59 Mbit/s |
+| AP 5 GHz | ch36, VHT80 | ~352 ↓ / 112 ↑ Mbit/s |
+| STA 2.4 + AP 5 GHz (concurrent) | DBDC | AP ~84 ↑ / 319 ↓ Mbit/s under simultaneous STA load |
+
+This is multi-channel concurrency on a single radio: under heavy AP load the STA yields airtime (its throughput drops but it stays associated). That is the expected behavior of one radio time-slicing two channels. It is usable for a travel router (uplink + hotspot), but it is not the independent dual-chain (TX0/TX1) operation the Windows QA tool describes.
+
+### Limits
+
+Two configurations do not work:
+
+- Two simultaneous APs on two different bands (AP + AP). The radio brings up two AP BSSes (both reach `AP-ENABLED`), but only the first-started one beacons; the second stays silent. Verified with distinct fixed BSSIDs and cache-flushed scans from a second radio: two APs on the same channel both beacon (one channel context, multi-SSID), but on different channels only the first does. Two AP channels need a STA or P2P-client to drive the channel-switch arbiter; two passive masters (AP + AP, and also AP + P2P-GO and GO + GO, tested) don't trigger it. The ceiling is one beaconing AP whenever two channels are in use; the other context must be the client that drives the time-share.
+- A third BSS context, for example STA + 2 APs. The third interface comes up in `iw` but is never granted a channel and stays off air (0 beacons in cache-flushed scans). The hardware ceiling is two concurrent BSS contexts. An earlier `EBUSY` reported here was a wedged-device / `bssid=` config artifact; on a clean driver the third context simply gets no airtime rather than erroring.
+
+### Firmware root cause
+
+Disassembling the WM firmware (Tensilica Xtensa; `capstone 6` `CS_ARCH_XTENSA` decodes it despite the custom-TIE opcodes that make Ghidra and objdump fail) locates the mechanism in the firmware's own data model rather than the driver:
+
+- The MCC time-share scheduler defines quota and absence roles for STA, P2P-GO and P2P-GC (`MccStaQuotaTimeInUs`, `MccP2pGoQuotaTimeInUs`, `CnmGOAbsenceMarginInUs`) but no AP/SAP role, so a second infrastructure-AP context is never granted a concurrent channel. This is why STA + AP works (the STA drives the absence schedule, the AP rides its presence windows) while AP + AP does not.
+- The `DBDC band :%d not support in MT7961` string is an ID-based DBGLOG (rendered to text off-chip by the host log tool) with no pointers found anywhere in the image, so it appears to be a diagnostic print rather than a gate that can be flipped. The MT7961 "MOBILE" SKU shares the codebase with the larger MT7972 but runs a reduced profile; `RAM_BAND_NUM = 1` (single RF).
+- The blob is plaintext, unsigned and CRC-only (trailer = `zlib.crc32(fw[:-4])`, recomputable; loaded via `FW_SCATTER` + `FW_START` with no signature check), so it is patchable in principle, but there is no single byte to flip for dual-AP: the limit is a missing scheduler role plus single-RF hardware. True simultaneous dual-band dual-AP would need a two-radio (MT7915-class) part.
+
+The same MCC path extends to 6 GHz (Wi-Fi 6E; under ETSI/SK only the low 6 GHz sub-band `5945–6425 MHz` is enabled, indoor), so STA-5 GHz + AP-6 GHz should behave like the 2.4/5 GHz pairs. The capability is confirmed via `iw phy` (Band 4 channels enabled); a live 6 GHz STA+AP run has not yet been performed.
+
+For the full concurrency matrix, see the [Concurrency support summary](./WiFi.md) on the Wi-Fi page.
