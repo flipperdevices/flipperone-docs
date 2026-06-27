@@ -275,40 +275,41 @@ To **resize or align** an image, standard Markdown is not enough — use Archbee
 
 ### Inline images
 
-You can add inline images to the text using Archbee syntax:
+You can add inline images using `inlineImage`:
 
-`:inlineImage[]{src="/files/pics/icon_usb_c.png" alt caption="usb-c icon"}`
+```markdown
+:inlineImage[]{src="/files/icons/ptt-button-light.png"}
+```
 
-This is how an inline image :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/WAXNm79eG0f7AQuFyuqy6-20260420-163829.png" alt caption} looks in text.
+This is how an inline image :inlineImage[]{src="/files/icons/ptt-button-light.png"} appears in a paragraph.
 
 ***
 
-For Flipper One controls use the following icons:
+Use the following icons for Flipper One controls:
 
-* Icon :inlineImage[]{src="/files/icons/ptt-button-light.png"} for PTT light button (`ptt-button-light.png`)
-* Icon :inlineImage[]{src="/files/icons/ptt-button-orange.png"} for PTT orange button (`ptt-button-orange.png`)
-* Icon :inlineImage[]{src="/files/icons/touchpad.png"} for touchpad (`touchpad.png`)
-* Icon :inlineImage[]{src="/files/icons/touchpad-left-right.png"} for touchpad left-right movement (`touchpad-left-right.png`)
-* Icon :inlineImage[]{src="/files/icons/touchpad-up-down.png"} for touchpad up-down movement (`touchpad-up-down.png`)
-* Icon :inlineImage[]{src="/files/icons/touchpad-four-way-movement.png"} for touchpad four-way movement (`touchpad-four-way-movement.png`)
-* Icon :inlineImage[]{src="/files/icons/esc-button.png"} for Esc button (`esc-button.png`)
-* Icon :inlineImage[]{src="/files/icons/view-button.png"} for View button (`rview-button.png`)
-* Icon :inlineImage[]{src="/files/icons/power-button-led-off.png"} for Power button with LED off (`power-button-led-off.png`)
-* Icon :inlineImage[]{src="/files/icons/power-button-led-green.png"} for Power button with green LED (`power-button-led-green.png`)
-* Icon :inlineImage[]{src="/files/icons/power-button-led-yellow.png"} for Power button with yellow LED (`power-button-led-yellow.png`)
-* Icon :inlineImage[]{src="/files/icons/edit-button.png"} for Edit button (`edit-button.png`)
-* Icon :inlineImage[]{src="/files/icons/run-button.png"} for Run button (`run-button.png`)
-* Icon :inlineImage[]{src="/files/icons/app-switcher-button.png"} for App switcher button (`app-switcher-button.png`)
-* Icon :inlineImage[]{src="/files/icons/back-button-light.png"} for Back light button (`back-button-light.png`)
-* Icon :inlineImage[]{src="/files/icons/back-button-orange.png"} for Back orange button (`back-button-orange.png`)
-* Icon :inlineImage[]{src="/files/icons/dpad-ok-button.png"} for Ok button on the D-pad (`dpad-ok-button.png`)
-* Icon :inlineImage[]{src="/files/icons/dpad-down-button.png"} for Down button on the D-pad (`dpad-down-button.png`)
-* Icon :inlineImage[]{src="/files/icons/dpad-left-button.png"} for Left button on the D-pad (`dpad-left-button.png`)
-* Icon :inlineImage[]{src="/files/icons/dpad-up-button.png"} for Up button on the D-pad (`dpad-up-button.png`)
-* Icon :inlineImage[]{src="/files/icons/dpad-right-button.png"} for Right button on the D-pad (`dpad-right-button.png`)
-
-* Icon :inlineImage[]{src="/files/icons/dpad-left-right-button.png"} for Right or Left buttons on the D-pad (`dpad-left-right-button.png`)
-* Icon :inlineImage[]{src="/files/icons/dpad-up-down-button.png"} for Up or Down buttons on the D-pad (`dpad-up-down-button.png`)
+* :inlineImage[]{src="/files/icons/ptt-button-light.png"} PTT light button (`ptt-button-light.png`)
+* :inlineImage[]{src="/files/icons/ptt-button-orange.png"} PTT orange button (`ptt-button-orange.png`)
+* :inlineImage[]{src="/files/icons/touchpad.png"} Touchpad (`touchpad.png`)
+* :inlineImage[]{src="/files/icons/touchpad-left-right.png"} Touchpad left-right movement (`touchpad-left-right.png`)
+* :inlineImage[]{src="/files/icons/touchpad-up-down.png"} Touchpad up-down movement (`touchpad-up-down.png`)
+* :inlineImage[]{src="/files/icons/touchpad-four-way-movement.png"} Touchpad four-way movement (`touchpad-four-way-movement.png`)
+* :inlineImage[]{src="/files/icons/esc-button.png"} Esc button (`esc-button.png`)
+* :inlineImage[]{src="/files/icons/view-button.png"} View button (`rview-button.png`)
+* :inlineImage[]{src="/files/icons/power-button-led-off.png"} Power button with LED off (`power-button-led-off.png`)
+* :inlineImage[]{src="/files/icons/power-button-led-green.png"} Power button with green LED (`power-button-led-green.png`)
+* :inlineImage[]{src="/files/icons/power-button-led-yellow.png"} Power button with yellow LED (`power-button-led-yellow.png`)
+* :inlineImage[]{src="/files/icons/edit-button.png"} Edit button (`edit-button.png`)
+* :inlineImage[]{src="/files/icons/run-button.png"} Run button (`run-button.png`)
+* :inlineImage[]{src="/files/icons/app-switcher-button.png"} App switcher button (`app-switcher-button.png`)
+* :inlineImage[]{src="/files/icons/back-button-light.png"} Back light button (`back-button-light.png`)
+* :inlineImage[]{src="/files/icons/back-button-orange.png"} Back orange button (`back-button-orange.png`)
+* :inlineImage[]{src="/files/icons/dpad-ok-button.png"} Ok button on the D-pad (`dpad-ok-button.png`)
+* :inlineImage[]{src="/files/icons/dpad-down-button.png"} Down button on the D-pad (`dpad-down-button.png`)
+* :inlineImage[]{src="/files/icons/dpad-left-button.png"} Left button on the D-pad (`dpad-left-button.png`)
+* :inlineImage[]{src="/files/icons/dpad-up-button.png"} Up button on the D-pad (`dpad-up-button.png`)
+* :inlineImage[]{src="/files/icons/dpad-right-button.png"} Right button on the D-pad (`dpad-right-button.png`)
+* :inlineImage[]{src="/files/icons/dpad-left-right-button.png"} Right or Left buttons on the D-pad (`dpad-left-right-button.png`)
+* :inlineImage[]{src="/files/icons/dpad-up-down-button.png"} Up or Down buttons on the D-pad (`dpad-up-down-button.png`)
 
 ***
 
