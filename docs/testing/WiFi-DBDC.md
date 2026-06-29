@@ -276,6 +276,106 @@ Jun 25 18:33:28 flipperone-a9438e-build-1322-router-target NetworkManager[542]: 
 :::
 :::::
 
+## ❌ Test log: AP+AP dual-band
+
+> Tested and recorded using build `1393` at 26 Jun 2026.
+
+Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` are present in the system.
+
+:::::WorkflowBlock
+:::WorkflowBlockItem
+Set Regulatory Domain if not set:
+
+```bash
+sudo iw reg set HK
+```
+:::
+
+:::WorkflowBlockItem
+See your Wi-Fi card name and resolve its phy:
+
+```bash
+nmcli device status | grep wifi
+iw dev wlxb06b11673af2 info | awk '/wiphy/{print "phy"$2}'
+```
+
+In our case the card is `wlxb06b11673af2` on `phy0`:
+
+```console
+DEVICE                   TYPE      STATE                   CONNECTION 
+wlxb06b11673af2          wifi      disconnected            --     
+phy0
+```
+:::
+
+:::WorkflowBlockItem
+**Ask the radio which interface combinations it allows.** This settles the question before any AP is brought up:
+
+```bash
+iw phy phy0 info | sed -n '/valid interface combinations/,/HT Capability/p'
+```
+
+On this build:
+
+```console
+	valid interface combinations:
+	 * #{ managed, P2P-client } <= 2, #{ P2P-GO } <= 1, #{ P2P-device } <= 1,
+	   total <= 3, #channels <= 2
+	 * #{ managed, P2P-client } <= 2, #{ AP } <= 1, #{ P2P-device } <= 1,
+	   total <= 3, #channels <= 1
+	HT Capability overrides:
+```
+
+Reading it:
+
+- Only the **second** combination contains `AP`, and it caps **`#{ AP } <= 1`**. There is no combination anywhere that permits two `AP` interfaces.
+- That same AP combination is limited to **`#channels <= 1`** (so an AP can only coexist with a STA on the same channel — SCC — which is why the [AP+STA SCC guide](./WiFi-AP-STA-SCC.md) pins them together).
+- The **first** combination is the only one allowing two channels (**`#channels <= 2`**, i.e. DBDC), covering `managed`/`P2P-client` + `P2P-GO` only — never a normal `AP`.
+
+Conclusion: **two APs are impossible on any band combination** — the failure is at the AP-count limit, before channels are even considered.
+:::
+
+:::WorkflowBlockItem
+**Empirical confirmation (raw `iw`, no NetworkManager).**
+
+Clean slate — remove any leftover vifs:
+
+```bash
+for i in ap0 ap1; do sudo iw dev $i del 2>/dev/null; done
+```
+
+First AP vif — allowed (this is the one AP the radio permits):
+
+```bash
+sudo iw phy phy0 interface add ap0 type __ap addr 02:6b:11:67:3a:f2
+sudo ip link set ap0 up
+```
+
+No errors, `ap0` is up.
+
+Second AP vif — refused. The refusal lands either at `interface add` or at `ip link set ... up` depending on kernel; on this build it is at bring-up:
+
+```bash
+sudo iw phy phy0 interface add ap1 type __ap addr 06:6b:11:67:3a:f2
+sudo ip link set ap1 up
+```
+
+```console
+$ sudo ip link set ap1 up
+RTNETLINK answers: Device or resource busy
+```
+
+The `Device or resource busy` (`-EBUSY`) is the combination check rejecting a second `AP` interface — confirmed before any channel or band is assigned, exactly as the table above predicts.
+
+Tidy up:
+
+```bash
+for i in ap0 ap1; do sudo iw dev $i del 2>/dev/null; done
+```
+:::
+:::::
+
+**Conclusion:** `#{ AP } <= 1` — the radio exposes only one AP slot. Two APs on any band combination are impossible. Genuine dual-band AP requires a second radio or a DBDC AP-class chip (MT7915/7916/7986/7996) whose driver exposes an AP combination with `#channels <= 2`.
 
 ## Register readout
 
