@@ -27,6 +27,9 @@ Measure throughput on each interface with `iperf3`.
 ## ✅ Test log: AP+STA same-channel (SCC)
 
 > Tested and recorded using build `1350` at 23 Jun 2026.
+> 
+> - 5 GHz AP
+> - 5 GHz STA
 
 Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` are present in the system.
 

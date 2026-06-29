@@ -28,6 +28,10 @@ Test combinations: AP + STA, AP + AP, STA + STA across band pairs.
 ## ❌ Test log: AP+STA dual-band
 
 > Tested and recorded using build `1322` at 25 Jun 2026.
+> 
+> - 2.4 GHz AP
+> - 5 GHz STA
+
 
 Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` are present in the system.
 
@@ -279,6 +283,9 @@ Jun 25 18:33:28 flipperone-a9438e-build-1322-router-target NetworkManager[542]: 
 ## ❌ Test log: AP+AP dual-band
 
 > Tested and recorded using build `1393` at 26 Jun 2026.
+> 
+> - 2.4 GHz AP
+> - 5 GHz AP
 
 Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` are present in the system.
 
