@@ -12,8 +12,12 @@ Built-in Wi-Fi based on the MediaTek MT7921AUN chip — a Wi-Fi 6E (802.11ax) an
 - **[Access Point (AP)](./WiFi-Access-Point.md)** — single AP mode across all channels, bands, output power, and encryption modes.
 - **[Client (STA)](./WiFi-Client-STA.md)** — station mode, connecting to an access point.
 - **[AP+STA SCC](./WiFi-AP-STA-SCC.md)** — simultaneous client and hotspot on the same band and channel.
+  - [✅ Test log: AP+STA same-channel (SCC)](./WiFi-AP-STA-SCC.md#test-log-apsta-same-channel-scc)
 - **[DBDC](./WiFi-DBDC.md)** — dual-band dual-concurrent operation.
+  - [❌ Test log: AP+STA dual-band](./WiFi-DBDC.md#test-log-apsta-dual-band)
+  - [❌ Test log: AP+AP dual-band](./WiFi-DBDC.md#test-log-apap-dual-band)
 - **[Monitor mode](./WiFi-Monitor.md)** — promiscuous capture and PMKID sniffing.
+  - [✅ Test log: Monitor mode](./WiFi-Monitor.md#test-log-monitor-mode)
 
 ## MT7921AUN chipset info
 
