@@ -26,7 +26,9 @@ Decode the captured traffic.
 Perform an RSN PMKID sniff against a real access point.
 
 
-## Test log: Monitor mode (build 1350, 2026-06-23)
+## ✅ Test log: Monitor mode
+
+> Tested and recorded using build `1350` at 23 Jun 2026.
 
 Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` are present in the system.
 

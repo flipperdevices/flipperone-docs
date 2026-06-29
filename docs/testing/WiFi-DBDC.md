@@ -1,5 +1,5 @@
 ---
-title: DBDC
+title: Dual-Band Dual-Concurrent
 slug: testing/network/wifi/dbdc
 ---
 
@@ -25,7 +25,9 @@ Test combinations: AP + STA, AP + AP, STA + STA across band pairs.
 :::
 :::::
 
-## Test log: DBDC mode (build 1322, 2026-06-25)
+## ❌ Test log: AP+STA dual-band
+
+> Tested and recorded using build `1322` at 25 Jun 2026.
 
 Environment: Debian Trixie; made sure that `NetworkManager`, `iw` and `dnsmasq` are present in the system.
 
@@ -273,6 +275,7 @@ Jun 25 18:33:28 flipperone-a9438e-build-1322-router-target NetworkManager[542]: 
 ```
 :::
 :::::
+
 
 ## Register readout
 
