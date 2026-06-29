@@ -21,6 +21,19 @@ Built-in Wi-Fi based on the MediaTek MT7921AUN chip — a Wi-Fi 6E (802.11ax) an
 
 ## MT7921AUN chipset info
 
+###  Valid interface combinations
+
+```console
+$ iw phy phy0 info | sed -n '/valid interface combinations/,/HT Capability/p'
+
+valid interface combinations:
+ * #{ managed, P2P-client } <= 2, #{ P2P-GO } <= 1, #{ P2P-device } <= 1,
+   total <= 3, #channels <= 2
+ * #{ managed, P2P-client } <= 2, #{ AP } <= 1, #{ P2P-device } <= 1,
+   total <= 3, #channels <= 1
+HT Capability overrides:
+```
+
 :::::ExpandableHeading
 ### `ethtool -i wlxb06b11673ade`
 ```bash
