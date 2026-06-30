@@ -25,5 +25,11 @@ jobs:
       - name: Install Python dependencies
         run: python3 -m pip install -r requirements.txt
 
+      - name: Install mypy
+        run: python3 -m pip install mypy
+
+      - name: Run mypy
+        run: cd tools && mypy *.py
+
       - name: Test generator
         run: python3 tools/test_generate_open_tasks.py
