@@ -10,6 +10,8 @@ on:
     branches: [public-release]
     paths:
       - "tools/generate_open_tasks.py"
+      - "tools/templates/**"
+      - "requirements.txt"
       - ".github/workflows/update-open-tasks.yml"
 
 # Don't let a manual dispatch race with the cron run.
@@ -28,6 +30,9 @@ jobs:
       - uses: actions/checkout@v6
         with:
           ref: public-release
+
+      - name: Install Python dependencies
+        run: python3 -m pip install -r requirements.txt
 
       - name: Regenerate docs/Open-tasks.md
         env:

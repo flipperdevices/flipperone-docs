@@ -1,0 +1,29 @@
+name: Test Open Tasks generator
+
+on:
+  pull_request:
+    paths:
+      - "tools/**"
+      - "requirements.txt"
+      - ".github/workflows/test-open-tasks-generator.yml"
+  push:
+    branches:
+      - public-release
+    paths:
+      - "tools/**"
+      - "requirements.txt"
+      - ".github/workflows/test-open-tasks-generator.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install Python dependencies
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Test generator
+        run: python3 tools/test_generate_open_tasks.py

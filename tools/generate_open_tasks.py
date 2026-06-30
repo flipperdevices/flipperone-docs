@@ -9,7 +9,9 @@ HTML tables (with isTableHeaderOn / columnWidths), and `:::hint{type="info"}`
 blocks linking to the sub-project's task tracker, contribution guide,
 and GitHub repository.
 
-Requires: `gh` CLI (https://cli.github.com/) authenticated with GitHub.
+Requires:
+    - `gh` CLI (https://cli.github.com/) authenticated with GitHub.
+    - Jinja2 (`python3 -m pip install -r requirements.txt`).
 
 Usage:
     python3 tools/generate_open_tasks.py                      # write to stdout
@@ -26,6 +28,8 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from textwrap import shorten
+
+from jinja2 import Environment, FileSystemLoader
 
 # Sub-project definitions, in display order. Emojis match the sidebar
 # in archbee.json. Contribution-guide URLs use the `#how-to-contribute`
@@ -99,6 +103,8 @@ SECTIONS = [
 LABEL = "help wanted"
 ORG = "flipperdevices"
 SCRIPT_URL = "https://github.com/flipperdevices/flipperone-docs/blob/public-release/tools/generate_open_tasks.py"
+TEMPLATE_DIR = Path(__file__).resolve().parent / "templates"
+TEMPLATE_NAME = "open_tasks.md.j2"
 
 
 def fetch_issues() -> list[dict]:
@@ -185,115 +191,53 @@ def _content_equal_ignoring_updated_at(a: str, b: str) -> bool:
     return pattern.sub("updatedAt: -", a) == pattern.sub("updatedAt: -", b)
 
 
-def render_section(section: dict, issues: list[dict]) -> str:
-    lines: list[str] = []
-    lines.append(f"# {section['emoji']} {section['title']} tasks")
-    lines.append("")
-    lines.append(section["description"])
-    lines.append("")
-
-    if issues:
-        # Render an issue table if there is at least one "help wanted" issue
-
-        lines.append('<table isTableHeaderOn="true" columnWidths="536,125">')
-        lines.append("  <tr>")
-        lines.append('    <td align="left">')
-        lines.append("      <p><strong>Task</strong></p>")
-        lines.append("    </td>")
-        lines.append('    <td align="center">')
-        lines.append("      <p><strong>Comments</strong></p>")
-        lines.append("    </td>")
-        lines.append("  </tr>")
-
-        for issue in sorted(issues, key=lambda i: i["number"], reverse=True):
-            title = html_escape(issue["title"])
-            url = html_escape(issue["url"])
-            comments = issue["commentsCount"]
-            summary = make_summary(issue.get("body", ""))
-
-            lines.append("  <tr>")
-            lines.append('    <td align="left" colSpan="1" rowSpan="1">')
-            lines.append(f'      <p>🟢 <a href="{url}">{title}</a></p>')
-            lines.append(f"      <p>{html_escape(summary)}</p>")
-            lines.append("    </td>")
-            lines.append('    <td align="center" colSpan="1" rowSpan="1">')
-            lines.append(f"      <p>💬 {comments}</p>")
-            lines.append("    </td>")
-            lines.append("  </tr>")
-
-        lines.append("</table>")
-
-    else:
-        # If there are no open "help wanted" issues, give the reader general guidance
-        lines.append(f"The {section['title']} sub-project currently has no open `help wanted` tasks. ")
-
-
-    lines.append("")
-    lines.append(':::hint{type="info"}')
-    lines.append(f"Learn what's going on in the {section['title']} sub-project:")
-    lines.append("")
-    lines.append(f"- [Project board]({section['task_tracker']})")
-    lines.append(f"- [Contribution guide]({section['contribution_guide']})")
-    lines.append(f"- [GitHub repository]({section['github_repo']})")
-    lines.append(f"- [All open tasks]({section['github_repo']}/issues/)")
-    lines.append(":::")
-    return "\n".join(lines)
-
-
-def generate_page(issues: list[dict], existing_created_at: str | None = None) -> str:
+def _build_template_sections(issues: list[dict]) -> list[dict]:
+    """Prepare section and issue data for the Open Tasks Jinja template."""
     by_repo: dict[str, list[dict]] = {}
     for issue in issues:
         repo_full = issue["repository"]["nameWithOwner"]
         by_repo.setdefault(repo_full, []).append(issue)
 
+    sections: list[dict] = []
+    for section in SECTIONS:
+        rendered_issues = [
+            {
+                "number": issue["number"],
+                "title": html_escape(issue["title"]),
+                "url": html_escape(issue["url"]),
+                "summary": html_escape(make_summary(issue.get("body", ""))),
+                "comments_count": issue.get("commentsCount", 0),
+            }
+            for issue in by_repo.get(section["slug"], [])
+        ]
+        rendered_issues.sort(key=lambda i: i["number"], reverse=True)
+        sections.append({**section, "issues": rendered_issues})
+    return sections
+
+
+def _render_open_tasks_template(**context: object) -> str:
+    env = Environment(
+        loader=FileSystemLoader(TEMPLATE_DIR),
+        autoescape=False,
+        keep_trailing_newline=True,
+        lstrip_blocks=True,
+        trim_blocks=True,
+    )
+    return env.get_template(TEMPLATE_NAME).render(**context)
+
+
+def generate_page(issues: list[dict], existing_created_at: str | None = None) -> str:
     now = datetime.now(timezone.utc)
     created_at = existing_created_at or archbee_timestamp(now)
     updated_at = archbee_timestamp(now)
 
-    out: list[str] = []
-    out.append("---")
-    out.append("title: 🚧 Open tasks")
-    out.append("slug: open-tasks")
-    out.append("docTags: ")
-    out.append(f"createdAt: {created_at}")
-    out.append(f"updatedAt: {updated_at}")
-    out.append("---")
-    out.append("")
-    out.append(f"<!-- Auto-generated by tools/generate_open_tasks.py — do not edit manually. Source: {SCRIPT_URL} -->")
-    out.append("")
-    out.append(
-        "This page highlights open tasks across all Flipper One sub-project repositories that "
-        "need community help or feedback. Each task corresponds to an issue labeled `help wanted` "
-        "in its respective GitHub repository."
+    page = _render_open_tasks_template(
+        created_at=created_at,
+        updated_at=updated_at,
+        script_url=SCRIPT_URL,
+        sections=_build_template_sections(issues),
     )
-    out.append("")
-    out.append(
-        "All tasks on this page are organized by sub-project and include a title, a short "
-        "description, the number of comments, and a link to the task on GitHub. Each sub-project "
-        "is managed by a team that defines its own contribution process — please review these "
-        "guidelines before contributing."
-    )
-    out.append("")
-    out.append(':::hint{type="info"}')
-    out.append("Before you join an open task:")
-    out.append("")
-    out.append("- Read [How to start](./How-to-join.md#how-to-start).")
-    out.append("- Study the task description and existing comments.")
-    out.append("- When you comment on the task, add concrete evidence: screenshots, logs, measurements, code, design files, or links.")
-    out.append(":::")
-    out.append("")
-    out.append("***")
-    out.append("")
-
-    for section in SECTIONS:
-        repo_issues = by_repo.get(section["slug"], [])
-        if section != SECTIONS[0]:
-            out.append("***")
-            out.append("")
-        out.append(render_section(section, repo_issues))
-        out.append("")
-
-    return "\n".join(out).rstrip() + "\n"
+    return page.rstrip() + "\n"
 
 
 def main() -> int:

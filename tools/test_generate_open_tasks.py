@@ -44,7 +44,7 @@ class GenerateOpenTasksTest(unittest.TestCase):
         page = generate_page(issues, existing_created_at="Wed Apr 08 2026 17:29:37 GMT+0000 (Coordinated Universal Time)")
 
         self.assertIn("# 🔌 Hardware tasks", page)
-        self.assertIn("<p><em>No open <code>help wanted</code> tasks right now.</em></p>", page)
+        self.assertIn("The Hardware sub-project currently has no open `help wanted` tasks.", page)
         self.assertIn("# 🐧 Linux (CPU Software) tasks", page)
         self.assertIn("<p><strong>Comments</strong></p>", page)
 
