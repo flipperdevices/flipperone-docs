@@ -11,9 +11,9 @@ This is our regular Dev Log, where we share how Flipper One development is going
 [Subscribe to our newsletter](#subscribe-to-dev-log) so you don't miss development updates.
 :::
 
-‎ 
-
 All logs:
+
+- [#5: M.2 connector testing in R&D and production](./5.md), power-on and boot sequence design, and extended pixel fonts for FlipCTL / Flipper One UI. 
 
 - [#4: U-Boot on Flipper One screen](./4.md), Wi-Fi test results, and the first community project that allows anyone to run FlipCTL UI in a browser.
 
