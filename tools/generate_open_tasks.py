@@ -28,13 +28,14 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from textwrap import shorten
+from typing import TypedDict
 
 from jinja2 import Environment, FileSystemLoader
 
 # Sub-project definitions, in display order. Emojis match the sidebar
 # in archbee.json. Contribution-guide URLs use the `#how-to-contribute`
 # anchor on the corresponding "About …" page on docs.flipper.net/one.
-SECTIONS = [
+SECTIONS: list[_Section] = [
     {
         "slug": "flipperdevices/flipperone-hardware",
         "title": "Hardware",
@@ -107,7 +108,38 @@ TEMPLATE_DIR = Path(__file__).resolve().parent / "templates"
 TEMPLATE_NAME = "open_tasks.md.j2"
 
 
-def fetch_issues() -> list[dict]:
+class _Repository(TypedDict):
+    nameWithOwner: str
+
+class _Section(TypedDict):
+    slug: str
+    title: str
+    emoji: str
+    description: str
+    task_tracker: str
+    contribution_guide: str
+    github_repo: str
+
+class _Issue(TypedDict, total=False):
+    repository: _Repository
+    number: int
+    title: str
+    url: str
+    commentsCount: int
+    body: str
+
+class _DisplayIssue(TypedDict):
+    number: int
+    title: str
+    url: str
+    summary: str
+    commentsCount: int
+
+class _DisplaySection(_Section):
+    issues: list[_DisplayIssue]
+
+
+def fetch_issues() -> list[_Issue]:
     """Fetch all open `help wanted` issues across the org via the `gh` CLI."""
     result = subprocess.run(
         [
@@ -120,12 +152,12 @@ def fetch_issues() -> list[dict]:
         ],
         capture_output=True, text=True, check=True,
     )
-    return json.loads(result.stdout)
+    return json.loads(result.stdout)  # type: ignore[no-any-return]
 
 
-def load_issues_from_file(path: Path) -> list[dict]:
+def load_issues_from_file(path: Path) -> list[_Issue]:
     """For local testing without `gh`: load a JSON array of issues from a file."""
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(path.read_text(encoding="utf-8"))  # type: ignore[no-any-return]
 
 
 def _clean_summary_line(line: str) -> str:
@@ -191,22 +223,22 @@ def _content_equal_ignoring_updated_at(a: str, b: str) -> bool:
     return pattern.sub("updatedAt: -", a) == pattern.sub("updatedAt: -", b)
 
 
-def _build_template_sections(issues: list[dict]) -> list[dict]:
+def _build_template_sections(issues: list[_Issue]) -> list[_DisplaySection]:
     """Prepare section and issue data for the Open Tasks Jinja template."""
-    by_repo: dict[str, list[dict]] = {}
+    by_repo: dict[str, list[_Issue]] = {}
     for issue in issues:
         repo_full = issue["repository"]["nameWithOwner"]
         by_repo.setdefault(repo_full, []).append(issue)
 
-    sections: list[dict] = []
+    sections: list[_DisplaySection] = []
     for section in SECTIONS:
-        rendered_issues = [
+        rendered_issues: list[_DisplayIssue] = [
             {
                 "number": issue["number"],
                 "title": html_escape(issue["title"]),
                 "url": html_escape(issue["url"]),
                 "summary": html_escape(make_summary(issue.get("body", ""))),
-                "comments_count": issue.get("commentsCount", 0),
+                "commentsCount": issue.get("commentsCount", 0),
             }
             for issue in by_repo.get(section["slug"], [])
         ]
@@ -226,7 +258,7 @@ def _render_open_tasks_template(**context: object) -> str:
     return env.get_template(TEMPLATE_NAME).render(**context)
 
 
-def generate_page(issues: list[dict], existing_created_at: str | None = None) -> str:
+def generate_page(issues: list[_Issue], existing_created_at: str | None = None) -> str:
     now = datetime.now(timezone.utc)
     created_at = existing_created_at or archbee_timestamp(now)
     updated_at = archbee_timestamp(now)

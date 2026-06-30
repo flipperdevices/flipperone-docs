@@ -5,11 +5,11 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from generate_open_tasks import generate_page, make_summary
+from generate_open_tasks import generate_page, make_summary, _Issue
 
 
 class GenerateOpenTasksTest(unittest.TestCase):
-    def test_make_summary_strips_markdown_artifacts(self):
+    def test_make_summary_strips_markdown_artifacts(self) -> None:
         body = """
         <!-- template metadata -->
         # Context
@@ -24,11 +24,11 @@ class GenerateOpenTasksTest(unittest.TestCase):
             "DDR memory init code is a tiny program that runs during early boot.",
         )
 
-    def test_make_summary_uses_explicit_fallback(self):
+    def test_make_summary_uses_explicit_fallback(self) -> None:
         self.assertEqual(make_summary(""), "No description provided.")
 
-    def test_generate_page_renders_empty_sections_and_comments_header(self):
-        issues = [
+    def test_generate_page_renders_empty_sections_and_comments_header(self) -> None:
+        issues: list[_Issue] = [
             {
                 "repository": {
                     "nameWithOwner": "flipperdevices/flipperone-linux-build-scripts"
