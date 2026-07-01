@@ -25,10 +25,10 @@ This repository contains the source files from which the Developer Portal is gen
 Three GitHub Actions in [`.github/workflows/`](.github/workflows/) run automatically:
 
 - **Update Open-tasks page** runs every hour. It runs the [`tools/generate_open_tasks.py`](tools/generate_open_tasks.py) script, which collects all issues labeled `help wanted` across all Flipper One repositories and regenerates [`docs/Open-tasks.md`](docs/Open-tasks.md) — published as the [Open Tasks](https://docs.flipper.net/one/open-tasks) page. Don't edit that file by hand.
-- **Test Open Tasks generator** runs when the generator, templates, or dependencies change.
 - **Validate** runs on every pull request. It checks the documentation structure and scans for broken links before a PR is merged.
+- **Test Open Tasks generator** runs when the generator, templates, or dependencies change.
 
-To run the Open Tasks generator locally, install the Python dependencies from [`requirements.txt`](requirements.txt) first.
+  To run the Open Tasks generator locally, install the Python dependencies from [`requirements.txt`](requirements.txt) first.
 
 ## Publishing
 
