@@ -14,3 +14,7 @@ The interconnect between the MCU and CPU consists of:
 - **I²C** (Inter-Integrated Circuit) for transferring commands from Linux side (I²C master) and input events from MCU side (I²C slave).
 - **INT** pin is used by the MCU to notify the CPU of new events.
 - **BOOT0** & **BOOT1** pins are used to control the main CPU’s boot process. The BOOT0 pin can force the CPU into MaskROM mode, enabling UFS flash programming via USB. The BOOT1 pin selects the OS boot source; the MCU generates a PWM signal that is converted into a voltage level, which the CPU reads via its ADC during the early boot stage.
+
+Reference:
+
+- [Raspberry Pi RP1 Peripherals reference (PDF)](https://pip-assets.raspberrypi.com/categories/892-raspberry-pi-5/documents/RP-008370-DS-1-rp1-peripherals.pdf)
