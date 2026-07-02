@@ -10,7 +10,7 @@ updatedAt: {{ updated_at }}
 
 This page highlights open tasks across all Flipper One sub-project repositories that need community help or feedback. Each task corresponds to an issue labeled `help wanted` in its respective GitHub repository.
 
-All tasks on this page are organized by sub-project and include a title, a short description, the number of comments, and a link to the task on GitHub. Each sub-project is managed by a team that defines its own contribution process — please review these guidelines before contributing.
+All tasks on this page are organized by sub-project and include a title, a short description, any open pull requests already working on the task, the number of comments, and a link to the task on GitHub. Each sub-project is managed by a team that defines its own contribution process — please review these guidelines before contributing.
 
 :::hint{type="info"}
 Before you join an open task:
@@ -42,9 +42,12 @@ Before you join an open task:
     <td align="left" colSpan="1" rowSpan="1">
       <p>🟢 <a href="{{ issue.url }}">{{ issue.title }}</a></p>
       <p>{{ issue.summary }}</p>
+{% for pr in issue.linked_prs %}
+      <p>🔀 <a href="{{ pr.url }}">#{{ pr.number }}</a> {{ pr.title }}{% if pr.is_draft %} (draft){% endif %}</p>
+{% endfor %}
     </td>
     <td align="center" colSpan="1" rowSpan="1">
-      <p>💬 {{ issue.commentsCount }}</p>
+      <p>💬 {{ issue.comments_count }}</p>
     </td>
   </tr>
 {% endfor %}

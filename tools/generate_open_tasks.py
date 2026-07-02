@@ -120,6 +120,12 @@ class _Section(TypedDict):
     contribution_guide: str
     github_repo: str
 
+class _LinkedPR(TypedDict, total=False):
+    number: int
+    url: str
+    title: str
+    isDraft: bool
+
 class _Issue(TypedDict, total=False):
     repository: _Repository
     number: int
@@ -127,20 +133,28 @@ class _Issue(TypedDict, total=False):
     url: str
     commentsCount: int
     body: str
+    linkedPRs: list[_LinkedPR]
+
+class _DisplayLinkedPR(TypedDict):
+    number: int
+    url: str
+    title: str
+    is_draft: bool
 
 class _DisplayIssue(TypedDict):
     number: int
     title: str
     url: str
     summary: str
-    commentsCount: int
+    comments_count: int
+    linked_prs: list[_DisplayLinkedPR]
 
 class _DisplaySection(_Section):
     issues: list[_DisplayIssue]
 
 
 def fetch_issues() -> list[_Issue]:
-    """Fetch all open `help wanted` issues across the org via the `gh` CLI."""
+    """Fetch all open `help wanted` issues across the org, each with its `linkedPRs` var."""
     result = subprocess.run(
         [
             "gh", "search", "issues",
@@ -152,7 +166,44 @@ def fetch_issues() -> list[_Issue]:
         ],
         capture_output=True, text=True, check=True,
     )
-    return json.loads(result.stdout)  # type: ignore[no-any-return]
+    issues: list[_Issue] = json.loads(result.stdout)
+    for issue in issues:
+        issue["linkedPRs"] = fetch_linked_prs(
+            issue["repository"]["nameWithOwner"], issue["number"]
+        )
+    return issues
+
+
+_LINKED_PRS_QUERY = """
+query($owner: String!, $repo: String!, $number: Int!) {
+  repository(owner: $owner, name: $repo) {
+    issue(number: $number) {
+      closedByPullRequestsReferences(first: 10, includeClosedPrs: false) {
+        nodes { number url title isDraft }
+      }
+    }
+  }
+}
+"""
+
+
+def fetch_linked_prs(repo_full: str, number: int) -> list[_LinkedPR]:
+    """Return the open PRs linked to `repo_full#number`."""
+    owner, repo = repo_full.split("/", 1)
+    result = subprocess.run(
+        [
+            "gh", "api", "graphql",
+            "-f", f"query={_LINKED_PRS_QUERY}",
+            "-F", f"owner={owner}",
+            "-F", f"repo={repo}",
+            "-F", f"number={number}",
+        ],
+        capture_output=True, text=True, check=True,
+    )
+    data = json.loads(result.stdout)
+    refs = (data.get("data", {}).get("repository", {}) or {}).get("issue") or {}
+    nodes: list[_LinkedPR] = (refs.get("closedByPullRequestsReferences") or {}).get("nodes") or []
+    return nodes
 
 
 def load_issues_from_file(path: Path) -> list[_Issue]:
@@ -238,7 +289,16 @@ def _build_template_sections(issues: list[_Issue]) -> list[_DisplaySection]:
                 "title": html_escape(issue["title"]),
                 "url": html_escape(issue["url"]),
                 "summary": html_escape(make_summary(issue.get("body", ""))),
-                "commentsCount": issue.get("commentsCount", 0),
+                "comments_count": issue.get("commentsCount", 0),
+                "linked_prs": [
+                    {
+                        "number": pr["number"],
+                        "url": html_escape(pr["url"]),
+                        "title": html_escape(pr["title"]),
+                        "is_draft": pr.get("isDraft", False),
+                    }
+                    for pr in issue.get("linkedPRs", [])
+                ],
             }
             for issue in by_repo.get(section["slug"], [])
         ]
