@@ -245,7 +245,7 @@ We review all ideas carefully! We may ask additional questions about your idea i
 
 ***
 
-### Contributing a third-party module
+### Contribute a third-party module
 
 If you've designed your own accessory or module for Flipper One — a fan shield, a mounting bracket, anything that attaches to the enclosure but isn't an official part — you're welcome to share it. Third-party modules follow a slightly different process from base model improvements, so they're easy for the team to find and review.
 
@@ -310,3 +310,45 @@ Attachment size limit:
 :::::
 
 We review all comments carefully! We may ask additional questions about your idea in the task thread, so please watch for GitHub notifications in your email.
+
+### Licensing
+
+The mechanical design files in the [flipperone-mechanics](https://github.com/flipperdevices/flipperone-mechanics) repository are licensed under the **CERN Open Hardware Licence Version 2 — Permissive** (**CERN-OHL-P-2.0**).
+
+In practice, this means:
+
+- You can modify the design files and submit improvements back to the project.
+- You can use the published 3D models to design cases, mounts, and any other external modules. You can also submit them to this repository.
+- You may distribute modified versions of the licensed models under different terms, as long as you preserve the required notices for the original work.
+- Unrelated work, such as your own software, electronics, or independent module designs, is not automatically covered by this license just because it works with Flipper One.
+- You can manufacture and sell hardware based on the licensed design files.
+
+:::hint{type="info"}
+The full license text is available in the repository as [`LICENSE`](https://github.com/flipperdevices/flipperone-mechanics/blob/dev/LICENSE). You can also read the official license text on the [CERN Open Hardware Licence website](https://ohwr.org/cern_ohl_p_v2.txt).
+:::
+
+### Developer Certificate of Origin
+
+We use the **Developer Certificate of Origin** (**DCO**) to make sure every contribution can legally be included in the project. It also protects you, when you build your modules based on templates contributed by other people.
+
+Instead of signing a separate contributor agreement, you certify each contribution by adding a `Signed-off-by` line to your commit message. By signing off a commit, you confirm that you have the right to submit the contribution under the project's license and that the contribution can be distributed publicly as part of the project.
+
+A signed commit includes a line like this:
+
+```none
+Signed-off-by: Jane Doe <jane@example.com>
+```
+
+If you're using console to make git commits, use `--signoff` to add this line in this commit message:
+
+```bash
+git commit --signoff --message "Add a wind power module design"
+```
+
+This command creates a commit with this message:
+
+```text
+Add a wind power module design
+
+Signed-off-by: Jane Doe <jane@example.com>
+```
