@@ -12,7 +12,7 @@
 	<text x="20" y="40"
 	      style="font-family:Arial;font-size:11px;text-anchor:start;fill:#00FF00"
 	      dominant-baseline="middle"
-	      transform="rotate(0, 20, 40)">STTX_P</text>
+	      transform="rotate(0, 20, 40)">SSTX_P</text>
 
 	<line x1="70" y1="80" x2="200" y2="80"
 	      style="stroke:#00FF00;stroke-linecap:square;stroke-width:2" />
