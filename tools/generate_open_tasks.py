@@ -23,6 +23,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import shutil
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -161,17 +162,34 @@ class _DisplaySection(_Section):
 
 def fetch_issues() -> list[_Issue]:
     """Fetch all open `help wanted` issues across the org via the `gh` CLI."""
-    result = subprocess.run(
-        [
-            "gh", "search", "issues",
-            "--owner", ORG,
-            "--label", LABEL,
-            "--state", "open",
-            "--limit", "1000",
-            "--json", "repository,title,number,url,body,commentsCount",
-        ],
-        capture_output=True, text=True, check=True,
-    )
+    if not shutil.which("gh"):
+        print(
+            "Error: gh CLI command failed. Ensure gh is installed (`brew install gh`) "
+            "and authenticated (`gh auth login`).",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    try:
+        result = subprocess.run(
+            [
+                "gh", "search", "issues",
+                "--owner", ORG,
+                "--label", LABEL,
+                "--state", "open",
+                "--limit", "1000",
+                "--json", "repository,title,number,url,body,commentsCount",
+            ],
+            capture_output=True, text=True, check=True,
+        )
+    except subprocess.CalledProcessError:
+        print(
+            "Error: gh CLI command failed. Ensure gh is installed (`brew install gh`) "
+            "and authenticated (`gh auth login`).",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
     return json.loads(result.stdout)  # type: ignore[no-any-return]
 
 
