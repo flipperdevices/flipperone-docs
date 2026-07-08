@@ -112,7 +112,7 @@ Reopen the terminal.
 
 :::WorkflowBlockItem
 Build the **rockusb tool**:
-```
+```shell
 cargo install --git https://github.com/collabora/rockchiprs.git --example rockusb --features=nusb rockusb
 ```
 :::
@@ -166,9 +166,9 @@ Load the bootloader into RK3576 RAM:
 :::WorkflowBlockItem
 Select the storage drive you want to use:
 
-`rockusb change-storage X`
+`rockusb switch-storage X`
 
-Where X can be: 1 — eMMC; 7 — NAND; 8 — SPI NAND; 9 — SPI NOR; 10 — UFS or SATA; 11 — NVMe.
+Where X can be: nand, emmc, sd0, sd1, spi-nor, spi-nand, ram, mtd-blk-nand, mtd-blk-spi-nand, mtd-blk-spi-nor, sata, pcie, ufs. Note that on RK3576 the UFS storage can show up as SATA.
 :::
 
 :::WorkflowBlockItem
@@ -210,9 +210,9 @@ Load the bootloader into RK3576 RAM:
 :::WorkflowBlockItem
 Select the storage drive to erase:
 
-`rockusb change-storage X`
+`rockusb switch-storage X`
 
-Where X can be: 1 — eMMC; 7 — NAND; 8 — SPI NAND; 9 — SPI NOR; 10 — UFS or SATA; 11 — NVMe.
+Where X can be: nand, emmc, sd0, sd1, spi-nor, spi-nand, ram, mtd-blk-nand, mtd-blk-spi-nand, mtd-blk-spi-nor, sata, pcie, ufs. Note that on RK3576 the UFS storage can show up as SATA.
 :::
 
 :::WorkflowBlockItem
