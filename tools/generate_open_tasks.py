@@ -23,12 +23,14 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import shutil
 import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from textwrap import shorten
 from typing import TypedDict
+import html
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -37,7 +39,10 @@ from jinja2 import Environment, FileSystemLoader
 # anchor on the corresponding "About …" page on docs.flipper.net/one.
 SECTIONS: list[_Section] = [
     {
-        "slug": "flipperdevices/flipperone-hardware",
+        "slug": [
+            "flipperdevices/flipperone-hardware",
+            "flipperdevices/flipperone-debug-probe",
+        ],
         "title": "Hardware",
         "emoji": "🔌",
         "description": "Electrical hardware development: printed circuit boards (PCBs), antennas, and everything related to the electrical design.",
@@ -46,7 +51,7 @@ SECTIONS: list[_Section] = [
         "github_repo": "https://github.com/flipperdevices/flipperone-hardware",
     },
     {
-        "slug": "flipperdevices/flipperone-mechanics",
+        "slug": ["flipperdevices/flipperone-mechanics"],
         "title": "Mechanics",
         "emoji": "⚙️",
         "description": "Mechanical design: enclosures, buttons, connectors, and everything related to the physical construction.",
@@ -55,7 +60,14 @@ SECTIONS: list[_Section] = [
         "github_repo": "https://github.com/flipperdevices/flipperone-mechanics",
     },
     {
-        "slug": "flipperdevices/flipperone-linux-build-scripts",
+        "slug": [
+            "flipperdevices/flipperone-linux-build-scripts",
+            "flipperdevices/flipper-linux-kernel",
+            "flipperdevices/u-boot",
+            "flipperdevices/rkbin",
+            "flipperdevices/rockchip-linux",
+            "flipperdevices/bsb-protobuf",
+        ],
         "title": "Linux (CPU Software)",
         "emoji": "🐧",
         "description": "Build system for the Linux firmware: U-Boot, kernel, root filesystem, and bootable images for the RK3576.",
@@ -64,7 +76,7 @@ SECTIONS: list[_Section] = [
         "github_repo": "https://github.com/flipperdevices/flipperone-linux-build-scripts",
     },
     {
-        "slug": "flipperdevices/flipperone-mcu-firmware",
+        "slug": ["flipperdevices/flipperone-mcu-firmware"],
         "title": "MCU Firmware",
         "emoji": "🕹️",
         "description": "Firmware for the RP2350 co-processor: FreeRTOS, display, buttons, touchpad, LEDs, and power management.",
@@ -73,7 +85,7 @@ SECTIONS: list[_Section] = [
         "github_repo": "https://github.com/flipperdevices/flipperone-mcu-firmware",
     },
     {
-        "slug": "flipperdevices/flipperone-ui",
+        "slug": ["flipperdevices/flipperone-ui"],
         "title": "User Interface",
         "emoji": "🎨",
         "description": "User interface design: operating modes, on-screen graphics, device prints, and FlipCTL.",
@@ -82,7 +94,7 @@ SECTIONS: list[_Section] = [
         "github_repo": "https://github.com/flipperdevices/flipperone-ui",
     },
     {
-        "slug": "flipperdevices/flipperone-testing",
+        "slug": ["flipperdevices/flipperone-testing"],
         "title": "Testing",
         "emoji": "🧪",
         "description": "Hardware validation and test scripts: temperature monitoring, power, CPU, GPU, network, and disk tests.",
@@ -91,13 +103,22 @@ SECTIONS: list[_Section] = [
         "github_repo": "https://github.com/flipperdevices/flipperone-testing",
     },
     {
-        "slug": "flipperdevices/flipperone-docs",
+        "slug": ["flipperdevices/flipperone-docs"],
         "title": "Docs",
         "emoji": "📚",
         "description": "Developer documentation published at docs.flipper.net/one.",
         "task_tracker": "https://github.com/orgs/flipperdevices/projects/10",
         "contribution_guide": "https://docs.flipper.net/one/resources/about-docs#how-to-contribute",
         "github_repo": "https://github.com/flipperdevices/flipperone-docs",
+    },
+    {
+        "slug": ["flipperdevices/flipctl", "flipperdevices/flipctl-fonts"],
+        "title": "FlipCTL",
+        "emoji": "🎛️",
+        "description": "Command-line tool and companion fonts for managing and configuring Flipper One.",
+        "task_tracker": "https://github.com/orgs/flipperdevices/projects/12",
+        "contribution_guide": "https://docs.flipper.net/one/user-interface/about#how-to-contribute",
+        "github_repo": "https://github.com/flipperdevices/flipctl",
     },
 ]
 
@@ -112,7 +133,7 @@ class _Repository(TypedDict):
     nameWithOwner: str
 
 class _Section(TypedDict):
-    slug: str
+    slug: str | list[str]
     title: str
     emoji: str
     description: str
@@ -141,17 +162,34 @@ class _DisplaySection(_Section):
 
 def fetch_issues() -> list[_Issue]:
     """Fetch all open `help wanted` issues across the org via the `gh` CLI."""
-    result = subprocess.run(
-        [
-            "gh", "search", "issues",
-            "--owner", ORG,
-            "--label", LABEL,
-            "--state", "open",
-            "--limit", "200",
-            "--json", "repository,title,number,url,body,commentsCount",
-        ],
-        capture_output=True, text=True, check=True,
-    )
+    if not shutil.which("gh"):
+        print(
+            "Error: gh CLI command failed. Ensure gh is installed (`brew install gh`) "
+            "and authenticated (`gh auth login`).",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    try:
+        result = subprocess.run(
+            [
+                "gh", "search", "issues",
+                "--owner", ORG,
+                "--label", LABEL,
+                "--state", "open",
+                "--limit", "1000",
+                "--json", "repository,title,number,url,body,commentsCount",
+            ],
+            capture_output=True, text=True, check=True,
+        )
+    except subprocess.CalledProcessError:
+        print(
+            "Error: gh CLI command failed. Ensure gh is installed (`brew install gh`) "
+            "and authenticated (`gh auth login`).",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
     return json.loads(result.stdout)  # type: ignore[no-any-return]
 
 
@@ -191,12 +229,7 @@ def make_summary(body: str, max_len: int = 120) -> str:
 
 
 def html_escape(text: str) -> str:
-    return (
-        text.replace("&", "&amp;")
-            .replace("<", "&lt;")
-            .replace(">", "&gt;")
-            .replace('"', "&quot;")
-    )
+    return html.escape(text, quote=True)
 
 
 def archbee_timestamp(dt: datetime) -> str:
@@ -223,6 +256,13 @@ def _content_equal_ignoring_updated_at(a: str, b: str) -> bool:
     return pattern.sub("updatedAt: -", a) == pattern.sub("updatedAt: -", b)
 
 
+def _match_section_slug(slug: str | list[str], repo_full: str) -> bool:
+    """Check if a repo name matches a section slug (single name or list)."""
+    if isinstance(slug, list):
+        return repo_full in slug
+    return repo_full == slug
+
+
 def _build_template_sections(issues: list[_Issue]) -> list[_DisplaySection]:
     """Prepare section and issue data for the Open Tasks Jinja template."""
     by_repo: dict[str, list[_Issue]] = {}
@@ -232,6 +272,10 @@ def _build_template_sections(issues: list[_Issue]) -> list[_DisplaySection]:
 
     sections: list[_DisplaySection] = []
     for section in SECTIONS:
+        matched_issues: list[_Issue] = []
+        for repo_full, repo_issues in by_repo.items():
+            if _match_section_slug(section["slug"], repo_full):
+                matched_issues.extend(repo_issues)
         rendered_issues: list[_DisplayIssue] = [
             {
                 "number": issue["number"],
@@ -240,7 +284,7 @@ def _build_template_sections(issues: list[_Issue]) -> list[_DisplaySection]:
                 "summary": html_escape(make_summary(issue.get("body", ""))),
                 "commentsCount": issue.get("commentsCount", 0),
             }
-            for issue in by_repo.get(section["slug"], [])
+            for issue in matched_issues
         ]
         rendered_issues.sort(key=lambda i: i["number"], reverse=True)
         sections.append({**section, "issues": rendered_issues})
