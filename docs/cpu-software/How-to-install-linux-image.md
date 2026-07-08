@@ -112,8 +112,9 @@ Reopen the terminal.
 
 :::WorkflowBlockItem
 Build the **rockusb tool**:
-
-`cargo install --branch switch-storage --git https://github.com/collabora/rockchiprs.git --example rockusb --features=nusb rockusb`
+```
+cargo install --git https://github.com/collabora/rockchiprs.git --example rockusb --features=nusb rockusb
+```
 :::
 :::::
 
