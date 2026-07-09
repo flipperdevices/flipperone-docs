@@ -319,6 +319,25 @@
             "children": []
           },
           {
+            "categoryName": "User Stories",
+            "isCategory": false,
+            "path": "testing/user-stories/User-stories.md",
+            "children": [
+              {
+                "categoryName": "Watching a movie on TV",
+                "isCategory": false,
+                "path": "testing/user-stories/Watching-Movie.md",
+                "children": []
+              },
+              {
+                "categoryName": "Ethernet to Wi-Fi hotspot",
+                "isCategory": false,
+                "path": "testing/user-stories/Ethernet-WiFi-Hostpot.md",
+                "children": []
+              }
+            ]
+          },
+          {
             "categoryName": "Power",
             "isCategory": false,
             "path": "testing/Power.md",
