@@ -9,11 +9,13 @@ This page contains tests for non-terrestrial network (NTN) satellite modems — 
 
 ## Blues Notecard for Skylo (NOTE-NBGLWX)
 
-::Image[]{src="/files/pics/m2-notecard-for-skylo.jpg" size="40" position="flex-start" caption="Caption text"}
+[Blues Notecard for Skylo](https://shop.blues.com/collections/notecard/products/notecard-for-skylo) is an M.2 E-key module (30 × 42 mm) that supports NTN NB-IoT satellite connectivity, terrestrial LTE, Wi-Fi, and GNSS positioning. 
 
-[Blues Notecard for Skylo](https://shop.blues.com/collections/notecard/products/notecard-for-skylo) is an M.2 E-key module (30 × 42 mm) that supports NTN NB-IoT satellite connectivity, terrestrial LTE, Wi-Fi, and GNSS positioning. It features a built-in eSIM and a SIM multiplexer that allows switching between the integrated eSIM and an external SIM card. For details see the [official datasheet](https://dev.blues.io/datasheets/notecard-datasheet/note-nbglwx/).
+::Image[]{src="/files/pics/m2-notecard-for-skylo.jpg" size="40" position="flex-start" caption="Blues Notecard for Skylo (NOTE-NBGLWX) module"}
 
-The module provides satellite connectivity through [Skylo](https://www.skylo.tech/). Current satellite service coverage is available on the [Skylo coverage map](https://www.skylo.tech/resources/geographical-coverage).
+The module features a built-in eSIM and a SIM multiplexer that allows switching between the integrated eSIM and an external SIM card. For details see the [official datasheet](https://dev.blues.io/datasheets/notecard-datasheet/note-nbglwx/).
+
+The NOTE-NBGLWX provides satellite connectivity through [Skylo](https://www.skylo.tech/). Current satellite service coverage is available on the [Skylo coverage map](https://www.skylo.tech/resources/geographical-coverage).
 
 The module is not designed for broadband internet access. Instead, it is intended for low-bandwidth IoT applications that exchange small amounts of data over satellite networks at infrequent intervals.
 
