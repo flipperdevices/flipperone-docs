@@ -37,7 +37,14 @@ In future, we plan to use satellite modems with an M.2 Key B connector so they c
 
 ![](/files/pics/ntn-module-test-diagram.jpg)
 
-Data transmitted from the module over NTN NB-IoT is received by Blues Notehub service, where it can be viewed, processed, or forwarded to your own backend using the [Notehub API](https://dev.blues.io/api-reference/notehub-api/api-introduction/). Downlink messages follow the same path in reverse: data is sent to Notehub, which delivers it to the module over the Skylo satellite network.
+Data transmitted from the module over NTN NB-IoT is received by Blues Notehub service, where it can be viewed and forwarded to your own backend using the [Notehub API](https://dev.blues.io/api-reference/notehub-api/api-introduction/). 
+
+Messages received from the module can be viewed in the **Events** section of Notehub:
+
+![](/files/pics/nodehub-events.png)
+
+Downlink messages follow the same path in reverse: data is sent to Notehub, which delivers it to the module over the Skylo satellite network.
+
 
 
 The following antennas were used during testing:
