@@ -66,7 +66,7 @@ supports-priv-flags: no
 :::::
 
 :::::ExpandableHeading
-### `iw phy phy0 info`
+### `iw phy phy0 info`, region configuration with 2.4 GHz / 5 GHz
 
 ```bash
 $ sudo iw phy phy0 info
@@ -565,6 +565,665 @@ Wiphy phy0
 			* 6375.0 MHz [85] (disabled)
 			* 6395.0 MHz [89] (disabled)
 			* 6415.0 MHz [93] (disabled)
+			* 6435.0 MHz [97] (disabled)
+			* 6455.0 MHz [101] (disabled)
+			* 6475.0 MHz [105] (disabled)
+			* 6495.0 MHz [109] (disabled)
+			* 6515.0 MHz [113] (disabled)
+			* 6535.0 MHz [117] (disabled)
+			* 6555.0 MHz [121] (disabled)
+			* 6575.0 MHz [125] (disabled)
+			* 6595.0 MHz [129] (disabled)
+			* 6615.0 MHz [133] (disabled)
+			* 6635.0 MHz [137] (disabled)
+			* 6655.0 MHz [141] (disabled)
+			* 6675.0 MHz [145] (disabled)
+			* 6695.0 MHz [149] (disabled)
+			* 6715.0 MHz [153] (disabled)
+			* 6735.0 MHz [157] (disabled)
+			* 6755.0 MHz [161] (disabled)
+			* 6775.0 MHz [165] (disabled)
+			* 6795.0 MHz [169] (disabled)
+			* 6815.0 MHz [173] (disabled)
+			* 6835.0 MHz [177] (disabled)
+			* 6855.0 MHz [181] (disabled)
+			* 6875.0 MHz [185] (disabled)
+			* 6895.0 MHz [189] (disabled)
+			* 6915.0 MHz [193] (disabled)
+			* 6935.0 MHz [197] (disabled)
+			* 6955.0 MHz [201] (disabled)
+			* 6975.0 MHz [205] (disabled)
+			* 6995.0 MHz [209] (disabled)
+			* 7015.0 MHz [213] (disabled)
+			* 7035.0 MHz [217] (disabled)
+			* 7055.0 MHz [221] (disabled)
+			* 7075.0 MHz [225] (disabled)
+			* 7095.0 MHz [229] (disabled)
+			* 7115.0 MHz [233] (disabled)
+	Supported commands:
+		 * new_interface
+		 * set_interface
+		 * new_key
+		 * start_ap
+		 * new_station
+		 * set_bss
+		 * authenticate
+		 * associate
+		 * deauthenticate
+		 * disassociate
+		 * join_ibss
+		 * remain_on_channel
+		 * set_tx_bitrate_mask
+		 * frame
+		 * frame_wait_cancel
+		 * set_wiphy_netns
+		 * set_channel
+		 * tdls_mgmt
+		 * tdls_oper
+		 * start_sched_scan
+		 * probe_client
+		 * set_noack_map
+		 * register_beacons
+		 * start_p2p_device
+		 * set_mcast_rate
+		 * connect
+		 * disconnect
+		 * channel_switch
+		 * set_qos_map
+		 * set_multicast_to_unicast
+		 * set_sar_specs
+		 * Unknown command (156)
+	WoWLAN support:
+		 * wake up on disconnect
+		 * wake up on magic packet
+		 * wake up on pattern match, up to 1 patterns of 1-128 bytes,
+		   maximum packet offset 0 bytes
+		 * can do GTK rekeying
+		 * wake up on network detection, up to 10 match sets
+	software interface modes (can always be added):
+		 * AP/VLAN
+		 * monitor
+	valid interface combinations:
+		 * #{ managed, P2P-client } <= 2, #{ P2P-GO } <= 1, #{ P2P-device } <= 1,
+		   total <= 3, #channels <= 2
+		 * #{ managed, P2P-client } <= 2, #{ AP } <= 1, #{ P2P-device } <= 1,
+		   total <= 3, #channels <= 1
+	HT Capability overrides:
+		 * MCS: ff ff ff ff ff ff ff ff ff ff
+		 * maximum A-MSDU length
+		 * supported channel width
+		 * short GI for 40 MHz
+		 * max A-MPDU length exponent
+		 * min MPDU start spacing
+	Device supports TX status socket option.
+	Device supports HT-IBSS.
+	Device supports SAE with AUTHENTICATE command
+	Device supports scan flush.
+	Device supports per-vif TX power setting
+	P2P GO supports CT window setting
+	P2P GO supports opportunistic powersave setting
+	Driver supports full state transitions for AP/GO clients
+	Driver supports a userspace MPM
+	Device supports active monitor (which will ACK incoming frames)
+	Driver/device bandwidth changes during BSS lifetime (AP/GO mode)
+	Device supports configuring vdev MAC-addr on create.
+	Device supports randomizing MAC-addr in scans.
+	Device supports randomizing MAC-addr in sched scans.
+	max # scan plans: 1
+	max scan plan interval: 65535
+	max scan plan iterations: 0
+	Supported TX frame types:
+		 * IBSS: 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xa0 0xb0 0xc0 0xd0 0xe0 0xf0
+		 * managed: 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xa0 0xb0 0xc0 0xd0 0xe0 0xf0
+		 * AP: 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xa0 0xb0 0xc0 0xd0 0xe0 0xf0
+		 * AP/VLAN: 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xa0 0xb0 0xc0 0xd0 0xe0 0xf0
+		 * mesh point: 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xa0 0xb0 0xc0 0xd0 0xe0 0xf0
+		 * P2P-client: 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xa0 0xb0 0xc0 0xd0 0xe0 0xf0
+		 * P2P-GO: 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xa0 0xb0 0xc0 0xd0 0xe0 0xf0
+		 * P2P-device: 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xa0 0xb0 0xc0 0xd0 0xe0 0xf0
+		 * NAN: 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xa0 0xb0 0xc0 0xd0 0xe0 0xf0
+	Supported RX frame types:
+		 * IBSS: 0x40 0xb0 0xc0 0xd0
+		 * managed: 0x40 0xb0 0xd0
+		 * AP: 0x00 0x20 0x40 0xa0 0xb0 0xc0 0xd0
+		 * AP/VLAN: 0x00 0x20 0x40 0xa0 0xb0 0xc0 0xd0
+		 * mesh point: 0xb0 0xc0 0xd0
+		 * P2P-client: 0x40 0xd0
+		 * P2P-GO: 0x00 0x20 0x40 0xa0 0xb0 0xc0 0xd0
+		 * P2P-device: 0x40 0xb0 0xd0
+		 * NAN: 0xb0 0xd0
+	Supported extended features:
+		* [ RRM ]: RRM
+		* [ SET_SCAN_DWELL ]: scan dwell setting
+		* [ BEACON_RATE_LEGACY ]: legacy beacon rate setting
+		* [ BEACON_RATE_HT ]: HT beacon rate setting
+		* [ BEACON_RATE_VHT ]: VHT beacon rate setting
+		* [ FILS_STA ]: STA FILS (Fast Initial Link Setup)
+		* [ CQM_RSSI_LIST ]: multiple CQM_RSSI_THOLD records
+		* [ CONTROL_PORT_OVER_NL80211 ]: control port over nl80211
+		* [ ACK_SIGNAL_SUPPORT ]: ack signal level support
+		* [ TXQS ]: FQ-CoDel-enabled intermediate TXQs
+		* [ CAN_REPLACE_PTK0 ]: can safely replace PTK 0 when rekeying
+		* [ AIRTIME_FAIRNESS ]: airtime fairness scheduling
+		* [ AQL ]: Airtime Queue Limits (AQL)
+		* [ CONTROL_PORT_NO_PREAUTH ]: disable pre-auth over nl80211 control port support
+		* [ SCAN_FREQ_KHZ ]: scan on kHz frequency support
+		* [ CONTROL_PORT_OVER_NL80211_TX_STATUS ]: tx status for nl80211 control port support
+		* [ BEACON_RATE_HE ]: HE beacon rate support (AP/mesh)
+		* [ POWERED_ADDR_CHANGE ]: can change MAC address while up
+```
+:::::
+
+:::::ExpandableHeading
+### `iw phy phy0 info`, region configuration with 6GHz enabled
+
+```bash
+root@flipperone-a9438e:/home/user# iw reg get
+global
+country HK: DFS-ETSI
+	(2400 - 2483 @ 40), (N/A, 36), (N/A)
+	(5150 - 5250 @ 80), (N/A, 23), (N/A), NO-OUTDOOR, AUTO-BW
+	(5250 - 5350 @ 80), (N/A, 23), (0 ms), NO-OUTDOOR, DFS, AUTO-BW
+	(5470 - 5730 @ 160), (N/A, 27), (0 ms), DFS
+	(5730 - 5850 @ 80), (N/A, 36), (N/A)
+	(5925 - 6425 @ 160), (N/A, 14), (N/A)
+
+root@flipperone-a9438e:/home/user# iw phy phy0 info
+Wiphy phy0
+	wiphy index: 0
+	max # scan SSIDs: 4
+	max scan IEs length: 482 bytes
+	max # sched scan SSIDs: 10
+	max # match sets: 16
+	Retry short limit: 7
+	Retry long limit: 4
+	Coverage class: 0 (up to 0m)
+	Device supports AP-side u-APSD.
+	Device supports T-DLS.
+	Supported Ciphers:
+		* WEP40 (00-0f-ac:1)
+		* WEP104 (00-0f-ac:5)
+		* TKIP (00-0f-ac:2)
+		* CCMP-128 (00-0f-ac:4)
+		* CCMP-256 (00-0f-ac:10)
+		* GCMP-128 (00-0f-ac:8)
+		* GCMP-256 (00-0f-ac:9)
+		* CMAC (00-0f-ac:6)
+		* CMAC-256 (00-0f-ac:13)
+		* GMAC-128 (00-0f-ac:11)
+		* GMAC-256 (00-0f-ac:12)
+	Available Antennas: TX 0x3 RX 0x3
+	Configured Antennas: TX 0x3 RX 0x3
+	Supported interface modes:
+		 * managed
+		 * AP
+		 * AP/VLAN
+		 * monitor
+		 * P2P-client
+		 * P2P-GO
+		 * P2P-device
+	Band 1:
+		Capabilities: 0x9ff
+			RX LDPC
+			HT20/HT40
+			SM Power Save disabled
+			RX Greenfield
+			RX HT20 SGI
+			RX HT40 SGI
+			TX STBC
+			RX STBC 1-stream
+			Max AMSDU length: 7935 bytes
+			No DSSS/CCK HT40
+		Maximum RX AMPDU length 65535 bytes (exponent: 0x003)
+		Minimum RX AMPDU time spacing: No restriction (0x00)
+		HT TX/RX MCS rate indexes supported: 0-15
+		HE Iftypes: managed
+			HE MAC Capabilities (0x08011a000040):
+				+HTC HE Supported
+				Trigger Frame MAC Padding Duration: 2
+				OM Control
+				Maximum A-MPDU Length Exponent: 3
+				A-MSDU in A-MPDU
+			HE PHY Capabilities: (0x2270ce120dc0b306423f00):
+				HE40/2.4GHz
+				242 tone RUs/2.4GHz
+				Device Class: 1
+				LDPC Coding in Payload
+				HE SU PPDU with 1x HE-LTF and 0.8us GI
+				NDP with 4x HE-LTF and 3.2us GI
+				STBC Tx <= 80MHz
+				STBC Rx <= 80MHz
+				Full Bandwidth UL MU-MIMO
+				Partial Bandwidth UL MU-MIMO
+				DCM Max Constellation: 2
+				DCM Max Constellation Rx: 2
+				SU Beamformee
+				Beamformee STS <= 80Mhz: 3
+				Ng = 16 SU Feedback
+				Ng = 16 MU Feedback
+				Codebook Size SU Feedback
+				Codebook Size MU Feedback
+				Triggered CQI Feedback
+				Partial Bandwidth Extended Range
+				PPE Threshold Present
+				Power Boost Factor ar
+				HE SU PPDU & HE PPDU 4x HE-LTF 0.8us GI
+				20MHz in 40MHz HE PPDU 2.4GHz
+				DCM Max BW: 1
+				Longer Than 16HE SIG-B OFDM Symbols
+				Non-Triggered CQI Feedback
+				TX 1024-QAM
+				RX 1024-QAM
+				RX Full BW SU Using HE MU PPDU with Compression SIGB
+				RX Full BW SU Using HE MU PPDU with Non-Compression SIGB
+			HE RX MCS and NSS set <= 80 MHz
+				1 streams: MCS 0-11
+				2 streams: MCS 0-11
+				3 streams: not supported
+				4 streams: not supported
+				5 streams: not supported
+				6 streams: not supported
+				7 streams: not supported
+				8 streams: not supported
+			HE TX MCS and NSS set <= 80 MHz
+				1 streams: MCS 0-11
+				2 streams: MCS 0-11
+				3 streams: not supported
+				4 streams: not supported
+				5 streams: not supported
+				6 streams: not supported
+				7 streams: not supported
+				8 streams: not supported
+			PPE Threshold 0x19 0x1c 0xc7 0x71 
+		HE Iftypes: AP
+			HE MAC Capabilities (0x00011a081044):
+				+HTC HE Supported
+				BSR
+				OM Control
+				Maximum A-MPDU Length Exponent: 3
+				BQR
+				A-MSDU in A-MPDU
+				OM Control UL MU Data Disable RX
+			HE PHY Capabilities: (0x0220ce120000a000000c00):
+				HE40/2.4GHz
+				LDPC Coding in Payload
+				NDP with 4x HE-LTF and 3.2us GI
+				STBC Tx <= 80MHz
+				STBC Rx <= 80MHz
+				Full Bandwidth UL MU-MIMO
+				Partial Bandwidth UL MU-MIMO
+				DCM Max Constellation: 2
+				DCM Max Constellation Rx: 2
+				Partial Bandwidth Extended Range
+				PPE Threshold Present
+				TX 1024-QAM
+				RX 1024-QAM
+			HE RX MCS and NSS set <= 80 MHz
+				1 streams: MCS 0-11
+				2 streams: MCS 0-11
+				3 streams: not supported
+				4 streams: not supported
+				5 streams: not supported
+				6 streams: not supported
+				7 streams: not supported
+				8 streams: not supported
+			HE TX MCS and NSS set <= 80 MHz
+				1 streams: MCS 0-11
+				2 streams: MCS 0-11
+				3 streams: not supported
+				4 streams: not supported
+				5 streams: not supported
+				6 streams: not supported
+				7 streams: not supported
+				8 streams: not supported
+			PPE Threshold 0x19 0x1c 0xc7 0x71 
+		Bitrates (non-HT):
+			* 1.0 Mbps (short preamble supported)
+			* 2.0 Mbps (short preamble supported)
+			* 5.5 Mbps (short preamble supported)
+			* 11.0 Mbps (short preamble supported)
+			* 6.0 Mbps
+			* 9.0 Mbps
+			* 12.0 Mbps
+			* 18.0 Mbps
+			* 24.0 Mbps
+			* 36.0 Mbps
+			* 48.0 Mbps
+			* 54.0 Mbps
+		Frequencies:
+			* 2412.0 MHz [1] (30.0 dBm)
+			* 2417.0 MHz [2] (30.0 dBm)
+			* 2422.0 MHz [3] (30.0 dBm)
+			* 2427.0 MHz [4] (30.0 dBm)
+			* 2432.0 MHz [5] (30.0 dBm)
+			* 2437.0 MHz [6] (30.0 dBm)
+			* 2442.0 MHz [7] (30.0 dBm)
+			* 2447.0 MHz [8] (30.0 dBm)
+			* 2452.0 MHz [9] (30.0 dBm)
+			* 2457.0 MHz [10] (30.0 dBm)
+			* 2462.0 MHz [11] (30.0 dBm)
+			* 2467.0 MHz [12] (30.0 dBm)
+			* 2472.0 MHz [13] (30.0 dBm)
+			* 2484.0 MHz [14] (disabled)
+	Band 2:
+		Capabilities: 0x9ff
+			RX LDPC
+			HT20/HT40
+			SM Power Save disabled
+			RX Greenfield
+			RX HT20 SGI
+			RX HT40 SGI
+			TX STBC
+			RX STBC 1-stream
+			Max AMSDU length: 7935 bytes
+			No DSSS/CCK HT40
+		Maximum RX AMPDU length 65535 bytes (exponent: 0x003)
+		Minimum RX AMPDU time spacing: No restriction (0x00)
+		HT TX/RX MCS rate indexes supported: 0-15
+		VHT Capabilities (0x339071b2):
+			Max MPDU length: 11454
+			Supported Channel Width: neither 160 nor 80+80
+			RX LDPC
+			short GI (80 MHz)
+			TX STBC
+			SU Beamformee
+			MU Beamformee
+			RX antenna pattern consistency
+			TX antenna pattern consistency
+		VHT RX MCS set:
+			1 streams: MCS 0-9
+			2 streams: MCS 0-9
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		VHT RX highest supported: 0 Mbps
+		VHT TX MCS set:
+			1 streams: MCS 0-9
+			2 streams: MCS 0-9
+			3 streams: not supported
+			4 streams: not supported
+			5 streams: not supported
+			6 streams: not supported
+			7 streams: not supported
+			8 streams: not supported
+		VHT TX highest supported: 0 Mbps
+		VHT extended NSS: supported
+		HE Iftypes: managed
+			HE MAC Capabilities (0x08011a000040):
+				+HTC HE Supported
+				Trigger Frame MAC Padding Duration: 2
+				OM Control
+				Maximum A-MPDU Length Exponent: 3
+				A-MSDU in A-MPDU
+			HE PHY Capabilities: (0x4470ce120dc0b306423f00):
+				HE40/HE80/5GHz
+				242 tone RUs/5GHz
+				Device Class: 1
+				LDPC Coding in Payload
+				HE SU PPDU with 1x HE-LTF and 0.8us GI
+				NDP with 4x HE-LTF and 3.2us GI
+				STBC Tx <= 80MHz
+				STBC Rx <= 80MHz
+				Full Bandwidth UL MU-MIMO
+				Partial Bandwidth UL MU-MIMO
+				DCM Max Constellation: 2
+				DCM Max Constellation Rx: 2
+				SU Beamformee
+				Beamformee STS <= 80Mhz: 3
+				Ng = 16 SU Feedback
+				Ng = 16 MU Feedback
+				Codebook Size SU Feedback
+				Codebook Size MU Feedback
+				Triggered CQI Feedback
+				Partial Bandwidth Extended Range
+				PPE Threshold Present
+				Power Boost Factor ar
+				HE SU PPDU & HE PPDU 4x HE-LTF 0.8us GI
+				20MHz in 40MHz HE PPDU 2.4GHz
+				DCM Max BW: 1
+				Longer Than 16HE SIG-B OFDM Symbols
+				Non-Triggered CQI Feedback
+				TX 1024-QAM
+				RX 1024-QAM
+				RX Full BW SU Using HE MU PPDU with Compression SIGB
+				RX Full BW SU Using HE MU PPDU with Non-Compression SIGB
+			HE RX MCS and NSS set <= 80 MHz
+				1 streams: MCS 0-11
+				2 streams: MCS 0-11
+				3 streams: not supported
+				4 streams: not supported
+				5 streams: not supported
+				6 streams: not supported
+				7 streams: not supported
+				8 streams: not supported
+			HE TX MCS and NSS set <= 80 MHz
+				1 streams: MCS 0-11
+				2 streams: MCS 0-11
+				3 streams: not supported
+				4 streams: not supported
+				5 streams: not supported
+				6 streams: not supported
+				7 streams: not supported
+				8 streams: not supported
+			PPE Threshold 0x79 0x1c 0xc7 0x71 0x1c 0xc7 0x71 
+		HE Iftypes: AP
+			HE MAC Capabilities (0x00011a081044):
+				+HTC HE Supported
+				BSR
+				OM Control
+				Maximum A-MPDU Length Exponent: 3
+				BQR
+				A-MSDU in A-MPDU
+				OM Control UL MU Data Disable RX
+			HE PHY Capabilities: (0x0420ce120000a000000c00):
+				HE40/HE80/5GHz
+				LDPC Coding in Payload
+				NDP with 4x HE-LTF and 3.2us GI
+				STBC Tx <= 80MHz
+				STBC Rx <= 80MHz
+				Full Bandwidth UL MU-MIMO
+				Partial Bandwidth UL MU-MIMO
+				DCM Max Constellation: 2
+				DCM Max Constellation Rx: 2
+				Partial Bandwidth Extended Range
+				PPE Threshold Present
+				TX 1024-QAM
+				RX 1024-QAM
+			HE RX MCS and NSS set <= 80 MHz
+				1 streams: MCS 0-11
+				2 streams: MCS 0-11
+				3 streams: not supported
+				4 streams: not supported
+				5 streams: not supported
+				6 streams: not supported
+				7 streams: not supported
+				8 streams: not supported
+			HE TX MCS and NSS set <= 80 MHz
+				1 streams: MCS 0-11
+				2 streams: MCS 0-11
+				3 streams: not supported
+				4 streams: not supported
+				5 streams: not supported
+				6 streams: not supported
+				7 streams: not supported
+				8 streams: not supported
+			PPE Threshold 0x79 0x1c 0xc7 0x71 0x1c 0xc7 0x71 
+		Bitrates (non-HT):
+			* 6.0 Mbps
+			* 9.0 Mbps
+			* 12.0 Mbps
+			* 18.0 Mbps
+			* 24.0 Mbps
+			* 36.0 Mbps
+			* 48.0 Mbps
+			* 54.0 Mbps
+		Frequencies:
+			* 5180.0 MHz [36] (23.0 dBm)
+			* 5200.0 MHz [40] (23.0 dBm)
+			* 5220.0 MHz [44] (23.0 dBm)
+			* 5240.0 MHz [48] (23.0 dBm)
+			* 5260.0 MHz [52] (23.0 dBm) (radar detection)
+			* 5280.0 MHz [56] (23.0 dBm) (radar detection)
+			* 5300.0 MHz [60] (23.0 dBm) (radar detection)
+			* 5320.0 MHz [64] (23.0 dBm) (radar detection)
+			* 5500.0 MHz [100] (27.0 dBm) (radar detection)
+			* 5520.0 MHz [104] (27.0 dBm) (radar detection)
+			* 5540.0 MHz [108] (27.0 dBm) (radar detection)
+			* 5560.0 MHz [112] (27.0 dBm) (radar detection)
+			* 5580.0 MHz [116] (27.0 dBm) (radar detection)
+			* 5600.0 MHz [120] (27.0 dBm) (radar detection)
+			* 5620.0 MHz [124] (27.0 dBm) (radar detection)
+			* 5640.0 MHz [128] (27.0 dBm) (radar detection)
+			* 5660.0 MHz [132] (27.0 dBm) (radar detection)
+			* 5680.0 MHz [136] (27.0 dBm) (radar detection)
+			* 5700.0 MHz [140] (27.0 dBm) (radar detection)
+			* 5720.0 MHz [144] (27.0 dBm) (radar detection)
+			* 5745.0 MHz [149] (30.0 dBm)
+			* 5765.0 MHz [153] (30.0 dBm)
+			* 5785.0 MHz [157] (30.0 dBm)
+			* 5805.0 MHz [161] (30.0 dBm)
+			* 5825.0 MHz [165] (30.0 dBm)
+			* 5845.0 MHz [169] (disabled)
+			* 5865.0 MHz [173] (disabled)
+			* 5885.0 MHz [177] (disabled)
+	Band 4:
+		HE Iftypes: managed
+			HE MAC Capabilities (0x08011a000040):
+				+HTC HE Supported
+				Trigger Frame MAC Padding Duration: 2
+				OM Control
+				Maximum A-MPDU Length Exponent: 3
+				A-MSDU in A-MPDU
+			HE PHY Capabilities: (0x4470ce120dc0b306423f00):
+				HE40/HE80/5GHz
+				242 tone RUs/5GHz
+				Device Class: 1
+				LDPC Coding in Payload
+				HE SU PPDU with 1x HE-LTF and 0.8us GI
+				NDP with 4x HE-LTF and 3.2us GI
+				STBC Tx <= 80MHz
+				STBC Rx <= 80MHz
+				Full Bandwidth UL MU-MIMO
+				Partial Bandwidth UL MU-MIMO
+				DCM Max Constellation: 2
+				DCM Max Constellation Rx: 2
+				SU Beamformee
+				Beamformee STS <= 80Mhz: 3
+				Ng = 16 SU Feedback
+				Ng = 16 MU Feedback
+				Codebook Size SU Feedback
+				Codebook Size MU Feedback
+				Triggered CQI Feedback
+				Partial Bandwidth Extended Range
+				PPE Threshold Present
+				Power Boost Factor ar
+				HE SU PPDU & HE PPDU 4x HE-LTF 0.8us GI
+				20MHz in 40MHz HE PPDU 2.4GHz
+				DCM Max BW: 1
+				Longer Than 16HE SIG-B OFDM Symbols
+				Non-Triggered CQI Feedback
+				TX 1024-QAM
+				RX 1024-QAM
+				RX Full BW SU Using HE MU PPDU with Compression SIGB
+				RX Full BW SU Using HE MU PPDU with Non-Compression SIGB
+			HE RX MCS and NSS set <= 80 MHz
+				1 streams: MCS 0-11
+				2 streams: MCS 0-11
+				3 streams: not supported
+				4 streams: not supported
+				5 streams: not supported
+				6 streams: not supported
+				7 streams: not supported
+				8 streams: not supported
+			HE TX MCS and NSS set <= 80 MHz
+				1 streams: MCS 0-11
+				2 streams: MCS 0-11
+				3 streams: not supported
+				4 streams: not supported
+				5 streams: not supported
+				6 streams: not supported
+				7 streams: not supported
+				8 streams: not supported
+			PPE Threshold 0x79 0x1c 0xc7 0x71 0x1c 0xc7 0x71 
+		HE Iftypes: AP
+			HE MAC Capabilities (0x00011a081044):
+				+HTC HE Supported
+				BSR
+				OM Control
+				Maximum A-MPDU Length Exponent: 3
+				BQR
+				A-MSDU in A-MPDU
+				OM Control UL MU Data Disable RX
+			HE PHY Capabilities: (0x0420ce120000a000000c00):
+				HE40/HE80/5GHz
+				LDPC Coding in Payload
+				NDP with 4x HE-LTF and 3.2us GI
+				STBC Tx <= 80MHz
+				STBC Rx <= 80MHz
+				Full Bandwidth UL MU-MIMO
+				Partial Bandwidth UL MU-MIMO
+				DCM Max Constellation: 2
+				DCM Max Constellation Rx: 2
+				Partial Bandwidth Extended Range
+				PPE Threshold Present
+				TX 1024-QAM
+				RX 1024-QAM
+			HE RX MCS and NSS set <= 80 MHz
+				1 streams: MCS 0-11
+				2 streams: MCS 0-11
+				3 streams: not supported
+				4 streams: not supported
+				5 streams: not supported
+				6 streams: not supported
+				7 streams: not supported
+				8 streams: not supported
+			HE TX MCS and NSS set <= 80 MHz
+				1 streams: MCS 0-11
+				2 streams: MCS 0-11
+				3 streams: not supported
+				4 streams: not supported
+				5 streams: not supported
+				6 streams: not supported
+				7 streams: not supported
+				8 streams: not supported
+			PPE Threshold 0x79 0x1c 0xc7 0x71 0x1c 0xc7 0x71 
+		Bitrates (non-HT):
+			* 6.0 Mbps
+			* 9.0 Mbps
+			* 12.0 Mbps
+			* 18.0 Mbps
+			* 24.0 Mbps
+			* 36.0 Mbps
+			* 48.0 Mbps
+			* 54.0 Mbps
+		Frequencies:
+			* 5955.0 MHz [1] (14.0 dBm)
+			* 5975.0 MHz [5] (14.0 dBm)
+			* 5995.0 MHz [9] (14.0 dBm)
+			* 6015.0 MHz [13] (14.0 dBm)
+			* 6035.0 MHz [17] (14.0 dBm)
+			* 6055.0 MHz [21] (14.0 dBm)
+			* 6075.0 MHz [25] (14.0 dBm)
+			* 6095.0 MHz [29] (14.0 dBm)
+			* 6115.0 MHz [33] (14.0 dBm)
+			* 6135.0 MHz [37] (14.0 dBm)
+			* 6155.0 MHz [41] (14.0 dBm)
+			* 6175.0 MHz [45] (14.0 dBm)
+			* 6195.0 MHz [49] (14.0 dBm)
+			* 6215.0 MHz [53] (14.0 dBm)
+			* 6235.0 MHz [57] (14.0 dBm)
+			* 6255.0 MHz [61] (14.0 dBm)
+			* 6275.0 MHz [65] (14.0 dBm)
+			* 6295.0 MHz [69] (14.0 dBm)
+			* 6315.0 MHz [73] (14.0 dBm)
+			* 6335.0 MHz [77] (14.0 dBm)
+			* 6355.0 MHz [81] (14.0 dBm)
+			* 6375.0 MHz [85] (14.0 dBm)
+			* 6395.0 MHz [89] (14.0 dBm)
+			* 6415.0 MHz [93] (14.0 dBm)
 			* 6435.0 MHz [97] (disabled)
 			* 6455.0 MHz [101] (disabled)
 			* 6475.0 MHz [105] (disabled)
