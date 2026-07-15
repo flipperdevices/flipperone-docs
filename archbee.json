@@ -334,6 +334,18 @@
                 "isCategory": false,
                 "path": "testing/user-stories/Ethernet-WiFi-Hostpot.md",
                 "children": []
+              },
+              {
+                "categoryName": "Direct and network attached storage (DAS / NAS)",
+                "isCategory": false,
+                "path": "testing/user-stories/Direct-network-attached-storage.md",
+                "children": []
+              },
+              {
+                "categoryName": "Bootable Virtual USB mass storage / ISO mount",
+                "isCategory": false,
+                "path": "testing/user-stories/Bootable-USB-storage.md",
+                "children": []
               }
             ]
           },

@@ -6,9 +6,13 @@ docTags:
 
 ![Flipper One as a TV media box](/files/pics/tv-media-box-user-storie.jpg)
 
+## Description
+
 This user story describes using Flipper One as a media box for watching a movie on a TV — for example, when traveling with the device, as a portable TV box. The story covers a typical scenario of watching one or two movies, or several episodes of a series, powered either by the battery or by a charger.
 
+## Status
 
+Possible using Flipper One.
 
 ### Preconditions
 

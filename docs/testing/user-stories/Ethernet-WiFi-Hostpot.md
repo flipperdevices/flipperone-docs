@@ -4,6 +4,11 @@ slug: testing/user-stories/ethernet-wifi-hotspot
 docTags: 
 ---
 
-**Scenario:** A user connects Flipper One to a wired Ethernet network and shares that connection as a Wi-Fi hotspot, using the device as a router.
+## Description
+A user connects Flipper One to a wired Ethernet network and shares that connection as a Wi-Fi hotspot, using the device as a router.
+
+## Status
+
+Possible using Flipper One.
 
 _This user story is a work in progress._

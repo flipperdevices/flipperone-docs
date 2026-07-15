@@ -11,3 +11,7 @@ User stories are scenarios that describe how a real user interacts with the devi
 
 ## Router
 * [Ethernet to Wi-Fi hotspot](./Ethernet-WiFi-Hostpot.md)
+
+## Storage
+* [Direct and network attached storage (DAS / NAS)](./Direct-network-attached-storage.md)
+* [Bootable Virtual USB mass storage / ISO mount](./Bootable-USB-storage.md)
