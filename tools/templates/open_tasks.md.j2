@@ -66,3 +66,32 @@ Learn what's going on in the {{ section.title }} sub-project:
 :::
 
 {% endfor %}
+{% if community_prs %}
+***
+
+# 🔀 Community pull requests
+
+Open pull requests from community contributors that aren't linked to any task above. Help review and discuss them.
+
+<table isTableHeaderOn="true" columnWidths="536,125">
+  <tr>
+    <td align="left">
+      <p><strong>Pull request</strong></p>
+    </td>
+    <td align="center">
+      <p><strong>Comments</strong></p>
+    </td>
+  </tr>
+{% for pr in community_prs %}
+  <tr>
+    <td align="left" colSpan="1" rowSpan="1">
+      <p>🔀 <a href="{{ pr.url }}">{{ pr.repo }}#{{ pr.number }}</a> {{ pr.title }}{% if pr.is_draft %} (draft){% endif %}</p>
+      <p>by {{ pr.author }}</p>
+    </td>
+    <td align="center" colSpan="1" rowSpan="1">
+      <p>💬 {{ pr.comments_count }}</p>
+    </td>
+  </tr>
+{% endfor %}
+</table>
+{% endif %}

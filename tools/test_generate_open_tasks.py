@@ -7,7 +7,15 @@ from pathlib import Path
 from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from generate_open_tasks import fetch_linked_prs, generate_page, make_summary, _Issue
+from generate_open_tasks import (
+    fetch_linked_prs,
+    generate_page,
+    is_community_pr,
+    make_summary,
+    pr_has_linked_issue,
+    _CommunityPR,
+    _Issue,
+)
 
 
 class GenerateOpenTasksTest(unittest.TestCase):
@@ -126,6 +134,59 @@ class GenerateOpenTasksTest(unittest.TestCase):
                 stdout=json.dumps({"data": {"repository": {"issue": None}}})
             )
             self.assertEqual(fetch_linked_prs("o/r", 1), [])
+
+    def test_is_community_pr_filters_members_and_bots(self) -> None:
+        cases: list[tuple[_CommunityPR, bool]] = [
+            ({"authorAssociation": "MEMBER", "author": {"login": "a"}}, False),
+            ({"authorAssociation": "OWNER", "author": {"login": "b"}}, False),
+            ({"authorAssociation": "NONE", "author": {"is_bot": True}}, False),
+            ({"authorAssociation": "NONE", "author": {"login": "c"}}, True),
+            ({"authorAssociation": "CONTRIBUTOR", "author": {"login": "d"}}, True),
+        ]
+        for pr, expected in cases:
+            with self.subTest(pr=pr):
+                self.assertEqual(is_community_pr(pr), expected)
+
+    def test_pr_has_linked_issue_reads_total_count(self) -> None:
+        cases: list[tuple[dict[str, object] | None, bool]] = [
+            ({"closingIssuesReferences": {"totalCount": 0}}, False),
+            ({"closingIssuesReferences": {"totalCount": 2}}, True),
+            (None, False),  # PR not found
+        ]
+        for pull_request, expected in cases:
+            payload = {"data": {"repository": {"pullRequest": pull_request}}}
+            with self.subTest(pull_request=pull_request):
+                with mock.patch("generate_open_tasks.subprocess.run") as run:
+                    run.return_value = mock.Mock(stdout=json.dumps(payload))
+                    self.assertEqual(
+                        pr_has_linked_issue("flipperdevices/repo", 5), expected
+                    )
+
+    def test_generate_page_renders_community_prs(self) -> None:
+        community_prs: list[_CommunityPR] = [
+            {
+                "repository": {"nameWithOwner": "flipperdevices/flipperone-docs"},
+                "number": 356,
+                "title": 'Fix "typo" & stuff',
+                "url": "https://github.com/flipperdevices/flipperone-docs/pull/356",
+                "isDraft": False,
+                "commentsCount": 3,
+                "author": {"login": "someone"},
+                "authorAssociation": "NONE",
+            }
+        ]
+
+        page = generate_page([], community_prs=community_prs)
+
+        self.assertIn("# 🔀 Community pull requests", page)
+        self.assertIn(
+            '<p>🔀 <a href="https://github.com/flipperdevices/flipperone-docs/pull/356">flipperone-docs#356</a> Fix &quot;typo&quot; &amp; stuff</p>',
+            page,
+        )
+        self.assertIn("<p>by someone</p>", page)
+
+    def test_generate_page_omits_community_section_when_empty(self) -> None:
+        self.assertNotIn("# 🔀 Community pull requests", generate_page([]))
 
 
 if __name__ == "__main__":
