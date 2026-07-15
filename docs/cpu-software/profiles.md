@@ -6,78 +6,63 @@ createdAt: Mon Jul 14 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
 updatedAt: Mon Jul 14 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
 ---
 
-This guide explains OS profiles and snapshots in Flipper OS: their purpose, how to use them, and how to manage them using CLI commands.
-
-TL;DR:
-
-- **OS Profile** is a system you can **boot into and use**. Profiles are mutable: each time you install new packages, change configurations, or add any other files, a profile is updated in the file system.
-- **Stock OS profile** is an initial profile backup, a clean system. Stock profiles are immutable. You can't boot a stock profile, but you can **create a new profile** from it. 
-- **Snapshot** is a frozen backup of a profile. Snapshots are immutable. You can't boot a snapshot, but you can **restore a profile** from it.
+This page explains OS profiles and snapshots in Flipper OS, how to use, and how to manage them using CLI helper tools.
 
 ## Problem overview
 
 When a Linux device is used as a multitool, in roles like a Wi-Fi router, a media box, and a desktop, it gradually accumulates installed packages, modified config files, and saved data. Eventually, the system becomes too messy to use, and the only solution is to reinstall it from scratch. With a multitool, users often need to switch between setups, save a working state before experimenting, and roll back after breaking things.
 
-Flipper OS solves this problem using profiles and snapshots. Profiles allow users to maintain several independent system configurations and switch between them at boot, while snapshots serve as recoverable save points within each profile.
-
 ## Profiles and snapshots
 
-### What is an OS profile?
+Flipper OS solves the problem of a messy system using OS profiles and snapshots:
 
-Think of a profile like a separate "computer setup" on your Flipper One. When you turn the device on, you see a boot menu where each boot target represents a profile: Desktop, Router, TV Media Box, No Graphics, and so on.
+- **OS profile** is a system you can boot into and use. Profiles are mutable: each time you install new packages, change configurations, or add any other files, a profile is updated in the file system.
+- **Stock snapshot** is an initial profile backup, a clean system. Stock profiles are immutable. You can't boot a stock profile, but you can create a new profile from it.
+- **Live snapshot** is a frozen backup of a profile. Snapshots are immutable. You can't boot a snapshot, but you can restore a profile from it.
 
-Each profile:
+Currently, Flipper OS uses Btrfs file system to implement the profile and snapshot functionality.
 
-- **Can be booted** (it shows up in the boot menu).
-- **Can be changed**: install apps, tweak settings, break things. It's yours.
-- **Remembers your changes** between reboots.
+### OS profiles
 
-You can have several profiles on a Flipper One and switch between them in the boot menu. When you boot in a profile, the welcome banner shows it next to "Profile":
-```
-Welcome to FlipperOne
-   Board:    one-rev-f0b0c1
-   Memory:   7.8 GB
-   Profile:  @Minimal
-```
+Flipper OS profiles are independent Linux setups for different roles and usage scenarios. Each OS profile is a complete operating system, from kernel to desktop environment and installed apps.
+
+You can choose an OS profile in the boot menu:
 
 ::embed[]{url="https://www.youtube.com/watch?v=oI6Vl_uoAwI"}
+ 
+### Stock snapshots
 
-### What is a stock OS profile?
+Stock snapshots are clear Linux setups, used to initialize OS profiles. Stock snapshots act as full recovery points. You can use them to switch to a new clean profile at any time, with no need to use an external SD card or wait for the system to install.
 
-Stock (built-in) profiles are clear, factory versions of profiles that are read-only and never changed by the user.
-For each starting profile there is a `_stock` version (for example `@Desktop_stock`) that the profile was made from. 
-Stock profiles enable users to restore a profile from a clean starting point or create a new profile.
+Stock snapshots are:
 
-Stock profiles have the following characteristics:
+- **Preloaded on the device.** Stock snapshots are instantly available on a new Flipper One.
+- **Updated from a server.** New versions of stock snapshots can be downloaded from an update server.
+- **Read-only.** Users can't change stock snapshot content, but can copy or delete snapshots.
+- **Not bootable.** Snapshots are not shown in the boot menu and can't be booted into. Instead, a user can create a new profile from a snapshot and boot into that profile.
 
-- **Can't be booted directly.** Instead, users can boot into regular profiles created from stock profiles.
-- **Immutable (can't be changed).** Stock profiles are written at production time and updated as device firmware.
-- **Should not be modified by the user.** Stock profiles are the base of system recovery, so users should not interact with them directly.
+Flipper One has the following stock snapshots and corresponding profiles in factory configuration:
 
-Flipper One has the following stock profiles (to be continued):
+- `@Desktop_stock` → `@Desktop`
+- `@Router_stock` → `@Router`
+- `@TV-Media-Box_stock` → `@TV-Media-Box`
+- `@Minimal_stock` → `@Minimal`
+- `@No_Graphics_stock` → `@No_Graphics`
 
-- `@Minimal_stock` — the parent of all other stock profiles.
-- `@No_Graphics_stock`
-- `@Router_stock`
-- `@TV-Media-Box_stock`
-- `@Desktop_stock`
+### Live snapshots
 
-### What is a snapshot?
+Live snapshot is a read-only OS profile copy. You can make a snapshot as a save point before a risky change. If something goes wrong, you can always return a profile to a working state. You can also save a successful configuration in a snapshot, and then create new profiles from it.
 
-A snapshot is a copy of a profile taken at a moment in time. Snapshots allow users to save successful configurations to reuse them later, split into multiple profiles, or run experiments with an option for an easy recovery.
+Snapshots are:
 
-Snapshots have the following characteristics:
+- **Created by the user.** Users can create live snapshots whenever they need a save point.
+- **Read-only.** Users can't change snapshot content, but can rename, copy, or delete snapshots.
+- **Not bootable.** Snapshots are not shown in the boot menu and can't be booted into. Instead, a user can create a new profile from a snapshot and boot into that profile.
 
-- **Can't be booted directly.** Instead, users can restore a profile from a snapshot.
-- **Immutable (can't be changed).** A snapshot keeps the filesystem state from the moment it was created.
-- **Can be freely created, renamed, and deleted**. Users have full control over snapshots.
-- **Can be created automatically.** Certain OS mechanisms can create snapshots before dangerous user actions.
 
----
+### How profiles and snapshots work together
 
-### Profile and snapshot lifecycle overview
-
-The following scheme shows a simple profile and snapshot lifecycle:
+The following scheme shows a basic profile and snapshot lifecycle:
 
 ```none
    stock_profile # read-only, updated as firmware
@@ -95,11 +80,9 @@ The following scheme shows a simple profile and snapshot lifecycle:
    profile_new # again bootable and editable 
 ```
 
----
+### Using Btrfs file system for profiles and snapshots
 
-### Btrfs file system
-
-Flipper OS uses the [Btrfs file system](https://btrfs.readthedocs.io/en/latest/). Profiles, stock profiles, and snapshots are **Btrfs subvolumes** mounted on the device storage.
+Flipper OS uses the [Btrfs file system](https://btrfs.readthedocs.io/en/latest/). Profiles and snapshots are **Btrfs subvolumes** mounted on the device storage.
 
 :::::ExpandableHeading
 See the list of Btrfs subvolumes using `btrfs subvol list`
@@ -126,7 +109,7 @@ ID 273 gen 150 top level 5 path @Desktop
 ```
 :::::
 
-Btrfs uses copy-on-write (CoW): when a profile is created from a stock profile, or a snapshot is made from a profile, no data is duplicated on disk. Only the blocks changed later are written anew, and everything else is shared between the original and the copy. This means you can keep many profiles and snapshots without using proportionally more disk space.
+Btrfs uses copy-on-write (CoW): when a profile is created from a stock snapshot, or a snapshot is created from a profile, no data is duplicated on disk. Only the blocks changed later are written anew, and everything else is shared between the original and the copy. This means you can keep multiple profiles and snapshots without using proportionally more disk space.
 
 :::::ExpandableHeading
 See the actual space usage with `btrfs-show-space`
@@ -182,7 +165,7 @@ TOTAL      = apparent (uncompressed).
 
 ### Profile-specific and shared directories
 
-The active OS profile is mounted to the filesystem root (`/`). Several directories are intentionally kept outside of profiles and shared between all profiles:
+The active OS profile is mounted to the filesystem root (`/`). Several directories are intentionally excluded from individual profiles and shared between all profiles:
 
 - `/` — current profile (unique)
 - `/boot` — bootloader data (shared)
@@ -190,9 +173,7 @@ The active OS profile is mounted to the filesystem root (`/`). Several directori
 - `/var/log` — logs (shared)
 - `/var/cache` — application cache (shared)
 
-This architecture allows users to share data and preserve logs between profiles. For example, a user can reboot Flipper One to desktop mode to study logs, produced in router mode.
-
-Switching profiles changes how the system behaves without touching `/home`, and a deleted or broken profile cannot affect any of the shared volumes.
+This architecture allows users to share data and preserve logs between profiles. For example, a user can reboot Flipper One to desktop mode to study logs, produced in router mode. Switching profiles changes how the system behaves without touching `/home`, and a deleted or broken profile cannot affect any of the shared volumes.
 
 :::::ExpandableHeading
 See the mounted subvolume details using `/etc/fstab`
@@ -206,9 +187,9 @@ UUID=…  /var/cache   btrfs  compress=zstd,noatime,ssd,discard=async,subvol=@va
 ```
 :::::
 
-## Profile and snapshot management using CLI commands
+## Profile and snapshot command line interface
 
-Flipper OS includes CLI commands for OS profile and snapshot management such as `list-profiles` or `create-profile`. This guide uses them to demonstrate different scenarios with profiles and snapshots. 
+Flipper OS includes CLI commands for OS profile and snapshot management such as `list-profiles` or `create-profile`. This page shows how to use these commands to manage profiles and snapshots. 
 
 CLI commands are preinstalled system-wide, and you can run them from any directory. All commands need administrator rights, so you need to start each with `sudo`. The first time you use `sudo` in a session, it asks for your password, which is normal.
 
@@ -216,27 +197,27 @@ CLI commands are preinstalled system-wide, and you can run them from any directo
 
 Rule of thumb: always make a snapshot before you experiment, and keep a `_stock` around as your always-safe fallback.
 
-| I want to...                       | Command                                       |
-|------------------------------------|-----------------------------------------------|
-| List my profiles                   | `sudo list-profiles`                          |
-| List my snapshots                  | `sudo list-snapshots`                         |
-| See space used per profile/snapshot| `sudo btrfs-show-space`                       |
-| Save a restore point               | `sudo create-snapshot [name]`                 |
-| New profile from factory-clean     | `sudo create-profile @X_stock @New`           |
-| New profile from current one       | `sudo create-profile @X @New`                 |
-| Restore from a snapshot            | `sudo create-profile @snapshots/... @New`     |
-| Rename a profile                   | `sudo rename-profile @Old @New`               |
-| Delete a profile                   | `sudo delete-profile @Name`                   |
-| Delete a snapshot                  | `sudo delete-snapshot @snapshots/...`         |
-| Back up to a file or USB           | `sudo send-snapshot @X /path/or/dir`          |
-| Restore a backup file              | `sudo receive-snapshot <file>`                |
-| Keep the disk healthy              | `sudo btrfs-maintenance all`                  |
+| I want to...                              | Command                                   |
+|-------------------------------------------|-------------------------------------------|
+| List existing profiles                    | `sudo list-profiles`                      |
+| List existing snapshots                   | `sudo list-snapshots`                     |
+| See space used per profile/snapshot       | `sudo btrfs-show-space`                   |
+| Save a restore point                      | `sudo create-snapshot [name]`             |
+| Create a profile from a stock snapshot    | `sudo create-profile @X_stock @New`       |
+| Create a profile from the current profile | `sudo create-profile @X @New`             |
+| Restore a profile from a snapshot         | `sudo create-profile @snapshots/... @New` |
+| Rename a profile                          | `sudo rename-profile @Old @New`           |
+| Delete a profile                          | `sudo delete-profile @Name`               |
+| Delete a snapshot                         | `sudo delete-snapshot @snapshots/...`     |
+| Back up to a file or USB                  | `sudo send-snapshot @X /path/or/dir`      |
+| Restore a backup file                     | `sudo receive-snapshot <file>`            |
+| Maintain the disk health                  | `sudo btrfs-maintenance all`              |
 
 Each CLI command accepts the `-h` (`--help`) flag for a quick reminder of what it does; for example, `create-profile -h`.
 
-### List profiles on the device
+### List existing profiles
 
-Use `list-profiles` to view regular and stock profiles, the currently booted profile, and the profile inheritance:
+Use `list-profiles` to view existing OS profiles, the currently booted profile, and the profile inheritance:
 
 ```bash
 $ sudo list-profiles
@@ -253,9 +234,42 @@ NAME                 KIND     ID   CREATED              RO  PARENT
 @TV-Media-Box        profile  267  2026-07-03 12:14:54  rw  @TV-Media-Box_stock (266)
 @TV-Media-Box_stock  stock    266  2026-07-03 12:14:21  ro  @Minimal_stock (262)
 ```
-Shows every profile, which one is currently booted, and which are `stock` (pristine).
 
-### List snapshots on the device
+Shows the profile list, which one is currently booted, and which are built-in (stock).
+
+### Make a snapshot as a save point
+
+You can make a snapshot as a recovery point **before** making an important change or a risky action.
+The `create-snapshot` command demonstrated below creates a snapshot based on your currently booted profile:
+
+```bash
+$ sudo create-snapshot
+
+created @snapshots/@Desktop_2026-07-03_14-02-25 (read-only)
+```
+
+You can specify the snapshot label:
+
+```bash
+$ sudo create-snapshot Test
+
+created @snapshots/@Desktop_2026-07-03_14-02-22_Test (read-only)
+```
+
+### Recover a profile from a snapshot
+
+The `create-profile` command takes a snapshot and turns it into a bootable profile `@MyDesktop`. This is how you "go back" to a saved state.
+
+```bash
+$ sudo create-profile @snapshots/@Desktop_2026-07-03_14-02-22_Test @MyDesktop
+
+Create bootable profile "@MyDesktop" with a writable copy of @snapshots/@Desktop_2026-07-03_14-02-22_Test on /dev/sda2? [y/N] y
+flipper-bls: wrote entry for @MyDesktop (kernel 7.1.0-g5f8b21274ff4, slot 92)
+profile '@MyDesktop' created from '@snapshots/@Desktop_2026-07-03_14-02-22_Test' (writable, boot entry added)
+reboot and pick '@MyDesktop' from the boot menu to use it
+```
+
+### List existing snapshots
 
 ```bash
 $ sudo list-snapshots
@@ -266,7 +280,7 @@ NAME                                            ID   CREATED              PARENT
 ```
 Shows every saved snapshot and which profile it came from.
 
-### Make a new profile from a stock profile
+### Make a new profile from a stock snapshot
 
 You can make a new profile from a stock profile using `create-profile`:
 
@@ -281,7 +295,7 @@ reboot and pick '@DesktopTest' from the boot menu to use it
 
 The command above creates a fresh, bootable `@DesktopTest` from the `@Desktop_stock` profile. You can now reboot and pick `@DesktopTest` from the boot menu.
 
-### Make new profile from the booted profile
+### Make a new profile from the booted profile
 
 You can also make a new profile straight from your **currently booted** profile (keeping with all your changes):
 
@@ -294,37 +308,6 @@ profile '@DesktopTest2' created from '@Desktop' (writable, boot entry added)
 reboot and pick '@DesktopTest2' from the boot menu to use it
 ```
 Creates `@DesktopTest2` as a copy of Desktop as it is right now.
-
-### Make a snapshot from the booted profile
-
-You can make a snapshot as a recovery point before making an important change or a risky action:
-
-```bash
-$ sudo create-snapshot Test
-
-created @snapshots/@Desktop_2026-07-03_14-02-22_Test (read-only)
-```
-Freezes your current profile and labels it `Test`. Do this **before** risky changes.
-
-```bash
-$ sudo create-snapshot
-
-created @snapshots/@Desktop_2026-07-03_14-02-25 (read-only)
-```
-Same thing, but auto-named with the date and time if you don't care about a label.
-
-### Recover a profile from a snapshot
-
-The `create-profile` command takes a snapshot and turns it into a bootable profile `@MyDesktop`. This is how you "go back" to a saved state.
-
-```bash
-$ sudo create-profile @snapshots/@Desktop_2026-07-03_14-02-22_Test @MyDesktop
-
-Create bootable profile "@MyDesktop" with a writable copy of @snapshots/@Desktop_2026-07-03_14-02-22_Test on /dev/sda2? [y/N] y
-flipper-bls: wrote entry for @MyDesktop (kernel 7.1.0-g5f8b21274ff4, slot 92)
-profile '@MyDesktop' created from '@snapshots/@Desktop_2026-07-03_14-02-22_Test' (writable, boot entry added)
-reboot and pick '@MyDesktop' from the boot menu to use it
-```
 
 ### Rename a profile
 
@@ -358,9 +341,10 @@ Profiles and snapshots share most of their data, so they take far less room than
 
 Add `-q` (`sudo btrfs-show-space -q`) for a faster run that skips the REFERENCED column.
 
-### Clean up an unused profile or snapshot
 
-Delete a profile you no longer need (also removes its boot menu entry):
+### Delete a profile or snapshot
+
+Use `delete-profile` to delete a profile and remove it from the boot menu:
 
 ```bash
 # sudo delete-profile @DesktopTest2
@@ -370,7 +354,7 @@ deleted @DesktopTest2
 removed boot entry /boot/loader/entries/92-DesktopTest2-flipperos-DesktopTest2-7.1.0-g5f8b21274ff4.conf
 ```
 
-Delete a snapshot you no longer need:
+Use `delete-snapshot` to delete a snapshot you no longer need:
 
 ```bash
 $ sudo delete-snapshot @snapshots/@Desktop_2026-07-03_14-08-44_Minimal-DeleteMe
@@ -379,7 +363,7 @@ Delete restore-point snapshot '@snapshots/@Desktop_2026-07-03_14-08-44_Minimal-D
 deleted @snapshots/@Desktop_2026-07-03_14-08-44_Minimal-DeleteMe
 ```
 
-Every command asks for a `y/N` confirmation first, so a typo won't wipe anything by accident. `delete-profile` asks again if the target is read-only, and a third time for a `_stock` factory base.
+Each command asks for a `y/N` confirmation first, so a typo won't wipe anything by accident. You will need to confirm twice to delete a read-only target, and three times to delete a stock snapshot.
 
 ---
 
