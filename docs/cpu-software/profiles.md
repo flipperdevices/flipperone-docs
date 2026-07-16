@@ -16,9 +16,9 @@ When a Linux device is used as a multitool, in roles like a Wi-Fi router, a medi
 
 Flipper OS solves the problem of a messy system using OS profiles and snapshots:
 
-- **OS profile** is a system you can boot into and use. Profiles are mutable: each time you install new packages, change configurations, or add any other files, a profile is updated in the file system.
-- **Stock snapshot** is an initial profile backup, a clean system. Stock profiles are immutable. You can't boot a stock profile, but you can create a new profile from it.
-- **Live snapshot** is a frozen backup of a profile. Snapshots are immutable. You can't boot a snapshot, but you can restore a profile from it.
+- **OS profile** is a system you can boot into and use. Profiles are changeable: each time you install new packages, change configurations, or add any other files, a profile is updated in the file system.
+- **Stock snapshot** is an initial profile backup, a clean system. Stock snapshots are read-only. You can't boot a stock snapshot, but you can create a new profile from it.
+- **Live snapshot** is a frozen backup of a profile. Like stock snapshot, it is read-only and not bootable.
 
 Currently, Flipper OS uses Btrfs file system to implement the profile and snapshot functionality.
 
