@@ -5,82 +5,72 @@ docTags:
 createdAt: Mon Jul 14 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
 updatedAt: Mon Jul 14 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
 ---
+# OS profiles and snapshots
 
-This guide explains OS profiles and snapshots in Flipper OS: their purpose, how to use, and how to manage them using CLI helper tools.
+## Introduction
 
-TL;DR:
+This page explains OS profiles and snapshots in Flipper OS, how to use, and how to manage them using CLI helper tools.
 
-- **Profile** is a system you can **boot into and use**. Profiles are mutable: each time you install new packages, change configurations, or add any other files, a profile is updated in the file system.
-- **Stock profile** is an initial profile backup, a clean system. Stock profiles are immutable. You can't boot a stock profile, but you can **create a new profile** from it. 
-- **Snapshot** is a frozen backup of a profile. Snapshots are immutable. You can't boot a snapshot, but you can **restore a profile** from it.
+## OS profiles and snapshots
 
-## Problem overview
+Here's 
 
-When a Linux device is used as a multitool, in roles like a Wi-Fi router, a media box, and a desktop, it gradually accumulates installed packages, modified config files, and saved data. Eventually, the system becomes too messy to use, and the only solution is to reinstall it from scratch. With a multitool, users often need to switch between setups, save a working state before experimenting, and roll back after breaking things.
-
-Flipper OS solves this problem using profiles and snapshots. Profiles allow users to maintain several independent system configurations and switch between them at boot, while snapshots serve as recoverable save points within each profile.
-
-## Profiles and snapshots
-
-### What is an OS profile?
-
-Think of a profile like a separate "computer setup" on your Flipper One. When you turn the device on, you see a boot menu where each boot target represents a profile: Desktop, Router, TV Media Box, No Graphics, and so on.
-
-Each profile:
-
-- **Can be booted** (it shows up in the boot menu).
-- **Can be changed**: install apps, tweak settings, break things. It's yours.
-- **Remembers your changes** between reboots.
-
-You can have several profiles side by side and switch between them by rebooting.
-
-::embed[]{url="https://www.youtube.com/watch?v=oI6Vl_uoAwI"}
-
-**Which profile am I in right now?** There are two easy ways to check:
-
-1. The welcome banner shown when you log in, on the `Profile:` line:
-   ```
-   Welcome to FlipperOne
-      Board:    one-rev-f0b0c1
-      Memory:   7.8 GB
-      Profile:  @Minimal
-   ```
-2. Running `sudo list-profiles`: the current one is tagged `<- booted`.
-
-### What is a stock profile?
-
-Stock (built-in) profiles are clear, factory versions of profiles that are read-only and never changed by the user.
-For each starting profile there is a `_stock` version (for example `@Desktop_stock`) that the profile was made from. 
-Stock profiles enable users to restore a profile from a clean starting point or create a new profile.
-
-Stock profiles have the following characteristics:
-
-- **Can't be booted directly.** Instead, users can boot into regular profiles created from stock profiles.
-- **Immutable (can't be changed).** Stock profiles are written at production time and updated as device firmware.
-- **Should not be modified by the user.** Stock profiles are the base of system recovery, so users should not interact with them directly.
-
-Flipper One has the following stock profiles (to be continued):
-
-- `@Minimal_stock` — the parent of all other stock profiles.
-- `@No_Graphics_stock`
-- `@Router_stock`
-- `@TV-Media-Box_stock`
-- `@Desktop_stock`
-
-### What is a snapshot?
-
-A snapshot is a copy of a profile taken at a moment of time. Snapshots allow users to save successful configurations to reuse them later, split into multiple profiles, or run experiments with an option for an easy recovery.
-
-Snapshots have the following characteristics:
-
-- **Can't be booted directly.** Instead, users can restore a profile from a snapshot.
-- **Immutable (can't be changed).** A snapshot keeps the filesystem state from a moment it was created.
-- **Can be freely created, renamed, and deleted**. Users have full control over snapshots.
-- **Can be created automatically.** Certain OS mechanisms can create snapshots before dangerous user actions.
+- **OS profile** is a system you can boot into and use. Profiles are mutable: each time you install new packages, change configurations, or add any other files, a profile is updated in the file system.
+- **Built-in (stock) OS profile** is an initial profile backup, a clean system. Stock profiles are immutable. You can't boot a stock profile, but you can create a new profile from it.
+- **Snapshot** is a frozen backup of a profile. Snapshots are immutable. You can't boot a snapshot, but you can restore a profile from it.
 
 ---
 
-### Profiles and snapshots lifecycle
+### OS profile
+
+Think of an OS profile like a separate Linux setup on your Flipper One. When you turn the device on, you see a boot menu where each boot target represents a profile: Desktop, Router, TV Media Box, No Graphics, and so on.  
+
+Each OS profile:
+
+- **Can be booted** (it shows up in the boot menu).
+- **Can be changed**: install apps, tweak settings, break things. It's yours.
+- **Can be updated** in usual way. It affects only the current booted profile.
+
+:::hint{type="info"}
+These directories aren't parts of any profile:
+
+* /home
+* /var/cache
+* /var/log
+:::
+
+You can have several profiles side by side and switch between quickly from the boot menu. There are two ways to determine which OS profile is currently loaded:
+
+1. By the `Profile` line in the welcome banner shown when you log in:
+  ```
+  Welcome to FlipperOne
+      Board:    one-rev-f0b0c1
+      Memory:   7.8 GB
+      Profile:  @Minimal
+  ```
+2. By the `sudo list-profiles` command: the current OS profile is tagged `<- booted`.
+
+### Built-in (stock) OS profile
+
+Built-in OS profiles are not shown in the boot menu, but you can list them by running `sudo list-profiles` command. They can be identified by the `_stock` suffix in their profile names (for example `@Desktop_stock`).
+
+Built-in OS profiles are **read-only factory profiles**. This allows you to always return to a clean starting point if your working profile becomes corrupted or otherwise gets messed up.
+
+---
+
+### Snapshot
+
+Think of a snapshot like a photo of a profile taken at one moment, or a save point in a game. A snapshot:
+
+- **Is read-only**: nothing can change it.
+- **Is not bootable.** It's a backup, not a system to run.
+- **Is your safe point.** Create a snapshot before doing something risky. If something goes wrong, you can restore your system from it.
+
+To actually use a snapshot, you turn it into a profile (see the examples). Then it becomes bootable again.
+
+---
+
+### How they fit together
 
 ```
    stock  (pristine, read-only)
@@ -103,117 +93,6 @@ Snapshots have the following characteristics:
 - **New profile from `_stock`** = go all the way back to factory-clean.
 
 ---
-
-
-### Profiles and snapshots as file system volumes
-
-Flipper OS uses the [Btrfs file system](https://btrfs.readthedocs.io/en/latest/). Profiles, stock profiles, and snapshots are **Btrfs subvolumes**.
-
-:::::ExpandableHeading
-See the list of Btrfs subvolumes using `btrfs subvol list`
-
-```bash
-user@flipperone-a9438e:~$ sudo btrfs subvol list /
-ID 256 gen 97 top level 5 path @Minimal_stock
-ID 257 gen 132 top level 5 path boot
-ID 258 gen 137 top level 5 path @home
-ID 259 gen 115 top level 5 path @snapshots
-ID 260 gen 150 top level 5 path @var-log
-ID 261 gen 121 top level 5 path @var-cache
-ID 262 gen 145 top level 5 path @Minimal
-ID 263 gen 86 top level 5 path @Desktop_stock
-ID 265 gen 93 top level 5 path @TV-Media-Box_stock
-ID 266 gen 146 top level 5 path @TV-Media-Box
-ID 267 gen 96 top level 5 path @Router_stock
-ID 268 gen 146 top level 5 path @Router
-ID 269 gen 99 top level 5 path @No-Graphics_stock
-ID 270 gen 145 top level 5 path @No-Graphics
-ID 271 gen 112 top level 259 path @snapshots/@Desktop_2026-07-14_10-15-16
-ID 272 gen 114 top level 259 path @snapshots/@Desktop_2026-07-14_10-16-37_Desktop-before-changes
-ID 273 gen 150 top level 5 path @Desktop
-```
-:::::
-
-Btrfs uses copy-on-write (CoW): when a profile is created from a stock profile, or a snapshot is made from a profile, no data is duplicated on disk. Only the blocks changed later are written anew, and everything else is shared between the original and the copy. This means you can keep many profiles and snapshots without using proportionally more disk space. 
-
-:::::ExpandableHeading
-See the actual space usage with `btrfs-show-space`
-
-The `btrfs-show-space` command shows the real footprint: the **UNIQUE** column tells you how much exclusive data each entry holds, and the **REFERENCED** column shows its total logical size including shared blocks.
-
-```
-user@flipperone-a9438e:~$ sudo btrfs-show-space
-== filesystem ==
-Overall:
-    Device size:		  59.50GiB
-    Device allocated:		   3.49GiB
-    Device unallocated:		  56.01GiB
-    Device missing:		     0.00B
-    Device slack:		     0.00B
-    Used:			   2.42GiB
-    Free (estimated):		  56.86GiB	(min: 28.85GiB)
-    Free (statfs, df):		  56.86GiB
-    Data ratio:			      1.00
-    Metadata ratio:		      2.00
-    Global reserve:		   7.75MiB	(used: 0.00B)
-    Multiple profiles:		        no
-
-             Data    Metadata  System
-Id Path      single  DUP       DUP      Unallocated Total    Slack
--- --------- ------- --------- -------- ----------- -------- -----
- 1 /dev/sda2 2.98GiB 512.00MiB 16.00MiB    56.01GiB 59.50GiB     -
--- --------- ------- --------- -------- ----------- -------- -----
-   Total     2.98GiB 256.00MiB  8.00MiB    56.01GiB 59.50GiB 0.00B
-   Used      2.12GiB 153.33MiB 16.00KiB
-
-Measuring 12 subvolume(s) (du + compsize), please wait...
-== root subvolumes & snapshots ==
-NAME                                                                 UNIQUE  REFERENCED       TOTAL
-@snapshots/@Desktop_2026-07-14_10-15-16                                0.0B      2.0GiB      3.4GiB
-@snapshots/@Desktop_2026-07-14_10-16-37_Desktop-before-changes         0.0B      2.0GiB      3.4GiB
-@Desktop                                                             4.0KiB      2.0GiB      3.4GiB  <- booted
-@Desktop_stock                                                      76.0KiB      2.0GiB      3.4GiB
-@Minimal                                                               0.0B      1.4GiB      2.4GiB
-@Minimal_stock                                                         0.0B      1.4GiB      2.4GiB
-@No-Graphics                                                           0.0B      1.4GiB      2.4GiB
-@No-Graphics_stock                                                     0.0B      1.4GiB      2.4GiB
-@Router                                                                0.0B      1.4GiB      2.4GiB
-@Router_stock                                                          0.0B      1.4GiB      2.4GiB
-@TV-Media-Box                                                          0.0B      1.5GiB      2.5GiB
-@TV-Media-Box_stock                                                    0.0B      1.5GiB      2.5GiB
-
-UNIQUE     = freed if you delete that subvolume alone (uncompressed).
-REFERENCED = real on-disk size, compressed; counts shared extents, so NOT additive.
-TOTAL      = apparent (uncompressed).
-```
-:::::
-
-### Profile-specific and shared directories
-
-The active profile is mounted to the filesystem root (`/`). Several directories are intentionally kept outside of profiles and shared between all profiles:
-
-- `/` — current profile (unique)
-- `/boot` — bootloader data (shared)
-- `/home` — user home directories (shared)
-- `/var/log` — logs (shared)
-- `/var/cache` — application cache (shared)
-
-This architecture allows users to share data and preserve logs between profiles. For example, a user can reboot Flipper One to desktop mode to study logs, produced in router mode.
-
-Switching profiles changes how the system behaves without touching `/home`, and a deleted or broken profile cannot affect any of the shared volumes.
-
-:::::ExpandableHeading
-See the mounted subvolume details using `/etc/fstab`
-
-```bash
-UUID=…  /            btrfs  defaults,compress=zstd,noatime,ssd,discard=async,x-systemd.growfs  0  0
-UUID=…  /boot        btrfs  compress=zstd,noatime,ssd,discard=async,subvol=boot        0  0
-UUID=…  /home        btrfs  compress=zstd,noatime,ssd,discard=async,subvol=@home       0  0
-UUID=…  /var/log     btrfs  compress=zstd,noatime,ssd,discard=async,subvol=@var-log    0  0
-UUID=…  /var/cache   btrfs  compress=zstd,noatime,ssd,discard=async,subvol=@var-cache  0  0
-```
-:::::
-
 
 ## CLI helper tools
 
@@ -246,7 +125,7 @@ NAME                 KIND     ID   CREATED              RO  PARENT
 @TV-Media-Box        profile  267  2026-07-03 12:14:54  rw  @TV-Media-Box_stock (266)
 @TV-Media-Box_stock  stock    266  2026-07-03 12:14:21  ro  @Minimal_stock (262)
 ```
-Shows every profile, which one is currently booted, and which are `stock` (pristine).
+Shows the profile list, which one is currently booted, and which are built-in (stock).
 
 ```
 sudo list-snapshots
@@ -294,7 +173,7 @@ created @snapshots/@Desktop_2026-07-03_14-02-25 (read-only)
 ```
 Same thing, but auto-named with the date and time if you don't care about a label.
 
-### Make a new profile to experiment with something new
+### Try something new, safely (make a new profile)
 
 From the **factory-clean** version:
 ```
