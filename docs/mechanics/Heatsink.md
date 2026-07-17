@@ -17,7 +17,7 @@ The main heat sources inside Flipper One are:
 * **RK3576 SoC.** Up to **5.5 W** under maximum load (CPU + GPU + NPU simultaneously).
 * **RK806S PMIC.** Up to around **2 W** at peak SoC load.
 * **DDR5 RAM.** Up to **1.5 W** during memory-intensive operations.
-* **BQ25798 charger.** Up to **1 W** while fast-charging the battery.
+* **BQ25792 charger.** Up to **1 W** while fast-charging the battery.
 
 !["Location of the main heat-generating chips on the Flipper One PCB"](/files/pics/flipper-one-hot-chips.png "Location of the main heat-generating chips on the Flipper One PCB")
 

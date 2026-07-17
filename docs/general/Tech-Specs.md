@@ -115,7 +115,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 - **Battery energy:** 24000 mWh
 - **Battery capacity:** 7000 mAh ⚠️ (not final)
 - **Charger IC:** TI BQ25792, up to 3.32 A
-- **Fuel Gauge:** TI BQ28Z610
+- **Fuel Gauge:** TI BQ28Z620
 - **Charging:** via USB-C1 port, USB Power Delivery supported
 
 ***
