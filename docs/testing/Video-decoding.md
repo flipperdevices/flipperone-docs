@@ -15,7 +15,7 @@ This section describes how to properly test hardware video decoding.
 
 # Rockchip RK3576 Hardware Video decoders
 
-![Rockchip RK3576 Hardware Video decoders](files/pics/rk3576_hardware_video_decoders.png)
+![Rockchip RK3576 Hardware Video decoders](/files/pics/rk3576_hardware_video_decoders.png)
 
 ***
 

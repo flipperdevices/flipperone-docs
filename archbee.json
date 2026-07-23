@@ -202,7 +202,14 @@
             "categoryName": "Flipper OS",
             "isCategory": false,
             "path": "cpu-software/Flipper-OS.md",
-            "children": []
+            "children": [
+              {
+                "categoryName": "OS Profiles",
+                "isCategory": false,
+                "path": "cpu-software/profiles.md",
+                "children": []
+              }
+            ]
           },
           {
             "categoryName": "FlipCTL",
