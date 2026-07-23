@@ -26,3 +26,21 @@ jobs:
 
       - name: Detect broken links
         run: archbee broken-links
+
+  docs-validator:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      # Archbee's own broken-links check above confirms a link's target
+      # file exists, but not that a #fragment resolves to a real heading.
+      - name: Check anchor fragments
+        run: python3 tools/validate_docs.py --check anchor
+
+      # Stricter than Archbee's own check for image references: resolves
+      # them the way Archbee actually does (see tools/validate_docs.py)
+      # instead of just checking the target file exists.
+      - name: Check internal link and image paths
+        run: python3 tools/validate_docs.py --check path

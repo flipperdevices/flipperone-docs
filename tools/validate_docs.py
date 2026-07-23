@@ -1,34 +1,34 @@
 #!/usr/bin/env python3
 """
-Check the Flipper One docs for broken anchors, broken internal paths, and
-part-number families that disagree across pages.
+Check the Flipper One docs for broken anchors and broken internal paths.
 
 Archbee's own CI (`archbee validate` / `archbee broken-links`, see
 .github/workflows/validate.yml) checks the sidebar structure and confirms
 that link targets exist, but it doesn't resolve `#fragment` anchors against
-the target page's real headings, and it has no notion of what a "part
-number" is. This script covers both gaps:
+the target page's real headings. This script covers that gap, plus a path
+check that's stricter about image references than Archbee's own check:
 
 1. Anchor check: for every internal link with a `#fragment`, resolve the
    target page and confirm the fragment matches a GitHub-style slug of one
    of its headings.
 2. Path check: for every internal link and image reference -- plain
    Markdown and Archbee's `::Image[]{src="..."}` / `:inlineImage[]{src="..."}`
-   directives -- confirm the target file actually exists.
-3. Part-number check: flag part-number families (BQ25xxx chargers,
-   BQ28Zxxx fuel gauges, MT7921xxx Wi-Fi chips, ...) that resolve to more
-   than one distinct literal value across the docs. This is a warning, not
-   an error -- hardware revisions can legitimately use different parts --
-   so it's meant to surface a disagreement for a human to adjudicate, not
-   to declare one side wrong.
+   directives -- confirm the target file actually exists. Image references
+   are resolved the way Archbee resolves them: relative to the referencing
+   page first, then falling back to a path relative to the docs root (see
+   `resolve_image_target` for why both are tried).
 
-Fenced code blocks are skipped by every check. The contribution-guide pages
+Each check can be run on its own with `--check anchor` / `--check path`, so
+CI can wire them up as separate steps and name precisely which one failed.
+
+Fenced code blocks are skipped by both checks. The contribution-guide pages
 use placeholder paths like `your-image.png` as syntax examples inside
 ` ```markdown ` fences, and those aren't real broken links.
 
 Usage:
     python3 tools/validate_docs.py                  # scan docs/, human output
-    python3 tools/validate_docs.py --strict          # also fail on warnings
+    python3 tools/validate_docs.py --check anchor    # anchors only
+    python3 tools/validate_docs.py --check path      # paths only
     python3 tools/validate_docs.py --docs-root docs
 """
 
@@ -50,22 +50,6 @@ class Severity(str, Enum):
     ERROR = "error"
     WARNING = "warning"
 
-
-@dataclass(frozen=True)
-class PartFamily:
-    name: str
-    pattern: re.Pattern[str]
-
-
-# Starter set from issue #420 (BQ25xxx / BQ28Zxxx) plus the Wi-Fi chipset
-# naming that keeps showing up as both MT7921AUN and MT7921AU. Add more
-# with --part-family NAME=REGEX rather than editing this list, if a
-# one-off check is all you need.
-DEFAULT_PART_FAMILIES: tuple[PartFamily, ...] = (
-    PartFamily("BQ25 charger", re.compile(r"\bBQ25\d{3}\w*\b")),
-    PartFamily("BQ28Z fuel gauge", re.compile(r"\bBQ28Z\d{3}\b")),
-    PartFamily("MT7921 Wi-Fi chip", re.compile(r"\bMT7921\w+\b")),
-)
 
 _FENCE_RE = re.compile(r"^ {0,3}(`{3,}|~{3,})")
 _HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*#*\s*$")
@@ -129,14 +113,6 @@ class LinkRef:
     line: int
     raw_url: str
     is_image: bool
-
-
-@dataclass(frozen=True)
-class PartOccurrence:
-    family: str
-    value: str
-    path: Path
-    line: int
 
 
 def unfenced_lines(text: str) -> list[tuple[int, str]]:
@@ -259,6 +235,32 @@ def resolve_path_part(path_part: str, current_file: Path, docs_root: Path) -> Pa
     return (base / rel).resolve()
 
 
+def resolve_image_target(path_part: str, current_file: Path, docs_root: Path) -> Path | None:
+    """Resolve an image reference the way Archbee actually resolves it.
+
+    Regular internal links resolve relative to the referencing file, and
+    that's right for images too when the reference already works out that
+    way -- docs/hardware/GPIO-Modules.md's plain Markdown image uses
+    "../files/pics/walkie-talkie-module.png", which only makes sense
+    relative to its own directory, and it renders fine live.
+
+    But three `::Image[]{src="files/pics/..."}` directives on
+    docs/cpu-software/How-to-install-linux-image.md give a bare relative
+    path with no leading slash and no "../" -- under file-relative
+    resolution that looks for a "files/pics/" folder next to the page
+    itself, which doesn't exist, but the images render fine live because
+    Archbee falls back to resolving the same path against the docs root.
+    So: try the normal file-relative resolution first, and only if that
+    doesn't find a file, retry relative to the docs root before giving up.
+    """
+    target = resolve_path_part(path_part, current_file, docs_root)
+    if target is not None and not target.is_file() and not path_part.startswith("/"):
+        root_relative = (docs_root / path_part).resolve()
+        if root_relative.is_file():
+            return root_relative
+    return target
+
+
 def display_path(path: Path, repo_root: Path) -> str:
     try:
         return str(path.relative_to(repo_root))
@@ -286,7 +288,10 @@ def check_links(md_files: list[Path], docs_root: Path, repo_root: Path) -> list[
             if is_external(ref.raw_url):
                 continue
             path_part, fragment = split_fragment(ref.raw_url)
-            target = resolve_path_part(path_part, md_file, docs_root)
+            if ref.is_image:
+                target = resolve_image_target(path_part, md_file, docs_root)
+            else:
+                target = resolve_path_part(path_part, md_file, docs_root)
 
             if target is None:
                 target_page: PageInfo | None = page
@@ -324,68 +329,11 @@ def check_links(md_files: list[Path], docs_root: Path, repo_root: Path) -> list[
     return findings
 
 
-def find_part_occurrences(
-    md_files: list[Path], repo_root: Path, families: tuple[PartFamily, ...]
-) -> list[PartOccurrence]:
-    occurrences: list[PartOccurrence] = []
-    for md_file in md_files:
-        lines = unfenced_lines(md_file.read_text(encoding="utf-8"))
-        source = display_path(md_file, repo_root)
-        for lineno, line in lines:
-            for family in families:
-                for match in family.pattern.finditer(line):
-                    occurrences.append(
-                        PartOccurrence(family.name, match.group(0), Path(source), lineno)
-                    )
-    return occurrences
-
-
-def check_part_families(occurrences: list[PartOccurrence]) -> list[Finding]:
-    findings: list[Finding] = []
-    by_family: dict[str, list[PartOccurrence]] = {}
-    for occ in occurrences:
-        by_family.setdefault(occ.family, []).append(occ)
-
-    for family, occs in by_family.items():
-        distinct_values = sorted({occ.value for occ in occs})
-        if len(distinct_values) <= 1:
-            continue
-        values_summary = ", ".join(distinct_values)
-        for occ in occs:
-            findings.append(
-                Finding(
-                    Severity.WARNING,
-                    "part-number",
-                    occ.path,
-                    occ.line,
-                    f"'{occ.value}' is one of {len(distinct_values)} distinct values seen "
-                    f"repo-wide for the {family} family ({values_summary}) -- confirm which "
-                    f"one is current.",
-                )
-            )
-    return findings
-
-
-def run(
-    docs_root: Path, repo_root: Path, extra_families: tuple[PartFamily, ...] = ()
-) -> list[Finding]:
+def run(docs_root: Path, repo_root: Path) -> list[Finding]:
     md_files = find_markdown_files(docs_root)
     findings = check_links(md_files, docs_root, repo_root)
-    occurrences = find_part_occurrences(md_files, repo_root, DEFAULT_PART_FAMILIES + extra_families)
-    findings.extend(check_part_families(occurrences))
     findings.sort(key=lambda f: (str(f.path), f.line, f.check, f.severity.value))
     return findings
-
-
-def _parse_family_arg(raw: str) -> PartFamily:
-    if "=" not in raw:
-        raise argparse.ArgumentTypeError(f"expected NAME=REGEX, got {raw!r}")
-    name, pattern = raw.split("=", 1)
-    try:
-        compiled = re.compile(pattern)
-    except re.error as exc:
-        raise argparse.ArgumentTypeError(f"invalid regex for {name!r}: {exc}") from exc
-    return PartFamily(name, compiled)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -396,35 +344,28 @@ def main(argv: list[str] | None = None) -> int:
         "--docs-root", type=Path, default=DEFAULT_DOCS_ROOT, help="Directory to scan (default: docs/)."
     )
     parser.add_argument(
-        "--strict", action="store_true", help="Exit non-zero on warnings too, not just errors."
-    )
-    parser.add_argument(
-        "--part-family",
-        type=_parse_family_arg,
-        action="append",
-        default=[],
-        metavar="NAME=REGEX",
-        help="Add an extra part-number family on top of the built-in ones "
-        "(BQ25xxx, BQ28Zxxx, MT7921xxx). Repeatable.",
+        "--check",
+        choices=("anchor", "path"),
+        default=None,
+        help="Run only this check instead of both. Lets CI wire the anchor "
+        "check and the path check into their own steps.",
     )
     args = parser.parse_args(argv)
 
     docs_root: Path = args.docs_root.resolve()
     repo_root: Path = docs_root.parent
-    extra_families: tuple[PartFamily, ...] = tuple(args.part_family)
 
-    findings = run(docs_root, repo_root, extra_families)
+    findings = run(docs_root, repo_root)
+    if args.check is not None:
+        findings = [f for f in findings if f.check == args.check]
     for finding in findings:
         print(finding)
 
     errors = [f for f in findings if f.severity is Severity.ERROR]
-    warnings = [f for f in findings if f.severity is Severity.WARNING]
     file_count = len(find_markdown_files(docs_root))
-    print(f"\n{len(errors)} error(s), {len(warnings)} warning(s) across {file_count} files scanned.")
+    print(f"\n{len(errors)} error(s) across {file_count} files scanned.")
 
-    if errors or (args.strict and warnings):
-        return 1
-    return 0
+    return 1 if errors else 0
 
 
 if __name__ == "__main__":

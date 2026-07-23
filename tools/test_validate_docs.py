@@ -7,15 +7,13 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from validate_docs import (
-    DEFAULT_PART_FAMILIES,
     Severity,
     check_links,
-    check_part_families,
     dedupe_slugs,
     extract_headings,
     extract_link_refs,
-    find_part_occurrences,
     github_slug,
+    resolve_image_target,
     resolve_path_part,
     run,
     split_fragment,
@@ -144,6 +142,61 @@ class ResolvePathPartTest(unittest.TestCase):
         self.assertNotEqual(target, self.current_file)
 
 
+class ResolveImageTargetTest(unittest.TestCase):
+    def test_dotdot_relative_hit_is_used_as_is(self) -> None:
+        # docs/hardware/GPIO-Modules.md's real image reference: "../" only
+        # makes sense relative to the referencing file's own directory, and
+        # it resolves on the first try, so the docs-root fallback never
+        # kicks in.
+        with tempfile.TemporaryDirectory() as tmp_str:
+            docs_root = Path(tmp_str) / "docs"
+            (docs_root / "files" / "pics").mkdir(parents=True)
+            (docs_root / "files" / "pics" / "walkie-talkie-module.png").write_text("x")
+            current_file = docs_root / "hardware" / "GPIO-Modules.md"
+            current_file.parent.mkdir(parents=True)
+            target = resolve_image_target(
+                "../files/pics/walkie-talkie-module.png", current_file, docs_root
+            )
+            self.assertEqual(target, docs_root / "files" / "pics" / "walkie-talkie-module.png")
+
+    def test_falls_back_to_docs_root_when_file_relative_resolution_misses(self) -> None:
+        # The real false positive on docs/cpu-software/How-to-install-linux-image.md:
+        # a bare relative path with no leading slash and no "../" doesn't
+        # resolve next to the referencing page, but Archbee renders it fine
+        # live by falling back to a docs-root-relative lookup.
+        with tempfile.TemporaryDirectory() as tmp_str:
+            docs_root = Path(tmp_str) / "docs"
+            (docs_root / "files" / "pics").mkdir(parents=True)
+            (docs_root / "files" / "pics" / "rk3576_maskrom_mode.jpg").write_text("x")
+            current_file = docs_root / "cpu-software" / "How-to-install-linux-image.md"
+            current_file.parent.mkdir(parents=True)
+            target = resolve_image_target(
+                "files/pics/rk3576_maskrom_mode.jpg", current_file, docs_root
+            )
+            self.assertEqual(target, docs_root / "files" / "pics" / "rk3576_maskrom_mode.jpg")
+
+    def test_missing_from_both_locations_stays_broken(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_str:
+            docs_root = Path(tmp_str) / "docs"
+            current_file = docs_root / "cpu-software" / "How-to-install-linux-image.md"
+            current_file.parent.mkdir(parents=True)
+            target = resolve_image_target(
+                "files/pics/does-not-exist.jpg", current_file, docs_root
+            )
+            assert target is not None
+            self.assertFalse(target.is_file())
+
+    def test_leading_slash_path_is_unaffected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_str:
+            docs_root = Path(tmp_str) / "docs"
+            (docs_root / "files" / "pics").mkdir(parents=True)
+            (docs_root / "files" / "pics" / "foo.png").write_text("x")
+            current_file = docs_root / "testing" / "About-Testing.md"
+            current_file.parent.mkdir(parents=True)
+            target = resolve_image_target("/files/pics/foo.png", current_file, docs_root)
+            self.assertEqual(target, docs_root / "files" / "pics" / "foo.png")
+
+
 class ArchbeeImageParsingTest(unittest.TestCase):
     def test_extracts_src_from_image_directive(self) -> None:
         line = '::Image[]{src="/files/pics/foo.jpg" size="80" position="flex-start"}'
@@ -220,20 +273,61 @@ class CheckLinksIntegrationTest(unittest.TestCase):
             findings = check_links(md_files, docs_root, docs_root.parent)
             self.assertEqual(findings, [])
 
-    def test_flags_missing_leading_slash_image_path(self) -> None:
+    def test_bare_relative_image_path_resolves_against_docs_root(self) -> None:
+        # The real false positive on docs/cpu-software/How-to-install-linux-image.md:
+        # an ::Image[] directive with a bare relative "src" (no leading
+        # slash) that doesn't sit next to files/pics/ in the same
+        # directory. Archbee still renders this fine live, resolving it
+        # against the docs root, so this must not be flagged.
         with tempfile.TemporaryDirectory() as tmp_str:
             docs_root = self._write_docs(
                 Path(tmp_str),
                 {
-                    "testing/Video-decoding.md": "![Decoders](files/pics/rk3576.png)\n",
-                    "files/pics/rk3576.png": "not-a-real-image-just-a-marker",
+                    "cpu-software/How-to-install-linux-image.md": (
+                        '::Image[]{src="files/pics/rk3576_maskrom_mode.jpg"}\n'
+                    ),
+                    "files/pics/rk3576_maskrom_mode.jpg": "not-a-real-image-just-a-marker",
+                },
+            )
+            md_files = sorted(docs_root.rglob("*.md"))
+            findings = check_links(md_files, docs_root, docs_root.parent)
+            self.assertEqual(findings, [])
+
+    def test_dotdot_relative_image_still_resolves_next_to_referencing_file(self) -> None:
+        # docs/hardware/GPIO-Modules.md's real, currently-correct pattern: an
+        # explicit "../" that only makes sense relative to the referencing
+        # file's own directory. This must keep working, not fall through to
+        # the docs-root fallback.
+        with tempfile.TemporaryDirectory() as tmp_str:
+            docs_root = self._write_docs(
+                Path(tmp_str),
+                {
+                    "hardware/GPIO-Modules.md": (
+                        "![Walkie-talkie module structural diagram]"
+                        "(../files/pics/walkie-talkie-module.png)\n"
+                    ),
+                    "files/pics/walkie-talkie-module.png": "not-a-real-image-just-a-marker",
+                },
+            )
+            md_files = sorted(docs_root.rglob("*.md"))
+            findings = check_links(md_files, docs_root, docs_root.parent)
+            self.assertEqual(findings, [])
+
+    def test_genuinely_missing_image_is_still_flagged(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_str:
+            docs_root = self._write_docs(
+                Path(tmp_str),
+                {
+                    "cpu-software/How-to-install-linux-image.md": (
+                        "![Missing](files/pics/does-not-exist.jpg)\n"
+                    ),
                 },
             )
             md_files = sorted(docs_root.rglob("*.md"))
             findings = check_links(md_files, docs_root, docs_root.parent)
             path_findings = [f for f in findings if f.check == "path"]
             self.assertEqual(len(path_findings), 1)
-            self.assertIn("files/pics/rk3576.png", path_findings[0].message)
+            self.assertIn("files/pics/does-not-exist.jpg", path_findings[0].message)
 
     def test_placeholder_path_inside_fence_is_not_flagged(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_str:
@@ -294,77 +388,18 @@ class CheckLinksIntegrationTest(unittest.TestCase):
             self.assertEqual(findings[0].check, "path")
 
 
-class PartFamilyTest(unittest.TestCase):
-    def test_diverging_family_produces_one_warning_per_occurrence(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp_str:
-            docs_root = Path(tmp_str) / "docs"
-            docs_root.mkdir()
-            (docs_root / "Tech-Specs.md").write_text(
-                "Charger IC: TI BQ25792\n", encoding="utf-8"
-            )
-            (docs_root / "Heatsink.md").write_text(
-                "Uses a BQ25798 charger.\n", encoding="utf-8"
-            )
-            md_files = sorted(docs_root.rglob("*.md"))
-            occurrences = find_part_occurrences(md_files, docs_root.parent, DEFAULT_PART_FAMILIES)
-            findings = check_part_families(occurrences)
-            self.assertEqual(len(findings), 2)
-            self.assertTrue(all(f.severity is Severity.WARNING for f in findings))
-            self.assertTrue(all(f.check == "part-number" for f in findings))
-
-    def test_single_consistent_value_produces_no_warning(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp_str:
-            docs_root = Path(tmp_str) / "docs"
-            docs_root.mkdir()
-            (docs_root / "Tech-Specs.md").write_text("Fuel gauge: BQ28Z620\n", encoding="utf-8")
-            (docs_root / "Power-subsystem.md").write_text(
-                "Uses a BQ28Z620 gauge.\n", encoding="utf-8"
-            )
-            md_files = sorted(docs_root.rglob("*.md"))
-            occurrences = find_part_occurrences(md_files, docs_root.parent, DEFAULT_PART_FAMILIES)
-            self.assertEqual(check_part_families(occurrences), [])
-
-    def test_family_regex_is_case_sensitive_and_skips_driver_names(self) -> None:
-        # Real corpus case: the lowercase Linux driver name `mt7921u` is not
-        # the same thing as the chip part number `MT7921AU` / `MT7921AUN`,
-        # and shouldn't be pulled into the same family comparison.
-        with tempfile.TemporaryDirectory() as tmp_str:
-            docs_root = Path(tmp_str) / "docs"
-            docs_root.mkdir()
-            (docs_root / "WiFi.md").write_text(
-                "driver: mt7921u\nChipset: MediaTek MT7921AUN\n", encoding="utf-8"
-            )
-            md_files = sorted(docs_root.rglob("*.md"))
-            occurrences = find_part_occurrences(md_files, docs_root.parent, DEFAULT_PART_FAMILIES)
-            values = {occ.value for occ in occurrences}
-            self.assertEqual(values, {"MT7921AUN"})
-
-    def test_code_fence_is_skipped_for_part_number_scanning(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp_str:
-            docs_root = Path(tmp_str) / "docs"
-            docs_root.mkdir()
-            (docs_root / "Example.md").write_text(
-                "```\nBQ25792 shown only as an example value here: BQ25798\n```\n",
-                encoding="utf-8",
-            )
-            md_files = sorted(docs_root.rglob("*.md"))
-            occurrences = find_part_occurrences(md_files, docs_root.parent, DEFAULT_PART_FAMILIES)
-            self.assertEqual(occurrences, [])
-
-
 class RunEndToEndTest(unittest.TestCase):
-    def test_run_combines_link_and_part_number_findings(self) -> None:
+    def test_run_combines_anchor_and_path_findings(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_str:
             docs_root = Path(tmp_str) / "docs"
             docs_root.mkdir()
             (docs_root / "A.md").write_text(
-                "[broken](#nope)\nBQ25792 here.\n", encoding="utf-8"
+                "[broken anchor](#nope)\n![broken path](/files/pics/nope.png)\n",
+                encoding="utf-8",
             )
-            (docs_root / "B.md").write_text("BQ25798 there.\n", encoding="utf-8")
             findings = run(docs_root, docs_root.parent)
             checks = {f.check for f in findings}
-            self.assertIn("anchor", checks)
-            self.assertIn("part-number", checks)
+            self.assertEqual(checks, {"anchor", "path"})
 
 
 if __name__ == "__main__":
