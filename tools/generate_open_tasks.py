@@ -159,6 +159,7 @@ class _Author(TypedDict, total=False):
     is_bot: bool
 
 class _CommunityPR(TypedDict, total=False):
+    id: str
     repository: _Repository
     number: int
     title: str
@@ -238,10 +239,11 @@ def is_community_pr(pr: _CommunityPR) -> bool:
     return pr.get("authorAssociation", "").upper() not in ORG_MEMBER_ASSOCIATIONS
 
 
-_LINKED_ISSUE_QUERY = """
-query($owner: String!, $repo: String!, $number: Int!) {
-  repository(owner: $owner, name: $repo) {
-    pullRequest(number: $number) {
+_LINKED_ISSUES_QUERY = """
+query($ids: [ID!]!) {
+  nodes(ids: $ids) {
+    ... on PullRequest {
+      id
       closingIssuesReferences(first: 1) { totalCount }
     }
   }
@@ -249,22 +251,26 @@ query($owner: String!, $repo: String!, $number: Int!) {
 """
 
 
-def pr_has_linked_issue(repo_full: str, number: int) -> bool:
-    """True if the PR closes or links at least one issue."""
-    owner, repo = repo_full.split("/", 1)
+def fetch_pr_ids_with_linked_issues(pr_ids: list[str]) -> set[str]:
+    """Return IDs of PRs that close or link an issue in one GraphQL request."""
+    if not pr_ids:
+        return set()
     result = subprocess.run(
         [
             "gh", "api", "graphql",
-            "-f", f"query={_LINKED_ISSUE_QUERY}",
-            "-F", f"owner={owner}",
-            "-F", f"repo={repo}",
-            "-F", f"number={number}",
+            "-f", f"query={_LINKED_ISSUES_QUERY}",
+            *(arg for pr_id in pr_ids for arg in ("-F", f"ids[]={pr_id}")),
         ],
         capture_output=True, text=True, check=True,
     )
     data = json.loads(result.stdout)
-    pr = ((data.get("data", {}).get("repository", {}) or {}).get("pullRequest")) or {}
-    return ((pr.get("closingIssuesReferences") or {}).get("totalCount") or 0) > 0
+    nodes = data.get("data", {}).get("nodes") or []
+    return {
+        node["id"]
+        for node in nodes
+        if node
+        and ((node.get("closingIssuesReferences") or {}).get("totalCount") or 0) > 0
+    }
 
 
 def fetch_community_prs() -> list[_CommunityPR]:
@@ -276,22 +282,21 @@ def fetch_community_prs() -> list[_CommunityPR]:
             "--owner", ORG,
             "--state", "open",
             "--limit", "200",
-            "--json", "repository,number,title,url,isDraft,commentsCount,author,authorAssociation",
+            "--json", "id,repository,number,title,url,isDraft,commentsCount,author,authorAssociation",
         ],
         capture_output=True, text=True, check=True,
     )
     prs: list[_CommunityPR] = json.loads(result.stdout)
-    community: list[_CommunityPR] = []
-    for pr in prs:
-        repo_full = pr["repository"]["nameWithOwner"]
-        if repo_full not in SECTION_SLUGS:
-            continue
-        if not is_community_pr(pr):
-            continue
-        if pr_has_linked_issue(repo_full, pr["number"]):
-            continue
-        community.append(pr)
-    return community
+    candidates = [
+        pr
+        for pr in prs
+        if pr["repository"]["nameWithOwner"] in SECTION_SLUGS
+        and is_community_pr(pr)
+    ]
+    linked_pr_ids = fetch_pr_ids_with_linked_issues(
+        [pr["id"] for pr in candidates]
+    )
+    return [pr for pr in candidates if pr["id"] not in linked_pr_ids]
 
 
 def load_issues_from_file(path: Path) -> list[_Issue]:

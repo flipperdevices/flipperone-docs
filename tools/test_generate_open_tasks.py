@@ -9,10 +9,10 @@ from unittest import mock
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from generate_open_tasks import (
     fetch_linked_prs,
+    fetch_pr_ids_with_linked_issues,
     generate_page,
     is_community_pr,
     make_summary,
-    pr_has_linked_issue,
     _CommunityPR,
     _Issue,
 )
@@ -147,20 +147,39 @@ class GenerateOpenTasksTest(unittest.TestCase):
             with self.subTest(pr=pr):
                 self.assertEqual(is_community_pr(pr), expected)
 
-    def test_pr_has_linked_issue_reads_total_count(self) -> None:
-        cases: list[tuple[dict[str, object] | None, bool]] = [
-            ({"closingIssuesReferences": {"totalCount": 0}}, False),
-            ({"closingIssuesReferences": {"totalCount": 2}}, True),
-            (None, False),  # PR not found
-        ]
-        for pull_request, expected in cases:
-            payload = {"data": {"repository": {"pullRequest": pull_request}}}
-            with self.subTest(pull_request=pull_request):
-                with mock.patch("generate_open_tasks.subprocess.run") as run:
-                    run.return_value = mock.Mock(stdout=json.dumps(payload))
-                    self.assertEqual(
-                        pr_has_linked_issue("flipperdevices/repo", 5), expected
-                    )
+    def test_fetch_pr_ids_with_linked_issues_batches_prs(self) -> None:
+        payload = {
+            "data": {
+                "nodes": [
+                    {
+                        "id": "PR_1",
+                        "closingIssuesReferences": {"totalCount": 0},
+                    },
+                    {
+                        "id": "PR_2",
+                        "closingIssuesReferences": {"totalCount": 2},
+                    },
+                    None,
+                ]
+            }
+        }
+        with mock.patch("generate_open_tasks.subprocess.run") as run:
+            run.return_value = mock.Mock(stdout=json.dumps(payload))
+            linked_ids = fetch_pr_ids_with_linked_issues(
+                ["PR_1", "PR_2", "PR_MISSING"]
+            )
+
+        self.assertEqual(linked_ids, {"PR_2"})
+        run.assert_called_once()
+        args = run.call_args[0][0]
+        self.assertIn("ids[]=PR_1", args)
+        self.assertIn("ids[]=PR_2", args)
+        self.assertIn("ids[]=PR_MISSING", args)
+
+    def test_fetch_pr_ids_with_linked_issues_skips_empty_request(self) -> None:
+        with mock.patch("generate_open_tasks.subprocess.run") as run:
+            self.assertEqual(fetch_pr_ids_with_linked_issues([]), set())
+            run.assert_not_called()
 
     def test_generate_page_renders_community_prs(self) -> None:
         community_prs: list[_CommunityPR] = [
