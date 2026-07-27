@@ -13,7 +13,7 @@ This is our regular Dev Log, where we share how Flipper One development is going
 
 All logs:
 
-- [#6: New PCBs revision assembled](./6.md), Flipper One developer kit and rack unit, OS profiles prototype, multifunctional device over USB-C1, and the Flipper OS installer.
+- [#6: New PCB revision assembled](./6.md), Flipper One developer kit and rack unit, OS profiles prototype, multifunctional device over USB-C1, and the Flipper OS installer.
 
 - [#5: M.2 port testing in R&D and production](./5.md), power-on and boot sequence design, and extended pixel fonts for FlipCTL / Flipper One UI. 
 
