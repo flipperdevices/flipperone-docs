@@ -39,6 +39,30 @@ Whether you're an engineer, developer, designer, programmer, or simply an enthus
 Follow updates and project announcements on X.com
 :::
 
+:::LinkArrayItem{headerType="IMAGE" headerImage="https://archbee-image-uploads.s3.amazonaws.com/3StCFqarJkJQZV-7N79yY/iEYM86oz9vw0CT1fTEFFW_instagram.png"}
+[instagram.com/flipper_rnd](https://www.instagram.com/flipper_rnd/)
+
+Follow updates and project announcements on Instagram
+:::
+
+:::LinkArrayItem{headerType="IMAGE" headerImage="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/O5IbFQ7KAuHJE_lqbKbNX-20260401-145400.jpg"}
+[youtube.com/@Flipper_RND](https://www.youtube.com/@Flipper_RND)
+
+Subscribe to our YouTube channel
+:::
+
+:::LinkArrayItem{headerType="IMAGE" headerImage="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/O5IbFQ7KAuHJE_lqbKbNX-20260401-145400.jpg"}
+[tiktok.com/@flipper_rnd](https://www.tiktok.com/@flipper_rnd/)
+
+Subscribe to our TikTok
+:::
+
+:::LinkArrayItem{headerType="IMAGE" headerImage="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/O5IbFQ7KAuHJE_lqbKbNX-20260401-145400.jpg"}
+[reddit.com/r/flipperone](https://www.reddit.com/r/flipperone/)
+
+Join the Flipper One subreddit
+:::
+
 :::LinkArrayItem{headerType="IMAGE" headerImage="https://app.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/doVC8Airf2_FH2IwVxxAV_monosnap-miro-2023-04-13-19-25-16.png"}
 [Flipper Devices Discord](https://discord.com/invite/flipper)
 
