@@ -218,6 +218,12 @@
             ]
           },
           {
+            "categoryName": "Flipper OS — Storage Architecture (RFC)",
+            "isCategory": false,
+            "path": "cpu-software/Flipper-OS-Storage-Architecture-RFC.md",
+            "children": []
+          },
+          {
             "categoryName": "FlipCTL",
             "isCategory": false,
             "path": "cpu-software/FlipCTL.md",
