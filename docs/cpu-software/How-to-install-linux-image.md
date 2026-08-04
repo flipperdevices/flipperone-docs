@@ -54,7 +54,7 @@ Use an SD card with a capacity of 8 GB or larger. The SD card will be erased dur
 
 :::::WorkflowBlock
 :::WorkflowBlockItem
-Download or build an OS image. Use `debian-512-[Target name]-build-[Build ID].img.gz`, where the target name identifies your board. Available target names are listed on the [Supported Boards](Supported-boards.md) page.
+[Download](https://dl-linux-images.flipp.dev/full-img/) or build an OS image. Use `debian-512-[Target name]-build-[Build ID].img.gz`, where the target name identifies your board. Available target names are listed on the [Supported Boards](Supported-boards.md) page. If you choose to download a prebuilt one from our development images server, usually the latest (highest-numbered) build with no suffix after the number is the best choice. Those with suffixes are test images for work-in-progress functionality.
 :::
 
 :::WorkflowBlockItem
