@@ -13,7 +13,7 @@ This is our regular Dev Log, where we share how Flipper One development is going
 
 All logs:
 
-- [#8: Flipper One new mechanical design](./8.md), CLI tool for injecting key and touch events to automate UI testing, and fixes in upstream U-Boot.
+- [#8: New Flipper One body design](./8.md), key & touch events injection CLI, and fixes in upstream U-Boot.
 
 - [#7: Screen streaming over a Debug Probe](./7.md), a terminal screen viewer, Recovery OS, fuel gauge calibration for the battery pack, and 3D-printed PCB fit-checks.
 
