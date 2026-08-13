@@ -12,6 +12,8 @@ This page outlines the core concept behind Flipper OS: what we want to build, an
 
 ***
 
+::embed[]{url="https://www.youtube.com/watch?v=yFCLM971Upw"}
+
 ## What we want to build into Flipper OS
 
 - **OS profiles** — preconfigured OS images for different tasks, such as a network router, a radio lab, a desktop computer, and a TV media box. Each profile has its own settings, kernel, device tree, and set of applications.
@@ -54,7 +56,7 @@ Issues with the SD card approach:
 
 ## What is Flipper OS?
 
-Flipper OS is not exactly an operating system, but rather a higher-level toolset that enables centralized management of OS profile snapshots from a single device. You can think of it as similar to Docker containers, but without virtualization — offering full access to bare metal.
+Flipper OS is not exactly an operating system, but rather a higher-level toolset that enables centralized management of OS profiles from a single device. You can think of it as similar to Docker containers, but without virtualization — offering full access to bare metal.
 
 Ultimately, we aim to create a tool that hardware hackers can use to build their own versatile Linux boxes for various tasks, and share the resulting images with the community. We want Flipper OS to be usable not just on Flipper One, but on other platforms too.
 
@@ -70,7 +72,7 @@ Thus, the operating system consists of two distinct parts:
 
 **OS profiles** — an overlay on top of the base system that contains all user customizations, including installed packages, containers, and modifications to the RootFS including config files edits. By applying an OS profile to the Flipper OS base system, you get a fully configured system tailored for a specific use case.
 
-- **Official built-in OS profiles** are distributed as part of the operating system, for example: `Minimal system`, `Wi-Fi router`, `TV media box`, `Network sniffer`, and `Desktop computer`.
+- **Official built-in OS profiles** are distributed as part of the operating system, for example: `Minimal system`, `Wi-Fi router`, `TV media box`, `Network sniffer`, and `Desktop`.
 
 - **User OS profiles** contain user-modified packages and RootFS changes. Users configure the system in the usual way by editing configs and installing packages using a package manager. The process remains fully transparent to the user, while all changes are automatically stored inside the active profile. In addition to OS profiles, users can separately store personal files such as media files, documents, and other data not related to the operating system.
 
