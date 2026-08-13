@@ -1,36 +1,18 @@
 ---
-title: OS profiles and snapshots
+title: Profiles CLI
 slug: cpu-software/profiles
 docTags: 
 createdAt: Mon Jul 14 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
-updatedAt: Mon Jul 14 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
+updatedAt: Thu Aug 13 2026 12:00:00 GMT+0000 (Coordinated Universal Time)
 ---
 
-This page explains OS profiles and snapshots in Flipper OS, how to use them, and how to manage them using CLI helper tools.
+This page is a command-line reference for managing OS profiles and snapshots in Flipper OS. For what OS profiles and snapshots are, and why Flipper OS uses them, see [Flipper OS](Flipper-OS.md).
 
-## Introduction
+## Concepts
 
-When a Linux device is used as a multitool, in roles like a Wi-Fi router, a media box, and a desktop, it gradually accumulates installed packages, modified config files, and saved data. Eventually, the system becomes too messy to use, and the only solution is to reinstall it from scratch. With a multitool, users often need to switch between setups, save a working state before experimenting, and roll back after breaking things.
+An OS profile is an isolated system you can boot into and use: install new packages with `apt`, change config files, and do whatever you want with it. A profile contains a Linux kernel and a `/` root directory, including the desktop environment, installed packages, and configuration files.
 
-## Flipper OS
-
-### OS profiles
-
-Flipper OS introduces the concept of **OS profiles**. An OS profile is an isolated system you can boot into and use: install new packages with `apt`, change config files, and do whatever you want with it. 
-
-Flipper One has several OS profiles specialized for different roles, such as Desktop, TV media box, or Router — and you can add more. You can select OS profiles in the boot menu:
-
-![Boot menu displays available OS profiles: Desktop, TV Media Box, Router, and others](/files/pics/cpu-software/boot-menu.jpeg "Boot menu displays available OS profiles")
-
-A profile contains a Linux kernel and a `/` root directory including the desktop environment, installed packages, and configuration files. However, several directories are shared between all profiles:
-
-- `/home` — user home directories
-- `/var/log` — logs
-- `/var/cache` — application cache
-
-Shared directories allow you to preserve logs and exchange files between OS profiles. For example, you can reboot Flipper One into desktop mode to study logs produced in router mode. Switching profiles changes how the system behaves without touching `/home`, and a deleted or broken profile cannot affect any of the shared volumes.
-
-Internally, Flipper OS uses [Btrfs](https://btrfs.readthedocs.io/en/latest/) to implement the functionality of OS profiles, snapshots, the common boot menu, and shared directories.
+Internally, Flipper OS uses [Btrfs](https://btrfs.readthedocs.io/en/latest/) to implement OS profiles, snapshots, and the common boot menu.
 
 ### Snapshots
 
