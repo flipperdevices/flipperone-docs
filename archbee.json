@@ -523,6 +523,12 @@
                 "isCategory": false,
                 "path": "resources/rockchip/RK3576-Video-output.md",
                 "children": []
+              },
+              {
+                "categoryName": "RK3576 Boot ROM",
+                "isCategory": false,
+                "path": "resources/rockchip/RK3576-Boot-ROM.md",
+                "children": []
               }
             ]
           }
