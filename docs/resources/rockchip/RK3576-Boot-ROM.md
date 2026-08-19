@@ -24,19 +24,212 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
 
 ## Boot modes
 
-| mode | ADC code      | Decimal   | Voltage @1.8 Vref | boot order                                                                   |
-| ---- | ------------- | --------- | ----------------- | ---------------------------------------------------------------------------- |
-| 1    | `0x000–0x0cf` | 0–207     | 0.000–0.091       | USB                                                                          |
-| 2    | `0x0d0–0x267` | 208–615   | 0.091–0.271       | SPINOR, SPINAND, USB                                                         |
-| 3    | `0x268–0x3fe` | 616–1022  | 0.271–0.450       | SPINOR.m1, SPINAND.m1, eMMC, USB                                             |
-| 4    | `0x3ff–0x5a3` | 1023–1443 | 0.450–0.635       | SPINOR.m2, SPINAND.m2, eMMC, USB                                             |
-| 5    | `0x5a4–0x73c` | 1444–1852 | 0.635–0.814       | SPINOR, SPINAND, UFS, USB                                                    |
-| 6    | `0x73d–0x8c2` | 1853–2242 | 0.814–0.986       | SPINOR.m1, SPINAND.m1, UFS, USB                                              |
-| 7    | `0x8c3–0xa5a` | 2243–2650 | 0.986–1.165       | UFS, USB                                                                     |
-| 8    | `0xa5b–0xbfe` | 2651–3070 | 1.165–1.350       | UFS, SD, USB                                                                 |
-| 9    | `0xbff–0xd96` | 3071–3478 | 1.350–1.529       | SPINOR.m2, SPINAND.m2, SPINOR.m1, SPINAND.m1, SPINOR, SPINAND, eMMC, SD, USB |
-| 10   | `0xd97–0xf2e` | 3479–3886 | 1.529–1.708       | eMMC, SD, USB                                                                |
-| 11   | `0xf2f–0xfff` | 3887–4095 | 1.708–1.800       | eMMC, USB                                                                    |
+<table isTableHeaderOn="true" columnWidths="60,90,70,90,370">
+  <tr>
+    <td align="left">
+      <p>mode</p>
+    </td>
+    <td align="left">
+      <p>ADC code</p>
+    </td>
+    <td align="left">
+      <p>Decimal</p>
+    </td>
+    <td align="left">
+      <p>Voltage @1.8 Vref</p>
+    </td>
+    <td align="left">
+      <p>boot order</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>1</p>
+    </td>
+    <td>
+      <p><code>0x000–0x0cf</code></p>
+    </td>
+    <td>
+      <p>0–207</p>
+    </td>
+    <td>
+      <p>0.000–0.091</p>
+    </td>
+    <td>
+      <p>USB</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>2</p>
+    </td>
+    <td>
+      <p><code>0x0d0–0x267</code></p>
+    </td>
+    <td>
+      <p>208–615</p>
+    </td>
+    <td>
+      <p>0.091–0.271</p>
+    </td>
+    <td>
+      <p>SPINOR, SPINAND, USB</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>3</p>
+    </td>
+    <td>
+      <p><code>0x268–0x3fe</code></p>
+    </td>
+    <td>
+      <p>616–1022</p>
+    </td>
+    <td>
+      <p>0.271–0.450</p>
+    </td>
+    <td>
+      <p>SPINOR.m1, SPINAND.m1, eMMC, USB</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>4</p>
+    </td>
+    <td>
+      <p><code>0x3ff–0x5a3</code></p>
+    </td>
+    <td>
+      <p>1023–1443</p>
+    </td>
+    <td>
+      <p>0.450–0.635</p>
+    </td>
+    <td>
+      <p>SPINOR.m2, SPINAND.m2, eMMC, USB</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>5</p>
+    </td>
+    <td>
+      <p><code>0x5a4–0x73c</code></p>
+    </td>
+    <td>
+      <p>1444–1852</p>
+    </td>
+    <td>
+      <p>0.635–0.814</p>
+    </td>
+    <td>
+      <p>SPINOR, SPINAND, UFS, USB</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>6</p>
+    </td>
+    <td>
+      <p><code>0x73d–0x8c2</code></p>
+    </td>
+    <td>
+      <p>1853–2242</p>
+    </td>
+    <td>
+      <p>0.814–0.986</p>
+    </td>
+    <td>
+      <p>SPINOR.m1, SPINAND.m1, UFS, USB</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>7</p>
+    </td>
+    <td>
+      <p><code>0x8c3–0xa5a</code></p>
+    </td>
+    <td>
+      <p>2243–2650</p>
+    </td>
+    <td>
+      <p>0.986–1.165</p>
+    </td>
+    <td>
+      <p>UFS, USB</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>8</p>
+    </td>
+    <td>
+      <p><code>0xa5b–0xbfe</code></p>
+    </td>
+    <td>
+      <p>2651–3070</p>
+    </td>
+    <td>
+      <p>1.165–1.350</p>
+    </td>
+    <td>
+      <p>UFS, SD, USB</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>9</p>
+    </td>
+    <td>
+      <p><code>0xbff–0xd96</code></p>
+    </td>
+    <td>
+      <p>3071–3478</p>
+    </td>
+    <td>
+      <p>1.350–1.529</p>
+    </td>
+    <td>
+      <p>SPINOR.m2, SPINAND.m2, SPINOR.m1, SPINAND.m1, SPINOR, SPINAND, eMMC, SD, USB</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>10</p>
+    </td>
+    <td>
+      <p><code>0xd97–0xf2e</code></p>
+    </td>
+    <td>
+      <p>3479–3886</p>
+    </td>
+    <td>
+      <p>1.529–1.708</p>
+    </td>
+    <td>
+      <p>eMMC, SD, USB</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>11</p>
+    </td>
+    <td>
+      <p><code>0xf2f–0xfff</code></p>
+    </td>
+    <td>
+      <p>3887–4095</p>
+    </td>
+    <td>
+      <p>1.708–1.800</p>
+    </td>
+    <td>
+      <p>eMMC, USB</p>
+    </td>
+  </tr>
+</table>
 
 ## USB boot (Maskrom)
 
