@@ -105,15 +105,159 @@ UFS devices can be provisioned with multiple logical units (LUs), and the boot R
 - By default, the JEDEC Boot Well-Known LUN is used, as configured in the UFS descriptors on the device itself
 - Can be overriden by setting bit 14 in the OTP configuration word 0x65 and selecting an arbitrary LUN in bits[23:16] there:
 
-| bits | coding | effect when set | default (unfused) |
-|---|---|---|---|
-| [1:0] | pair, both=1 | `IRAM+0x54 = 0x1a` (26): XIN is 26 MHz | `IRAM+0x54 = 0x18` (24 MHz) |
-| [3:2] | — | unused | — |
-| [5:4] | pair, both=1 | `IRAM+0xb8 = 1` → `usb2phy_grf+0xe008 = 0x4000_0000` (USB2 PHY, not related to UFS) | 0 |
-| [7:6] | pair, both=1 | extra pad config | skipped |
-| [11:8] | 4-bit index | copied into `IRAM+0xb4[3:0]`; indexes a 15-entry × 4-byte MPHY RX trim table. Entry bytes program, for both lanes: `b0`→MPHY `0x134`/`0x274` (TRSV_REG15), `b1`→`0xe0`/`0x220` (REG08), `b2`→`0x164`/`0x2a4` (REG29), `b3`→`0x178`/`0x2b8` (REG2E) | index 0 → `{03,38,50,80}` |
-| [12] | single bit | `IRAM+0xb4` bit 4 → run `vops[1]` = `0x620c` after link startup: PA_TxGear=3, PA_HSSeries=2 (Rate B), PA_PWRMode=0x44 → HS-G3 Rate-B, 2 lanes | off → link stays at PWM-G1 |
-| [13] | single bit | `IRAM+0xb4` bit 5 → issue `SET FLAG fDeviceInit` (IDN 0x01) and poll `READ FLAG fDeviceInit` up to 15001 × 100 µs (`0x9280..0x92dc`) | off → no device-init handshake |
-| [14] | single bit | **enables the LUN override**: `IRAM+0xb0 = bits[23:16]` | off → `IRAM+0xb0 = 0xB0` (`UFS_UPIU_BOOT_WLUN`) |
-| [23:16] | u8 | the LUN used for every UFS command, when bit 14 is set | n/a |
-| [31:24] | — | unused on this path | — |
+<table isTableHeaderOn="true" columnWidths="85,85,365,155">
+  <tr>
+    <td align="left">
+      <p>bits</p>
+    </td>
+    <td align="left">
+      <p>coding</p>
+    </td>
+    <td align="left">
+      <p>effect when set</p>
+    </td>
+    <td align="left">
+      <p>default (unfused)</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><code>[1:0]</code></p>
+    </td>
+    <td>
+      <p>pair, both=1</p>
+    </td>
+    <td>
+      <p><code>IRAM+0x54 = 0x1a</code> (26): XIN is 26 MHz</p>
+    </td>
+    <td>
+      <p><code>IRAM+0x54 = 0x18</code> (24 MHz)</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><code>[3:2]</code></p>
+    </td>
+    <td>
+      <p>—</p>
+    </td>
+    <td>
+      <p>unused</p>
+    </td>
+    <td>
+      <p>—</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><code>[5:4]</code></p>
+    </td>
+    <td>
+      <p>pair, both=1</p>
+    </td>
+    <td>
+      <p><code>IRAM+0xb8 = 1</code> → <code>usb2phy_grf+0xe008 = 0x4000_0000</code> (USB2 PHY, not related to UFS)</p>
+    </td>
+    <td>
+      <p>0</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><code>[7:6]</code></p>
+    </td>
+    <td>
+      <p>pair, both=1</p>
+    </td>
+    <td>
+      <p>extra pad config</p>
+    </td>
+    <td>
+      <p>skipped</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><code>[11:8]</code></p>
+    </td>
+    <td>
+      <p>4-bit index</p>
+    </td>
+    <td>
+      <p>copied into <code>IRAM+0xb4[3:0]</code>; indexes a 15-entry × 4-byte MPHY RX trim table. Entry bytes program, for both lanes: <code>b0</code>→MPHY <code>0x134</code>/<code>0x274</code> (TRSV_REG15), <code>b1</code>→<code>0xe0</code>/<code>0x220</code> (REG08), <code>b2</code>→<code>0x164</code>/<code>0x2a4</code> (REG29), <code>b3</code>→<code>0x178</code>/<code>0x2b8</code> (REG2E)</p>
+    </td>
+    <td>
+      <p>index 0 → <code>&#123;03,38,50,80&#125;</code></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><code>[12]</code></p>
+    </td>
+    <td>
+      <p>single bit</p>
+    </td>
+    <td>
+      <p><code>IRAM+0xb4</code> bit 4 → run <code>vops[1]</code> = <code>0x620c</code> after link startup: PA_TxGear=3, PA_HSSeries=2 (Rate B), PA_PWRMode=0x44 → HS-G3 Rate-B, 2 lanes</p>
+    </td>
+    <td>
+      <p>off → link stays at PWM-G1</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><code>[13]</code></p>
+    </td>
+    <td>
+      <p>single bit</p>
+    </td>
+    <td>
+      <p><code>IRAM+0xb4</code> bit 5 → issue <code>SET FLAG fDeviceInit</code> (IDN 0x01) and poll <code>READ FLAG fDeviceInit</code> up to 15001 × 100 µs (<code>0x9280..0x92dc</code>)</p>
+    </td>
+    <td>
+      <p>off → no device-init handshake</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><code>[14]</code></p>
+    </td>
+    <td>
+      <p>single bit</p>
+    </td>
+    <td>
+      <p><strong>enables the LUN override</strong>: <code>IRAM+0xb0 = bits[23:16]</code></p>
+    </td>
+    <td>
+      <p>off → <code>IRAM+0xb0 = 0xB0</code> (<code>UFS_UPIU_BOOT_WLUN</code>)</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><code>[23:16]</code></p>
+    </td>
+    <td>
+      <p>u8</p>
+    </td>
+    <td>
+      <p>the LUN used for every UFS command, when bit 14 is set</p>
+    </td>
+    <td>
+      <p>n/a</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><code>[31:24]</code></p>
+    </td>
+    <td>
+      <p>—</p>
+    </td>
+    <td>
+      <p>unused on this path</p>
+    </td>
+    <td>
+      <p>—</p>
+    </td>
+  </tr>
+</table>
