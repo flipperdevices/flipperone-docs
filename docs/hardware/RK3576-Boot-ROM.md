@@ -290,7 +290,7 @@ Loop `n = 0 .. copy_count-1`:
   ```
   Validation: `load_addr >= 0x3ff81000`, and end must be `< 0x40000001` (SRAM) or `<= 0x50000000` (DRAM window).
 - Any failure (bad magic, bad header, failed read, failed signature) falls through to the next copy `n+1`.
-- After all copies fail, `0x1c2c` returns and the ROM moves to the next entry of the boot-order list (eventually USB maskrom).
+- After all copies fail, the ROM moves to the next entry of the boot-order list (eventually USB maskrom).
 
 ### UFS boot specifics
 
@@ -405,7 +405,7 @@ UFS devices can be provisioned with multiple logical units (LUs), and the boot R
       <p>single bit</p>
     </td>
     <td>
-      <p><code>IRAM+0xb4</code> bit 5 → issue <code>SET FLAG fDeviceInit</code> (IDN <code>0x01</code>) and poll <code>READ FLAG fDeviceInit</code> up to 15001 × 100 µs (<code>0x9280..0x92dc</code>)</p>
+      <p><code>IRAM+0xb4</code> bit 5 → issue <code>SET FLAG fDeviceInit</code> (IDN <code>0x01</code>) and poll <code>READ FLAG fDeviceInit</code> up to 15001 × 100 µs</p>
     </td>
     <td>
       <p>off → no device-init handshake</p>
