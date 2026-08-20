@@ -271,7 +271,7 @@ A valid loadable image can be either an RKNS (for non-secure boot) or an RKSS on
 For each storage device, the boot ROM starts searching for the RKNS/RKSS header at the 512-byte sector 64 (or equivalently at the 4096-byte sector 8 in case of UFS). If not found, it proceeds to look for the same header at further locations on the same device in 512 kB strides for up to 16 copies in case of SPI flash, or up to 5 copies in case of UFS and SD/MMC. If none of those addresses hold a valid RKNS/RKSS header with matching data, the next storage device is tried according to the active boot mode. If no storage device contains a valid image, the boot ROM falls back to maskrom.
 
 Loop `n = 0 .. copy_count-1`:
-- Check magic `RKNS` (`0xa7f8`) or `RKSS` (`0xa7fc`) at the buffer start.
+- Check magic `RKNS` or `RKSS` at the buffer start.
 - Publish to IRAM: `0x3ff80010 = bootsource_id` (`BROM_BOOTSOURCE_ID_ADDR`) and `0x3ff80014 = lba512` of the copy that was accepted.
 - Copy the header to `0x3ff80400`
 - Secure path (`IRAM+0xc != 0`): requires `RKSS` image and does RSA verification
@@ -454,3 +454,24 @@ UFS devices can be provisioned with multiple logical units (LUs), and the boot R
     </td>
   </tr>
 </table>
+
+### SD card boot specifics
+
+The boot ROM uses the DMA engine built into the SD/MMC controller to boot from SD cards, but it has a bug in where it places the DMA descriptor buffer: it is by default intermixed with boot ROM's own global state data in SRAM, and any meaningfully sized DMA transfers cause the buffer to grow and overwrite boot ROM state, rendering it unusable. The observed result is simply nothing happening in the console when trying to boot from SD - even the DDR init messages don't print, and the system hangs.
+
+This bug can be mitigated by first loading a VERY small payload from the SD card to SRAM and using it to relocate the DMA descriptor buffer higher up in SRAM, where it won't collide with other boot ROM variables. This is the key part of what Rockchip's `boost.bin` does on RK3576, and it's effectively this:
+```c
+#include <stdint.h>
+
+#define SYS_SRAM_BASE	0x3ff80000
+#define OFFSET		    0x03b0
+
+int _start(void)
+{
+        uint32_t *sram = (void *)(SYS_SRAM_BASE + OFFSET);
+        *(sram) = 0x3ffff800;
+        return 0;
+}
+```
+
+Compiling the above into a standalone AArch64 executable as a raw binary and loading it as the first payload of an RKNS image (before DDR init) enables normal boot from SD cards. Note that this means `boost.bin` is not strictly required for booting from anything else than SD cards, even though it doesn't hurt to include unconditionally.
