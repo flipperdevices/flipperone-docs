@@ -1,9 +1,9 @@
 ---
-title: RK3576 Boot ROM
-slug: resources/rockchip/boot-rom
+title: RK3576 boot ROM
+slug: hardware/rk3576/boot-rom
 docTags: 
 createdAt: Wed Aug 19 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
-updatedAt: Wed Aug 19 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
+updatedAt: Thu Aug 20 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
 ---
 
 

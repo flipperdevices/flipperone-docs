@@ -179,6 +179,31 @@
             "isCategory": false,
             "path": "hardware/Debug-probe.md",
             "children": []
+          },
+          {
+            "categoryName": "Rockchip RK3576 reference",
+            "isCategory": false,
+            "path": "hardware/Rockchip-RK3576.md",
+            "children": [
+              {
+                "categoryName": "RK3576 boot flow",
+                "isCategory": false,
+                "path": "hardware/RK3576-Boot-flow.md",
+                "children": []
+              },
+              {
+                "categoryName": "RK3576 boot ROM",
+                "isCategory": false,
+                "path": "hardware/RK3576-Boot-ROM.md",
+                "children": []
+              },
+              {
+                "categoryName": "RK3576 video output",
+                "isCategory": false,
+                "path": "hardware/RK3576-Video-output.md",
+                "children": []
+              }
+            ]
           }
         ]
       },
@@ -504,31 +529,6 @@
                 "categoryName": "Glossary",
                 "isCategory": false,
                 "path": "resources/docs/Glossary.md"
-              }
-            ]
-          },
-          {
-            "categoryName": "Rockchip RK3576",
-            "isCategory": false,
-            "path": "resources/rockchip/Rockchip-RK3576.md",
-            "children": [
-              {
-                "categoryName": "RK3576 boot flow",
-                "isCategory": false,
-                "path": "resources/rockchip/RK3576-Boot-flow.md",
-                "children": []
-              },
-              {
-                "categoryName": "RK3576 video output (VOP)",
-                "isCategory": false,
-                "path": "resources/rockchip/RK3576-Video-output.md",
-                "children": []
-              },
-              {
-                "categoryName": "RK3576 Boot ROM",
-                "isCategory": false,
-                "path": "resources/rockchip/RK3576-Boot-ROM.md",
-                "children": []
               }
             ]
           }
