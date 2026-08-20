@@ -24,7 +24,7 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
 
 ## Boot modes
 
-<table isTableHeaderOn="true" columnWidths="60,90,70,90,370">
+<table isTableHeaderOn="true" columnWidths="60,100,100,100,200">
   <tr>
     <td align="left">
       <p>mode</p>
@@ -36,7 +36,7 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
       <p>Decimal</p>
     </td>
     <td align="left">
-      <p>Voltage @1.8 Vref</p>
+      <p>Voltage @1.8 Vref</p>
     </td>
     <td align="left">
       <p>boot order</p>
@@ -50,10 +50,10 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
       <p><code>0x000–0x0cf</code></p>
     </td>
     <td>
-      <p>0–207</p>
+      <p><code>0–207</code></p>
     </td>
     <td>
-      <p>0.000–0.091</p>
+      <p><code>0.000–0.091</code></p>
     </td>
     <td>
       <p>USB</p>
@@ -67,10 +67,10 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
       <p><code>0x0d0–0x267</code></p>
     </td>
     <td>
-      <p>208–615</p>
+      <p><code>208–615</code></p>
     </td>
     <td>
-      <p>0.091–0.271</p>
+      <p><code>0.091–0.271</code></p>
     </td>
     <td>
       <p>SPINOR, SPINAND, USB</p>
@@ -84,10 +84,10 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
       <p><code>0x268–0x3fe</code></p>
     </td>
     <td>
-      <p>616–1022</p>
+      <p><code>616–1022</code></p>
     </td>
     <td>
-      <p>0.271–0.450</p>
+      <p><code>0.271–0.450</code></p>
     </td>
     <td>
       <p>SPINOR.m1, SPINAND.m1, eMMC, USB</p>
@@ -101,10 +101,10 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
       <p><code>0x3ff–0x5a3</code></p>
     </td>
     <td>
-      <p>1023–1443</p>
+      <p><code>1023–1443</code></p>
     </td>
     <td>
-      <p>0.450–0.635</p>
+      <p><code>0.450–0.635</code></p>
     </td>
     <td>
       <p>SPINOR.m2, SPINAND.m2, eMMC, USB</p>
@@ -118,10 +118,10 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
       <p><code>0x5a4–0x73c</code></p>
     </td>
     <td>
-      <p>1444–1852</p>
+      <p><code>1444–1852</code></p>
     </td>
     <td>
-      <p>0.635–0.814</p>
+      <p><code>0.635–0.814</code></p>
     </td>
     <td>
       <p>SPINOR, SPINAND, UFS, USB</p>
@@ -135,10 +135,10 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
       <p><code>0x73d–0x8c2</code></p>
     </td>
     <td>
-      <p>1853–2242</p>
+      <p><code>1853–2242</code></p>
     </td>
     <td>
-      <p>0.814–0.986</p>
+      <p><code>0.814–0.986</code></p>
     </td>
     <td>
       <p>SPINOR.m1, SPINAND.m1, UFS, USB</p>
@@ -152,10 +152,10 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
       <p><code>0x8c3–0xa5a</code></p>
     </td>
     <td>
-      <p>2243–2650</p>
+      <p><code>2243–2650</code></p>
     </td>
     <td>
-      <p>0.986–1.165</p>
+      <p><code>0.986–1.165</code></p>
     </td>
     <td>
       <p>UFS, USB</p>
@@ -169,10 +169,10 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
       <p><code>0xa5b–0xbfe</code></p>
     </td>
     <td>
-      <p>2651–3070</p>
+      <p><code>2651–3070</code></p>
     </td>
     <td>
-      <p>1.165–1.350</p>
+      <p><code>1.165–1.350</code></p>
     </td>
     <td>
       <p>UFS, SD, USB</p>
@@ -186,10 +186,10 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
       <p><code>0xbff–0xd96</code></p>
     </td>
     <td>
-      <p>3071–3478</p>
+      <p><code>3071–3478</code></p>
     </td>
     <td>
-      <p>1.350–1.529</p>
+      <p><code>1.350–1.529</code></p>
     </td>
     <td>
       <p>SPINOR.m2, SPINAND.m2, SPINOR.m1, SPINAND.m1, SPINOR, SPINAND, eMMC, SD, USB</p>
@@ -203,10 +203,10 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
       <p><code>0xd97–0xf2e</code></p>
     </td>
     <td>
-      <p>3479–3886</p>
+      <p><code>3479–3886</code></p>
     </td>
     <td>
-      <p>1.529–1.708</p>
+      <p><code>1.529–1.708</code></p>
     </td>
     <td>
       <p>eMMC, SD, USB</p>
@@ -220,10 +220,10 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
       <p><code>0xf2f–0xfff</code></p>
     </td>
     <td>
-      <p>3887–4095</p>
+      <p><code>3887–4095</code></p>
     </td>
     <td>
-      <p>1.708–1.800</p>
+      <p><code>1.708–1.800</code></p>
     </td>
     <td>
       <p>eMMC, USB</p>
@@ -298,7 +298,7 @@ UFS devices can be provisioned with multiple logical units (LUs), and the boot R
 - By default, the JEDEC Boot Well-Known LUN is used, as configured in the UFS descriptors on the device itself.
 - This can be overridden by setting `bit 14` in the OTP configuration word `0x65` and selecting an arbitrary LUN in `bits [23:16]` there:
 
-<table isTableHeaderOn="true" columnWidths="85,85,365,155">
+<table isTableHeaderOn="true" columnWidths="95,85,300,150">
   <tr>
     <td align="left">
       <p>bits</p>
