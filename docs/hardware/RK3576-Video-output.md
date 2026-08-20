@@ -1,9 +1,9 @@
 ---
-title: RK3576 video output (VOP)
-slug: resources/rockchip/video-output
+title: RK3576 video output
+slug: hardware/rk3576/video-output
 docTags: 
 createdAt: Thu Jun 18 2026 06:13:56 GMT+0000 (Coordinated Universal Time)
-updatedAt: Thu Jun 18 2026 06:13:56 GMT+0000 (Coordinated Universal Time)
+updatedAt: Thu Aug 20 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page describes the display pipeline of the Rockchip RK3576 SoC used in Flipper One:

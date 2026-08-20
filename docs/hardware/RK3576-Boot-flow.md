@@ -1,9 +1,9 @@
 ---
 title: RK3576 boot flow
-slug: resources/rockchip/boot-flow
+slug: hardware/rk3576/boot-flow
 docTags: 
 createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
-updatedAt: Thu May 21 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
+updatedAt: Thu Aug 20 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
 ---
 
 This page describes the cold-boot sequence of the Rockchip RK3576 SoC used in Flipper One: from the on-chip Boot ROM through DDR initialization, SPL, the FIT-packaged main bootloader (U-Boot + ARM Trusted Firmware-A), and finally the operating system. It also documents the on-flash layout that the Boot ROM and SPL rely on.
