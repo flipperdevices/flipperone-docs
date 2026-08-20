@@ -17,9 +17,9 @@ When the boot ROM first executes, it zeroes out the IRAM, selects the boot order
   - Register value `0xEF08A53C` = mode 1 (Maskrom only)
   - Register value `0xEF085A3x` = mode x, where x is the number of the boot mode requested, `0x1..0xb`
 - Check the forced boot mode value in the OTP cell `0x64`:
-  - bits\[3:0] - selected boot mode, `0x1..0xb`
-  - bits\[7:4] - one's complement of the selected boot mode (to check validity of the fused value)
-  - bits\[17:16] - force boot mode 9
+  - `bits [3:0]` - selected boot mode, `0x1..0xb`
+  - `bits [7:4]` - one's complement of the selected boot mode (to check validity of the fused value)
+  - `bits [17:16]` - force boot mode 9
 - Check the board strapping of SARADC channel 0 (one-shot single-channel reading, polling for the completion interrupt). The value that has been read is also stored at `0x3ff80008` in the upper 16 bits of the 32-bit value, where it can be read by early stage bootloader code.
 
 ## Boot modes
@@ -255,8 +255,8 @@ Any payload gets verified against a CRC16-CCITT checksum which all maskrom tools
 
 ```с
 /*
-* Enable the EL3 instruction cache before returning to the BootROM
-*/
+ * Enable the EL3 instruction cache before returning to the BootROM
+ */
 asm volatile("mrs %0, sctlr_el3" : "=r"(sctlr));
 sctlr |= (1UL << 12);
 asm volatile("msr sctlr_el3, %0; isb" :: "r"(sctlr) : "memory");
@@ -278,7 +278,7 @@ Loop `n = 0 .. copy_count-1`:
 - Non-secure path (`IRAM+0xc == 0` and `IRAM+0x8c == 0xffffffff`, a redundant anti-glitch check): `RKNS` accepted without an RSA signature but each component is still digest-checked.
 - Digest verification:
   - For each component, its 32-byte digest is stored at `component entry + 0x18` in the image
-  - Digest algorithm is controlled by `hdr+0x0c`: bit 14 set disables verification entirely; otherwise `bits[3:0]` select the algorithm (0 or 1 → SHA-256, 3 → SM3, anything else rejected)
+  - Digest algorithm is controlled by `hdr+0x0c`: `bit 14` set disables verification entirely; otherwise `bits [3:0]` select the algorithm (0 or 1 → SHA-256, 3 → SM3, anything else rejected)
   - The boot ROM uses the hardware crypto engine at `0x2a430000` (`CRYPTO_HASH_CTL` `0x24` / `0x64`) to calculate the digest over the sector-aligned length of the component payload (sector count is taken from the component header). A torn or partial payload write is therefore caught by the ROM even without secure boot.
 - Component table: `hdr[0x0a] & 0xf` entries (≤ 4) at `hdr+0x78`, stride `0x58`:
 
@@ -286,7 +286,7 @@ Loop `n = 0 .. copy_count-1`:
   +0x00 u16 sector_offset   # 512-byte units, relative to the ID-block LBA
   +0x02 u16 sector_count    # 512-byte units
   +0x04 u32 load_addr       # 0xffffffff => 0x3ff81000 for entry 0, else 0x40000000
-  +0x08 u8  flags           # if bits[3:0] are 0x3, then the component is rejected unless PMU1_GRF_OS_REG8 bits[3:0] are 0xf
+  +0x08 u8  flags           # if bits [3:0] are 0x3, then the component is rejected unless PMU1_GRF_OS_REG8 bits [3:0] are 0xf
   ```
   Validation: `load_addr >= 0x3ff81000`, and end must be `< 0x40000001` (SRAM) or `<= 0x50000000` (DRAM window).
 - Any failure (bad magic, bad header, failed read, failed signature) falls through to the next copy `n+1`.
@@ -296,7 +296,7 @@ Loop `n = 0 .. copy_count-1`:
 
 UFS devices can be provisioned with multiple logical units (LUs), and the boot ROM can boot from different LUs depending on its configuration:
 - By default, the JEDEC Boot Well-Known LUN is used, as configured in the UFS descriptors on the device itself.
-- This can be overridden by setting bit 14 in the OTP configuration word `0x65` and selecting an arbitrary LUN in bits[23:16] there:
+- This can be overridden by setting `bit 14` in the OTP configuration word `0x65` and selecting an arbitrary LUN in `bits [23:16]` there:
 
 <table isTableHeaderOn="true" columnWidths="85,85,365,155">
   <tr>
@@ -433,7 +433,7 @@ UFS devices can be provisioned with multiple logical units (LUs), and the boot R
       <p>u8</p>
     </td>
     <td>
-      <p>the LUN used for every UFS command, when bit 14 is set</p>
+      <p>the LUN used for every UFS command, when <code>bit 14 is set</code></p>
     </td>
     <td>
       <p>n/a</p>
