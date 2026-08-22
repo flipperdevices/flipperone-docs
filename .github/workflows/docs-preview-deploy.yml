@@ -1,0 +1,182 @@
+# PR preview, stage 2 of 2: deploy (trusted).
+#
+# Triggered by the completion of "Docs preview build" via `workflow_run`.
+# This workflow always runs the code from public-release, never the PR's,
+# so it is safe to give it write permissions. The only inputs taken from
+# the untrusted build are (a) the rendered HTML, which is published as-is
+# to GitHub Pages, and (b) the PR number, which is validated and then
+# cross-checked against the GitHub API before anything is written.
+#
+# The published HTML is static and script-free (the build strips <script>
+# and inline handlers): github.io project Pages of one org share a single
+# browser origin, so untrusted JS there could script against other
+# previews. Hosting untrusted *markup* on github.io — never on
+# docs.flipper.net — keeps the blast radius at "an ugly page".
+#
+# Maintainers: this needs GitHub Pages enabled once, with
+# "Deploy from a branch" -> gh-pages / (root). The branch is created
+# automatically on first deploy.
+
+name: Docs preview deploy
+
+on:
+  workflow_run:
+    workflows: ["Docs preview build"]
+    types: [completed]
+
+permissions:
+  contents: write       # push to gh-pages
+  pull-requests: write  # sticky preview comment
+  pages: read           # resolve the Pages URL for the comment
+
+jobs:
+  deploy:
+    # Guard against running in forks of this repo (their gh-pages would get
+    # spammed) and only deploy successful PR builds.
+    if: >-
+      github.repository == 'flipperdevices/flipperone-docs' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download preview artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docs-preview
+          path: preview-out
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      # The artifact was produced by untrusted code, so the PR number in it
+      # could be anything. Accept it only if it is a plain number and the
+      # API confirms that PR's head SHA matches the commit this workflow_run
+      # was triggered for — an attacker cannot point their artifact at
+      # somebody else's PR.
+      - name: Validate PR number against the API
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          pr="$(tr -cd '0-9' < preview-out/pr-number.txt)"
+          [[ -n "$pr" ]] || { echo "::error::artifact carries no PR number"; exit 1; }
+          api="$(gh api "repos/${GITHUB_REPOSITORY}/pulls/${pr}" --jq '{sha: .head.sha, state: .state}')"
+          head_sha="$(jq -r .sha <<< "$api")"
+          state="$(jq -r .state <<< "$api")"
+          if [[ "$head_sha" != "$RUN_HEAD_SHA" ]]; then
+            echo "::error::PR #${pr} head ${head_sha} does not match run head ${RUN_HEAD_SHA}"
+            exit 1
+          fi
+          if [[ "$state" != "open" ]]; then
+            echo "PR #${pr} is ${state}; skipping deploy."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+          echo "number=${pr}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout gh-pages
+        if: steps.pr.outputs.skip != 'true'
+        uses: actions/checkout@v6
+        with:
+          path: gh-pages
+          # The branch may not exist yet; fetch the default branch then and
+          # switch to an orphan gh-pages below.
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Publish to gh-pages/pr/<n>
+        if: steps.pr.outputs.skip != 'true'
+        working-directory: gh-pages
+        env:
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git fetch --depth 1 origin gh-pages; then
+            git switch -c gh-pages FETCH_HEAD
+          else
+            # First deploy ever: start an empty branch. switch --orphan keeps
+            # the old working tree around as untracked files — drop them so
+            # the docs sources don't get committed into gh-pages.
+            git switch --orphan gh-pages
+            git clean -fdx
+          fi
+          stage_preview() {
+            rm -rf "pr/${PR_NUMBER}"
+            mkdir -p "pr/${PR_NUMBER}"
+            cp -R ../preview-out/site/. "pr/${PR_NUMBER}/"
+            # Pages must serve _next/ CSS paths verbatim — disable Jekyll.
+            touch .nojekyll
+            git add -A
+          }
+          stage_preview
+          if git diff --cached --quiet; then
+            echo "Preview unchanged — nothing to push."
+            exit 0
+          fi
+          git commit -m "Preview for PR #${PR_NUMBER}"
+          # Another preview may push between our fetch and push. The history
+          # is shallow, so instead of rebasing, redo the staging on top of
+          # the new tip and try again.
+          for _ in 1 2 3; do
+            git push origin HEAD:gh-pages && exit 0
+            git fetch --depth 1 origin gh-pages
+            git reset --hard FETCH_HEAD
+            stage_preview
+            if git diff --cached --quiet; then
+              echo "Preview already up to date."
+              exit 0
+            fi
+            git commit -m "Preview for PR #${PR_NUMBER}"
+          done
+          echo "::error::could not push gh-pages after 3 attempts"
+          exit 1
+
+      - name: Comment preview link on the PR
+        if: steps.pr.outputs.skip != 'true'
+        uses: actions/github-script@v8
+        env:
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        with:
+          script: |
+            const pr = Number(process.env.PR_NUMBER);
+            const sha = process.env.HEAD_SHA;
+            const { owner, repo } = context.repo;
+
+            // Prefer the real Pages URL (handles custom domains); fall back
+            // to the default github.io address if Pages is not enabled yet.
+            let base = `https://${owner}.github.io/${repo}/`;
+            let pagesNote = '';
+            try {
+              const pages = await github.request('GET /repos/{owner}/{repo}/pages', { owner, repo });
+              base = pages.data.html_url;
+            } catch {
+              pagesNote = '\n\n> [!NOTE]\n> GitHub Pages is not enabled for this repository yet, so the link ' +
+                'above will 404. A maintainer can enable it under Settings → Pages → ' +
+                'Deploy from a branch → `gh-pages` / `(root)`.';
+            }
+            const url = `${base.replace(/\/?$/, '/')}pr/${pr}/`;
+
+            const marker = '<!-- docs-preview-comment -->';
+            const body = [
+              marker,
+              `### 📖 Docs preview`,
+              '',
+              `**${url}**`,
+              '',
+              `Built from ${sha} — updated on every push. The preview is a static, script-free`,
+              `snapshot: search and other interactive features are disabled, and images that live`,
+              `on Archbee's CDN are loaded from production.`,
+              pagesNote,
+            ].join('\n');
+
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner, repo, issue_number: pr, per_page: 100,
+            });
+            const existing = comments.find(c => c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number: pr, body });
+            }
