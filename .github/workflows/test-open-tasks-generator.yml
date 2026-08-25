@@ -33,3 +33,8 @@ jobs:
 
       - name: Test generator
         run: python3 tools/test_generate_open_tasks.py
+
+      # tools/validate_docs.py gates every pull request from the Validate
+      # workflow, so its own test suite has to run whenever the tool changes.
+      - name: Test docs validator
+        run: python3 tools/test_validate_docs.py
