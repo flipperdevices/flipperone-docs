@@ -8,6 +8,8 @@ updatedAt: Tue Apr 28 2026 11:00:55 GMT+0000 (Coordinated Universal Time)
 
 On the front right side of Flipper One, there is a power meter that enables real-time monitoring of the device’s power subsystem. It helps understand what is happening under the hood: whether the system is idle or active, charging or discharging, and how much power the connected USB power source is supplying.
 
+::embed[]{url="https://youtu.be/ZkI3LaAEzbI"}
+
 The power meter consists of four separate sections:
 
 * **Battery discharge gauge.** The gauge displays power drawn from the battery in real time.
