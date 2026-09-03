@@ -247,7 +247,7 @@
             "path": "cpu-software/Flipper-OS.md",
             "children": [
               {
-                "categoryName": "OS Profiles",
+                "categoryName": "Profiles CLI",
                 "isCategory": false,
                 "path": "cpu-software/profiles.md",
                 "children": []
