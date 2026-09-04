@@ -229,6 +229,52 @@ class ArchbeeImageParsingTest(unittest.TestCase):
         self.assertEqual(urls, ["/files/pics/a.png", "/files/pics/b.png"])
 
 
+class RawHtmlParsingTest(unittest.TestCase):
+    def test_extracts_src_from_html_img_in_table_cell(self) -> None:
+        # Real shape from docs/general/Controls.md, whose controls reference
+        # is an Archbee HTML table -- every icon on that page is referenced
+        # this way and never as Markdown.
+        line = '<p><img src="/files/icons/controls/dpad.svg" alt=""></p>'
+        refs = extract_link_refs(Path("docs/x.md"), [(1, line)])
+        self.assertEqual(len(refs), 1)
+        self.assertEqual(refs[0].raw_url, "/files/icons/controls/dpad.svg")
+        self.assertTrue(refs[0].is_image)
+
+    def test_extracts_src_from_self_closing_html_img(self) -> None:
+        # Real shape from docs/cpu-software/FlipCTL.md.
+        line = '<img src="/files/pics/flipctl-in-terminal.png"/>'
+        refs = extract_link_refs(Path("docs/x.md"), [(1, line)])
+        self.assertEqual(len(refs), 1)
+        self.assertEqual(refs[0].raw_url, "/files/pics/flipctl-in-terminal.png")
+
+    def test_extracts_href_from_html_link(self) -> None:
+        # Real shape from docs/resources/docs/Markup-reference.md.
+        line = '<p><a href="Markup-reference.md">Jump to Tables</a></p>'
+        refs = extract_link_refs(Path("docs/x.md"), [(1, line)])
+        self.assertEqual(len(refs), 1)
+        self.assertEqual(refs[0].raw_url, "Markup-reference.md")
+        self.assertFalse(refs[0].is_image)
+
+    def test_single_quoted_attributes_are_extracted(self) -> None:
+        line = "<img src='/files/pics/a.png'> <a href='/general/Controls.md'>x</a>"
+        refs = extract_link_refs(Path("docs/x.md"), [(1, line)])
+        self.assertEqual(
+            sorted(r.raw_url for r in refs),
+            ["/files/pics/a.png", "/general/Controls.md"],
+        )
+
+    def test_several_html_images_on_one_line(self) -> None:
+        line = '<img src="/files/pics/a.png"><img src="/files/pics/b.png">'
+        refs = extract_link_refs(Path("docs/x.md"), [(1, line)])
+        self.assertEqual(
+            sorted(r.raw_url for r in refs), ["/files/pics/a.png", "/files/pics/b.png"]
+        )
+
+    def test_other_html_attributes_are_not_mistaken_for_a_reference(self) -> None:
+        line = '<td align="left" colSpan="1"><p><strong>Task</strong></p></td>'
+        self.assertEqual(extract_link_refs(Path("docs/x.md"), [(1, line)]), [])
+
+
 class CheckLinksIntegrationTest(unittest.TestCase):
     def _write_docs(self, tmp: Path, files: dict[str, str]) -> Path:
         docs_root = tmp / "docs"
@@ -338,6 +384,83 @@ class CheckLinksIntegrationTest(unittest.TestCase):
                         "To use an image, reference it like this:\n\n"
                         "```markdown\n"
                         "![Caption text](/files/pics/your-image.png)\n"
+                        "```\n"
+                    ),
+                },
+            )
+            md_files = sorted(docs_root.rglob("*.md"))
+            findings = check_links(md_files, docs_root, docs_root.parent)
+            self.assertEqual(findings, [])
+
+    def test_missing_html_image_is_flagged(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_str:
+            docs_root = self._write_docs(
+                Path(tmp_str),
+                {
+                    "general/Controls.md": (
+                        "<p><img src=\"/files/icons/controls/dpad.svg\" alt=\"\"></p>\n"
+                    ),
+                },
+            )
+            md_files = sorted(docs_root.rglob("*.md"))
+            findings = check_links(md_files, docs_root, docs_root.parent)
+            self.assertEqual(len(findings), 1)
+            self.assertEqual(findings[0].check, "path")
+            self.assertIn("/files/icons/controls/dpad.svg", findings[0].message)
+
+    def test_existing_html_image_is_not_flagged(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_str:
+            docs_root = self._write_docs(
+                Path(tmp_str),
+                {
+                    "general/Controls.md": (
+                        "<p><img src=\"/files/icons/controls/dpad.svg\" alt=\"\"></p>\n"
+                    ),
+                    "files/icons/controls/dpad.svg": "not-a-real-image-just-a-marker",
+                },
+            )
+            md_files = sorted(docs_root.rglob("*.md"))
+            findings = check_links(md_files, docs_root, docs_root.parent)
+            self.assertEqual(findings, [])
+
+    def test_missing_html_link_target_is_flagged(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_str:
+            docs_root = self._write_docs(
+                Path(tmp_str),
+                {"resources/docs/Markup-reference.md": '<a href="Gone.md">x</a>\n'},
+            )
+            md_files = sorted(docs_root.rglob("*.md"))
+            findings = check_links(md_files, docs_root, docs_root.parent)
+            self.assertEqual(len(findings), 1)
+            self.assertEqual(findings[0].check, "path")
+
+    def test_html_link_fragment_is_anchor_checked(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_str:
+            docs_root = self._write_docs(
+                Path(tmp_str),
+                {
+                    "general/Controls.md": "### Buttons\n",
+                    "general/Other.md": (
+                        '<p><a href="Controls.md#buttonz">Buttons</a></p>\n'
+                    ),
+                },
+            )
+            md_files = sorted(docs_root.rglob("*.md"))
+            findings = check_links(md_files, docs_root, docs_root.parent)
+            self.assertEqual(len(findings), 1)
+            self.assertEqual(findings[0].check, "anchor")
+
+    def test_html_example_inside_fence_is_not_flagged(self) -> None:
+        # docs/resources/docs/Markup-reference.md documents raw HTML markup in
+        # fenced examples; those placeholder paths aren't real references.
+        with tempfile.TemporaryDirectory() as tmp_str:
+            docs_root = self._write_docs(
+                Path(tmp_str),
+                {
+                    "resources/docs/Markup-reference.md": (
+                        "Reference an image like this:\n\n"
+                        "```html\n"
+                        '<img src="/files/pics/your-image.png">\n'
                         "```\n"
                     ),
                 },
