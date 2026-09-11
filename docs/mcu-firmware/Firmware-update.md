@@ -72,7 +72,7 @@ Switch the MCU to **BOOTSEL (DFU)** mode. There are two ways to do this:
 - **Via the App Switcher menu.** This method works if MCU mode is working on your device.
 - **Using a button combination.** This method works even if the MCU has never been flashed before and MCU mode is not working.
 
-To Switch the MCU to BOOTSEL (DFU) mode:
+To switch the MCU to BOOTSEL (DFU) mode:
 
 :::::::Tabs
 ::::::Tab{title="Via the App Switcher menu"}
@@ -80,7 +80,7 @@ To Switch the MCU to BOOTSEL (DFU) mode:
 :::::WorkflowBlock
 
 ::::WorkflowBlockItem
-Switch the device to MCU mode. Turn it on if it is off, and stop Flipper OS if it is running.
+Switch the device to MCU mode. Turn it on if it's off, and stop Flipper OS if it's running.
 ::::
 
 ::::WorkflowBlockItem
@@ -120,7 +120,7 @@ Release the **PTT** button.
 ::::::
 :::::::
 
-After switching the MCU to BOOTSEL mode, Flipper One's screen backlight will turn OFF and the device will appear on your PC as a Mass Storage Device named `RP2350`. If Flipper One does not appear, try a different USB cable and repeat the BOOTSEL procedure.
+After switching the MCU to BOOTSEL mode, Flipper One's screen backlight will turn OFF and the device will appear on your PC as a Mass Storage Device named `RP2350`. If Flipper One doesn't appear, try a different USB cable and repeat the BOOTSEL procedure.
 
 ::::::::
  
@@ -161,7 +161,7 @@ Switch the MCU to **BOOTSEL (DFU)** mode. There are two ways to do this:
 - **Via the App Switcher menu.** This method works if MCU mode is working on your device.
 - **Using a button combination.** This method works even if the MCU has never been flashed before and MCU mode is not working.
 
-To Switch the MCU to BOOTSEL (DFU) mode:
+To switch the MCU to BOOTSEL (DFU) mode:
 
 :::::::Tabs
 ::::::Tab{title="Via the App Switcher menu"}
@@ -169,7 +169,7 @@ To Switch the MCU to BOOTSEL (DFU) mode:
 :::::WorkflowBlock
 
 ::::WorkflowBlockItem
-Switch the device to MCU mode. Turn it on if it is off, and stop Flipper OS if it is running.
+Switch the device to MCU mode. Turn it on if it's off, and stop Flipper OS if it's running.
 ::::
 
 ::::WorkflowBlockItem
@@ -187,17 +187,17 @@ Press the **DFU** soft button.
 :::::WorkflowBlock
 
 ::::WorkflowBlockItem
-**Step 1:** Press and hold the :inlineImage[]{src="/files/icons/esc-button.png"} and :inlineImage[]{src="/files/icons/run-button.png"} buttons.
+Press and hold the :inlineImage[]{src="/files/icons/esc-button.png"} and :inlineImage[]{src="/files/icons/run-button.png"} buttons.
 
 ![BOOTSEL step 1: hold the Esc and Run buttons](/files/pics/mcu-bootsel-2f0b1c2-step-1.png)
 ::::
 ::::WorkflowBlockItem
-**Step 2:** Keep holding the :inlineImage[]{src="/files/icons/esc-button.png"} **Esc** and :inlineImage[]{src="/files/icons/run-button.png"} **Run** buttons. Press and hold **Left** and **Back** buttons for **3 seconds**, then release.
+Keep holding the :inlineImage[]{src="/files/icons/esc-button.png"} **Esc** and :inlineImage[]{src="/files/icons/run-button.png"} **Run** buttons. Press and hold **Left** and **Back** buttons for **3 seconds**, then release.
 
 ![BOOTSEL step 2: hold Left and Back buttons](/files/pics/mcu-bootsel-2f0b1c2-step-2.png)
 ::::
 ::::WorkflowBlockItem
-**Step 3:** Release the :inlineImage[]{src="/files/icons/esc-button.png"} **Esc** and :inlineImage[]{src="/files/icons/run-button.png"} **Run** buttons.
+Release the :inlineImage[]{src="/files/icons/esc-button.png"} **Esc** and :inlineImage[]{src="/files/icons/run-button.png"} **Run** buttons.
 
 ![BOOTSEL step 3: release hold the Esc and Run buttons](/files/pics/mcu-bootsel-2f0b1c2-step-3.png)
 ::::
@@ -206,7 +206,7 @@ Press the **DFU** soft button.
 ::::::
 :::::::
 
-After switching the MCU to BOOTSEL mode, Flipper One's backlight will turn OFF, the Power button LED will turn purple, and the device will appear on your PC as a Mass Storage Device named `FlipperOneMCU`. If Flipper One does not appear, try a different USB cable and repeat the BOOTSEL procedure.
+After switching the MCU to BOOTSEL mode, Flipper One's backlight will turn OFF, the Power button LED will turn purple, and the device will appear on your PC as a Mass Storage Device named `FlipperOneMCU`. If Flipper One doesn't appear, try a different USB cable and repeat the BOOTSEL procedure.
 
 ::::::::
  
