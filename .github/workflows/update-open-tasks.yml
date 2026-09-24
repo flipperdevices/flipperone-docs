@@ -66,8 +66,10 @@ jobs:
           fi
           # The generator compares against the base page, so a pending update
           # gets a fresh timestamp each run even when its task data is unchanged.
+          # Refresh after the base moves so an unchanged page cannot leave a stale PR.
           if [[ -n "$open_pr" ]] \
-             && git fetch --quiet origin "refs/heads/$PR_BRANCH" \
+             && git fetch --quiet --depth=2 origin "refs/heads/$PR_BRANCH" \
+             && [[ "$(git rev-parse FETCH_HEAD^)" == "$(git rev-parse HEAD)" ]] \
              && git diff --quiet --ignore-matching-lines='^updatedAt:' FETCH_HEAD -- docs/Open-tasks.md; then
             echo "PR #$open_pr already has this version — nothing to do."
             exit 0
