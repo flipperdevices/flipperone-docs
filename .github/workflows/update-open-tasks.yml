@@ -38,9 +38,9 @@ jobs:
       - uses: actions/checkout@v6
         with:
           ref: public-release
-          # A PR opened with the default GITHUB_TOKEN doesn't trigger the
-          # Validate workflow. Set the OPEN_TASKS_PR_TOKEN secret to a PAT
-          # (contents + pull-requests write) to get checks on the auto PR.
+          # Enable Actions PR creation in the repository settings for GITHUB_TOKEN.
+          # Its PR workflows require approval. Set OPEN_TASKS_PR_TOKEN to a
+          # PAT (contents + pull-requests write) to run checks automatically.
           token: ${{ secrets.OPEN_TASKS_PR_TOKEN || github.token }}
 
       - name: Install Python dependencies
@@ -56,16 +56,19 @@ jobs:
           GH_TOKEN: ${{ secrets.OPEN_TASKS_PR_TOKEN || github.token }}
         run: |
           set -euo pipefail
+          open_pr="$(gh pr list --head "$PR_BRANCH" --base "$BASE_BRANCH" --state open --json number --jq '.[0].number')"
           if git diff --quiet -- docs/Open-tasks.md; then
+            if [[ -n "$open_pr" ]]; then
+              gh pr close "$open_pr"
+            fi
             echo "Open-tasks.md is up to date — nothing to commit."
             exit 0
           fi
-          open_pr="$(gh pr list --head "$PR_BRANCH" --base "$BASE_BRANCH" --state open --json number --jq '.[0].number')"
-          # Skip when the open PR already carries exactly this rendering,
-          # so it isn't rewritten every hour with an identical page.
+          # The generator compares against the base page, so a pending update
+          # gets a fresh timestamp each run even when its task data is unchanged.
           if [[ -n "$open_pr" ]] \
              && git fetch --quiet origin "refs/heads/$PR_BRANCH" \
-             && git diff --quiet FETCH_HEAD -- docs/Open-tasks.md; then
+             && git diff --quiet --ignore-matching-lines='^updatedAt:' FETCH_HEAD -- docs/Open-tasks.md; then
             echo "PR #$open_pr already has this version — nothing to do."
             exit 0
           fi
