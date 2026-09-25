@@ -56,7 +56,9 @@ jobs:
           GH_TOKEN: ${{ secrets.OPEN_TASKS_PR_TOKEN || github.token }}
         run: |
           set -euo pipefail
-          open_pr="$(gh pr list --head "$PR_BRANCH" --base "$BASE_BRANCH" --state open --json number --jq '.[0].number')"
+          # gh can't filter --head by owner, so ignore fork PRs that happen
+          # to use the same branch name.
+          open_pr="$(gh pr list --head "$PR_BRANCH" --base "$BASE_BRANCH" --state open --json number,isCrossRepository --jq '[.[] | select(.isCrossRepository | not)][0].number')"
           if git diff --quiet -- docs/Open-tasks.md; then
             if [[ -n "$open_pr" ]]; then
               gh pr close "$open_pr"
