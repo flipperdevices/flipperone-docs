@@ -11,7 +11,11 @@ This is our regular Dev Log, where we share how Flipper One development is going
 [Subscribe to our newsletter](#subscribe-to-dev-log) so you don't miss development updates.
 :::
 
+---
+
 All logs:
+
+- [#9: New boot menu & Flipper OS Installer](./9.md), Flipper OS Installer, Flipper One portable DevKit, new Falcon-based boot menu, and Power Meter emulator.
 
 - [#8: New Flipper One body design](./8.md), key & touch events injection CLI, and fixes in upstream U-Boot.
 
