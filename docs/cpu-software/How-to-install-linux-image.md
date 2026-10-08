@@ -8,7 +8,7 @@ Flipper OS can be installed on many Rockchip RK3576-based boards, including comm
 There are two ways to install Flipper OS:
 
 - [Using Flipper OS Installer](#install-os-using-flipper-os-installer) — a tool that runs on the device, downloads official Flipper OS images and profiles, and installs them to microSD card or UFS storage.
-- [By writing an OS image to a microSD card](#writing-to-an-sd-card) using a card reader.
+- [By writing an OS image to a microSD card](#write-an-os-image-to-a-microsd-card) using a card reader.
 
 :::hint{type="info"}
 **RK3576 boots from storage devices according to the boot priority**
