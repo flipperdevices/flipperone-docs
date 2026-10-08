@@ -59,7 +59,11 @@ The {{ section.title }} sub-project currently has no open `help wanted` tasks.{{
 :::hint{type="info"}
 Learn what's going on in the {{ section.title }} sub-project:
 
+{% if section.task_tracker.startswith("https://") %}
 - [Project board]({{ section.task_tracker }})
+{% else %}
+- Project board: {{ section.task_tracker }}
+{% endif %}
 - [Contribution guide]({{ section.contribution_guide }})
 - [GitHub repository]({{ section.github_repo }})
 - [All open tasks]({{ section.github_repo }}/issues/)

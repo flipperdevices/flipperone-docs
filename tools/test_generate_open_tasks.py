@@ -8,6 +8,7 @@ from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from generate_open_tasks import (
+    fetch_community_prs,
     fetch_linked_prs,
     fetch_pr_ids_with_linked_issues,
     generate_page,
@@ -62,6 +63,51 @@ class GenerateOpenTasksTest(unittest.TestCase):
         )
         self.assertIn("# 🐧 Linux (CPU Software) tasks", page)
         self.assertIn("<p><strong>Comments</strong></p>", page)
+
+    def test_generate_page_collects_issues_from_all_section_repos(self) -> None:
+        issues: list[_Issue] = [
+            {
+                "repository": {"nameWithOwner": "flipperdevices/u-boot"},
+                "title": "Bundle a newer zstd",
+                "number": 36,
+                "url": "https://github.com/flipperdevices/u-boot/issues/36",
+                "body": "The bundled zstd is 1.5.2.",
+                "commentsCount": 2,
+            },
+            {
+                "repository": {"nameWithOwner": "flipperdevices/flipctl-fonts"},
+                "title": "Add a bold font",
+                "number": 1,
+                "url": "https://github.com/flipperdevices/flipctl-fonts/issues/1",
+                "body": "Menus need a bold variant.",
+                "commentsCount": 0,
+            },
+            {
+                "repository": {"nameWithOwner": "flipperdevices/flipperzero-firmware"},
+                "title": "Not a Flipper One task",
+                "number": 4000,
+                "url": "https://github.com/flipperdevices/flipperzero-firmware/issues/4000",
+                "body": "Should not be listed.",
+                "commentsCount": 0,
+            },
+        ]
+
+        page = generate_page(issues)
+        linux = page.split("# 🐧 Linux (CPU Software) tasks", 1)[1].split("***", 1)[0]
+        flipctl = page.split("# 🎛️ FlipCTL tasks", 1)[1].split("***", 1)[0]
+
+        self.assertIn(
+            '<a href="https://github.com/flipperdevices/u-boot/issues/36">Bundle a newer zstd</a>',
+            linux,
+        )
+        self.assertIn(
+            '<a href="https://github.com/flipperdevices/flipctl-fonts/issues/1">Add a bold font</a>',
+            flipctl,
+        )
+        self.assertNotIn("Not a Flipper One task", page)
+        # FlipCTL has no project board yet; don't render "TBD" as a link.
+        self.assertIn("- Project board: TBD", flipctl)
+        self.assertNotIn("](TBD)", page)
 
     def test_generate_page_renders_linked_prs(self) -> None:
         issues: list[_Issue] = [
@@ -180,6 +226,31 @@ class GenerateOpenTasksTest(unittest.TestCase):
         with mock.patch("generate_open_tasks.subprocess.run") as run:
             self.assertEqual(fetch_pr_ids_with_linked_issues([]), set())
             run.assert_not_called()
+
+    def test_fetch_community_prs_covers_all_section_repos(self) -> None:
+        prs = [
+            {
+                "id": f"PR_{repo}",
+                "repository": {"nameWithOwner": f"flipperdevices/{repo}"},
+                "number": 1,
+                "title": "t",
+                "url": "u",
+                "author": {"login": "someone"},
+                "authorAssociation": "NONE",
+            }
+            for repo in ("u-boot", "flipctl", "flipperzero-firmware")
+        ]
+        with mock.patch("generate_open_tasks.subprocess.run") as run:
+            run.side_effect = [
+                mock.Mock(stdout=json.dumps(prs)),
+                mock.Mock(stdout=json.dumps({"data": {"nodes": []}})),
+            ]
+            result = fetch_community_prs()
+
+        self.assertEqual(
+            [pr["repository"]["nameWithOwner"] for pr in result],
+            ["flipperdevices/u-boot", "flipperdevices/flipctl"],
+        )
 
     def test_generate_page_renders_community_prs(self) -> None:
         community_prs: list[_CommunityPR] = [
