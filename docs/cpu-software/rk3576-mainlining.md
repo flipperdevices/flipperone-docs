@@ -82,3 +82,39 @@ You can contribute at any level, from submitting code to advocacy with vendors.
 2. Take a look at the current [Open Tasks](https://docs.flipper.net/one/open-tasks) — you may be able to help with specific issues in Flipper One development.
 
 3. Explore [Collabora's kernel repository](https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux), where mainlining work for the RK3588 and RK3576 is ongoing.
+
+4. Send your kernel and U-Boot changes upstream, as described in [Sending kernel and U-Boot patches](#sending-kernel-and-u-boot-patches) below.
+
+## Sending kernel and U-Boot patches
+
+For the Linux kernel and U-Boot, we prefer that you send patches directly to the upstream mailing lists instead of opening a pull request in our forks. Our goal is for Flipper One to work on unpatched kernels from kernel.org, so we don't carry changes that can't go upstream. Once your patch is on the list, we may also apply it to our [kernel](https://github.com/flipperdevices/flipper-linux-kernel) and [U-Boot](https://github.com/flipperdevices/u-boot) trees.
+
+### Before you send
+
+- **Test on real hardware.** Run your change on Flipper One or a [supported RK3576 board](Supported-boards.md). Untested patches are not accepted.
+- **Have a real reason for the change.** A good way to find one is to use an RK3576 board for your own workloads and fix what doesn't work well. A real use case also helps you convince upstream maintainers.
+- **Want to discuss it first?** Open an issue in our [kernel](https://github.com/flipperdevices/flipper-linux-kernel/issues) or [U-Boot](https://github.com/flipperdevices/u-boot/issues) repository.
+
+### Follow the upstream rules
+
+Each project has its own rules, and maintainers expect you to follow them:
+
+- Linux: [Submitting patches](https://docs.kernel.org/process/submitting-patches.html). For device tree changes, also read [Submitting devicetree binding patches](https://docs.kernel.org/devicetree/bindings/submitting-patches.html).
+- U-Boot: [Development process](https://docs.u-boot.org/en/latest/develop/process.html) and [Sending patches](https://docs.u-boot.org/en/latest/develop/sending_patches.html).
+
+A few rules that are easy to miss:
+
+- Sign off every commit with `git commit -s`. Both projects require a known identity in the `Signed-off-by` line, so anonymous contributions are not accepted.
+- Split large changes into a series of small commits, and add a cover letter that explains the whole series.
+
+### Send the patches
+
+1. Use [b4](https://b4.docs.kernel.org/en/latest/contributor/overview.html) or `git send-email` ([setup guide](https://git-send-email.io/)). Both send your commits as plain-text emails in the format maintainers expect. With b4, `b4 prep --auto-to-cc` also fills in the recipients for you.
+2. Without b4, find the recipients with `scripts/get_maintainer.pl`, which both the kernel and U-Boot trees include. U-Boot patches always go to u-boot@lists.u-boot-project.org.
+3. If your patch is relevant to Flipper One or one of our supported boards, add Alexey Charkov (alchark@flipper.net) to Cc.
+
+### After sending
+
+- Answer review comments on the mailing list, then send a new version (v2, v3, and so on) that lists what changed.
+- Maintainers rarely look at new patches during the merge window, the two weeks after each Linux release. If there is no reply after it closes, a short and polite reminder is fine.
+- If you also opened an issue or pull request in our repositories, post a link to your patch there.
