@@ -6,7 +6,7 @@ createdAt: Sun Apr 26 2026 18:22:16 GMT+0000 (Coordinated Universal Time)
 updatedAt: Tue Apr 28 2026 13:20:46 GMT+0000 (Coordinated Universal Time)
 ---
 
-This page provides a list of boards that support installing Flipper OS using images built by the official build system. For each board, it also lists the target name, notes, hardware-defined boot priority, and instructions for switching to MaskROM mode for flashing via USB. Learn more about MaskROM mode in the [Rockchip MaskROM mode](How-to-install-linux-image.md#rockchip-maskrom-mode) section.
+This page provides a list of boards that support installing Flipper OS using images built by the official build system. For each board, it also lists the target name, notes, hardware-defined boot priority, and instructions for switching to MaskROM mode for flashing via USB. Learn more about MaskROM mode in the [Rockchip MaskROM mode](Maskrom-mode.md) section.
 
 ***
 

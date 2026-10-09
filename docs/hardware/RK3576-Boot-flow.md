@@ -39,7 +39,7 @@ The Boot ROM is mask-programmed silicon that cannot be modified. It begins execu
 3. Entering **MaskROM mode** if no bootable device is found. It allows access to the boot storages via USB.
 
 :::hint{type="info"}
-For details on using MaskROM mode and available boot priority lists, see [Rockchip MaskROM mode](/cpu-software/How-to-install-linux-image.md#rockchip-maskrom-mode).
+For details on using MaskROM mode and available boot priority lists, see [Rockchip MaskROM mode](/cpu-software/Maskrom-mode.md).
 :::
 
 ***
