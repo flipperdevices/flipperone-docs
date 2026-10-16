@@ -35,9 +35,13 @@ from jinja2 import Environment, FileSystemLoader
 # Sub-project definitions, in display order. Emojis match the sidebar
 # in archbee.json. Contribution-guide URLs use the `#how-to-contribute`
 # anchor on the corresponding "About …" page on docs.flipper.net/one.
+# Each section collects issues from all repositories listed in `repos`.
 SECTIONS: list[_Section] = [
     {
-        "slug": "flipperdevices/flipperone-hardware",
+        "repos": [
+            "flipperdevices/flipperone-hardware",
+            "flipperdevices/flipperone-debug-probe",
+        ],
         "title": "Hardware",
         "emoji": "🔌",
         "description": "Electrical hardware development: printed circuit boards (PCBs), antennas, and everything related to the electrical design.",
@@ -46,7 +50,7 @@ SECTIONS: list[_Section] = [
         "github_repo": "https://github.com/flipperdevices/flipperone-hardware",
     },
     {
-        "slug": "flipperdevices/flipperone-mechanics",
+        "repos": ["flipperdevices/flipperone-mechanics"],
         "title": "Mechanics",
         "emoji": "⚙️",
         "description": "Mechanical design: enclosures, buttons, connectors, and everything related to the physical construction.",
@@ -55,7 +59,16 @@ SECTIONS: list[_Section] = [
         "github_repo": "https://github.com/flipperdevices/flipperone-mechanics",
     },
     {
-        "slug": "flipperdevices/flipperone-linux-build-scripts",
+        "repos": [
+            "flipperdevices/flipperone-linux-build-scripts",
+            "flipperdevices/flipper-linux-kernel",
+            "flipperdevices/u-boot",
+            "flipperdevices/flipperos-installer",
+            "flipperdevices/flipperos-installer-initramfs",
+            "flipperdevices/flipperos-recovery",
+            "flipperdevices/flipperos-boot-menu",
+            "flipperdevices/flipperos-btrfs-tools",
+        ],
         "title": "Linux (CPU Software)",
         "emoji": "🐧",
         "description": "Build system for the Linux firmware: U-Boot, kernel, root filesystem, and bootable images for the RK3576.",
@@ -64,7 +77,10 @@ SECTIONS: list[_Section] = [
         "github_repo": "https://github.com/flipperdevices/flipperone-linux-build-scripts",
     },
     {
-        "slug": "flipperdevices/flipperone-mcu-firmware",
+        "repos": [
+            "flipperdevices/flipperone-mcu-firmware",
+            "flipperdevices/flipperone-mcu-protobuf",
+        ],
         "title": "MCU Firmware",
         "emoji": "🕹️",
         "description": "Firmware for the RP2350 co-processor: FreeRTOS, display, buttons, touchpad, LEDs, and power management.",
@@ -73,7 +89,7 @@ SECTIONS: list[_Section] = [
         "github_repo": "https://github.com/flipperdevices/flipperone-mcu-firmware",
     },
     {
-        "slug": "flipperdevices/flipperone-ui",
+        "repos": ["flipperdevices/flipperone-ui"],
         "title": "User Interface",
         "emoji": "🎨",
         "description": "User interface design: operating modes, on-screen graphics, device prints, and FlipCTL.",
@@ -82,7 +98,7 @@ SECTIONS: list[_Section] = [
         "github_repo": "https://github.com/flipperdevices/flipperone-ui",
     },
     {
-        "slug": "flipperdevices/flipperone-testing",
+        "repos": ["flipperdevices/flipperone-testing"],
         "title": "Testing",
         "emoji": "🧪",
         "description": "Hardware validation and test scripts: temperature monitoring, power, CPU, GPU, network, and disk tests.",
@@ -91,7 +107,7 @@ SECTIONS: list[_Section] = [
         "github_repo": "https://github.com/flipperdevices/flipperone-testing",
     },
     {
-        "slug": "flipperdevices/flipperone-docs",
+        "repos": ["flipperdevices/flipperone-docs"],
         "title": "Docs",
         "emoji": "📚",
         "description": "Developer documentation published at docs.flipper.net/one.",
@@ -99,11 +115,25 @@ SECTIONS: list[_Section] = [
         "contribution_guide": "https://docs.flipper.net/one/resources/about-docs#how-to-contribute",
         "github_repo": "https://github.com/flipperdevices/flipperone-docs",
     },
+    {
+        "repos": [
+            "flipperdevices/flipctl",
+            "flipperdevices/flipctl-fonts",
+            "flipperdevices/flipctl-slint",
+            "flipperdevices/flipctl-apps",
+        ],
+        "title": "FlipCTL",
+        "emoji": "🎛️",
+        "description": "UI framework for embedded Linux systems.",
+        "task_tracker": "TBD",
+        "contribution_guide": "https://blog.flipper.net/flipctl-our-gui-framework-for-embedded-linux-systems/#how-you-can-join",
+        "github_repo": "https://github.com/flipperdevices/flipctl",
+    },
 ]
 
 LABEL = "help wanted"
 ORG = "flipperdevices"
-SECTION_SLUGS = {section["slug"] for section in SECTIONS}
+SECTION_REPOS = {repo for section in SECTIONS for repo in section["repos"]}
 ORG_MEMBER_ASSOCIATIONS = {"MEMBER", "OWNER"}
 SCRIPT_URL = "https://github.com/flipperdevices/flipperone-docs/blob/public-release/tools/generate_open_tasks.py"
 TEMPLATE_DIR = Path(__file__).resolve().parent / "templates"
@@ -114,7 +144,7 @@ class _Repository(TypedDict):
     nameWithOwner: str
 
 class _Section(TypedDict):
-    slug: str
+    repos: list[str]
     title: str
     emoji: str
     description: str
@@ -290,7 +320,7 @@ def fetch_community_prs() -> list[_CommunityPR]:
     candidates = [
         pr
         for pr in prs
-        if pr["repository"]["nameWithOwner"] in SECTION_SLUGS
+        if pr["repository"]["nameWithOwner"] in SECTION_REPOS
         and is_community_pr(pr)
     ]
     linked_pr_ids = fetch_pr_ids_with_linked_issues(
@@ -393,7 +423,8 @@ def _build_template_sections(issues: list[_Issue]) -> list[_DisplaySection]:
                     for pr in issue.get("linkedPRs", [])
                 ],
             }
-            for issue in by_repo.get(section["slug"], [])
+            for repo in section["repos"]
+            for issue in by_repo.get(repo, [])
         ]
         rendered_issues.sort(key=lambda i: i["number"], reverse=True)
         sections.append({**section, "issues": rendered_issues})
