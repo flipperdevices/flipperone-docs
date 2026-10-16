@@ -153,4 +153,10 @@ To modify these components without touching the originals:
 :::
 ::::
 
+:::hint{type="info"}
+ℹ️ **Kernel and U-Boot changes**
+
+For the Linux kernel and U-Boot, we prefer patches sent to the upstream mailing lists over pull requests to our forks. See [Sending kernel and U-Boot patches](rk3576-mainlining.md#sending-kernel-and-u-boot-patches).
+:::
+
 We review all pull requests carefully! We may ask additional questions in the PR thread, so please watch for GitHub notifications in your email.
