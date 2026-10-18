@@ -6,51 +6,51 @@ createdAt: Wed May 3 2026 18:02:16 GMT+0000 (Coordinated Universal Time)
 updatedAt: Wed May 3 2026 18:22:47 GMT+0000 (Coordinated Universal Time)
 ---
 
-The Flipper One Debug Probe enables debugging of Flipper One without fully disassembling the device. It connects via a ribbon cable to the debug port located behind the back plate of Flipper One.
+The Debug Probe lets you access the Flipper One debug interface without full disassembly. It connects to the debug port behind the back plate using a ribbon cable.
 
 ![Debug Probe Connection to Flipper One](/files/pics/debug-probe-connection-to-flipper-one.png "Debug Probe Connection to Flipper One")
 
-The Flipper One Debug Probe is based on the RP2350 microcontroller. Its hardware design, manufacturing files, and firmware source code are fully open.
+Built around the RP2350 microcontroller, the Flipper One Debug Probe is fully open source, including its hardware design, manufacturing files, and firmware source code.
 
 ## Features
 
 The Debug Probe provides the following functionality:
 
-* **Debug probe for Flipper One MCU (RP2350)** via SWD (Serial Wire Debug). It supports CMSIS-DAP and allows control over CPU execution, access to memory and peripherals, and programming of the MCU flash. The MCU Firmware VS Code project is preconfigured for CMSIS-DAP debugging, allowing you to start a debug session using Debug Probe immediately.
-* **USB-serial #1** for access to the Flipper One Linux terminal.
-* **USB-serial #2** for access to the Flipper One MCU CLI (Command Line Interface).
-* **USB-serial #3** for real-time reading of Flipper One MCU logs.
-* **USB-serial #4** for access to the Debug Probe CLI (Command Line Interface).
-* **USB-GPIO bridge** providing access to several GPIO pins of the Flipper One CPU and MCU. These pins can be read and write through the Debug Probe CLI.
+* **MCU debugging via SWD (Serial Wire Debug)**: the probe supports CMSIS-DAP, allowing you to control CPU execution, access memory and peripherals, and program the Flipper One MCU (RP2350) flash. The MCU Firmware VS Code project is preconfigured for CMSIS-DAP debugging, so you can start a debug session right away.
+* **USB-serial 1**: Flipper One Linux terminal.
+* **USB-serial 2**: Flipper One MCU CLI.
+* **USB-serial 3**: real-time Flipper One MCU logs.
+* **USB-serial 4**: Debug Probe CLI.
+* **USB-GPIO bridge**: access to several GPIO pins of the Flipper One CPU and MCU. You can read from and write to these pins through the Debug Probe CLI.
 
 ## Buttons and LEDs
 
 ![Debug Probe buttons and LEDs](/files/pics/debug-probe-buttons-and-leds.png "Debug Probe buttons and LEDs")
 
-The Debug Probe has 2 buttons:
-* **CPU RESET** — resets the Flipper One CPU (RK3576).
-* **MCU RESET & PROBE BOOT** — resets the Flipper One MCU (RP2350) and puts the Debug Probe into BOOTSEL mode for firmware flashing.
+The Debug Probe has two buttons:
+* **CPU RESET**: resets the Flipper One CPU (RK3576).
+* **MCU RESET & PROBE BOOT**: resets the Flipper One MCU (RP2350) and puts the Debug Probe into BOOTSEL mode for firmware flashing.
 
 The Debug Probe has the following LEDs:
-* MCU power LED (3.3V)
-* MCU UART activity LEDs (Tx and Rx).
-* MCU `IO40` and `IO41` pin state LEDs.
-* CPU UART activity LEDs (Tx and Rx).
-* CPU `GPIO0_D2` and `GPIO0_D3` pin state LEDs.
-* Debug Probe `IO20` pin state LED.
+* **MCU power**: 3.3V power status.
+* **MCU UART activity**: Tx and Rx.
+* **MCU `IO40` and `IO41` pin state**: pin state indication.
+* **CPU UART activity**: Tx and Rx.
+* **CPU `GPIO0_D2` and `GPIO0_D3` pin state**: pin state indication.
+* **Debug Probe `IO20` pin state**: pin state indication.
 
 ## Connectors
 
-The Flipper One Debug Probe has:
-* **USB port** for connection to a PC.
-* **Debug port** for connecting to the Flipper One debug port.
-* **5-pin header** for connecting a logic analyzer or oscilloscope to CPU and MCU pins.
+The Flipper One Debug Probe has the following connectors:
+* **USB port**: connection to a PC.
+* **Debug port**: connection to the Flipper One debug port.
+* **5-pin header**: interface for a logic analyzer or oscilloscope to monitor CPU and MCU pins.
 
 ![Pinout of the Debug Port and 5-Pin Header on the Debug Probe](/files/pics/debug-probe-connectors.png "Pinout of the Debug Port and 5-Pin Header on the Debug Probe")
 
 ## Schematics
 
-The debug probe hardware is open source and available as a [public Altium 365 project](https://flipper.365.altium.com/designs/14B8CA82-B532-4581-BF6F-641FED8AF7F5). You can view and export the schematic, PCB layout, 3D model, manufacturing drawings, and BOM (bill of materials).
+The Debug Probe hardware is open source and available as a [public Altium 365 project](https://flipper.365.altium.com/designs/14B8CA82-B532-4581-BF6F-641FED8AF7F5). The project allows you to view and export the schematic, PCB layout, 3D model, manufacturing drawings, and bill of materials (BOM).
 
 ![Viewing the Debug Probe project in Altium 365](/files/pics/debug-probe-altium-365-view.png "Viewing the Debug Probe project in Altium 365")
 
@@ -60,86 +60,88 @@ The Flipper One Debug Probe firmware is open source. The full firmware source co
 
 Below are instructions on:
 
-- [How to build the firmware](./#how-to-build-firmware).
-- [How to flash the firmware via USB](./#how-to-flash-firmware).
+- [How to build the firmware](/hardware/Debug-probe#how-to-build-firmware).
+- [How to flash the firmware via USB](/hardware/Debug-probe#how-to-flash-firmware).
 
 ### How to build firmware
 
-In this guide, you will learn how to build the firmware (`.UF2`) from source code. The resulting file can be uploaded to the Flipper One Debug Probe MCU via USB.
+This guide explains how to build the firmware (`.UF2`) from source code. The resulting file can be flashed (uploaded) to the Flipper One Debug Probe MCU via USB.
 
-To build the firmware:
+Prerequisites:
 
 :::::WorkflowBlock
 :::WorkflowBlockItem
-Install [Visual Studio Code](https://code.visualstudio.com/), [Python](https://www.python.org/downloads/), and [git](https://git-scm.com/).
+Install [Visual Studio Code](https://code.visualstudio.com/), [Python](https://www.python.org/downloads/), and [Git](https://git-scm.com/).
+:::
+:::::
+
+Build the firmware:
+
+:::::WorkflowBlock
+:::WorkflowBlockItem
+In a terminal, go to the folder where you want to store the Debug Probe firmware source code.
 :::
 
 :::WorkflowBlockItem
-Open a terminal in the folder where you want to store the Debug Probe firmware source code.
+Clone the MCU firmware repository:
+
+```shell
+git clone --recursive https://github.com/flipperdevices/flipperone-debug-probe
+```
 :::
 
 :::WorkflowBlockItem
-Clone the MCU firmware repository to your computer:
-
-`git clone --recursive https://github.com/flipperdevices/flipperone-debug-probe`
+Open Visual Studio Code, go to **File > Open Folder...**, and select the **flipperone-debug-probe** folder cloned.
 :::
 
 :::WorkflowBlockItem
-Open Visual Studio Code and go to **File → Open Folder...** and select the **flipperone-debug-probe** folder you just cloned.
-:::
-
-:::WorkflowBlockItem
-Visual Studio Code will prompt you to install the recommended extensions. Click **Install** to accept, and wait until the process is complete.
+When Visual Studio Code prompts you to install the recommended extensions, click **Install** and wait for the process to complete.
 
 ![VS Code prompt to install recommended extensions](/files/pics/mcu-firmware-vscode-install-extensions.png)
 :::
 
 :::WorkflowBlockItem
-Click **Raspberry Pi Pico Project** in the left sidebar.
+In the **Activity Bar** (left sidebar), click the **Raspberry Pi Pico Project** icon to open the project.
 :::
 
 :::WorkflowBlockItem
-Click **Configure CMake**.
-:::
-
-:::WorkflowBlockItem
-Click **Compile Project**. 
+In the opened **Raspberry Pi Pico Project** view, click **Configure CMake**, and then click **Compile Project** to build the firmware.
 
 ![](/files/pics/debug-probe-firmware-compilation.png)
-
+:::
 :::::
 
 :::hint{type="success"}
-After a successful build, the resulting `UF2` file will be located in the `flipperone-debug-probe/build` folder.
+After a successful build, the resulting `.UF2` file is located in the `flipperone-debug-probe/build` folder.
 :::
 
 ### How to flash firmware
 
-In this guide, you will learn how to flash the firmware (`.UF2`) to the Flipper One Debug Probe via USB:
+This guide explains how to flash the firmware (`.UF2`) to the Flipper One Debug Probe via USB:
 
 :::::WorkflowBlock
 :::WorkflowBlockItem
-Get the `.UF2` firmware file.
-- [Download the file from the repository](https://github.com/flipperdevices/flipperone-debug-probe/releases)
+Get the `.UF2` firmware file:
+- [Download from repository](https://github.com/flipperdevices/flipperone-debug-probe/releases)
     or
-- [Build the file from source code](./#how-to-build-firmware) — if you modified the firmware.
+- [Build from source code](./#how-to-build-firmware) if you modified the firmware.
 :::
 
 :::WorkflowBlockItem
-Switch the Debug Probe MCU to BOOTSEL mode by holding the **MCU RESET & PROBE BOOT** button while connecting the Debug Probe to a PC via USB.
+Hold the **MCU RESET & PROBE BOOT** button and connect the Debug Probe to a PC via USB. The Debug Probe MCU switches to **BOOTSEL** mode.
 
 ![Switching debug probe MCU to BOOTSEL mode](/files/pics/debug-probe-switching-to-bootsel.png "Switching debug probe MCU to BOOTSEL mode")
 
 :::
  
 :::WorkflowBlockItem
-After switching the Debug Probe MCU to BOOTSEL mode, the device appears on your PC as a Mass Storage Device named RP2350.
+After the Debug Probe MCU enters **BOOTSEL** mode, the device appears on your PC as the **RP2350** mass storage device.
 
-If it does not appear, try a different USB cable and repeat the BOOTSEL procedure.
+If it does not appear, try a different USB cable and repeat the **BOOTSEL** procedure.
 :::
  
 :::WorkflowBlockItem
-Upload the `.UF2` firmware file to the RP2350 Mass Storage Device.
+Upload the `.UF2` firmware file to the **RP2350** mass storage device.
 :::
 :::::
 
@@ -147,7 +149,7 @@ Upload the `.UF2` firmware file to the RP2350 Mass Storage Device.
 :::
 
 :::hint{type="success"}
-Once the `.UF2` file upload is complete, the Debug Probe will automatically reboot and the Mass Storage Device will disconnect from your PC — the Ddebug Probe has been successfully updated.
+Once the `.UF2` file has been uploaded, the Debug Probe automatically reboots and the **RP2350** mass storage device disconnects from your PC. The Debug Probe has been successfully updated.
 :::
 
 # Usage
