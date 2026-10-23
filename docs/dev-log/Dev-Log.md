@@ -15,6 +15,8 @@ This is our regular Dev Log, where we share how Flipper One development is going
 
 All logs:
 
+- [#11: Modular Radios, On-Device Display Testing & Seamless OS Profiles](./11.md), independent GPS/cellular M.2 control, RP2350 display diagnostics, unified SSH identity across profiles, and Power Meter Kickstarter demos.
+
 - [#10: Run your own Flipper One](./10.md), install Flipper OS on supported RK3576-based SBC and try FlipCTL UI, App Manager, and OS profiles.
 
 - [#9: New boot menu & Full desktop in 9.5 seconds](./9.md), Flipper One portable DevKit, Flipper OS online installer, new powerful boot menu, and Power Meter emulator.
