@@ -270,7 +270,14 @@
             "categoryName": "FlipCTL",
             "isCategory": false,
             "path": "cpu-software/FlipCTL.md",
-            "children": []
+            "children": [
+              {
+                "categoryName": "5G Modem app",
+                "isCategory": false,
+                "path": "cpu-software/flipctl/5G-Modem-app.md",
+                "children": []
+              }
+            ]
           },
           {
             "categoryName": "Build system",
