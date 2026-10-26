@@ -6,6 +6,8 @@ createdAt: Sat Oct 24 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
 updatedAt: Sat Oct 24 2026 00:00:00 GMT+0000 (Coordinated Universal Time)
 ---
 
+::embed[]{url="youtube.com/watch?v=O2heESk_8uU"}
+
 The 5G Modem app is FlipCTL's built-in screen for cellular modems. It lives in **Network → 5G Modem** and shows everything the modem reports about the network, the signal and the connection, down to each antenna, and lets you turn the radio off and switch between the physical SIM and the Flipper eSIM.
 
 It is built for two kinds of users: the QA team, who test modems and antennas and need real measurements, and owners, who need to see at a glance whether they have service and how good it is.
