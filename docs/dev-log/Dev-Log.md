@@ -15,6 +15,8 @@ This is our regular Dev Log, where we share how Flipper One development is going
 
 All logs:
 
+- [#12: FlipCTL's toolbox grows](./12.md), FlipCTL apps for USB ports, Ethernet cables, voice and radio, the native engine under them, community fixes to the power monitor, and two chances to help: the GPIO pin labels and sharing device settings between OS profiles.
+
 - [#11: Making Flipper One truly portable:](./11.md) Up to 24 hours of battery life with Linux running, power consumption in different scenario, and the built-in Power Meter.
 
 - [#10: Run your own Flipper One](./10.md), install Flipper OS on supported RK3576-based SBC and try FlipCTL UI, App Manager, and OS profiles.
