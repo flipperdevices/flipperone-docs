@@ -82,3 +82,40 @@ You can contribute at any level, from submitting code to advocacy with vendors.
 2. Take a look at the current [Open Tasks](https://docs.flipper.net/one/open-tasks) — you may be able to help with specific issues in Flipper One development.
 
 3. Explore [Collabora's kernel repository](https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux), where mainlining work for the RK3588 and RK3576 is ongoing.
+
+4. Send your kernel and U-Boot changes upstream, as described in [Sending kernel and U-Boot patches](#sending-kernel-and-u-boot-patches) below.
+
+## Sending kernel and U-Boot patches
+
+For the Linux kernel and U-Boot, we prefer that you send patches directly to the upstream mailing lists instead of opening a pull request in our forks. Our goal is for Flipper One to work on unpatched kernels from kernel.org, so we don't carry changes that can't go upstream. Once your patch is on the list, we may also apply it to our [kernel](https://github.com/flipperdevices/flipper-linux-kernel) and [U-Boot](https://github.com/flipperdevices/u-boot) trees.
+
+### Before you send
+
+- **Test on real hardware.** Run your change on Flipper One or a [supported RK3576 board](Supported-boards.md). Untested patches are not accepted.
+- **Have a real reason for the change.** A good way to find one is to use an RK3576 board for your own workloads and fix what doesn't work well. A real use case also helps you convince upstream maintainers.
+- **Want to discuss it first?** Open an issue in our [kernel](https://github.com/flipperdevices/flipper-linux-kernel/issues) or [U-Boot](https://github.com/flipperdevices/u-boot/issues) repository.
+
+### Follow the upstream rules
+
+Each project has its own rules, and maintainers expect you to follow them:
+
+- Linux: [Submitting patches](https://docs.kernel.org/process/submitting-patches.html). For device tree changes, also read [Submitting devicetree binding patches](https://docs.kernel.org/devicetree/bindings/submitting-patches.html). Bindings are separate from the device trees: if you change a device tree structurally, update its binding first, in a separate patch. Device trees must pass validation against the binding schema (`make dtbs_check`).
+- U-Boot: [Development process](https://docs.u-boot.org/en/latest/develop/process.html) and [Sending patches](https://docs.u-boot.org/en/latest/develop/sending_patches.html).
+
+A few rules that are easy to miss:
+
+- Sign off every commit with `git commit -s`. The `Signed-off-by` line is a legal statement (see the [Developer's Certificate of Origin](https://docs.kernel.org/process/submitting-patches.html#sign-your-work-the-developer-s-certificate-of-origin)), so it needs a known identity. For most people this means their full name. A GitHub nickname alone is not enough.
+- Split your work into logically self-contained commits, one change per commit. Each commit must build, run and pass the relevant tests on its own, so it is easy to review. For a series, add a cover letter that explains the whole series.
+- Keep commit messages and code comments short and to the point. Explain why the change is needed, not how the code works line by line. Senior kernel maintainers read these texts, and their time is very limited.
+
+### Send the patches
+
+1. Use [b4](https://b4.docs.kernel.org/en/latest/contributor/overview.html) to prepare and send your patches. It is made for the kernel and U-Boot workflow, sends your commits as plain-text emails in the format maintainers expect, and saves you from many common submission mistakes. `b4 prep --auto-to-cc` also fills in the recipients for you.
+2. If your patch is relevant to Flipper One or one of our supported boards, you can add Alexey Charkov (alchark@flipper.net) to Cc. This is optional, as he follows the linux-rockchip and U-Boot mailing lists anyway.
+
+### After sending
+
+- Answer review comments on the mailing list, then send a new version (v2, v3, and so on) that lists what changed.
+- Don't rush new versions. Give reviewers time: wait at least 24 hours between submissions, and better 3 working days. If you feel you need to send a new version faster than that, the previous one was probably sent too early.
+- Maintainers rarely look at new patches during the merge window, the two weeks after each Linux release. If there is no reply after it closes, a short and polite reminder is fine.
+- If you also opened an issue or pull request in our repositories, post a link to your patch there.
