@@ -51,7 +51,7 @@ Recommended board!
 
 - ✅ DisplayPort on USB-C.
 - ✅ USB-A to USB-A cable not required for flashing via MaskROM mode.
-- **Target name:** `rock-pc`.
+- **Target name:** `roc-pc`.
 - **Boot priority:** eMMC flash → SD card → USB (MaskROM).
 - **Switching to MaskROM mode:** Hold the MASKROM button while powering on the board.
 - **MaskROM USB port:** :inlineImage[]{src="https://api.archbee.com/api/optimize/3StCFqarJkJQZV-7N79yY/7BdCiDckZzDk-h4Qpo3E4_iconusbc.png" alt caption="usb-c icon"} USB-C port.
@@ -111,6 +111,6 @@ Evaluation board. Not for sale!
 
 ::Image[]{src="/files/pics/evb1.jpg" size="55" position="center" alt="Rockchip RK3576 EVB1"}
 
-**Target name:** `evb1`.
+**Target name:** `evb`.
 
 Rockchip's official RK3576 EVB1 evaluation board. This board is supported by Flipper OS; however, we cannot disclose detailed information about it due to NDA restrictions.
