@@ -794,6 +794,8 @@ The tuning commands are in the warning in [USB interface](#usb-interface). They 
 
 :::hint{type="warning"}
 The gap between about 930 Mbit/s and the iPhone's 1300 Mbit/s is not explained. Signal strength, raw USB bandwidth, CPU frequency and TCP buffers are ruled out. `AT+QNWCFG="nr5g_csi"` returned zeros on this firmware, so MIMO layers and MCS could not be compared.
+
+In later tests on the same cell, QMAP did not raise download speed and CPU4 was not fully used, which points to the radio link rather than USB or the CPU. See [QMAP](#qmap).
 :::
 
 ### USB loopback test
@@ -917,9 +919,15 @@ Speed test results with a weak signal (LTE, RSRP about −110 dBm), where the ra
 | 2 | 11.2 Mbit/s | 12.1 Mbit/s |
 | 3 | 11.8 Mbit/s | 10.5 Mbit/s |
 
-:::hint{type="warning"}
-QMAP has not been tested on a strong 5G link, so its effect on real download speed is unknown. In loopback the uplink is not aggregated and may limit the result. The first QMAP run on 5G was discarded because the device moved during the test.
-:::
+Speed test results on 5G SA (n78, 100 MHz), on the same cell as the first tests, with the IRQ on CPU4, RPS on CPUs 5–7 and a backlog of 10000. RSRP was about −65 dBm, but SINR was only about 0–7 dB. The runs used Ookla server 72004 (BT), because server 24281 was no longer listed. They are in the order they ran:
+
+| Order | Mode | Download | CPU4 idle | Softnet drops |
+|---|---|---|---|---|
+| 1 | Raw IP | 803, 781 Mbit/s | 47–48% | 0 |
+| 2 | QMAP | 743, 768, 689 Mbit/s | 63–68% | 0 |
+| 3 | Raw IP | 767, 775, 824 Mbit/s | 44–47% | 0 |
+
+QMAP averaged about 733 Mbit/s against about 790 Mbit/s for raw IP, so it did not raise download speed. It did reduce the load on CPU4 from about 53% to about 34%, with 5–6 packets per xHCI interrupt. Neither mode used all of CPU4, so the limit in this test was most likely the radio link.
 
 Known issues:
 
