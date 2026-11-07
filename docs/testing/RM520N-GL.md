@@ -30,7 +30,7 @@ The Quectel RM520N-GL is a 5G Sub-6 GHz M.2 modem. Flipper One detects it over U
 | Signal and cell info (ModemManager) | ✅ | serving and neighbour cells, LTE and 5G signal |
 | LTE carrier aggregation | ✅ | B1 + B20 aggregated (B7 configured but not active) |
 | 5G NR (NSA) | ⚠️ | cell advertises NSA, but no stable NR link during the test (weak signal) |
-| 5G NR (SA) | ⚠️ | not tested: no SA service from the network |
+| 5G NR (SA) | ✅ | n78, 100 MHz, Vodafone UK. About 930 Mbit/s download with receive tuning, see [USB interface](#usb-interface) |
 | AT command ports | ⚠️ | both ports are held by ModemManager. Use debug mode for tests, see [AT commands](#at-commands) |
 | Per-antenna signal | ✅ | all four receive paths work on B1. Low bands such as B20 use only two, see [Per-antenna signal](#per-antenna-signal) |
 | Module temperature | ✅ | 44–47 °C during the test, no heatsink |
@@ -193,6 +193,22 @@ $ lsusb -t
         |__ Port 004: Dev 003, If 3, Class=Vendor Specific Class, Driver=option, 5000M
         |__ Port 004: Dev 003, If 4, Class=Vendor Specific Class, Driver=qmi_wwan, 5000M
 ```
+
+:::hint{type="warning"}
+**Stock Linux limits download speed to about 500 Mbit/s.**
+
+All USB and network receive work for the modem runs on CPU0, a Cortex-A53 core. Under load CPU0 reaches 100% and drops about 10% of received packets, while the other cores stay almost idle.
+
+Moving this work to the Cortex-A72 cores raised download speed from 495 Mbit/s to about 930 Mbit/s with no dropped packets. Both results come from the same 5G SA cell (n78, 100 MHz) and the same Ookla server:
+
+```bash
+sudo sysctl -w net.core.netdev_max_backlog=10000
+echo 4 | sudo tee /proc/irq/32/smp_affinity_list
+echo e0 | sudo tee /sys/class/net/wwu1u4i4/queues/rx-0/rps_cpus
+```
+
+These settings are lost on reboot. The IRQ number can differ: find the `xhci-hcd:usb1` line in `/proc/interrupts`. RPS must be set again if the modem re-enumerates on USB.
+:::
 
 ### Interfaces and ports
 
