@@ -30,7 +30,8 @@ The Quectel RM520N-GL is a 5G Sub-6 GHz M.2 modem. Flipper One detects it over U
 | Signal and cell info (ModemManager) | ✅ | serving and neighbour cells, LTE and 5G signal |
 | LTE carrier aggregation | ✅ | B1 + B20 aggregated (B7 configured but not active) |
 | 5G NR (NSA) | ⚠️ | cell advertises NSA, but no stable NR link during the test (weak signal) |
-| 5G NR (SA) | ✅ | n78, 100 MHz, Vodafone UK. About 930 Mbit/s download with receive tuning, see [USB interface](#usb-interface) |
+| 5G NR (SA) | ✅ | n78, 100 MHz, Vodafone UK. About 930 Mbit/s download with receive tuning, see [Download throughput](#download-throughput) |
+| Download speed | ⚠️ | about 500 Mbit/s on stock settings, about 930 Mbit/s with receive tuning, see [Download throughput](#download-throughput) |
 | AT command ports | ⚠️ | both ports are held by ModemManager. Use debug mode for tests, see [AT commands](#at-commands) |
 | Per-antenna signal | ✅ | all four receive paths work on B1. Low bands such as B20 use only two, see [Per-antenna signal](#per-antenna-signal) |
 | Module temperature | ✅ | 44–47 °C during the test, no heatsink |
@@ -759,6 +760,171 @@ Measured on 2026-10-20 with Vodafone UK, indoors:
 :::hint{type="warning"}
 The LTE signal was very weak during this test (RSRP −121 dBm, SNR −10 dB). This is probably why the modem stayed on LTE and did not keep a 5G NR link. Repeat the 5G test with better antenna placement or closer to a window.
 :::
+
+## Download throughput
+
+Measured on 2026-11-06 and 2026-11-07 on the test unit (Linux 7.3.0-rc7, firmware `RM520NGLAAR03A04M4G`), with a Vodafone UK SIM and the raw IP QMI data path unless noted. Speed tests used Ookla's CLI against the Vodafone UK server:
+
+```bash
+speedtest -s 24281 -I wwu1u4i4
+```
+
+An iPhone 17 with the same SIM, on the same 5G SA cell, reported 1300 Mbit/s against this server. The modem had the stronger signal:
+
+| Parameter | iPhone 17 | RM520N-GL |
+|---|---|---|
+| Band | n78, 100 MHz, NR-ARFCN 628032 | n78, 100 MHz, NR-ARFCN 628032 |
+| RSRP | −72 dBm | about −60 dBm |
+| SNR | 8.6 dB | about 11–12 dB |
+
+### Speed test results
+
+Each row adds to the settings of the row above. Softnet drops are packets the kernel discarded because a CPU backlog queue was full, from `/proc/net/softnet_stat`.
+
+| Settings | Download | Softnet drops per run |
+|---|---|---|
+| Stock | 495 Mbit/s | 65,616 |
+| `netdev_max_backlog` raised from 1000 to 10000 | 551–605 Mbit/s | about 23,500 |
+| xHCI IRQ on CPU4, RPS on CPUs 5–7 | 721–935 Mbit/s, most recent runs 907–935 Mbit/s | 0 |
+| Performance CPU governor, `rmem_max` 32 MB | 915–934 Mbit/s, no gain | 0 |
+
+Upload stayed around 200 Mbit/s. On stock settings CPU0 reached 0–6% idle while the other cores stayed almost idle. With the tuning applied, the receive rate held near 980 Mbit/s and peaked at 1079 Mbit/s, with few retransmits and CPU4 still about 40% idle.
+
+The tuning commands are in the warning in [USB interface](#usb-interface). They are not applied by default and are lost on reboot.
+
+:::hint{type="warning"}
+The gap between about 930 Mbit/s and the iPhone's 1300 Mbit/s is not explained. Signal strength, raw USB bandwidth, CPU frequency and TCP buffers are ruled out. `AT+QNWCFG="nr5g_csi"` returned zeros on this firmware, so MIMO layers and MCS could not be compared.
+:::
+
+### USB loopback test
+
+The modem can return uplink packets to the host, which measures the host-to-modem path without the radio and without using mobile data. The modem has no mobile internet while loopback is on.
+
+```bash
+sudo qmicli -d /dev/cdc-wdm0 -p --wda-set-loopback-configuration="state=enabled,replication-factor=1"
+ping -c 3 -I wwu1u4i4 1.1.1.1
+```
+
+A round trip of about 0.3 ms means loopback is active. If you see a normal network round trip, wait a few seconds and repeat the command, otherwise your test traffic goes to the mobile network.
+
+This script sends paced UDP traffic to a reserved test address. Save it as `lbflood.py`:
+
+```python
+# usage: lbflood.py IFACE MBIT SECONDS [SIZE]
+import socket, sys, time
+
+ifn, mbit, secs = sys.argv[1], float(sys.argv[2]), float(sys.argv[3])
+sz = int(sys.argv[4]) if len(sys.argv) > 4 else 1400
+
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.setsockopt(socket.SOL_SOCKET, socket.SO_BINDTODEVICE, ifn.encode())
+s.setblocking(False)
+
+d = b'\xa5' * sz
+a = ('192.0.2.1', 9)
+pps = mbit * 1e6 / 8 / (sz + 28)
+t0 = time.time()
+sent = fail = 0
+
+while True:
+    now = time.time() - t0
+    if now >= secs:
+        break
+    due = int(now * pps) - sent
+    for _ in range(min(due, 200)):
+        try:
+            s.sendto(d, a)
+        except OSError:
+            fail += 1
+        sent += 1
+    if due < 50:
+        time.sleep(0.0005)
+
+print(f'attempted={sent} failed={fail}', file=sys.stderr)
+```
+
+Run four senders for 6 seconds, one per core, and read the interface counters to get the rate:
+
+```bash
+IF=wwu1u4i4; SECS=6
+RX1=$(cat /sys/class/net/$IF/statistics/rx_bytes)
+for c in 1 2 3 5; do sudo taskset -c $c python3 lbflood.py $IF 600 $SECS 1400 & done
+wait
+RX2=$(cat /sys/class/net/$IF/statistics/rx_bytes)
+echo "RX $(( (RX2-RX1)*8/SECS/1000000 )) Mbit/s"
+```
+
+Turn loopback off when you finish. This drops the connection for a few seconds:
+
+```bash
+sudo qmicli -d /dev/cdc-wdm0 -p --wda-set-loopback-configuration="state=disabled,replication-factor=1"
+```
+
+Results with RPS on CPUs 5–7 and a backlog of 10000. Only the core that handles the xHCI IRQ changes:
+
+| Packet size | IRQ on CPU4 (Cortex-A72) | IRQ on CPU0 (Cortex-A53) |
+|---|---|---|
+| 1400 B | 1057 Mbit/s, 92.5k packets/s | 699 Mbit/s, 61.1k packets/s |
+| 700 B | 573 Mbit/s, 98.3k packets/s | 380 Mbit/s, 65.3k packets/s |
+| 350 B | 301 Mbit/s, 99.5k packets/s | 201 Mbit/s, 66.3k packets/s |
+
+Traffic followed the requested rate exactly up to 800 Mbit/s, with no softnet drops. At the ceiling the IRQ core had 0–1% idle, and the ceiling moved with that core. So the loopback ceiling is the packet rate one core can handle, not USB or the modem.
+
+Loopback runs both directions at once, so it loads the IRQ core more than a download does. It does not prove that the core causes the 5G plateau near 980 Mbit/s, where CPU4 was about 40% idle.
+
+Loopback behavior on this firmware:
+
+- `replication-factor` had no effect in raw IP mode: received traffic stayed equal to sent traffic. In the QMAP loopback run the factor was probably still set to 4, also with no effect. A download-only load is therefore not possible.
+- `qmicli` rejects `replication-factor=0`, so disabling loopback needs a non-zero value.
+- `--wda-get-supported-messages` returns `InvalidQmiCommand`, but loopback still works.
+
+### QMAP
+
+QMAP packs several packets into one USB transfer. The modem and driver must be switched together. This is the sequence used on the test unit, as root:
+
+```bash
+nmcli connection down cellular-vodafone-uk
+mmcli --inhibit-device=/sys/devices/platform/soc/23400000.usb/xhci-hcd.0.auto/usb2/2-1/2-1.4 &
+ip link set wwu1u4i4 down
+qmicli -d /dev/cdc-wdm0 -p --wda-set-data-format="link-layer-protocol=raw-ip,ul-protocol=qmap,dl-protocol=qmap,dl-datagram-max-size=31744,dl-max-datagrams=32,ep-type=hsusb,ep-iface-number=4"
+ip link set wwu1u4i4 mtu 31745
+echo 1 > /sys/class/net/wwu1u4i4/qmi/add_mux
+nmcli device set qmimux0 managed no
+ip link set wwu1u4i4 up
+ip link set qmimux0 up
+qmicli -d /dev/cdc-wdm0 -p --client-no-release-cid --wds-bind-mux-data-port="mux-id=1,ep-type=hsusb,ep-iface-number=4"
+qmicli -d /dev/cdc-wdm0 -p --client-cid=<CID> --client-no-release-cid --wds-set-ip-family=4
+qmicli -d /dev/cdc-wdm0 -p --client-cid=<CID> --client-no-release-cid --wds-start-network="apn=wap.vodafone.co.uk,ip-type=4"
+qmicli -d /dev/cdc-wdm0 -p --client-cid=<CID> --client-no-release-cid --wds-get-current-settings
+```
+
+Then add the reported address to `qmimux0` and set a route through it. Replace `<CID>` with the client ID that the bind command prints. The MTU is 31745 and not 31744 to stay off a multiple of the 1024-byte USB packet size.
+
+The modem accepted up to 32 packets or 31,744 bytes per downlink transfer. Uplink stayed at 1 packet per transfer.
+
+Loopback results, with the IRQ on CPU4:
+
+| Packet size | Raw IP | QMAP |
+|---|---|---|
+| 1400 B | 1020–1057 Mbit/s, 89–92.5k packets/s | 1109–1115 Mbit/s, 97k packets/s |
+| 350 B | 300 Mbit/s, 99k packets/s | 391 Mbit/s, 129k packets/s |
+
+Speed test results with a weak signal (LTE, RSRP about −110 dBm), where the radio is the limit:
+
+| Run | Raw IP | QMAP |
+|---|---|---|
+| 1 | 10.5 Mbit/s | 14.0 Mbit/s |
+| 2 | 11.2 Mbit/s | 12.1 Mbit/s |
+| 3 | 11.8 Mbit/s | 10.5 Mbit/s |
+
+:::hint{type="warning"}
+QMAP has not been tested on a strong 5G link, so its effect on real download speed is unknown. In loopback the uplink is not aggregated and may limit the result. The first QMAP run on 5G was discarded because the device moved during the test.
+:::
+
+Known issues:
+
+- `systemctl stop ModemManager` is not enough. NetworkManager starts it again at once, the new instance takes the modem back, and `qmimux0` disappears. Use `mmcli --inhibit-device` instead.
+- After a QMAP session, restoring raw IP did not reconnect by itself. The connection needed `AT+CFUN=1,1` every time, so QMAP should be configured once and not toggled at runtime.
 
 ## Useful commands
 
