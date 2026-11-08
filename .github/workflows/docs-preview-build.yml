@@ -1,0 +1,83 @@
+# PR preview, stage 1 of 2: build (untrusted).
+#
+# Runs on `pull_request`, so for fork PRs it executes the contributor's
+# content with a read-only GITHUB_TOKEN and no access to secrets — the only
+# safe place to run untrusted markdown through the toolchain. It renders the
+# docs into a static, script-free HTML snapshot and uploads it as an
+# artifact. It deliberately CANNOT deploy or comment: that needs write
+# permissions, which fork PRs must never get (this is also why none of this
+# uses `pull_request_target` with a checkout of PR code — that combination
+# hands the contributor a write token).
+#
+# Stage 2 (docs-preview-deploy.yml) runs in the trusted base-repo context on
+# `workflow_run`, downloads the artifact, and publishes it to GitHub Pages.
+
+name: Docs preview build
+
+on:
+  pull_request:
+    paths:
+      - "docs/**"
+      - "archbee.json"
+      - "tools/preview/**"
+      - ".github/workflows/docs-preview-build.yml"
+
+permissions:
+  contents: read
+
+# A new push to the same PR supersedes the previous build.
+concurrency:
+  group: docs-preview-build-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Default checkout for pull_request is the merge commit: the preview
+      # shows the PR as it would look merged into public-release.
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tools/preview/package-lock.json
+
+      - name: Install Archbee CLI
+        run: npm install --global @archbee/cli
+
+      - name: Install snapshot tool dependencies
+        run: npm ci
+        working-directory: tools/preview
+
+      # Renders every page of the Archbee dev server in headless Chrome
+      # (preinstalled on ubuntu runners) and saves static HTML. All <script>
+      # tags and inline handlers are stripped, so the artifact contains no
+      # executable JS from the PR. See tools/preview/snapshot.mjs.
+      - name: Build static preview
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          node tools/preview/snapshot.mjs \
+            --out preview-out/site \
+            --banner "Docs preview: PR #${PR_NUMBER} @ ${HEAD_SHA:0:7}"
+
+      # The deploy workflow needs to know which PR this artifact belongs to.
+      # It treats this file as untrusted input and cross-checks it against
+      # the GitHub API before publishing.
+      - name: Record PR number
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: printf '%s\n' "$PR_NUMBER" > preview-out/pr-number.txt
+
+      - name: Upload preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-preview
+          path: preview-out
+          retention-days: 7
+          if-no-files-found: error
