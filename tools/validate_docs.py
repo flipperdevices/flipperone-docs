@@ -12,8 +12,9 @@ check that's stricter about image references than Archbee's own check:
    target page and confirm the fragment matches a GitHub-style slug of one
    of its headings.
 2. Path check: for every internal link and image reference -- plain
-   Markdown and Archbee's `::Image[]{src="..."}` / `:inlineImage[]{src="..."}`
-   directives -- confirm the target file actually exists. Image references
+   Markdown, Archbee's `::Image[]{src="..."}` / `:inlineImage[]{src="..."}`
+   directives, and raw HTML `<img src="...">` / `<a href="...">` -- confirm
+   the target file actually exists. Image references
    are resolved the way Archbee resolves them: relative to the referencing
    page first, then falling back to a path relative to the docs root (see
    `resolve_image_target` for why both are tried).
@@ -63,6 +64,17 @@ _MD_LINK_OR_IMAGE_RE = re.compile(
 # Archbee's `::Image[]{src="..." ...}` and `:inlineImage[]{src="..." ...}`.
 _ARCHBEE_IMAGE_RE = re.compile(
     r"::?(?:Image|inlineImage)\[[^\]]*\]\{[^}]*?src=\"(?P<src>[^\"]*)\"[^}]*\}"
+)
+# Raw HTML `<img src="...">` and `<a href="...">`. Pages built out of Archbee
+# HTML tables reference their images this way and never as Markdown --
+# docs/general/Controls.md and docs/cpu-software/FlipCTL.md between them hold
+# 15 such image references, so without these two patterns those paths would
+# never be checked at all.
+_HTML_IMAGE_RE = re.compile(
+    r"<img\b[^>]*?\ssrc=(?P<q>[\"'])(?P<src>.*?)(?P=q)", re.IGNORECASE
+)
+_HTML_LINK_RE = re.compile(
+    r"<a\b[^>]*?\shref=(?P<q>[\"'])(?P<href>.*?)(?P=q)", re.IGNORECASE
 )
 
 # Used to strip Markdown/Archbee markup out of a heading before slugifying,
@@ -205,6 +217,10 @@ def extract_link_refs(source: Path, lines: list[tuple[int, str]]) -> list[LinkRe
             )
         for match in _ARCHBEE_IMAGE_RE.finditer(line):
             refs.append(LinkRef(source, lineno, match.group("src"), is_image=True))
+        for match in _HTML_IMAGE_RE.finditer(line):
+            refs.append(LinkRef(source, lineno, match.group("src"), is_image=True))
+        for match in _HTML_LINK_RE.finditer(line):
+            refs.append(LinkRef(source, lineno, match.group("href"), is_image=False))
     return refs
 
 
