@@ -36,3 +36,10 @@ A container-based lab for running and inspecting the public Flipper One Linux us
 
 - Author: kalicyh
 - GitHub: https://github.com/kalicyh/flipperone-lab
+
+### FlipDeck
+
+Cross-platform (Windows & Linux) desktop companion for the Flipper One. Connect over SSH to run commands in a console, browse and transfer files over SFTP, control systemd services and networking through a FlipCTL panel, and create, switch, and delete btrfs OS profiles — all from one GUI. For Flipper One users and developers.
+
+- Author: jplongley-prog
+- GitHub: https://github.com/jplongley-prog/flipdeck
