@@ -271,7 +271,7 @@ To write the OS image on a microSD card:
 
 :::::WorkflowBlock
 ::::WorkflowBlockItem
-[Download](https://dl-linux-images.flipp.dev/full-img/) or [build](How-to-build-linux-image.md) an OS image. Use `debian-512-[Target name]-build-[Build ID].img.zst`, where `[Target name]` identifies your board. 
+[Download](https://dl-linux-images.flipp.dev/full-img/) or [build](How-to-build-linux-image.md) an OS image. Use `debian-512-[Target name]-[Build ID].img.zst`, where `[Target name]` identifies your board. 
 See [Supported Boards](Supported-boards.md) for available target names.
 ::::
 
