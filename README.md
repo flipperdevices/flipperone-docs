@@ -20,6 +20,18 @@ This repository contains the source files from which the Developer Portal is gen
 3. Edit Markdown files (Read the [Markup reference](https://docs.flipper.net/one/resources/about-docs/markup-reference)).
 4. Create a pull request.
 
+### DCO sign-off
+
+Every commit must include a `Signed-off-by` line in its message to pass the Developer Certificate of Origin (DCO) check. By signing off, you confirm that you have the right to submit your contribution under the project's license.
+
+Add the sign-off automatically with the `-s` option:
+
+```bash
+git commit -s -m "Update documentation"
+```
+
+Git appends `Signed-off-by: Your Name <your@email.com>` using the name and email configured in Git.
+
 ## Automation
 
 Three GitHub Actions in [`.github/workflows/`](.github/workflows/) run automatically:
