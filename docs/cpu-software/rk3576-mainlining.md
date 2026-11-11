@@ -91,7 +91,7 @@ For the Linux kernel and U-Boot, we prefer that you send patches directly to the
 
 ### Before you send
 
-- **Test on real hardware.** Run your change on Flipper One or a [supported RK3576 board](Supported-boards.md). Untested patches are not accepted.
+- **Test on real hardware.** Run your change on Flipper One or a [supported RK3576 board](Supported-boards.md). Untested patches are not accepted. To build a Flipper OS image with your kernel or U-Boot tree, see [Build system](Build-system.md), and run the build scripts with `KEEP_SRC=yes`: by default, they delete the source tree and clone it again.
 - **Have a real reason for the change.** A good way to find one is to use an RK3576 board for your own workloads and fix what doesn't work well. A real use case also helps you convince upstream maintainers.
 - **Want to discuss it first?** Open an issue in our [kernel](https://github.com/flipperdevices/flipper-linux-kernel/issues) or [U-Boot](https://github.com/flipperdevices/u-boot/issues) repository.
 
@@ -99,7 +99,7 @@ For the Linux kernel and U-Boot, we prefer that you send patches directly to the
 
 Each project has its own rules, and maintainers expect you to follow them:
 
-- Linux: [Submitting patches](https://docs.kernel.org/process/submitting-patches.html). For device tree changes, also read [Submitting devicetree binding patches](https://docs.kernel.org/devicetree/bindings/submitting-patches.html). Bindings are separate from the device trees: if you change a device tree structurally, update its binding first, in a separate patch. Device trees must pass validation against the binding schema (`make dtbs_check`).
+- Linux: [Submitting patches](https://docs.kernel.org/process/submitting-patches.html). For device tree changes, also read [Submitting devicetree binding patches](https://docs.kernel.org/devicetree/bindings/submitting-patches.html). Bindings are separate from the device trees: if you change a device tree structurally, update its binding first, in a separate patch. If you change a binding, check it with `make dt_binding_check`. Device trees must pass validation against the binding schema: `make CHECK_DTBS=y rockchip/rk3576-<board>.dtb` checks one board, while `make dtbs_check` checks every device tree in the kernel and takes a long time.
 - U-Boot: [Development process](https://docs.u-boot.org/en/latest/develop/process.html) and [Sending patches](https://docs.u-boot.org/en/latest/develop/sending_patches.html).
 
 A few rules that are easy to miss:
@@ -110,7 +110,7 @@ A few rules that are easy to miss:
 
 ### Send the patches
 
-1. Use [b4](https://b4.docs.kernel.org/en/latest/contributor/overview.html) to prepare and send your patches. It is made for the kernel and U-Boot workflow, sends your commits as plain-text emails in the format maintainers expect, and saves you from many common submission mistakes. `b4 prep --auto-to-cc` also fills in the recipients for you.
+1. Use [b4](https://b4.docs.kernel.org/en/latest/contributor/overview.html) to prepare and send your patches. It is made for the kernel and U-Boot workflow, sends your commits as plain-text emails in the format maintainers expect, and saves you from many common submission mistakes. `b4 prep --auto-to-cc` fills in the recipients for you, and `b4 prep --check` runs `scripts/checkpatch.pl` on every commit in the series.
 2. If your patch is relevant to Flipper One or one of our supported boards, you can add Alexey Charkov (alchark@flipper.net) to Cc. This is optional, as he follows the linux-rockchip and U-Boot mailing lists anyway.
 
 ### After sending
@@ -118,4 +118,4 @@ A few rules that are easy to miss:
 - Answer review comments on the mailing list, then send a new version (v2, v3, and so on) that lists what changed.
 - Don't rush new versions. Give reviewers time: wait at least 24 hours between submissions, and better 3 working days. If you feel you need to send a new version faster than that, the previous one was probably sent too early.
 - Maintainers rarely look at new patches during the merge window, the two weeks after each Linux release. If there is no reply after it closes, a short and polite reminder is fine.
-- If you also opened an issue or pull request in our repositories, post a link to your patch there.
+- If you also opened an issue in our repositories, post a link to your patch there.
