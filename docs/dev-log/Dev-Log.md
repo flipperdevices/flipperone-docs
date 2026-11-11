@@ -15,6 +15,8 @@ This is our regular Dev Log, where we share how Flipper One development is going
 
 All logs:
 
+- [#12: Meet The Apps](./12.md) Hello, World on Flipper One, and a whole bunch of apps as a starting point for developers willing to expand Flipper's endless possibilities.
+
 - [#11: Making Flipper One truly portable:](./11.md) Up to 24 hours of battery life with Linux running, power consumption in different scenario, and the built-in Power Meter.
 
 - [#10: Run your own Flipper One](./10.md), install Flipper OS on supported RK3576-based SBC and try FlipCTL UI, App Manager, and OS profiles.
