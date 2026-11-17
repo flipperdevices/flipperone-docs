@@ -104,7 +104,7 @@ This page describes the full technical specifications of the Flipper One. Since 
 
 ## Memory and storage
 
-- **RAM:** 8 GB LPDDR5
+- **RAM:** ⚠️ TBD. The final memory capacity and type (LPDDR4 or LPDDR5) will be determined based on engineering validation and market conditions.
 - **Internal storage:** 64 GB UFS 2.2
 - **MicroSD card slot:** ⚠️ (UHS-I SDR104 — needs verification)
 
