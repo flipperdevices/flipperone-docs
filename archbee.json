@@ -154,6 +154,12 @@
             "children": []
           },
           {
+            "categoryName": "eSIM & SIM card slot",
+            "isCategory": false,
+            "path": "hardware/esim.md",
+            "children": []
+          },
+          {
             "categoryName": "M.2 port",
             "isCategory": false,
             "path": "hardware/M2-port.md",
