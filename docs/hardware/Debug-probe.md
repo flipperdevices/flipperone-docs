@@ -161,10 +161,12 @@ Example device paths on macOS:
 
 | Port | Device path | Description | Baud rate |
 | ---- | ----------- | ----------- | --------- |
-| Port 1 | `/dev/tty.usbmodemflip_one_debug2` | RK3576 CPU console | `1500000` |
-| Port 2 | `/dev/tty.usbmodemflip_one_debug4` | Flipper One MCU CLI | `230400` |
-| Port 3 | `/dev/tty.usbmodemflip_one_debug6` | MCU debug log | `230400` |
-| Port 4 | `/dev/tty.usbmodemflip_one_debug8` | Debug Probe MCU CLI | `230400` |
+| Port 1 | `/dev/tty.usbmodemf1_debug_ae84_2` | RK3576 CPU console | `1500000` |
+| Port 2 | `/dev/tty.usbmodemf1_debug_ae84_4` | Flipper One MCU CLI | `230400` |
+| Port 3 | `/dev/tty.usbmodemf1_debug_ae84_6` | MCU debug log | `230400` |
+| Port 4 | `/dev/tty.usbmodemf1_debug_ae84_8` | Debug Probe MCU CLI | `230400` |
+
+`ae84` is a unique ID that is different for each Debug Probe.
 
 ## Connect to the RK3576 CPU Console on macOS
 
@@ -174,9 +176,9 @@ We recommend using [`tio`](https://github.com/tio/tio), because it is lightweigh
 
 ### Basic connection
 
-`tio -b 1500000 /dev/tty.usbmodemflip_one_debug2`
+`tio -b 1500000 /dev/tty.usbmodemf1_debug_ae84_2`
 
 ### Connection with timestamps
 Use timestamps to see delays between boot log lines and identify where the boot process slows down:  
 
-`tio --timestamp --timestamp-format 24hour-delta -b 1500000 /dev/tty.usbmodemflip_one_debug2`
+`tio --timestamp --timestamp-format 24hour-delta -b 1500000 /dev/tty.usbmodemf1_debug_ae84_2`
