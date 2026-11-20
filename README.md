@@ -20,12 +20,24 @@ This repository contains the source files from which the Developer Portal is gen
 3. Edit Markdown files (Read the [Markup reference](https://docs.flipper.net/one/resources/about-docs/markup-reference)).
 4. Create a pull request.
 
+### DCO sign-off
+
+Every commit must include a `Signed-off-by` line in its message to pass the Developer Certificate of Origin (DCO) check. By signing off, you confirm that you have the right to submit your contribution under the project's license.
+
+Add the sign-off automatically with the `-s` option:
+
+```bash
+git commit -s -m "Update documentation"
+```
+
+Git appends `Signed-off-by: Your Name <your@email.com>` using the name and email configured in Git.
+
 ## Automation
 
 Three GitHub Actions in [`.github/workflows/`](.github/workflows/) run automatically:
 
 - **Update Open-tasks page** runs every hour. It runs the [`tools/generate_open_tasks.py`](tools/generate_open_tasks.py) script, which collects all issues labeled `help wanted` across all Flipper One repositories and regenerates [`docs/Open-tasks.md`](docs/Open-tasks.md) — published as the [Open Tasks](https://docs.flipper.net/one/open-tasks) page. Don't edit that file by hand.
-- **Validate** runs on every pull request. It checks the documentation structure and scans for broken links before a PR is merged.
+- **Validate** runs on every pull request, executes the validator unit test suite (`tools/test_validate_docs.py`), and checks Markdown formatting, internal links, image paths, and `archbee.json` consistency using `tools/validate_docs.py`.
 - **Test Open Tasks generator** runs when the generator, templates, or dependencies change.
 
   To run the Open Tasks generator locally, install the Python dependencies from [`requirements.txt`](requirements.txt) first.
@@ -46,7 +58,9 @@ flipperone-docs/
 ├── archbee.json                   # Sidebar hierarchy + Archbee integration settings
 ├── README.md                      # Repository overview
 ├── tools/
-│   └── generate_open_tasks.py     # Generates Open-tasks.md from GitHub issues
+│   ├── convert_table_html.py      # Converts complex Markdown tables to Archbee-compatible HTML
+    ├── validate_docs.py           # Checks links, anchors, image paths, and sidebar consistency
+    └── generate_open_tasks.py     # Generates Open-tasks.md from GitHub issues
 └── docs/
     ├── Welcome.md                 # Main page at docs.flipper.net/one
     ├── How-to-join.md
