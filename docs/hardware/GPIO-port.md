@@ -69,7 +69,7 @@ The GPIO port is an expansion connector for external hardware modules. It expose
     <td lightBackgroundColor="#f0f7ff" align="center">
       <p><strong>MCU GPIO 41</strong></p>
       <p>PWM8_B</p>
-      <p>ADC0</p>
+      <p>ADC1</p>
       <p>PIO</p>
     </td>
   </tr>
@@ -115,7 +115,7 @@ The GPIO port is an expansion connector for external hardware modules. It expose
       <p>SPI3_CSN1_M2</p>
       <p>SPI4_CSN0_M2</p>
       <p>PDM1_SDI0_M1</p>
-      <p>SAI4_SD0_M0</p>
+      <p>SAI4_SDO_M0</p>
       <p>SAI1_SDI0_M0</p>
     </td>
   </tr>
@@ -167,7 +167,7 @@ The GPIO port is an expansion connector for external hardware modules. It expose
       <p><strong>CPU GPIO4_A7_D</strong></p>
       <p>PWM2_CH6_M0</p>
       <p>SPI3_CLK_M2</p>
-      <p>SAI4_SDI1_M0</p>
+      <p>SAI4_SDI_M0</p>
       <p>SAI1_SDO0_M0</p>
     </td>
   </tr>
