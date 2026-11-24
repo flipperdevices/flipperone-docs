@@ -8,7 +8,7 @@ updatedAt: Tue Apr 28 2026 12:58:00 GMT+0000 (Coordinated Universal Time)
 
 ![GPIO port](/files/pics/gpio-port-main.png)
 
-The GPIO port is an expansion connector for external hardware modules. It exposes 3.3 V and 5 V power rails (both EFUSE-protected up to 2 A), USB 2.0 data lines, and a mix of MCU and CPU GPIO pins, which can be configured as pins for I²C, UART, SPI, CAN, PWM, I²S, SPDIF, and ADC inputs, as well as PIO (Programmable I/O) pins.
+The GPIO port is an expansion connector for external hardware modules. It exposes 3.3 V  (EFUSE-protected up to 2 A) and 5 V power rails, USB 2.0 data lines, and a mix of MCU and CPU GPIO pins, which can be configured as pins for I²C, UART, SPI, CAN, PWM, I²S, SPDIF, and ADC inputs, as well as PIO (Programmable I/O) pins.
 
 ***
 
@@ -219,7 +219,7 @@ The GPIO port is an expansion connector for external hardware modules. It expose
   </tr>
   <tr>
     <td align="center" colSpan="1" rowSpan="1">
-      <p>5V Power, up to 2A EFUSE</p>
+      <p>5V Power</p>
     </td>
     <td align="center" colSpan="1" rowSpan="1">
       <p><strong>5V</strong></p>
